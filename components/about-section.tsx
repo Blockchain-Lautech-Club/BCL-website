@@ -1,85 +1,142 @@
+'use client';
 import { Card, CardContent } from "@/components/ui/card"
-import { Lightbulb, Network, Trophy, Handshake } from "lucide-react"
+
+import { motion } from 'framer-motion';
+import { Lightbulb, Network, Trophy, Handshake, Shield, Globe, Users, Target, Compass, Eye } from "lucide-react"
 
 export function AboutSection() {
   const features = [
     {
       icon: Lightbulb,
-      title: "Innovation Hub",
+      title: "Innovation",
       description:
-        "Explore cutting-edge blockchain technologies and their real-world applications through hands-on projects.",
+        "...we build without limits.",
     },
     {
-      icon: Network,
-      title: "Networking",
+      icon: Globe,
+      title: "Impact",
       description:
-        "Connect with like-minded peers, industry professionals, and blockchain enthusiasts from across Nigeria.",
+        "...we create real change.",
     },
     {
-      icon: Trophy,
-      title: "Skill Development",
+      icon: Shield,
+      title: "Integrity",
       description:
-        "Master blockchain development, smart contracts, DeFi, and emerging Web3 technologies through workshops.",
+        "...we promote ethical adoption.",
     },
     {
       icon: Handshake,
-      title: "Community",
+      title: "Collaboration",
       description:
-        "Join a supportive community of learners and builders shaping the future of decentralized technology.",
+        "...we grow together.",
     },
   ]
 
   return (
-    <section className="py-16 sm:py-20 bg-gray-50">
+    <section className="py-8 sm:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-            About Our Club
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            The LAUTECH Blockchain Club is a student-driven community dedicated to exploring, learning, and building
-            with blockchain technology. We bridge the gap between academic knowledge and practical blockchain
-            applications.
-          </p>
-        </div>
+        <h2 className="text-center font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4 sm:mb-6">
+          About Our Club
+        </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
-          {features.map((feature, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-6 sm:p-8 text-center">
-                <feature.icon className="h-10 w-10 sm:h-12 sm:w-12 text-primary mx-auto mb-4 sm:mb-6" />
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">{feature.title}</h3>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{feature.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
 
-        <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 shadow-lg">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
-                Our Mission
-              </h3>
-              <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
-                To empower LAUTECH students with blockchain knowledge, foster innovation, and create a thriving
-                ecosystem where the next generation of blockchain developers and entrepreneurs can flourish.
+        <div className="container mx-auto px-4 mb-6 mt-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+            {/* Card 1: Who We Are */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="bg-gray-700 rounded-2xl p-6 sm:p-8 md:p-12 shadow-md hover:scale-105 transition duration-300"
+            >
+              <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                <Users className="w-8 h-8 text-blue-400 hover:text-neon-teal" aria-label="Who We Are" />
+                <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-blue-400">
+                  Who We Are
+                </h3>
+              </div>
+              <p className="text-gray-200 text-base sm:text-lg leading-relaxed">
+                Blockchain Lautech is a vibrant student-led community at LAUTECH, passionate about blockchain education, innovation, and adoption.
               </p>
-              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-                Through workshops, hackathons, guest lectures, and collaborative projects, we're building the foundation
-                for Nigeria's blockchain future.
-              </p>
-            </div>
-            <div className="relative order-1 lg:order-2">
-              <img
-                src="/blockchain-classroom.png"
-                alt="Students learning blockchain technology"
-                className="rounded-xl shadow-lg w-full h-auto"
-              />
-            </div>
+            </motion.div>
+
+            {/* Card 2: We Exist To */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-gray-700 rounded-2xl p-6 sm:p-8 md:p-12 shadow-md hover:scale-105 transition duration-300"
+            >
+              <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                <Target className="w-8 h-8 text-blue-400 hover:text-neon-teal" aria-label="We Exist To" />
+                <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-blue-400">
+                  We Exist To
+                </h3>
+              </div>
+              <ul className="text-gray-200 text-base sm:text-lg leading-relaxed space-y-2">
+                <li>Make blockchain accessible to every student.</li>
+                <li>Equip members with skills to thrive in Web3.</li>
+                <li>Connect LAUTECH to the global blockchain ecosystem.</li>
+              </ul>
+            </motion.div>
           </div>
         </div>
       </div>
+
+
+
+      <div className="container mx-auto rounded-2xl px-6 sm:p-8 md:px-12">
+        <h2 className="text-center font-serif text-2xl sm:text-3xl md:text-5xl lg:text-5xl font-bold text-primary mt-10 mb-8 sm:mb-6">
+        Mission & Vision
+      </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mt-10 items-center">
+          <div className="order-1 lg:order-2">
+            <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+            <Compass className="w-8 h-8 text-primary hover:text-neon-teal" aria-label="We Exist To" />
+            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-primary">
+              Our Mission
+            </h3>
+            </div>
+            <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
+              To empower LAUTECH students with blockchain knowledge, foster innovation, and create a thriving
+              ecosystem where the next generation of blockchain developers and entrepreneurs can flourish.
+              Through workshops, hackathons, guest lectures, and collaborative projects, we're building the foundation
+              for Nigeria's blockchain future.
+            </p>
+          </div>
+          <div className="order-1 lg:order-2">
+            <img
+              src="/bannernew.jpg"
+              alt="Students learning blockchain technology"
+              className="rounded-xl shadow-lg w-full h-auto"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mt-15 items-center">
+          <div className="order-2 lg:order-1">
+            <img
+              src="/blockchain-classroom.png"
+              alt="Students learning blockchain technology"
+              className="rounded-xl shadow-lg w-full h-auto"
+            />
+          </div>
+          <div className="relative order-1 lg:order-2">
+            <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+            <Eye className="w-8 h-8 text-primary hover:text-neon-teal" aria-label="We Exist To" />
+            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-primary">
+              Our Vision
+            </h3>
+            </div>
+            <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
+              A LAUTECH where every student understands blockchain and contributes to Nigeria’s Web3 growth.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+
     </section>
-  )
+  );
 }
