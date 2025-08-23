@@ -62,9 +62,11 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const images = [
   'banner.jpg',
   'caroevent1.jpg',
+  'event10.jpg',
   'caroevent2.jpg',
-  'caroevent3.jpg',
+  'event5.jpg',
   'caroevent4.jpg',
+  'caroevent3.jpg',
 ];
 
 export function HeroSection () {
@@ -76,7 +78,7 @@ export function HeroSection () {
       setCurrentIndex((prevIndex) => 
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10000); // Change slide every 3 seconds
+    }, 8000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -95,7 +97,7 @@ export function HeroSection () {
   };
 
   return (
-    <div className="relative w-full md:h-[85vh] h-[40vh] overflow-hidden">
+    <div className="relative w-full md:h-[88vh] h-[30vh] overflow-hidden">
       {/* Carousel Images */}
       <div 
         className="flex h-full transition-transform duration-500 ease-in-out"
@@ -118,14 +120,14 @@ export function HeroSection () {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors duration-200"
+        className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-black/20 text-white p-3 rounded-full hover:bg-black/70 transition-colors duration-200"
         aria-label="Previous slide"
       >
         <FaChevronLeft size={24} />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors duration-200"
+        className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-black/20 text-white p-3 rounded-full hover:bg-black/70 transition-colors duration-200"
         aria-label="Next slide"
       >
         <FaChevronRight size={24} />
