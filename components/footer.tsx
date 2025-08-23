@@ -16,8 +16,7 @@ export function Footer() {
               <span className="font-serif font-bold text-lg sm:text-xl">LAUTECH Blockchain Club</span>
             </div>
             <p className="text-gray-300 leading-relaxed mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
-              Empowering the next generation of blockchain innovators at Ladoke Akintola University of Technology
-              through education, innovation, and community building.
+              We’re the official blockchain & Web3 student community of LAUTECH — learning, building, and leading the next generation of innovators.
             </p>
             <div className="space-y-2">
               <div className="flex items-center text-gray-300">
