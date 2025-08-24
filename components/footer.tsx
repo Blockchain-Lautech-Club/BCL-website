@@ -82,7 +82,7 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-serif font-bold text-base sm:text-lg mb-4 sm:mb-6">Stay Updated</h3>
+            <h3 className="font-serif font-bold text-primary sm:text-lg mb-4 sm:mb-6">Stay Updated</h3>
             <NewsletterSignup />
           </div>
         </div>

@@ -130,7 +130,7 @@ export default function BlogPage() {
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-6xl font-bold text-gray-900 mb-6">Blockchain Blog</h1>
+            <h1 className="font-serif text-4xl md:text-6xl font-bold text-primary mb-6">Blockchain Blog</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Stay updated with the latest blockchain insights, club news, and educational content from our community.
             </p>
@@ -174,7 +174,7 @@ export default function BlogPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 mb-8">
               <TrendingUp className="h-6 w-6 text-primary" />
-              <h2 className="font-serif text-2xl font-bold text-gray-900">Featured Articles</h2>
+              <h2 className="font-serif text-2xl font-bold text-primary">Featured Articles</h2>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredPosts.map((post) => (
@@ -188,7 +188,7 @@ export default function BlogPage() {
       {/* Regular Posts */}
       <section className="py-12 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-2xl font-bold text-gray-900 mb-8">Latest Articles</h2>
+          <h2 className="font-serif text-2xl font-bold text-primary mb-8">Latest Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post) => (
               <BlogPostCard key={post.id} post={post} />

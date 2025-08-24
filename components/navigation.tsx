@@ -24,35 +24,38 @@ export function Navigation() {
             <div className="ml-10 flex items-baseline space-x-4">
               <Link
                 href="/"
-                className="text-gray-900 hover:text-primary px nets-3 py-2 text-md font-medium transition-colors"
+                className="text-gray-900 hover:text-primary py-2 text-lg font-bold transition-colors"
               >
                 Home
               </Link>
               <Link
                 href="/about"
-                className="text-gray-900 hover:text-primary px-3 py-2 text-md font-medium transition-colors"
+                className="text-gray-900 hover:text-primary py-2 text-lg font-bold transition-colors"
               >
                 About
               </Link>
               <Link
                 href="/events"
-                className="text-gray-900 hover:text-primary px-3 py-2 text-md font-medium transition-colors"
+                className="text-gray-900 hover:text-primary py-2 text-lg font-bold transition-colors"
               >
                 Events
               </Link>
               <Link
                 href="/blog"
-                className="text-gray-900 hover:text-primary px-3 py-2 text-md font-medium transition-colors"
+                className="text-gray-900 hover:text-primary py-2 text-lg font-bold transition-colors"
               >
                 Blog
               </Link>
               <Link
                 href="/contact"
-                className="text-gray-900 hover:text-primary px-3 py-2 text-md font-medium transition-colors"
+                className="text-gray-900 hover:text-primary py-2 text-lg font-bold transition-colors"
               >
                 Contact
               </Link>
-              <Button asChild className="ml-4 text-md">
+              <Button asChild className="ml-3 text-md font-bold">
+                <Link href="/team">The Team</Link>
+              </Button>
+              <Button asChild className="ml-2 text-md font-bold">
                 <Link href="/join">Join BCL</Link>
               </Button>
             </div>
@@ -85,41 +88,48 @@ export function Navigation() {
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
                 <Link
                   href="/"
-                  className="block px-3 py-1 text-base font-medium text-gray-900 hover:text-primary"
+                  className="block px-3 py-1 text-base text-md font-bold text-gray-900 hover:text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="/about"
-                  className="block px-3 py-1 text-base font-medium text-gray-900 hover:text-primary"
+                  className="block px-3 py-1 text-base text-md font-bold text-gray-900 hover:text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="/events"
-                  className="block px-3 py-1 text-base font-medium text-gray-900 hover:text-primary"
+                  className="block px-3 py-1 text-base text-md font-bold text-gray-900 hover:text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Events
                 </Link>
                 <Link
                   href="/blog"
-                  className="block px-3 py-1 text-base font-medium text-gray-900 hover:text-primary"
+                  className="block px-3 py-1 text-base text-md font-bold text-gray-900 hover:text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Blog
                 </Link>
                 <Link
                   href="/contact"
-                  className="block px-3 py-1 text-base font-medium text-gray-900 hover:text-primary"
+                  className="block px-3 py-1 text-base text-md font-bold text-gray-900 hover:text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact
                 </Link>
                 <div className="px-3 py-1">
-                  <Button asChild className="w-full">
+                  <Button asChild className="w-full text-md font-bold">
+                    <Link href="/team" onClick={() => setIsOpen(false)}>
+                      The Team
+                    </Link>
+                  </Button>
+                </div>
+                <div className="px-3 py-1">
+                  <Button asChild className="w-full text-md font-bold">
                     <Link href="/join" onClick={() => setIsOpen(false)}>
                       Join Club
                     </Link>
