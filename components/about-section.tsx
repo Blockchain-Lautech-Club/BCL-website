@@ -248,7 +248,7 @@ export function AboutSection() {
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
             </div>
             <div className="relative overflow-hidden rounded-lg shadow-lg group">
-              <img className="h-full max-w-full rounded-lg" src="event9.jpg" alt="Gallery image" />
+              <img className="h-full max-w-full rounded-lg" src="event9.JPG" alt="Gallery image" />
               <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
             </div>
             <div className="relative overflow-hidden rounded-lg shadow-lg group">
