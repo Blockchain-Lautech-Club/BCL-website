@@ -1,19 +1,16 @@
 import Link from "next/link"
-import { Twitter, Linkedin, Github, Mail, MapPin, Phone } from "lucide-react"
+import { Twitter, Linkedin, Github, Mail, MapPin, Phone, } from "lucide-react"
 import { NewsletterSignup } from "./newsletter-signup"
 
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Club Info */}
           <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4 sm:mb-6">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">BC</span>
-              </div>
-              <span className="font-serif font-bold text-lg sm:text-xl">LAUTECH Blockchain Club</span>
+              <img className="w-50 h-11" src="/whitelogo.png" alt="" />
             </div>
             <p className="text-gray-300 leading-relaxed mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
               We’re the official blockchain & Web3 student community of LAUTECH — learning, building, and leading the next generation of innovators.
@@ -93,14 +90,17 @@ export function Footer() {
               © 2024 LAUTECH Blockchain Club. All rights reserved.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-primary transition-colors">
+              <Link href="https://twitter.com/@BlockchainLaut1" className="hover:text-primary transition-colors">
                 <Twitter className="h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-primary transition-colors">
+              <Link href="#" className="hover:text-primary transition-colors">
                 <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-primary transition-colors">
+              <Link href="#" className="hover:text-primary transition-colors">
                 <Github className="h-4 w-4 sm:h-5 sm:w-5" />
+              </Link>
+              <Link href="https://t.me/BlockchainLautech" className="text-gray-400 hover:text-primary transition-colors">
+                <img src="/telegram.png" className="h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
             </div>
           </div>
