@@ -123,7 +123,7 @@ export default function ContactPage() {
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">Get in Touch</h1>
+            <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">Get in Touch</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Have questions about blockchain technology, our events, or want to join our community? We'd love to hear
               from you!
@@ -166,7 +166,7 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <Card className="shadow-xl">
                 <CardHeader>
-                  <CardTitle className="font-serif text-2xl font-bold text-gray-900">Send us a Message</CardTitle>
+                  <CardTitle className="font-serif text-2xl font-bold text-primary">Send us a Message</CardTitle>
                   <p className="text-gray-600">Fill out the form below and we'll get back to you soon.</p>
                 </CardHeader>
                 <CardContent className="p-8">
@@ -264,7 +264,7 @@ export default function ContactPage() {
             {/* Quick Actions */}
             <div className="space-y-6">
               <div>
-                <h3 className="font-serif text-2xl font-bold text-gray-900 mb-6">Quick Actions</h3>
+                <h3 className="font-serif text-2xl font-bold text-primary mb-6">Quick Actions</h3>
                 <div className="space-y-4">
                   {quickActions.map((action, index) => (
                     <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -284,7 +284,7 @@ export default function ContactPage() {
               {/* FAQ */}
               <Card className="border-0 shadow-lg">
                 <CardHeader>
-                  <CardTitle className="font-serif text-xl font-bold text-gray-900">Frequently Asked</CardTitle>
+                  <CardTitle className="font-serif text-xl font-bold text-primary">Frequently Asked</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4 text-sm">
