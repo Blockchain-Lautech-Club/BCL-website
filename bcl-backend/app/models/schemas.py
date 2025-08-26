@@ -113,7 +113,7 @@ class MemberUpdate(BaseModel):
 class EventRegistrationCreate(BaseModel):
     event_id: str
     member_id: str
-
+    
 class EventFeedbackCreate(BaseModel):
     event_id: str
     member_id: str
