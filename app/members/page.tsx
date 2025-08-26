@@ -94,7 +94,7 @@ export default function MembersPage() {
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Community</h1>
+            <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">Our Community</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Meet the passionate students and innovators who make up the LAUTECH Blockchain Club community.
             </p>
@@ -142,7 +142,7 @@ export default function MembersPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">Featured Members</h2>
+            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Featured Members</h2>
             <p className="text-lg text-gray-600">Meet some of our most active and accomplished community members</p>
           </div>
 
@@ -194,7 +194,7 @@ export default function MembersPage() {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">Membership Tiers</h2>
+            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Membership Tiers</h2>
             <p className="text-lg text-gray-600">Progress through different membership levels as you grow with us</p>
           </div>
 
