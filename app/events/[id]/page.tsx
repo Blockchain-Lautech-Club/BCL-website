@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -7,118 +8,72 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
+import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
 import { Calendar, MapPin, Users, ArrowLeft, Share2, Bookmark } from "lucide-react"
-import { use } from "react"
+import { eventApi, Event, formatDate, isEventFull } from "@/lib/api"
+import { notFound } from "next/navigation"
 
-// Mock event data - in a real app, this would come from an API
-const eventData: { [key: string]: any } = {
-  "1": {
-    id: 1,
-    title: "Introduction to Smart Contracts",
-    date: "2024-03-15",
-    time: "2:00 PM - 5:00 PM",
-    location: "Computer Science Lab, Block A",
-    type: "Workshop",
-    status: "upcoming",
-    attendees: 45,
-    maxAttendees: 60,
-    description:
-      "Join us for an intensive hands-on workshop where you'll learn the fundamentals of smart contract development using Solidity. This beginner-friendly session will cover blockchain basics, Ethereum ecosystem, and guide you through creating and deploying your first smart contract.",
-    fullDescription: `This comprehensive workshop is designed for students who want to dive into the world of blockchain development. No prior blockchain experience is required, but basic programming knowledge is recommended.
+export default function EventDetailPage({ params }: { params: { id: string } }) {
+  const [event, setEvent] = useState<Event | null>(null)
+  const [relatedEvents, setRelatedEvents] = useState<Event[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-What you'll learn:
-• Blockchain fundamentals and how smart contracts work
-• Setting up your development environment (Remix IDE, MetaMask)
-• Solidity programming language basics
-• Writing your first smart contract
-• Testing and deploying contracts on test networks
-• Best practices for smart contract security
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        
+        // Fetch the event
+        const eventData = await eventApi.getEvent(params.id)
+        setEvent(eventData)
+        
+        // Fetch related events (upcoming events of same type)
+        const related = await eventApi.getEvents({ status: 'upcoming', limit: 4 })
+        setRelatedEvents(related.filter(e => e.id !== eventData.id && e.type === eventData.type).slice(0, 2))
+        
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch event')
+      } finally {
+        setLoading(false)
+      }
+    }
 
-What to bring:
-• Your laptop with internet connection
-• Enthusiasm to learn cutting-edge technology!
+    fetchEvent()
+  }, [params.id])
 
-Prerequisites:
-• Basic understanding of programming concepts
-• Familiarity with JavaScript is helpful but not required`,
-    speaker: {
-      name: "Dr. Adebayo Ogundimu",
-      title: "Senior Blockchain Developer at TechCorp",
-      bio: "Dr. Ogundimu has over 8 years of experience in blockchain development and has contributed to several major DeFi protocols. He holds a PhD in Computer Science and is passionate about blockchain education.",
-      avatar: "/dr-ogundimu.png",
-      linkedin: "https://linkedin.com/in/adebayo-ogundimu",
-      twitter: "https://twitter.com/adebayo_dev",
-    },
-    agenda: [
-      { time: "2:00 PM", activity: "Welcome & Introductions" },
-      { time: "2:15 PM", activity: "Blockchain Fundamentals" },
-      { time: "3:00 PM", activity: "Introduction to Solidity" },
-      { time: "3:45 PM", activity: "Break" },
-      { time: "4:00 PM", activity: "Hands-on: Writing Your First Contract" },
-      { time: "4:45 PM", activity: "Deployment & Testing" },
-      { time: "5:00 PM", activity: "Q&A and Wrap-up" },
-    ],
-    image: "/smart-contracts-workshop.png",
-    gallery: ["/workshop-setup.png", "/coding-session.png", "/group-discussion.png"],
-    relatedEvents: [2, 3],
-  },
-  "2": {
-    id: 2,
-    title: "Blockchain Career Panel",
-    date: "2024-03-22",
-    time: "4:00 PM - 6:00 PM",
-    location: "Main Auditorium",
-    type: "Panel Discussion",
-    status: "upcoming",
-    attendees: 120,
-    maxAttendees: 200,
-    description: "Industry professionals share insights on blockchain career opportunities and pathways.",
-    fullDescription: `Join us for an inspiring panel discussion featuring leading blockchain professionals from across Nigeria and beyond. This is your opportunity to learn about career paths, industry trends, and get advice from experts who are shaping the future of blockchain technology.
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: event?.title,
+          text: event?.description,
+          url: window.location.href,
+        })
+      } catch (error) {
+        console.log('Error sharing:', error)
+      }
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(window.location.href)
+      alert('Link copied to clipboard!')
+    }
+  }
 
-Our distinguished panel includes:
-• Startup founders who built successful blockchain companies
-• Senior developers from major crypto exchanges
-• Blockchain consultants working with traditional banks
-• Venture capitalists investing in Web3 startups
+  const handleRegister = () => {
+    // In a real app, this would handle event registration
+    alert('Registration functionality would be implemented here')
+  }
 
-Topics covered:
-• Different career paths in blockchain (technical and non-technical)
-• Skills most in demand by employers
-• How to break into the blockchain industry
-• Salary expectations and growth opportunities
-• The future of blockchain in Africa
-• Networking tips and building your professional brand`,
-    speaker: {
-      name: "Multiple Industry Experts",
-      title: "Panel of 5 Blockchain Professionals",
-      bio: "Our panel features diverse voices from the blockchain industry, including developers, entrepreneurs, investors, and consultants.",
-      avatar: "/panel-experts.png",
-    },
-    agenda: [
-      { time: "4:00 PM", activity: "Welcome & Panel Introductions" },
-      { time: "4:15 PM", activity: "Career Paths in Blockchain" },
-      { time: "4:45 PM", activity: "Skills & Education Requirements" },
-      { time: "5:15 PM", activity: "Industry Trends & Future Outlook" },
-      { time: "5:30 PM", activity: "Audience Q&A" },
-      { time: "6:00 PM", activity: "Networking Session" },
-    ],
-    image: "/career-panel.png",
-    relatedEvents: [1, 6],
-  },
-}
-
-export default function EventDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params)
-  const event = eventData[id]
-
-  if (!event) {
+  if (error) {
     return (
       <main className="min-h-screen bg-gray-50">
         <Navigation />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Event Not Found</h1>
-          <p className="text-gray-600 mb-8">The event you're looking for doesn't exist.</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Event</h1>
+          <p className="text-gray-600 mb-8">{error}</p>
           <Button asChild>
             <Link href="/events">Back to Events</Link>
           </Button>
@@ -128,8 +83,121 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
     )
   }
 
-  const isUpcoming = event.status === "upcoming"
-  const isFull = event.attendees >= event.maxAttendees
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-gray-50">
+        <Navigation />
+        
+        {/* Back Button */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <Skeleton className="h-10 w-32" />
+        </div>
+
+        {/* Event Header */}
+        <section className="bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2">
+                <div className="flex items-start justify-between mb-4">
+                  <Skeleton className="h-6 w-24" />
+                  <div className="flex gap-2">
+                    <Skeleton className="h-8 w-8" />
+                    <Skeleton className="h-8 w-8" />
+                  </div>
+                </div>
+
+                <Skeleton className="h-10 w-full mb-4" />
+                <Skeleton className="h-10 w-3/4 mb-6" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  {[...Array(3)].map((_, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <Skeleton className="h-5 w-5" />
+                      <div>
+                        <Skeleton className="h-4 w-32 mb-1" />
+                        <Skeleton className="h-3 w-24" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <Skeleton className="h-6 w-full mb-2" />
+                <Skeleton className="h-6 w-2/3" />
+              </div>
+
+              <div className="lg:col-span-1">
+                <Card>
+                  <CardHeader>
+                    <Skeleton className="h-6 w-32 mx-auto" />
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Skeleton className="h-10 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <Separator />
+                    <div className="space-y-2">
+                      {[...Array(4)].map((_, i) => (
+                        <div key={i} className="flex justify-between">
+                          <Skeleton className="h-4 w-20" />
+                          <Skeleton className="h-4 w-24" />
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </main>
+    )
+  }
+
+  if (!event) {
+    notFound()
+  }
+
+  const isUpcoming = event.status === 'upcoming'
+  const isFull = isEventFull(event)
+
+  const formatDescription = (description: string) => {
+    if (!description) return []
+    
+    return description.split('\n\n').map((paragraph, index) => {
+      if (paragraph.startsWith('## ')) {
+        return (
+          <h2 key={index} className="font-serif text-2xl font-bold text-gray-900 mt-8 mb-4">
+            {paragraph.replace('## ', '')}
+          </h2>
+        )
+      }
+      if (paragraph.startsWith('### ')) {
+        return (
+          <h3 key={index} className="font-serif text-xl font-bold text-gray-900 mt-6 mb-3">
+            {paragraph.replace('### ', '')}
+          </h3>
+        )
+      }
+      if (paragraph.startsWith('• ') || paragraph.includes('\n• ')) {
+        const listItems = paragraph.split('\n').filter(item => item.startsWith('• '))
+        return (
+          <ul key={index} className="list-disc list-inside space-y-2 mb-6">
+            {listItems.map((item, i) => (
+              <li key={i} className="text-gray-700">
+                {item.replace('• ', '')}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+      return (
+        <p key={index} className="text-gray-700 leading-relaxed mb-6">
+          {paragraph}
+        </p>
+      )
+    })
+  }
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -161,7 +229,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
                   {isUpcoming && isFull && <Badge variant="destructive">Full</Badge>}
                 </div>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" onClick={handleShare}>
                     <Share2 className="h-4 w-4" />
                   </Button>
                   <Button variant="outline" size="sm">
@@ -177,12 +245,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
                   <Calendar className="h-5 w-5 mr-3 text-primary" />
                   <div>
                     <div className="font-medium">
-                      {new Date(event.date).toLocaleDateString("en-US", {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
+                      {formatDate(event.date)}
                     </div>
                     <div className="text-sm">{event.time}</div>
                   </div>
@@ -197,9 +260,9 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
                   <Users className="h-5 w-5 mr-3 text-primary" />
                   <div>
                     <div className="font-medium">
-                      {event.attendees}/{event.maxAttendees} registered
+                      {event.attendees}/{event.max_attendees} registered
                     </div>
-                    <div className="text-sm">{event.maxAttendees - event.attendees} spots remaining</div>
+                    <div className="text-sm">{event.max_attendees - event.attendees} spots remaining</div>
                   </div>
                 </div>
               </div>
@@ -215,11 +278,11 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
                 <CardContent className="space-y-4">
                   {isUpcoming && !isFull ? (
                     <>
-                      <Button className="w-full" size="lg">
+                      <Button className="w-full" size="lg" onClick={handleRegister}>
                         Register Now - Free
                       </Button>
                       <p className="text-sm text-gray-600 text-center">
-                        {event.maxAttendees - event.attendees} spots remaining
+                        {event.max_attendees - event.attendees} spots remaining
                       </p>
                     </>
                   ) : isUpcoming && isFull ? (
@@ -242,7 +305,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Date:</span>
-                      <span className="font-medium">{new Date(event.date).toLocaleDateString()}</span>
+                      <span className="font-medium">{formatDate(event.date)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Time:</span>
@@ -265,15 +328,17 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
       </section>
 
       {/* Event Image */}
-      <section className="bg-white border-t">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <img
-            src={event.image || "/placeholder.svg?height=400&width=800"}
-            alt={event.title}
-            className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
-          />
-        </div>
-      </section>
+      {event.image && (
+        <section className="bg-white border-t">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <img
+              src={event.image}
+              alt={event.title}
+              className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
+            />
+          </div>
+        </section>
+      )}
 
       {/* Event Details */}
       <section className="bg-white border-t">
@@ -281,23 +346,21 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-8">
               {/* Description */}
-              <div>
-                <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
-                <div className="prose prose-gray max-w-none">
-                  {event.fullDescription.split("\n\n").map((paragraph: string, index: number) => (
-                    <p key={index} className="text-gray-700 leading-relaxed mb-4">
-                      {paragraph}
-                    </p>
-                  ))}
+              {event.full_description && (
+                <div>
+                  <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
+                  <div className="prose prose-gray max-w-none">
+                    {formatDescription(event.full_description)}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Agenda */}
-              {event.agenda && (
+              {event.agenda && event.agenda.length > 0 && (
                 <div>
                   <h2 className="font-serif text-2xl font-bold text-gray-900 mb-6">Event Agenda</h2>
                   <div className="space-y-4">
-                    {event.agenda.map((item: any, index: number) => (
+                    {event.agenda.map((item, index) => (
                       <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
                         <div className="flex items-center justify-center w-16 h-10 bg-primary text-primary-foreground rounded-md text-sm font-medium">
                           {item.time}
@@ -321,46 +384,45 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
                 <CardContent>
                   <div className="flex items-start gap-4">
                     <Avatar className="h-16 w-16">
-                      <AvatarImage src={event.speaker.avatar || "/placeholder.svg"} alt={event.speaker.name} />
+                      <AvatarImage src={event.speaker_avatar || "/placeholder.svg"} alt={event.speaker_name} />
                       <AvatarFallback>
-                        {event.speaker.name
+                        {event.speaker_name
                           .split(" ")
                           .map((n: string) => n[0])
                           .join("")}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900">{event.speaker.name}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{event.speaker.title}</p>
-                      <p className="text-sm text-gray-700 leading-relaxed">{event.speaker.bio}</p>
+                      <h3 className="font-semibold text-gray-900">{event.speaker_name}</h3>
+                      {event.speaker_title && (
+                        <p className="text-sm text-gray-600 mb-2">{event.speaker_title}</p>
+                      )}
+                      {event.speaker_bio && (
+                        <p className="text-sm text-gray-700 leading-relaxed">{event.speaker_bio}</p>
+                      )}
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
               {/* Related Events */}
-              {event.relatedEvents && event.relatedEvents.length > 0 && (
+              {relatedEvents.length > 0 && (
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-xl">Related Events</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {event.relatedEvents.map((relatedId: number) => {
-                        const relatedEvent = eventData[relatedId.toString()]
-                        if (!relatedEvent) return null
-
-                        return (
-                          <Link key={relatedId} href={`/events/${relatedId}`} className="block">
-                            <div className="p-3 border rounded-lg hover:bg-gray-50 transition-colors">
-                              <h4 className="font-medium text-gray-900 text-sm mb-1">{relatedEvent.title}</h4>
-                              <p className="text-xs text-gray-600">
-                                {new Date(relatedEvent.date).toLocaleDateString()}
-                              </p>
-                            </div>
-                          </Link>
-                        )
-                      })}
+                      {relatedEvents.map((relatedEvent) => (
+                        <Link key={relatedEvent.id} href={`/events/${relatedEvent.id}`} className="block">
+                          <div className="p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                            <h4 className="font-medium text-gray-900 text-sm mb-1">{relatedEvent.title}</h4>
+                            <p className="text-xs text-gray-600">
+                              {formatDate(relatedEvent.date)} • {relatedEvent.location}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>

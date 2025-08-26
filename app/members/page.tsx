@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,48 +8,17 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Users, Calendar, Trophy, Star, TrendingUp } from "lucide-react"
+import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
+import { memberApi, Member } from "@/lib/api"
 
-// Mock member data
+// Mock member stats (replace with API call if needed)
 const memberStats = {
   totalMembers: 247,
   activeMembers: 189,
   eventsThisMonth: 8,
   completedProjects: 23,
 }
-
-const featuredMembers = [
-  {
-    name: "Adebayo Ogundimu",
-    role: "Club President",
-    department: "Computer Science",
-    level: "400L",
-    achievements: ["Hackathon Winner", "Smart Contract Expert", "Community Leader"],
-    avatar: "/member-adebayo.png",
-    projects: 12,
-    eventsAttended: 45,
-  },
-  {
-    name: "Fatima Abdullahi",
-    role: "Technical Lead",
-    department: "Information Technology",
-    level: "300L",
-    achievements: ["DeFi Specialist", "Workshop Facilitator", "Mentor"],
-    avatar: "/member-fatima.png",
-    projects: 8,
-    eventsAttended: 32,
-  },
-  {
-    name: "Chinedu Okwu",
-    role: "Community Manager",
-    department: "Software Engineering",
-    level: "500L",
-    achievements: ["NFT Creator", "Event Organizer", "Alumni Network"],
-    avatar: "/member-chinedu.png",
-    projects: 15,
-    eventsAttended: 38,
-  },
-]
 
 const membershipTiers = [
   {
@@ -86,6 +56,40 @@ const membershipTiers = [
 ]
 
 export default function MembersPage() {
+  const [featuredMembers, setFeaturedMembers] = useState<Member[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchFeaturedMembers = async () => {
+      try {
+        const members = await memberApi.getFeaturedMembers()
+        setFeaturedMembers(members)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch featured members")
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchFeaturedMembers()
+  }, [])
+
+  if (error) {
+    return (
+      <main className="min-h-screen bg-gray-50">
+        <Navigation />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Members</h1>
+          <p className="text-gray-600 mb-8">{error}</p>
+          <Button asChild>
+            <Link href="/">Back to Home</Link>
+          </Button>
+        </div>
+        <Footer />
+      </main>
+    )
+  }
+
   return (
     <main className="min-h-screen bg-gray-50">
       <Navigation />
@@ -146,47 +150,66 @@ export default function MembersPage() {
             <p className="text-lg text-gray-600">Meet some of our most active and accomplished community members</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredMembers.map((member, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-8 text-center">
-                  <Avatar className="h-20 w-20 mx-auto mb-4">
-                    <AvatarImage src={member.avatar || "/placeholder.svg"} alt={member.name} />
-                    <AvatarFallback>
-                      {member.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                  <h3 className="font-serif text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                  <p className="text-primary font-medium mb-1">{member.role}</p>
-                  <p className="text-gray-600 text-sm mb-4">
-                    {member.department} • {member.level}
-                  </p>
-
-                  <div className="flex justify-center gap-4 mb-4 text-sm">
-                    <div className="text-center">
-                      <div className="font-bold text-gray-900">{member.projects}</div>
-                      <div className="text-gray-600">Projects</div>
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...Array(3)].map((_, index) => (
+                <Card key={index} className="border-0 shadow-lg">
+                  <CardContent className="p-8 text-center">
+                    <Skeleton className="h-20 w-20 mx-auto mb-4 rounded-full" />
+                    <Skeleton className="h-6 w-40 mx-auto mb-2" />
+                    <Skeleton className="h-4 w-32 mx-auto mb-1" />
+                    <Skeleton className="h-4 w-48 mx-auto mb-4" />
+                    <div className="flex justify-center gap-4 mb-4">
+                      <Skeleton className="h-10 w-20" />
+                      <Skeleton className="h-10 w-20" />
                     </div>
-                    <div className="text-center">
-                      <div className="font-bold text-gray-900">{member.eventsAttended}</div>
-                      <div className="text-gray-600">Events</div>
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {[...Array(3)].map((_, i) => (
+                        <Skeleton key={i} className="h-6 w-24" />
+                      ))}
                     </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {member.achievements.map((achievement, i) => (
-                      <Badge key={i} variant="secondary" className="bg-primary/10 text-primary text-xs">
-                        {achievement}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredMembers.map((member) => (
+                <Card key={member.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-8 text-center">
+                    <Avatar className="h-20 w-20 mx-auto mb-4">
+                      <AvatarImage src={member.avatar || "/placeholder.svg"} alt={`${member.first_name} ${member.last_name}`} />
+                      <AvatarFallback>
+                        {member.first_name[0]}{member.last_name[0]}
+                      </AvatarFallback>
+                    </Avatar>
+                    <h3 className="font-serif text-xl font-bold text-gray-900 mb-2">{member.first_name} {member.last_name}</h3>
+                    <p className="text-primary font-medium mb-1">{member.role || "Member"}</p>
+                    <p className="text-gray-600 text-sm mb-4">
+                      {member.department} • {member.level}
+                    </p>
+                    <div className="flex justify-center gap-4 mb-4 text-sm">
+                      <div className="text-center">
+                        <div className="font-bold text-gray-900">{member.projects}</div>
+                        <div className="text-gray-600">Projects</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-bold text-gray-900">{member.events_attended}</div>
+                        <div className="text-gray-600">Events</div>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {member.achievements.map((achievement, i) => (
+                        <Badge key={i} variant="secondary" className="bg-primary/10 text-primary text-xs">
+                          {achievement}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -197,7 +220,6 @@ export default function MembersPage() {
             <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">Membership Tiers</h2>
             <p className="text-lg text-gray-600">Progress through different membership levels as you grow with us</p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {membershipTiers.map((tier, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
