@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -9,102 +9,38 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
 import { Calendar, MapPin, Users, Search, Filter, ArrowRight } from "lucide-react"
-
-// Mock events data
-const events = [
-  {
-    id: 1,
-    title: "Introduction to Smart Contracts",
-    date: "2024-03-15",
-    time: "2:00 PM",
-    location: "Computer Science Lab",
-    type: "Workshop",
-    status: "upcoming",
-    attendees: 45,
-    maxAttendees: 60,
-    description: "Learn the fundamentals of smart contract development using Solidity and deploy your first contract.",
-    speaker: "Dr. Adebayo Ogundimu",
-    image: "/smart-contracts-workshop.png",
-  },
-  {
-    id: 2,
-    title: "Blockchain Career Panel",
-    date: "2024-03-22",
-    time: "4:00 PM",
-    location: "Main Auditorium",
-    type: "Panel Discussion",
-    status: "upcoming",
-    attendees: 120,
-    maxAttendees: 200,
-    description: "Industry professionals share insights on blockchain career opportunities and pathways.",
-    speaker: "Multiple Industry Experts",
-    image: "/career-panel.png",
-  },
-  {
-    id: 3,
-    title: "DeFi Deep Dive",
-    date: "2024-03-29",
-    time: "3:00 PM",
-    location: "Online (Zoom)",
-    type: "Webinar",
-    status: "upcoming",
-    attendees: 80,
-    maxAttendees: 100,
-    description: "Explore decentralized finance protocols, yield farming, and the future of financial services.",
-    speaker: "Fatima Abdullahi",
-    image: "/defi-webinar.png",
-  },
-  {
-    id: 4,
-    title: "Blockchain Hackathon 2024",
-    date: "2024-02-20",
-    time: "9:00 AM",
-    location: "Innovation Hub",
-    type: "Hackathon",
-    status: "past",
-    attendees: 150,
-    maxAttendees: 150,
-    description: "48-hour hackathon building innovative blockchain solutions for real-world problems.",
-    speaker: "Various Mentors",
-    image: "/hackathon-2024.png",
-  },
-  {
-    id: 5,
-    title: "NFT Creation Workshop",
-    date: "2024-02-10",
-    time: "1:00 PM",
-    location: "Digital Arts Lab",
-    type: "Workshop",
-    status: "past",
-    attendees: 35,
-    maxAttendees: 40,
-    description: "Create and mint your own NFTs while learning about digital ownership and blockchain art.",
-    speaker: "Chinedu Okwu",
-    image: "/nft-workshop.png",
-  },
-  {
-    id: 6,
-    title: "Cryptocurrency Trading Basics",
-    date: "2024-04-05",
-    time: "5:00 PM",
-    location: "Business School Auditorium",
-    type: "Seminar",
-    status: "upcoming",
-    attendees: 25,
-    maxAttendees: 80,
-    description: "Learn the fundamentals of cryptocurrency trading, risk management, and market analysis.",
-    speaker: "Prof. Olumide Adeyemi",
-    image: "/crypto-trading.png",
-  },
-]
+import { eventApi, Event, formatDate, isEventFull } from "@/lib/api"
 
 export default function EventsPage() {
+  const [events, setEvents] = useState<Event[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [filterType, setFilterType] = useState("all")
   const [filterStatus, setFilterStatus] = useState("all")
 
+  // Fetch events
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const data = await eventApi.getEvents()
+        setEvents(data)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch events')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchEvents()
+  }, [])
+
+  // Filter events based on search and filters
   const filteredEvents = events.filter((event) => {
     const matchesSearch =
       event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -117,6 +53,20 @@ export default function EventsPage() {
 
   const upcomingEvents = filteredEvents.filter((event) => event.status === "upcoming")
   const pastEvents = filteredEvents.filter((event) => event.status === "past")
+
+  if (error) {
+    return (
+      <main className="min-h-screen bg-gray-50">
+        <Navigation />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Events</h1>
+          <p className="text-gray-600 mb-8">{error}</p>
+          <Button onClick={() => window.location.reload()}>Try Again</Button>
+        </div>
+        <Footer />
+      </main>
+    )
+  }
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -183,42 +133,66 @@ export default function EventsPage() {
       {/* Events Content */}
       <section className="py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Tabs defaultValue="upcoming" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-6 sm:mb-8">
-              <TabsTrigger value="upcoming" className="text-sm sm:text-base">
-                Upcoming Events ({upcomingEvents.length})
-              </TabsTrigger>
-              <TabsTrigger value="past" className="text-sm sm:text-base">
-                Past Events ({pastEvents.length})
-              </TabsTrigger>
-            </TabsList>
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {[...Array(6)].map((_, i) => (
+                <Card key={i} className="overflow-hidden">
+                  <Skeleton className="h-40 sm:h-48 w-full" />
+                  <CardHeader>
+                    <Skeleton className="h-4 w-24 mb-2" />
+                    <Skeleton className="h-6 w-full" />
+                    <Skeleton className="h-4 w-32" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2 mb-4">
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-full" />
+                    </div>
+                    <Skeleton className="h-4 w-full mb-4" />
+                    <Skeleton className="h-10 w-full" />
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <Tabs defaultValue="upcoming" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-6 sm:mb-8">
+                <TabsTrigger value="upcoming" className="text-sm sm:text-base">
+                  Upcoming Events ({upcomingEvents.length})
+                </TabsTrigger>
+                <TabsTrigger value="past" className="text-sm sm:text-base">
+                  Past Events ({pastEvents.length})
+                </TabsTrigger>
+              </TabsList>
 
-            <TabsContent value="upcoming">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                {upcomingEvents.map((event) => (
-                  <EventCard key={event.id} event={event} />
-                ))}
-              </div>
-              {upcomingEvents.length === 0 && (
-                <div className="text-center py-8 sm:py-12">
-                  <p className="text-gray-500 text-base sm:text-lg">No upcoming events match your search criteria.</p>
+              <TabsContent value="upcoming">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                  {upcomingEvents.map((event) => (
+                    <EventCard key={event.id} event={event} />
+                  ))}
                 </div>
-              )}
-            </TabsContent>
+                {upcomingEvents.length === 0 && (
+                  <div className="text-center py-8 sm:py-12">
+                    <p className="text-gray-500 text-base sm:text-lg">No upcoming events match your search criteria.</p>
+                  </div>
+                )}
+              </TabsContent>
 
-            <TabsContent value="past">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                {pastEvents.map((event) => (
-                  <EventCard key={event.id} event={event} />
-                ))}
-              </div>
-              {pastEvents.length === 0 && (
-                <div className="text-center py-8 sm:py-12">
-                  <p className="text-gray-500 text-base sm:text-lg">No past events match your search criteria.</p>
+              <TabsContent value="past">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                  {pastEvents.map((event) => (
+                    <EventCard key={event.id} event={event} />
+                  ))}
                 </div>
-              )}
-            </TabsContent>
-          </Tabs>
+                {pastEvents.length === 0 && (
+                  <div className="text-center py-8 sm:py-12">
+                    <p className="text-gray-500 text-base sm:text-lg">No past events match your search criteria.</p>
+                  </div>
+                )}
+              </TabsContent>
+            </Tabs>
+          )}
         </div>
       </section>
 
@@ -227,9 +201,9 @@ export default function EventsPage() {
   )
 }
 
-function EventCard({ event }: { event: any }) {
+function EventCard({ event }: { event: Event }) {
   const isUpcoming = event.status === "upcoming"
-  const isFull = event.attendees >= event.maxAttendees
+  const isFull = isEventFull(event)
 
   return (
     <Card className="hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg overflow-hidden">
@@ -258,7 +232,7 @@ function EventCard({ event }: { event: any }) {
 
       <CardHeader className="pb-3 sm:pb-4">
         <CardTitle className="font-serif text-lg sm:text-xl text-gray-900 leading-tight">{event.title}</CardTitle>
-        <div className="text-xs sm:text-sm text-gray-600">by {event.speaker}</div>
+        <div className="text-xs sm:text-sm text-gray-600">by {event.speaker_name}</div>
       </CardHeader>
 
       <CardContent className="pt-0">
@@ -266,7 +240,7 @@ function EventCard({ event }: { event: any }) {
           <div className="flex items-center text-gray-600">
             <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-primary flex-shrink-0" />
             <span className="text-xs sm:text-sm">
-              {new Date(event.date).toLocaleDateString()} at {event.time}
+              {formatDate(event.date)} at {event.time}
             </span>
           </div>
           <div className="flex items-center text-gray-600">
@@ -276,7 +250,7 @@ function EventCard({ event }: { event: any }) {
           <div className="flex items-center text-gray-600">
             <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-primary flex-shrink-0" />
             <span className="text-xs sm:text-sm">
-              {event.attendees}/{event.maxAttendees} attendees
+              {event.attendees}/{event.max_attendees} attendees
             </span>
           </div>
         </div>

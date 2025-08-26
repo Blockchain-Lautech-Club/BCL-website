@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
@@ -33,6 +32,7 @@ export default function JoinPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const interests = [
     "Smart Contracts",
@@ -94,12 +94,41 @@ export default function JoinPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      const response = await fetch("http://localhost:8000/members", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          student_id: formData.studentId,
+          department: formData.department,
+          level: formData.level,
+          phone: formData.phone || null,
+          interests: formData.interests,
+          experience: formData.experience,
+          goals: formData.goals || null,
+          newsletter: formData.newsletter,
+          terms: formData.terms,
+        }),
+      })
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.detail || "Failed to submit application")
+      }
+
+      setIsSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An unexpected error occurred")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
@@ -134,7 +163,6 @@ export default function JoinPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <Navigation />
-
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -185,6 +213,11 @@ export default function JoinPage() {
               <p className="text-gray-600 mt-2">Fill out the form below to join our community</p>
             </CardHeader>
             <CardContent className="p-6 sm:p-8">
+              {error && (
+                <div className="mb-6 text-red-600 text-sm sm:text-base">
+                  {error}
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                 {/* Personal Information */}
                 <div>

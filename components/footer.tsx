@@ -74,6 +74,14 @@ export function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/admin"
+                  className="text-gray-300 hover:text-primary transition-colors text-sm sm:text-base"
+                >
+                  Admin
+                </Link>
+              </li>
             </ul>
           </div>
 
