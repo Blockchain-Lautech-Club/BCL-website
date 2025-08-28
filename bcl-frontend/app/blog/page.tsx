@@ -76,7 +76,7 @@ export default function BlogPage() {
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-6xl font-bold text-primary mb-6">Blockchain Blog</h1>
+            <h1 className="font-serif text-4xl md:text-6xl font-bold text-primary mb-6">Blockchain Club Lautech Blog</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Stay updated with the latest blockchain insights, club news, and educational content from our community.
             </p>

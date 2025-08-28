@@ -1,119 +1,118 @@
-import Link from "next/link"
-import { Twitter, Linkedin, Github, Mail, MapPin, Phone, } from "lucide-react"
-import { NewsletterSignup } from "./newsletter-signup"
+'use client';
+import Link from "next/link";
+import { Twitter, Linkedin, Github, Mail, MapPin, Phone } from "lucide-react";
+import { NewsletterSignup } from "./newsletter-signup";
+import { motion } from 'framer-motion';
 
 export function Footer() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <motion.footer
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="bg-gray-900 text-white"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Club Info */}
-          <div className="sm:col-span-2 lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4 sm:mb-6">
-              <img className="w-50 h-11" src="/whitelogo.png" alt="" />
+          <motion.div variants={itemVariants} className="sm:col-span-2 lg:col-span-2">
+            <div className="flex items-center space-x-2 mb-6">
+              <img className="w-40 h-10" src="/whitelogo.png" alt="Blockchain Lautech Logo" />
             </div>
-            <p className="text-gray-300 leading-relaxed mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
-              We’re the official blockchain & Web3 student community of LAUTECH — learning, building, and leading the next generation of innovators.
+            <p className="text-gray-300 leading-relaxed mb-6 max-w-md text-base">
+              We’re the official blockchain & Web3 student community of LAUTECH, fostering innovation and leadership in blockchain technology.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center text-gray-300">
-                <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-primary flex-shrink-0" />
-                <span className="text-xs sm:text-sm">LAUTECH Campus, Ogbomoso, Oyo State</span>
+                <MapPin className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
+                <span className="text-sm">LAUTECH Campus, Ogbomoso, Oyo State</span>
               </div>
               <div className="flex items-center text-gray-300">
-                <Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-primary flex-shrink-0" />
-                <span className="text-xs sm:text-sm">blockchain@lautech.edu.ng</span>
+                <Mail className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
+                <span className="text-sm">blockchain@lautech.edu.ng</span>
               </div>
               <div className="flex items-center text-gray-300">
-                <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-primary flex-shrink-0" />
-                <span className="text-xs sm:text-sm">+234 803 123 4567</span>
+                <Phone className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
+                <span className="text-sm">+234 803 123 4567</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-serif font-bold text-base sm:text-lg mb-4 sm:mb-6">Quick Links</h3>
-            <ul className="space-y-2 sm:space-y-3">
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-primary transition-colors text-sm sm:text-base">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/events"
-                  className="text-gray-300 hover:text-primary transition-colors text-sm sm:text-base"
-                >
-                  Events
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/members"
-                  className="text-gray-300 hover:text-primary transition-colors text-sm sm:text-base"
-                >
-                  Members
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-gray-300 hover:text-primary transition-colors text-sm sm:text-base">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/join" className="text-gray-300 hover:text-primary transition-colors text-sm sm:text-base">
-                  Join Club
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-300 hover:text-primary transition-colors text-sm sm:text-base"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/admin"
-                  className="text-gray-300 hover:text-primary transition-colors text-sm sm:text-base"
-                >
-                  Admin
-                </Link>
-              </li>
+          <motion.div variants={itemVariants}>
+            <h3 className="font-serif font-bold text-lg mb-6 text-primary">Quick Links</h3>
+            <ul className="space-y-3">
+              {[
+                { href: "/about", label: "About Us" },
+                { href: "/events", label: "Events" },
+                { href: "/members", label: "Members" },
+                { href: "/blog", label: "Blog" },
+                { href: "/join", label: "Join Club" },
+                { href: "/contact", label: "Contact" },
+                { href: "/admin", label: "Admin" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-300 hover:text-primary transition-colors text-base"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Newsletter */}
-          <div>
-            <h3 className="font-serif font-bold text-primary sm:text-lg mb-4 sm:mb-6">Stay Updated</h3>
+          <motion.div variants={itemVariants}>
+            <h3 className="font-serif font-bold text-lg mb-6 text-primary">Stay Updated</h3>
             <NewsletterSignup />
-          </div>
+          </motion.div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8">
+        <motion.div
+          variants={itemVariants}
+          className="border-t border-gray-800 mt-12 pt-8"
+        >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
-              © 2024 LAUTECH Blockchain Club. All rights reserved.
+            <p className="text-gray-400 text-sm text-center sm:text-left">
+              © 2025 LAUTECH Blockchain Club. All rights reserved.
             </p>
             <div className="flex space-x-4">
-              <Link href="https://twitter.com/@BlockchainLaut1" className="hover:text-primary transition-colors">
-                <Twitter className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Github className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Link>
-              <Link href="https://t.me/BlockchainLautech" className="text-gray-400 hover:text-primary transition-colors">
-                <img src="/telegram.png" className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Link>
+              {[
+                { href: "https://twitter.com/@BlockchainLaut1", icon: Twitter },
+                { href: "#", icon: Linkedin },
+                { href: "#", icon: Github },
+                { href: "https://t.me/BlockchainLautech", icon: () => <img src="/telegram.png" className="h-5 w-5" alt="Telegram" /> },
+              ].map((social, index) => (
+                <Link
+                  key={index}
+                  href={social.href}
+                  className="hover:text-primary transition-colors"
+                >
+                  {social.icon === Twitter || social.icon === Linkedin || social.icon === Github ? (
+                    <social.icon className="h-5 w-5" />
+                  ) : (
+                    <social.icon />
+                  )}
+                </Link>
+              ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </footer>
-  )
+    </motion.footer>
+  );
 }
