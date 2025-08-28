@@ -21,5 +21,5 @@ RUN mkdir -p uploads/events uploads/blogs uploads/avatars
 # Expose port
 EXPOSE 8000
 
-# Command to run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Fix: Use the correct module path that works locally
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
