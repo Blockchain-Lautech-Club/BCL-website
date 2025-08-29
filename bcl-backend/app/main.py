@@ -12,7 +12,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://blockchainlautech.club",
+        "http://localhost:3000",  
+        "http://localhost:3001",
+        "http://127.0.0.1:3000",
+    ],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["*"],
+)
 # Mount routes
 app.include_router(auth.router, prefix="/auth")
 app.include_router(events.router, prefix="/events")
