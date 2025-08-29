@@ -6,17 +6,18 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import { Footer } from "@/components/footer"
 import { TeamSection } from "@/components/team"
 
-
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Navigation />
-      <HeroSection />
-      <AboutSection />
-      <EventsTeaser />
-      <TeamSection />
-      <TestimonialsSection />
+      <div className="flex-1">
+        <HeroSection />
+        <AboutSection />
+        <EventsTeaser />
+        <TeamSection />
+        <TestimonialsSection />
+      </div>
       <Footer />
-    </main>
+    </div>
   )
 }

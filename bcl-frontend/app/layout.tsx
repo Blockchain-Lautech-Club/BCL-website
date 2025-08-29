@@ -41,7 +41,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
       <body className="flex flex-col min-h-screen">
-        {children}
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-1">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )

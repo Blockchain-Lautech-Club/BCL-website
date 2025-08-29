@@ -23,12 +23,13 @@ import {
   ArrowRight,
   Star
 } from "lucide-react"
+import { TeamSection } from "@/components/team"
 
 const stats = [
-  { number: "200+", label: "Active Members", icon: Users },
+  { number: "300+", label: "Active Members", icon: Users },
   { number: "50+", label: "Events Hosted", icon: Calendar },
   { number: "15+", label: "Industry Partners", icon: Handshake },
-  { number: "3", label: "Years Active", icon: Award },
+  { number: "5", label: "Years Active", icon: Award },
 ]
 
 const values = [
@@ -54,52 +55,23 @@ const values = [
   },
 ]
 
-const team = [
-  {
-    name: "Adebayo Johnson",
-    role: "President",
-    bio: "Computer Science student passionate about DeFi and smart contract development.",
-    avatar: "/team/adebayo.jpg",
-    skills: ["Solidity", "DeFi", "Leadership"]
-  },
-  {
-    name: "Fatima Abdullahi", 
-    role: "Vice President",
-    bio: "Software Engineering student specializing in blockchain infrastructure and tokenomics.",
-    avatar: "/team/fatima.jpg",
-    skills: ["Web3", "Tokenomics", "Strategy"]
-  },
-  {
-    name: "Chinedu Okwu",
-    role: "Technical Lead",
-    bio: "Full-stack developer with expertise in blockchain integration and dApp development.",
-    avatar: "/team/chinedu.jpg",
-    skills: ["React", "Node.js", "Smart Contracts"]
-  },
-  {
-    name: "Aminat Bello",
-    role: "Community Manager",
-    bio: "Information Technology student focused on blockchain education and community building.",
-    avatar: "/team/aminat.jpg",
-    skills: ["Community", "Events", "Communications"]
-  },
-]
+
 
 const achievements = [
   {
-    title: "1st Place - Nigeria Blockchain Hackathon 2023",
-    description: "Our team developed a blockchain-based supply chain solution for agricultural products.",
-    date: "December 2023"
+    title: "Free Ticket to EthDenver 2024 with all accomodation sorted",
+    description: "Our Community members is part of the team that won free tickets to ETHDenver 2024 at the Web3Lagos conference 2024 Hackathon",
+    date: "September 2024"
   },
   {
-    title: "Partnership with TechCorp Nigeria",
-    description: "Established mentorship program providing industry exposure to our members.",
-    date: "September 2023"
+    title: "1st place Crossfi Africa Hackerthon",
+    description: "Our Community members is the winner of the Crossfi Africa Hackathon 2025",
+    date: "March 2025"
   },
   {
-    title: "Blockchain Education Initiative Launch",
-    description: "Started free blockchain courses for LAUTECH students across all departments.",
-    date: "March 2023"
+    title: "3rd place Crossfi Africa Global Hackerthon",
+    description: "Our Community members won the second runner-up of the Crossfi Global Hackathon 2025",
+    date: "August 2025"
   },
 ]
 
@@ -260,39 +232,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-            <p className="text-lg text-gray-600">Passionate leaders driving blockchain innovation at LAUTECH</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow text-center">
-                <CardContent className="p-6">
-                  <Avatar className="h-24 w-24 mx-auto mb-4">
-                    <AvatarImage src={member.avatar || "/placeholder.svg"} alt={member.name} />
-                    <AvatarFallback className="text-lg">
-                      {member.name.split(" ").map(n => n[0]).join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                  <h3 className="font-serif text-lg font-bold text-gray-900 mb-1">{member.name}</h3>
-                  <p className="text-primary font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{member.bio}</p>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {member.skills.map((skill, i) => (
-                      <Badge key={i} variant="secondary" className="text-xs">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TeamSection/>
 
       {/* Recent Achievements */}
       <section className="py-16 bg-gray-50">

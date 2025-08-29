@@ -285,7 +285,7 @@ export function AboutSection() {
                     
                     {/* See More Button */}
                     <motion.a
-                      href="" // Replace with your actual link
+                      href="https://drive.google.com/drive/folders/16H4fB0dt78VJHkzAq96BAtRjM0gRjhuH" // Replace with your actual link
                       variants={imageVariants}
                       className="flex-shrink-0 w-64 h-48 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center group cursor-pointer"
                       onClick={(e) => {

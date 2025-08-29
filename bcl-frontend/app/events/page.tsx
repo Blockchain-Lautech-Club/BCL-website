@@ -56,148 +56,152 @@ export default function EventsPage() {
 
   if (error) {
     return (
-      <main className="min-h-screen bg-gray-50">
+      <div className="flex flex-col min-h-screen bg-gray-50">
         <Navigation />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Events</h1>
-          <p className="text-gray-600 mb-8">{error}</p>
-          <Button onClick={() => window.location.reload()}>Try Again</Button>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Events</h1>
+            <p className="text-gray-600 mb-8">{error}</p>
+            <Button onClick={() => window.location.reload()}>Try Again</Button>
+          </div>
         </div>
         <Footer />
-      </main>
+      </div>
     )
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 sm:mb-6">
-              Blockchain Events
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              Join our community events, workshops, and seminars to expand your blockchain knowledge and network with
-              fellow enthusiasts.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Search and Filters */}
-      <section className="py-6 sm:py-8 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-4 items-stretch sm:items-center">
-            <div className="relative w-full max-w-md mx-auto sm:mx-0 sm:flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <Input
-                placeholder="Search events..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Select value={filterType} onValueChange={setFilterType}>
-                <SelectTrigger className="w-full sm:w-40">
-                  <Filter className="h-4 w-4 mr-2" />
-                  <SelectValue placeholder="Event Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  <SelectItem value="workshop">Workshop</SelectItem>
-                  <SelectItem value="seminar">Seminar</SelectItem>
-                  <SelectItem value="webinar">Webinar</SelectItem>
-                  <SelectItem value="hackathon">Hackathon</SelectItem>
-                  <SelectItem value="panel discussion">Panel Discussion</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={filterStatus} onValueChange={setFilterStatus}>
-                <SelectTrigger className="w-full sm:w-40">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Events</SelectItem>
-                  <SelectItem value="upcoming">Upcoming</SelectItem>
-                  <SelectItem value="past">Past Events</SelectItem>
-                </SelectContent>
-              </Select>
+      <div className="flex-1">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-12 sm:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 sm:mb-6">
+                Blockchain Events
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+                Join our community events, workshops, and seminars to expand your blockchain knowledge and network with
+                fellow enthusiasts.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Events Content */}
-      <section className="py-8 sm:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {[...Array(6)].map((_, i) => (
-                <Card key={i} className="overflow-hidden">
-                  <Skeleton className="h-40 sm:h-48 w-full" />
-                  <CardHeader>
-                    <Skeleton className="h-4 w-24 mb-2" />
-                    <Skeleton className="h-6 w-full" />
-                    <Skeleton className="h-4 w-32" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2 mb-4">
-                      <Skeleton className="h-4 w-full" />
-                      <Skeleton className="h-4 w-full" />
-                      <Skeleton className="h-4 w-full" />
+        {/* Search and Filters */}
+        <section className="py-6 sm:py-8 bg-white border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col gap-4 items-stretch sm:items-center">
+              <div className="relative w-full max-w-md mx-auto sm:mx-0 sm:flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Input
+                  placeholder="Search events..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Select value={filterType} onValueChange={setFilterType}>
+                  <SelectTrigger className="w-full sm:w-40">
+                    <Filter className="h-4 w-4 mr-2" />
+                    <SelectValue placeholder="Event Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Types</SelectItem>
+                    <SelectItem value="workshop">Workshop</SelectItem>
+                    <SelectItem value="seminar">Seminar</SelectItem>
+                    <SelectItem value="webinar">Webinar</SelectItem>
+                    <SelectItem value="hackathon">Hackathon</SelectItem>
+                    <SelectItem value="panel discussion">Panel Discussion</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={filterStatus} onValueChange={setFilterStatus}>
+                  <SelectTrigger className="w-full sm:w-40">
+                    <SelectValue placeholder="Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Events</SelectItem>
+                    <SelectItem value="upcoming">Upcoming</SelectItem>
+                    <SelectItem value="past">Past Events</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Events Content */}
+        <section className="py-8 sm:py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {[...Array(6)].map((_, i) => (
+                  <Card key={i} className="overflow-hidden">
+                    <Skeleton className="h-40 sm:h-48 w-full" />
+                    <CardHeader>
+                      <Skeleton className="h-4 w-24 mb-2" />
+                      <Skeleton className="h-6 w-full" />
+                      <Skeleton className="h-4 w-32" />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-2 mb-4">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                      </div>
+                      <Skeleton className="h-4 w-full mb-4" />
+                      <Skeleton className="h-10 w-full" />
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : (
+              <Tabs defaultValue="upcoming" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-6 sm:mb-8">
+                  <TabsTrigger value="upcoming" className="text-sm sm:text-base">
+                    Upcoming Events ({upcomingEvents.length})
+                  </TabsTrigger>
+                  <TabsTrigger value="past" className="text-sm sm:text-base">
+                    Past Events ({pastEvents.length})
+                  </TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="upcoming">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    {upcomingEvents.map((event) => (
+                      <EventCard key={event.id} event={event} />
+                    ))}
+                  </div>
+                  {upcomingEvents.length === 0 && (
+                    <div className="text-center py-8 sm:py-12">
+                      <p className="text-gray-500 text-base sm:text-lg">No upcoming events match your search criteria.</p>
                     </div>
-                    <Skeleton className="h-4 w-full mb-4" />
-                    <Skeleton className="h-10 w-full" />
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <Tabs defaultValue="upcoming" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-6 sm:mb-8">
-                <TabsTrigger value="upcoming" className="text-sm sm:text-base">
-                  Upcoming Events ({upcomingEvents.length})
-                </TabsTrigger>
-                <TabsTrigger value="past" className="text-sm sm:text-base">
-                  Past Events ({pastEvents.length})
-                </TabsTrigger>
-              </TabsList>
+                  )}
+                </TabsContent>
 
-              <TabsContent value="upcoming">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                  {upcomingEvents.map((event) => (
-                    <EventCard key={event.id} event={event} />
-                  ))}
-                </div>
-                {upcomingEvents.length === 0 && (
-                  <div className="text-center py-8 sm:py-12">
-                    <p className="text-gray-500 text-base sm:text-lg">No upcoming events match your search criteria.</p>
+                <TabsContent value="past">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    {pastEvents.map((event) => (
+                      <EventCard key={event.id} event={event} />
+                    ))}
                   </div>
-                )}
-              </TabsContent>
-
-              <TabsContent value="past">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                  {pastEvents.map((event) => (
-                    <EventCard key={event.id} event={event} />
-                  ))}
-                </div>
-                {pastEvents.length === 0 && (
-                  <div className="text-center py-8 sm:py-12">
-                    <p className="text-gray-500 text-base sm:text-lg">No past events match your search criteria.</p>
-                  </div>
-                )}
-              </TabsContent>
-            </Tabs>
-          )}
-        </div>
-      </section>
+                  {pastEvents.length === 0 && (
+                    <div className="text-center py-8 sm:py-12">
+                      <p className="text-gray-500 text-base sm:text-lg">No past events match your search criteria.</p>
+                    </div>
+                  )}
+                </TabsContent>
+              </Tabs>
+            )}
+          </div>
+        </section>
+      </div>
 
       <Footer />
-    </main>
+    </div>
   )
 }
 

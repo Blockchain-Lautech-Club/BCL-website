@@ -7,11 +7,11 @@ import { motion } from 'framer-motion';
 export function TestimonialsSection() {
   const testimonials = [
     {
-      name: "Adebayo Ogundimu",
-      role: "Computer Science, 400L",
-      avatar: "/male-student-portrait.png",
+      name: "Abdul-Anchor",
+      role: "Fishery Science and Technology.",
+      avatar: "/anchor.png",
       content:
-        "Joining the blockchain club transformed my career path. The workshops helped me secure a fintech internship, and the community support is phenomenal.",
+        "BCL feels like one of the biggest family houses in Lautech, safe and welcoming. She makes the saying ‘all work and no play makes Jack a dull grandpa’ still active, because there’s always room for fun and learning together. I love it, because opportunities are always shared.",
       rating: 5,
     },
     {
