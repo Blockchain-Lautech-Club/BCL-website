@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Separator } from "@/components/ui/separator"
-import { Plus, Edit, Trash2, Upload, Link as LinkIcon, Eye, Calendar, MapPin, Users, BookOpen, Tags } from "lucide-react"
+import { Plus, Edit, Trash2, Upload, Link as LinkIcon, Eye, Calendar, MapPin, Users, BookOpen, Tags, AwardIcon, User, Clock } from "lucide-react"
 import { adminApi, eventApi, blogApi, memberApi, Event, Blog, Member, formatDate } from "@/lib/api"
 
 export default function AdminDashboard() {
@@ -591,154 +591,243 @@ function EventForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <Label htmlFor="title">Title</Label>
-        <Input
-          id="title"
-          value={formData.title}
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-          required
-        />
-      </div>
-      
-      <div>
-        <Label htmlFor="description">Description</Label>
-        <Textarea
-          id="description"
-          value={formData.description}
-          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-          required
-        />
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+      <div className="mb-6 sm:mb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+          {event ? 'Update Event' : 'Create New Event'}
+        </h2>
+        <p className="text-gray-600 text-sm sm:text-base">
+          Fill in the details below to {event ? 'update' : 'create'} your blockchain event
+        </p>
       </div>
 
-      <div>
-        <Label htmlFor="full_description">Full Description</Label>
-        <Textarea
-          id="full_description"
-          value={formData.full_description}
-          onChange={(e) => setFormData({ ...formData, full_description: e.target.value })}
-          rows={6}
-        />
-      </div>
+      <div className="space-y-6 sm:space-y-8">
+        {/* Event Details Section */}
+        <Card>
+          <CardHeader className="border-b border-gray-100">
+            <CardTitle className="flex items-center text-gray-900">
+              <Calendar className="w-5 h-5 mr-2 text-blue-600" />
+              Event Details
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="title">Event Title *</Label>
+                <Input
+                  id="title"
+                  value={formData.title}
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  placeholder="Enter event title"
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="description">Short Description *</Label>
+                <Textarea
+                  id="description"
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  placeholder="Brief description for event preview"
+                  rows={3}
+                  required
+                />
+              </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="date">Date</Label>
-          <Input
-            id="date"
-            type="date"
-            value={formData.date}
-            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-            required
-          />
+              <div>
+                <Label htmlFor="full_description">Full Description</Label>
+                <Textarea
+                  id="full_description"
+                  value={formData.full_description}
+                  onChange={(e) => setFormData({ ...formData, full_description: e.target.value })}
+                  placeholder="Detailed event description, agenda, what attendees will learn..."
+                  rows={6}
+                />
+              </div>
+
+              {/* Date and Time Row */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <div>
+                  <Label htmlFor="date" className="flex items-center">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    Date *
+                  </Label>
+                  <Input
+                    id="date"
+                    type="date"
+                    value={formData.date}
+                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="time" className="flex items-center">
+                    <Clock className="w-4 h-4 mr-1" />
+                    Time *
+                  </Label>
+                  <Input
+                    id="time"
+                    value={formData.time}
+                    onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                    placeholder="e.g., 2:00 PM - 5:00 PM"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="location" className="flex items-center">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  Location *
+                </Label>
+                <Input
+                  id="location"
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                  placeholder="Venue name and address or online platform"
+                  required
+                />
+              </div>
+
+              {/* Type and Capacity Row */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <div>
+                  <Label htmlFor="type">Event Type *</Label>
+                  <Select 
+                    value={formData.type} 
+                    onValueChange={(value) => setFormData({ ...formData, type: value })}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select event type" value={formData.type} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Workshop">Workshop</SelectItem>
+                      <SelectItem value="Seminar">Seminar</SelectItem>
+                      <SelectItem value="Webinar">Webinar</SelectItem>
+                      <SelectItem value="Hackathon">Hackathon</SelectItem>
+                      <SelectItem value="Panel Discussion">Panel Discussion</SelectItem>
+                      <SelectItem value="Networking">Networking Event</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="max_attendees" className="flex items-center">
+                    <Users className="w-4 h-4 mr-1" />
+                    Max Attendees *
+                  </Label>
+                  <Input
+                    id="max_attendees"
+                    type="number"
+                    value={formData.max_attendees}
+                    onChange={(e) => setFormData({ ...formData, max_attendees: parseInt(e.target.value) || '' })}
+                    placeholder="e.g., 50"
+                    min="1"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Separator />
+
+        {/* Speaker Information Section */}
+        <Card>
+          <CardHeader className="border-b border-gray-100">
+            <CardTitle className="flex items-center text-gray-900">
+              <User className="w-5 h-5 mr-2 text-green-600" />
+              Speaker Information
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <div>
+                  <Label htmlFor="speaker_name">Speaker Name *</Label>
+                  <Input
+                    id="speaker_name"
+                    value={formData.speaker_name}
+                    onChange={(e) => setFormData({ ...formData, speaker_name: e.target.value })}
+                    placeholder="Full name of the speaker"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="speaker_title" className="flex items-center">
+                    <AwardIcon className="w-4 h-4 mr-1" />
+                    Speaker Title/Position
+                  </Label>
+                  <Input
+                    id="speaker_title"
+                    value={formData.speaker_title}
+                    onChange={(e) => setFormData({ ...formData, speaker_title: e.target.value })}
+                    placeholder="e.g., Blockchain Developer, CEO"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="speaker_bio">Speaker Bio</Label>
+                <Textarea
+                  id="speaker_bio"
+                  value={formData.speaker_bio}
+                  onChange={(e) => setFormData({ ...formData, speaker_bio: e.target.value })}
+                  placeholder="Brief biography and expertise of the speaker"
+                  rows={4}
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Status Section - Only for existing events */}
+        {event && (
+          <Card>
+            <CardHeader className="border-b border-gray-100">
+              <CardTitle className="text-gray-900">Event Status</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="max-w-md">
+                <Label htmlFor="status">Current Status</Label>
+                <Select 
+                  value={formData.status} 
+                  onValueChange={(value) => setFormData({ ...formData, status: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue value={formData.status} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="upcoming">Upcoming</SelectItem>
+                    <SelectItem value="past">Past</SelectItem>
+                    <SelectItem value="cancelled">Cancelled</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+          <Button 
+            onClick={() => handleSubmit(formData)}
+            className="flex-1 order-2 sm:order-1"
+          >
+            {event ? 'Update Event' : 'Create Event'}
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={onCancel} 
+            className="flex-1 order-1 sm:order-2"
+          >
+            Cancel
+          </Button>
         </div>
-        <div>
-          <Label htmlFor="time">Time</Label>
-          <Input
-            id="time"
-            value={formData.time}
-            onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-            placeholder="2:00 PM - 5:00 PM"
-            required
-          />
-        </div>
       </div>
-
-      <div>
-        <Label htmlFor="location">Location</Label>
-        <Input
-          id="location"
-          value={formData.location}
-          onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-          required
-        />
-      </div>
-
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="type">Type</Label>
-          <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select event type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Workshop">Workshop</SelectItem>
-              <SelectItem value="Seminar">Seminar</SelectItem>
-              <SelectItem value="Webinar">Webinar</SelectItem>
-              <SelectItem value="Hackathon">Hackathon</SelectItem>
-              <SelectItem value="Panel Discussion">Panel Discussion</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Label htmlFor="max_attendees">Max Attendees</Label>
-          <Input
-            id="max_attendees"
-            type="number"
-            value={formData.max_attendees}
-            onChange={(e) => setFormData({ ...formData, max_attendees: parseInt(e.target.value) })}
-            required
-          />
-        </div>
-      </div>
-
-      <Separator />
-
-      <div>
-        <Label htmlFor="speaker_name">Speaker Name</Label>
-        <Input
-          id="speaker_name"
-          value={formData.speaker_name}
-          onChange={(e) => setFormData({ ...formData, speaker_name: e.target.value })}
-          required
-        />
-      </div>
-
-      <div>
-        <Label htmlFor="speaker_title">Speaker Title</Label>
-        <Input
-          id="speaker_title"
-          value={formData.speaker_title}
-          onChange={(e) => setFormData({ ...formData, speaker_title: e.target.value })}
-        />
-      </div>
-
-      <div>
-        <Label htmlFor="speaker_bio">Speaker Bio</Label>
-        <Textarea
-          id="speaker_bio"
-          value={formData.speaker_bio}
-          onChange={(e) => setFormData({ ...formData, speaker_bio: e.target.value })}
-        />
-      </div>
-
-      {event && (
-        <div>
-          <Label htmlFor="status">Status</Label>
-          <Select value={formData.status} onValueChange={(value: any) => setFormData({ ...formData, status: value })}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="upcoming">Upcoming</SelectItem>
-              <SelectItem value="past">Past</SelectItem>
-              <SelectItem value="cancelled">Cancelled</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      )}
-
-      <div className="flex gap-4 pt-4">
-        <Button type="submit" className="flex-1">
-          {event ? 'Update Event' : 'Create Event'}
-        </Button>
-        <Button type="button" variant="outline" onClick={onCancel} className="flex-1">
-          Cancel
-        </Button>
-      </div>
-    </form>
-  )
+    </div>
+  );
 }
 
 // Blog Form Component
