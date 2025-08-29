@@ -20,6 +20,10 @@ app.include_router(blogs.router, prefix="/blogs")
 app.include_router(uploads.router, prefix="/uploads")
 app.include_router(members.router, prefix="/members")
 
+# In app/main.py
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 @app.get("/")
 async def root():
     return {"message": "Welcome to the Blockchain Club API"}

@@ -542,7 +542,7 @@ function MemberAdminCard({
           </div>
           <div className="flex items-center">
             <Tags className="h-4 w-4 mr-2" />
-            {member.achievements.join(', ') || "No achievements"}
+           {(member.achievements || []).join(', ') || "No achievements"}
           </div>
         </div>
       </CardContent>

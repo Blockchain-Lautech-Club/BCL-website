@@ -19,10 +19,8 @@ const sourceSans = Source_Sans_Pro({
 
 export const metadata: Metadata = {
   title: "LAUTECH Blockchain Club - Empowering the Next Generation",
-  description:
-    "Join the LAUTECH Blockchain Club and explore the future of technology through workshops, networking, and innovation.",
+  description: "Join the LAUTECH Blockchain Club and explore the future of technology through workshops, networking, and innovation.",
   generator: "v0.app",
-  // Add favicon and related icons
   icons: {
     icon: [
       { url: '/favico.png' },
@@ -33,25 +31,18 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      {
-        rel: 'mask-icon',
-        url: '/safari-pinned-tab.svg',
-        color: '#000000',
-      },
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#000000' },
     ],
   },
-  // Optional: Add manifest for PWA support
   manifest: '/site.webmanifest',
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${sourceSans.variable} antialiased`}>
-      <body>{children}</body>
+    <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
+      <body className="flex flex-col min-h-screen">
+        {children}
+      </body>
     </html>
   )
 }

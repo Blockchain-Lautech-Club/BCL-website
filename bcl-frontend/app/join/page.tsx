@@ -12,7 +12,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Users, BookOpen, Network, Trophy, Gift, Star } from "lucide-react"
+import { CheckCircle, Users, BookOpen, Network, Trophy, Gift, Star, ExternalLink } from "lucide-react"
+
+// Custom X (formerly Twitter) icon component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
 
 export default function JoinPage() {
   const [formData, setFormData] = useState({
@@ -26,6 +33,7 @@ export default function JoinPage() {
     interests: [] as string[],
     experience: "",
     goals: "",
+    followedX: "",
     newsletter: true,
     terms: false,
   })
@@ -91,8 +99,11 @@ export default function JoinPage() {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleFollowX = () => {
+    window.open("https://twitter.com/@BlockchainLaut1", "_blank", "noopener,noreferrer")
+  }
+
+  const handleSubmit = async () => {
     setIsSubmitting(true)
     setError(null)
 
@@ -113,6 +124,7 @@ export default function JoinPage() {
           interests: formData.interests,
           experience: formData.experience,
           goals: formData.goals || null,
+          followed_x: formData.followedX === "yes",
           newsletter: formData.newsletter,
           terms: formData.terms,
         }),
@@ -164,7 +176,7 @@ export default function JoinPage() {
     <main className="min-h-screen bg-gray-50">
       <Navigation />
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-12 sm:py-16">
+      <section className="bg-gradient-to-br from-blue-600/10 via-blue-100/5 to-blue-600/5 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             Join Our Community
@@ -190,7 +202,7 @@ export default function JoinPage() {
             {memberBenefits.map((benefit, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-6 sm:p-8 text-center">
-                  <benefit.icon className="h-10 w-10 sm:h-12 sm:w-12 text-primary mx-auto mb-4 sm:mb-6" />
+                  <benefit.icon className="h-10 w-10 sm:h-12 sm:w-12 text-blue-600 mx-auto mb-4 sm:mb-6" />
                   <h3 className="font-serif text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">
                     {benefit.title}
                   </h3>
@@ -218,7 +230,7 @@ export default function JoinPage() {
                   {error}
                 </div>
               )}
-              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+              <div className="space-y-6 sm:space-y-8">
                 {/* Personal Information */}
                 <div>
                   <h3 className="font-serif text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">
@@ -300,24 +312,14 @@ export default function JoinPage() {
                       <Label htmlFor="department" className="text-sm sm:text-base">
                         Department *
                       </Label>
-                      <Select
+                      <Input
+                        id="department"
                         value={formData.department}
-                        onValueChange={(value) => setFormData({ ...formData, department: value })}
-                      >
-                        <SelectTrigger className="mt-2">
-                          <SelectValue placeholder="Select your department" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="computer-science">Computer Science</SelectItem>
-                          <SelectItem value="information-technology">Information Technology</SelectItem>
-                          <SelectItem value="software-engineering">Software Engineering</SelectItem>
-                          <SelectItem value="cybersecurity">Cybersecurity</SelectItem>
-                          <SelectItem value="electrical-engineering">Electrical Engineering</SelectItem>
-                          <SelectItem value="mathematics">Mathematics</SelectItem>
-                          <SelectItem value="physics">Physics</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
+                        onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                        required
+                        className="mt-2"
+                        placeholder="e.g., Computer Science"
+                      />
                     </div>
                     <div className="sm:col-span-2">
                       <Label htmlFor="level" className="text-sm sm:text-base">
@@ -340,6 +342,89 @@ export default function JoinPage() {
                         </SelectContent>
                       </Select>
                     </div>
+                  </div>
+                </div>
+
+                {/* Social Media Follow */}
+                <div>
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    Stay Connected
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="space-y-3">
+                      <Label className="text-sm sm:text-base font-medium">
+                        Have you followed our X (Twitter) account? *
+                      </Label>
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setFormData({ ...formData, followedX: "yes" })}
+                          className={`flex-1 p-3 rounded-lg border-2 transition-all text-left ${
+                            formData.followedX === "yes"
+                              ? "border-blue-500 bg-blue-50 text-blue-800"
+                              : "border-gray-300 hover:border-gray-400"
+                          }`}
+                        >
+                          <div className="flex items-center">
+                            <div className={`w-4 h-4 rounded-full border-2 mr-3 ${
+                              formData.followedX === "yes"
+                                ? "border-blue-500 bg-blue-500"
+                                : "border-gray-300"
+                            }`}>
+                              {formData.followedX === "yes" && (
+                                <div className="w-full h-full rounded-full bg-white scale-50"></div>
+                              )}
+                            </div>
+                            <span className="text-sm sm:text-base">
+                              Yes, I'm already following @BlockchainLaut1
+                            </span>
+                          </div>
+                        </button>
+                        
+                        <button
+                          type="button"
+                          onClick={() => setFormData({ ...formData, followedX: "no" })}
+                          className={`flex-1 p-3 rounded-lg border-2 transition-all text-left ${
+                            formData.followedX === "no"
+                              ? "border-blue-500 bg-blue-50 text-blue-800"
+                              : "border-gray-300 hover:border-gray-400"
+                          }`}
+                        >
+                          <div className="flex items-center">
+                            <div className={`w-4 h-4 rounded-full border-2 mr-3 ${
+                              formData.followedX === "no"
+                                ? "border-blue-500 bg-blue-500"
+                                : "border-gray-300"
+                            }`}>
+                              {formData.followedX === "no" && (
+                                <div className="w-full h-full rounded-full bg-white scale-50"></div>
+                              )}
+                            </div>
+                            <span className="text-sm sm:text-base">
+                              No, I haven't followed yet
+                            </span>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {formData.followedX === "no" && (
+                      <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <p className="text-sm text-blue-800 mb-3">
+                          Follow us on X to stay updated with the latest blockchain news, events, and opportunities!
+                        </p>
+                        <Button
+                          type="button"
+                          onClick={handleFollowX}
+                          variant="outline"
+                          className="w-full sm:w-auto bg-black text-white hover:bg-gray-800 border-black"
+                        >
+                          <XIcon className="w-4 h-4 mr-2" />
+                          Follow @BlockchainLaut1
+                          <ExternalLink className="w-4 h-4 ml-2" />
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -369,7 +454,7 @@ export default function JoinPage() {
                     <p className="text-xs sm:text-sm text-gray-600">Selected interests:</p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       {formData.interests.map((interest) => (
-                        <Badge key={interest} variant="secondary" className="bg-primary/10 text-primary text-xs">
+                        <Badge key={interest} variant="secondary" className="bg-blue-100 text-blue-800 text-xs">
                           {interest}
                         </Badge>
                       ))}
@@ -440,10 +525,16 @@ export default function JoinPage() {
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full text-sm sm:text-base" size="lg" disabled={isSubmitting}>
+                <Button 
+                  type="button" 
+                  onClick={handleSubmit}
+                  className="w-full text-sm sm:text-base" 
+                  size="lg" 
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Submitting Application..." : "Join the Club"}
                 </Button>
-              </form>
+              </div>
             </CardContent>
           </Card>
         </div>
