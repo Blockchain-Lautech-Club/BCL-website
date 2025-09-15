@@ -12,8 +12,8 @@ export default function HomePage() {
       <Navigation />
       <div className="flex-1">
         <HeroSection />
-        <AboutSection />
         <EventsTeaser />
+        <AboutSection />
         <TeamSection />
         <TestimonialsSection />
       </div>

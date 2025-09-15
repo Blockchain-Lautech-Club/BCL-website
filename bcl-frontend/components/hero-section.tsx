@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
-  '/banner.jpg',
+  // '/banner.jpg',
+  '/blockchain1new.jpg',
   '/caroevent1.jpg',
   '/event10.jpg',
   '/caroevent2.jpg',
@@ -24,7 +25,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <div className="relative w-full h-[70vh] md:h-[75vh] bg-slate-900 overflow-hidden">
+    <div className="relative w-full h-[40vh] md:h-[80vh] bg-slate-900 overflow-hidden">
       {/* Minimal Background Image */}
       <div className="absolute inset-0">
         <AnimatePresence mode="wait">
@@ -34,8 +35,8 @@ export function HeroSection() {
             alt="Hero Background"
             className="w-full h-full object-cover"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
-            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0.2 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
           />
         </AnimatePresence>
@@ -45,18 +46,21 @@ export function HeroSection() {
 
       {/* Main Content */}
       <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6">
-        <div className="text-center max-w-4xl">
+        <div className="text-center">
           {/* Clean Heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6"
+            className="mb-2"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight">
-              Blockchain
-              <span className="block bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Lautech
+            <h1 className="text-3xl md:text-7xl font-bold text-white mb-2 leading-tight">
+              BLOCKCHAIN  
+              <span className="block bg-gradient-to-r text-white bg-clip-text text-transparent">
+                LADOKE AKINTOLA
+              </span>
+              <span className="block bg-gradient-to-r text-white bg-clip-text text-transparent">
+                UNIVERSITY OF TECHNOLOGY
               </span>
             </h1>
           </motion.div>
@@ -66,9 +70,9 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-8"
+            className="mb-4 md:mb-6"
           >
-            <p className="text-lg sm:text-xl md:text-2xl text-white/85 font-light">
+            <p className="text-lg sm:text-xl md:text-3xl text-white/85 font-light">
               Innovate • Connect • Succeed
             </p>
           </motion.div>

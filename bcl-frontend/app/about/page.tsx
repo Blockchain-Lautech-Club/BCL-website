@@ -26,9 +26,9 @@ import {
 import { TeamSection } from "@/components/team"
 
 const stats = [
-  { number: "300+", label: "Active Members", icon: Users },
-  { number: "50+", label: "Events Hosted", icon: Calendar },
-  { number: "15+", label: "Industry Partners", icon: Handshake },
+  { number: "2500+", label: "Students Trained", icon: Users },
+  { number: "5+", label: "Workshops & Hackathons", icon: Calendar },
+  { number: "20+", label: "Industry Partners", icon: Handshake },
   { number: "5", label: "Years Active", icon: Award },
 ]
 
@@ -84,7 +84,7 @@ export default function AboutPage() {
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
               About Blockchain Club LAUTECH
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -126,32 +126,30 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <Card className="border-0 shadow-xl">
               <CardHeader>
-                <CardTitle className="font-serif text-2xl font-bold text-gray-900 flex items-center gap-3">
+                <CardTitle className="font-serif text-2xl font-bold text-primary flex items-center gap-3">
                   <Target className="h-8 w-8 text-primary" />
                   Our Mission
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  To democratize blockchain education and foster innovation by providing students with comprehensive 
-                  learning opportunities, practical experience, and industry connections that prepare them for the 
-                  decentralized future.
+                  To empower LAUTECH students with blockchain expertise, drive innovation, and build a vibrant ecosystem for future blockchain leaders through workshops, hackathons, and collaborative projects.
+
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-xl">
               <CardHeader>
-                <CardTitle className="font-serif text-2xl font-bold text-gray-900 flex items-center gap-3">
+                <CardTitle className="font-serif text-2xl font-bold text-primary flex items-center gap-3">
                   <Lightbulb className="h-8 w-8 text-accent" />
                   Our Vision
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  To be the leading blockchain education hub in West Africa, producing skilled blockchain developers, 
-                  entrepreneurs, and thought leaders who will drive the adoption of decentralized technologies across 
-                  the continent.
+                  To create a LAUTECH where every student is equipped with blockchain knowledge and contributes to Nigeria's leadership in Web3 innovation.
+
                 </p>
               </CardContent>
             </Card>
@@ -163,7 +161,7 @@ export default function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">What We Do</h2>
+            <h2 className="font-serif text-3xl font-bold text-primary mb-4">What We Do</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We provide comprehensive blockchain education through various initiatives and programs
             </p>
@@ -207,7 +205,7 @@ export default function AboutPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">Our Core Values</h2>
+            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Our Core Values</h2>
             <p className="text-lg text-gray-600">The principles that guide everything we do</p>
           </div>
 
@@ -238,7 +236,7 @@ export default function AboutPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">Recent Achievements</h2>
+            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Recent Achievements</h2>
             <p className="text-lg text-gray-600">Milestones that showcase our impact and growth</p>
           </div>
 
@@ -270,15 +268,14 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="font-serif text-3xl font-bold text-gray-900 mb-6">Find Us</h2>
+              <h2 className="font-serif text-3xl font-bold text-primary mb-6">Find Us</h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <MapPin className="h-6 w-6 text-primary mt-1" />
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Location</h3>
                     <p className="text-gray-600">
-                      LAUTECH Campus<br />
-                      Computer Science Department<br />
+                      Ladoke Akintola Univerity of Technology<br />
                       Ogbomoso, Oyo State, Nigeria
                     </p>
                   </div>
@@ -288,8 +285,7 @@ export default function AboutPage() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Email</h3>
                     <p className="text-gray-600">
-                      blockchain@lautech.edu.ng<br />
-                      info@lautechblockchain.org
+                      blockchainlautech@gmail.com
                     </p>
                   </div>
                 </div>
@@ -298,8 +294,7 @@ export default function AboutPage() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">Phone</h3>
                     <p className="text-gray-600">
-                      +234 803 123 4567<br />
-                      +234 901 234 5678
+                      +234 916 270 6257
                     </p>
                   </div>
                 </div>
@@ -308,7 +303,7 @@ export default function AboutPage() {
             
             <Card className="border-0 shadow-xl">
               <CardHeader>
-                <CardTitle className="font-serif text-2xl font-bold text-gray-900">Ready to Join Us?</CardTitle>
+                <CardTitle className="font-serif text-2xl font-bold text-primary">Ready to Join Us?</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed mb-6">
