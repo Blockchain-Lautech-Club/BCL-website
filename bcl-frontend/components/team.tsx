@@ -66,7 +66,7 @@ export function TeamSection() {
       twitter: "https://x.com/@starkhubz",
     },
     {
-      name: "Tomiwa",
+      name: "Tomiwa KAYODE",
       role: "Design Lead",
       image: "/trems.jpg",
       twitter: "https://x.com/@TommyTrems",
@@ -89,19 +89,19 @@ export function TeamSection() {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="pt-2 md:pt-2 pb-5 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-blue-600 mb-6">
+          <h2 className="font-serif text-3xl sm:text-3xl md:text-4xl font-bold text-blue-600 mb-6">
             Meet the Builders
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Our team is made up of passionate builders, innovators, and problem-solvers dedicated to exploring the endless possibilities of blockchain technology. They are committed to fostering innovation, collaboration, and education within the ecosystem.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Our team is made up of passionate builders, innovators, and problem-solvers dedicated to exploring the endless possibilities of blockchain technology. 
           </p>
         </motion.div>
 
@@ -110,7 +110,7 @@ export function TeamSection() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8"
+          className="text-2xl sm:text-3xl font-bold text-gray-800 mb-8"
         >
           Founders
         </motion.h3>
@@ -125,7 +125,7 @@ export function TeamSection() {
           >
             {founders.map((founder, index) => (
               <motion.div key={index} variants={itemVariants} className="flex-shrink-0">
-                <Card className="hover:shadow-xl transition-shadow duration-300 w-72">
+                <Card className="hover:shadow-xl transition-shadow duration-300 w-60 md:w-72 h-[30vh] md:h-[100%]">
                   <CardContent className="p-6 text-center">
                     <img
                       className="mx-auto mb-4 w-36 h-36 rounded-full object-cover hover:scale-105 transition-transform duration-300"
@@ -159,47 +159,55 @@ export function TeamSection() {
           transition={{ duration: 0.6 }}
           className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8"
         >
-          Community Moderators
+          Community Managers
         </motion.h3>
         
-        <div className="relative">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200 pb-4"
-            style={{ scrollBehavior: 'smooth' }}
-          >
-            {moderators.map((mod, index) => (
-              <motion.div key={index} variants={itemVariants} className="flex-shrink-0">
-                <Card className="hover:shadow-xl transition-shadow duration-300 w-72">
-                  <CardContent className="p-6 text-center">
-                    <img
-                      className="mx-auto mb-4 w-36 h-36 rounded-full object-cover hover:scale-105 transition-transform duration-300"
-                      src={mod.image}
-                      alt={`${mod.name} Avatar`}
-                    />
-                    <h4 className="mb-1 text-xl font-bold text-blue-600">
-                      {mod.name}
-                    </h4>
-                    <p className="text-gray-600 mb-3 font-medium">{mod.role}</p>
-                    <div className="flex justify-center space-x-4">
-                      <Link href={mod.twitter} className="text-gray-600 hover:text-blue-600 transition-colors">
-                        <XIcon className="w-6 h-6" />
-                      </Link>
-                      {mod.github && (
-                        <Link href={mod.github} className="text-gray-600 hover:text-blue-600 transition-colors">
-                          <Github className="w-6 h-6" />
-                        </Link>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-            
+    <div className="relative">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="flex gap-6 overflow-x-auto scrollbar-none pb-4"
+        style={{
+          scrollBehavior: "smooth",
+          scrollbarWidth: "none", /* Firefox */
+          msOverflowStyle: "none" /* Internet Explorer and Edge */
+        }}
+      >
+        {moderators.map((mod, index) => (
+          <motion.div key={index} variants={itemVariants} className="flex-shrink-0">
+            <Card className="hover:shadow-xl transition-shadow duration-300 w-60 md:w-67 h-[35vh] md:h-[100%]">
+              <CardContent className="p-6 text-center">
+                <img
+                  className="mx-auto mb-4 w-36 h-36 rounded-full object-cover hover:scale-105 transition-transform duration-300"
+                  src={mod.image}
+                  alt={`${mod.name} Avatar`}
+                />
+                <h4 className="mb-1 text-lg font-bold text-blue-600">{mod.name}</h4>
+                <p className="text-gray-600 mb-3 font-medium">{mod.role}</p>
+                <div className="flex justify-center space-x-4">
+                  <Link href={mod.twitter} className="text-gray-600 hover:text-blue-600 transition-colors">
+                    <XIcon className="w-6 h-6" />
+                  </Link>
+                  {mod.github && (
+                    <Link href={mod.github} className="text-gray-600 hover:text-blue-600 transition-colors">
+                      <Github className="w-6 h-6" />
+                    </Link>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
-        </div>
+        ))}
+      </motion.div>
+      {/* Inline CSS for WebKit browsers */}
+      <style jsx>{`
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
+    </div>
+
       </div>
     </section>
   );

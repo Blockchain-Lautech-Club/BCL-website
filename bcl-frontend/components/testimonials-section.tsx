@@ -11,7 +11,7 @@ export function TestimonialsSection() {
       role: "Fishery Science and Technology.",
       avatar: "/anchor.png",
       content:
-        "BCL feels like one of the biggest family houses in Lautech, safe and welcoming. She makes the saying ‘all work and no play makes Jack a dull grandpa’ still active, because there’s always room for fun and learning together. I love it, because opportunities are always shared.",
+        "BCL is one of the big family in Lautech, safe and welcoming. She makes the saying ‘all work and no play makes Jack a dull boy’. I love it, because opportunities are always shared.",
       rating: 5,
     },
     {
