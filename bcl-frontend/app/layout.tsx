@@ -18,7 +18,7 @@ const sourceSans = Source_Sans_Pro({
 })
 
 export const metadata: Metadata = {
-  title: "LAUTECH Blockchain Club - Empowering the Next Generation",
+  title: "Blockchain LAUTECH- Empowering the Next Generation",
   description: "Join the LAUTECH Blockchain Club and explore the future of technology through workshops, networking, and innovation.",
   generator: "v0.app",
   icons: {
@@ -40,6 +40,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
+      <head>
+  <title>Blockchain LAUTECH</title>
+</head>
       <body className="flex flex-col min-h-screen">
         <div className="flex flex-col min-h-screen">
           <main className="flex-1">

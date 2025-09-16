@@ -178,7 +178,7 @@ export default function JoinPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600/10 via-blue-100/5 to-blue-600/5 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
             Join Our Community
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
@@ -192,7 +192,7 @@ export default function JoinPage() {
       <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Member Benefits</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-primary mb-3 sm:mb-4">Member Benefits</h2>
             <p className="text-base sm:text-lg text-gray-600">
               Unlock exclusive opportunities and resources as a club member
             </p>
@@ -557,7 +557,7 @@ export default function JoinPage() {
                     <Checkbox
                       id="newsletter"
                       checked={formData.newsletter}
-                      onCheckedChange={(checked) => setFormData({ ...formData, newsletter: checked })}
+                      onCheckedChange={(checked) => setFormData({ ...formData, newsletter: checked === true })}
                       className="mt-1 w-5 h-5"
                     />
                     <Label htmlFor="newsletter" className="cursor-pointer text-sm sm:text-base leading-relaxed flex-1">
@@ -569,7 +569,7 @@ export default function JoinPage() {
                     <Checkbox
                       id="terms"
                       checked={formData.terms}
-                      onCheckedChange={(checked) => setFormData({ ...formData, terms: checked })}
+                      onCheckedChange={(checked) => setFormData({ ...formData, terms: checked === true })}
                       required
                       className="mt-1 w-5 h-5"
                     />
