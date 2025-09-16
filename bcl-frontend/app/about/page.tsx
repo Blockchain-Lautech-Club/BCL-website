@@ -59,19 +59,19 @@ const values = [
 
 const achievements = [
   {
+    title: "3rd place Crossfi Global Hackathon",
+    description: "Our Community members won the second runner-up of the Crossfi Global Hackathon 2025",
+    date: "August 2025"
+  },
+  {
+    title: "1st place Crossfi Africa Hackathon",
+    description: "Our Community members won the Crossfi Africa Hackathon 2025",
+    date: "March 2025"
+  },
+    {
     title: "Free Ticket to EthDenver 2024 with all accomodation sorted",
     description: "Our Community members is part of the team that won free tickets to ETHDenver 2024 at the Web3Lagos conference 2024 Hackathon",
     date: "September 2024"
-  },
-  {
-    title: "1st place Crossfi Africa Hackerthon",
-    description: "Our Community members is the winner of the Crossfi Africa Hackathon 2025",
-    date: "March 2025"
-  },
-  {
-    title: "3rd place Crossfi Africa Global Hackerthon",
-    description: "Our Community members won the second runner-up of the Crossfi Global Hackathon 2025",
-    date: "August 2025"
   },
 ]
 

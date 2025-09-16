@@ -14,7 +14,7 @@ export function EventsTeaser() {
       time: "TBA",
       location: "TBA",
       type: "TECH EXTRAVAGANZA",
-      attendees: 400,
+      attendees: 500,
       description:
         "Ogbomoso's Digital Transformation: Blockchain as a Catalyst.",
     },

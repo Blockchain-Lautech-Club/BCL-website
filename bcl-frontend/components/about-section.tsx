@@ -444,7 +444,7 @@ export function AboutSection() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="bg-gray-1 rounded-2xl p-6 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col items-center"
+              className="bg-gray-1 rounded-2xl p-6 shadow-sm hover:shadow-3xl transition-all duration-300 flex flex-col items-center"
             >
               <img
                 src={partner.logo}

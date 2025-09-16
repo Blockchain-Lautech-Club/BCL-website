@@ -125,7 +125,7 @@ export function TeamSection() {
           >
             {founders.map((founder, index) => (
               <motion.div key={index} variants={itemVariants} className="flex-shrink-0">
-                <Card className="hover:shadow-xl transition-shadow duration-300 w-60 md:w-72 h-[30vh] md:h-[100%]">
+                <Card className="hover:shadow-xl transition-shadow duration-300 w-60 md:w-72 h-[90%] md:h-[100%]">
                   <CardContent className="p-6 text-center">
                     <img
                       className="mx-auto mb-4 w-36 h-36 rounded-full object-cover hover:scale-105 transition-transform duration-300"
@@ -176,7 +176,7 @@ export function TeamSection() {
       >
         {moderators.map((mod, index) => (
           <motion.div key={index} variants={itemVariants} className="flex-shrink-0">
-            <Card className="hover:shadow-xl transition-shadow duration-300 w-60 md:w-67 h-[35vh] md:h-[100%]">
+            <Card className="hover:shadow-xl transition-shadow duration-300 w-60 md:w-67 h-[90%] md:h-[100%]">
               <CardContent className="p-6 text-center">
                 <img
                   className="mx-auto mb-4 w-36 h-36 rounded-full object-cover hover:scale-105 transition-transform duration-300"

@@ -25,37 +25,37 @@ export function HeroSection() {
   }, []);
 
   return (
-    <div className="relative w-full h-[40vh] md:h-[80vh] bg-slate-900 overflow-hidden">
-      {/* Minimal Background Image */}
+     <div className="relative w-full h-[43vh] sm:h-[60vh] md:h-[82vh] bg-slate-900 overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0">
         <AnimatePresence mode="wait">
           <motion.img
             key={activeImageIndex}
             src={images[activeImageIndex]}
             alt="Hero Background"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0.2 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            transition={{ duration: 1.5, ease: 'easeInOut' }}
           />
         </AnimatePresence>
-        {/* Simple overlay */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-slate-900/60" />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6">
-        <div className="text-center">
-          {/* Clean Heading */}
+      <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 md:px-8">
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-2"
+            className="mb-2 md:mb-4"
           >
-            <h1 className="text-3xl md:text-7xl font-bold text-white mb-2 leading-tight">
-              BLOCKCHAIN  
+            <h1 className="text-3xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              BLOCKCHAIN
               <span className="block bg-gradient-to-r text-white bg-clip-text text-transparent">
                 LADOKE AKINTOLA
               </span>
@@ -65,34 +65,34 @@ export function HeroSection() {
             </h1>
           </motion.div>
 
-          {/* Simple Subtitle */}
+          {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-4 md:mb-6"
           >
-            <p className="text-lg sm:text-xl md:text-3xl text-white/85 font-light">
+            <p className="text-base xs:text-lg sm:text-xl md:text-2xl text-white/85 font-light">
               Innovate • Connect • Succeed
             </p>
           </motion.div>
 
-          {/* Simple CTA Buttons */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col xs:flex-row gap-3 xs:gap-4 justify-center items-center"
           >
             <motion.button
-              className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white font-medium hover:bg-white/20 transition-all duration-300"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white text-sm xs:text-base font-medium hover:bg-white/20 transition-all duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Explore Events
             </motion.button>
             <motion.button
-              className="px-6 py-3 bg-blue-600 rounded-lg text-white font-medium hover:bg-blue-700 transition-all duration-300"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-blue-600 rounded-lg text-white text-sm xs:text-base font-medium hover:bg-blue-700 transition-all duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -101,6 +101,7 @@ export function HeroSection() {
           </motion.div>
         </div>
       </div>
+
 
       {/* Minimal Navigation Dots */}
       <motion.div
