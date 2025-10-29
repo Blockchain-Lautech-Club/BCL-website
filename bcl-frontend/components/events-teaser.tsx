@@ -11,8 +11,8 @@ export function EventsTeaser() {
     {
       title: "CONFLUENCE 1.0",
       date: "November 7 & 8, 2025",
-      time: "TBA",
-      location: "TBA",
+      time: "9:00 AM",
+      location: "The Assembly, Beside Bon Nest Hotel, along Lautech main gate, Ogbomoso, Nigeria",
       type: "TECH EXTRAVAGANZA",
       attendees: 500,
       description:
