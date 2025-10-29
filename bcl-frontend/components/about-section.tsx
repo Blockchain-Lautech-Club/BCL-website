@@ -28,6 +28,12 @@ export function AboutSection() {
   ];
 
   const images = [
+    "/trick1.jpg",
+    "/trick5.jpg",
+    "/trick2.jpg",
+    "/trick6.jpg",
+    "/trick4.jpg",
+    "/trick3.jpg",
     "/event1.jpg",
     "/event9.jpg",
     "/BITCOINPIZZARDAY92.jpg",
