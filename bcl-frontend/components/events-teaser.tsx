@@ -9,6 +9,19 @@ import { motion } from 'framer-motion';
 export function EventsTeaser() {
   const upcomingEvents = [
     {
+      title: "DEV-COHORT I",
+      date: "TBA",
+      time: "TBA",
+      location: "Virtual",
+      type: "TRAINING",
+      attendees: 100,
+      description:
+        "Ogbomoso's Digital Transformation: Blockchain as a Catalyst.",
+    },
+  ];
+
+  const pastEvents = [
+    {
       title: "CONFLUENCE 1.0",
       date: "November 7 & 8, 2025",
       time: "9:00 AM",
@@ -18,16 +31,6 @@ export function EventsTeaser() {
       description:
         "Ogbomoso's Digital Transformation: Blockchain as a Catalyst.",
     },
-    // Uncomment to test multiple events
-    // {
-    //   type: "Workshop",
-    //   title: "Blockchain Basics",
-    //   description: "Learn the fundamentals of blockchain technology.",
-    //   attendees: 30,
-    //   date: "October 12, 2025",
-    //   time: "10:00 AM - 12:00 PM",
-    //   location: "Online",
-    // },
   ];
 
   const containerVariants = {
@@ -109,9 +112,78 @@ export function EventsTeaser() {
                       <span className="text-sm">{event.location}</span>
                     </div>
                   </div>
-                  <a href="https://confluence.blockchainlautech.club/">
+                  <a href="/cohorts/development/devcohort1">
                     <Button className="w-full bg-primary text-white hover:bg-primary/90 transition-colors" variant="default">
-                      Register Now
+                      Details
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-4"
+        >
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6">
+            Past Events
+          </h2>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className={`
+        ${pastEvents.length === 1
+              ? "flex justify-center items-center max-w-lg mx-auto px-4 mb-12"
+              : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto px-4"}
+      `}
+        >
+          {pastEvents.map((pevent, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="w-full max-w-sm"
+            >
+              <Card className="hover:shadow-2xl transition-all duration-300 border-0 shadow-lg group w-full">
+                <CardHeader className="pb-2">
+                  <div className="flex justify-between items-start mb-3">
+                    <Badge variant="secondary" className="bg-primary/10 text-primary text-sm">
+                      {pevent.type}
+                    </Badge>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Users className="h-4 w-4 mr-1" />
+                      {pevent.attendees}
+                    </div>
+                  </div>
+                  <CardTitle className="font-serif text-2xl text-gray-900 leading-tight">
+                    {pevent.title}
+                  </CardTitle>
+                  <p className="text-gray-600 text-lg leading-relaxed">{pevent.description}</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3 mb-4">
+                    <div className="flex items-center text-gray-600">
+                      <Calendar className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
+                      <span className="text-sm">{pevent.date}</span>
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <Timer className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
+                      <span className="text-sm">{pevent.time}</span>
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <MapPin className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
+                      <span className="text-sm">{pevent.location}</span>
+                    </div>
+                  </div>
+                  <a href="https://confluence.blockchainlautech.club/">
+                    <Button className="w-full bg-primary text-white hover:bg-primary/90 transition-colors" variant="default" disabled>
+                      ENDED
                     </Button>
                   </a>
                 </CardContent>

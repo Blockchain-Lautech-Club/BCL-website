@@ -39,6 +39,7 @@ export function Navigation() {
               { href: "/", label: "Home" },
               { href: "/about", label: "About" },
               { href: "/events", label: "Events" },
+              { href: "/cohorts", label: "Cohorts" },
               { href: "/blog", label: "Blog" },
               { href: "/contact", label: "Contact" },
             ].map((link) => (
@@ -84,6 +85,7 @@ export function Navigation() {
                   { href: "/", label: "Home" },
                   { href: "/about", label: "About" },
                   { href: "/events", label: "Events" },
+                  { href: "/cohorts", label: "Cohorts" },
                   { href: "/blog", label: "Blog" },
                   { href: "/contact", label: "Contact" },
                 ].map((link) => (
