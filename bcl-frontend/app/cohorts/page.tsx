@@ -39,7 +39,7 @@ const cohorts = [
     targetAudience: "Aspiring developers and programmers who want to build blockchain-based products.",
     outcome: "Graduate with hands-on project experience and a solid foundation in Web3 development.",
     ctaText: "View Development Cohorts",
-    ctaLink: "/cohorts/development/devcohort1",
+    ctaLink: "/cohorts/development",
     disabled: false
   },
   {
