@@ -5,6 +5,7 @@ import { EventsTeaser } from "@/components/events-teaser"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { Footer } from "@/components/footer"
 import { TeamSection } from "@/components/team"
+import { PastEvents } from "@/components/past-events"
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
         <AboutSection />
         <TeamSection />
         <TestimonialsSection />
+        <PastEvents />
       </div>
       <Footer />
     </div>

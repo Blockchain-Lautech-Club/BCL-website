@@ -28,8 +28,12 @@ export function AboutSection() {
   ];
 
   const images = [
+    "/conflu2.jpg",
+    "/conflu1.jpg",
     "/trick1.jpg",
+    "/conflu5.jpg",
     "/trick5.jpg",
+    "/conflu3.jpg",
     "/trick2.jpg",
     "/trick6.jpg",
     "/trick4.jpg",
@@ -180,7 +184,8 @@ export function AboutSection() {
                 className="mb-6"
               >
                 <img
-                  src="./mission.jpg"
+                  // src="./mission.jpg"
+                  src="./conflu8.jpg"
                   alt="Students learning blockchain technology"
                   className="rounded-xl shadow-lg w-full h-auto hover:scale-105 transition-transform duration-300"
                 />
@@ -209,7 +214,8 @@ export function AboutSection() {
                 className="mb-6"
               >
                 <img
-                  src="./event65.jpg"
+                  // src="./event65.jpg"
+                  src="./conflu3.jpg"
                   alt="Blockchain classroom"
                   className="rounded-xl shadow-lg w-full h-auto hover:scale-105 transition-transform duration-300"
                 />
