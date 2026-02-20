@@ -176,7 +176,7 @@ export default function JoinPage() {
     <main className="min-h-screen bg-gray-50">
       <Navigation />
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600/10 via-blue-100/5 to-blue-600/5 py-12 sm:py-16">
+      <section className="bg-linear-to-br from-blue-600/10 via-blue-100/5 to-blue-600/5 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
             Join Our Community
@@ -218,7 +218,7 @@ export default function JoinPage() {
        <section className="py-8 sm:py-12 lg:py-16 bg-gray-50 min-h-screen">
       <div className="max-w-5xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
         <Card className="shadow-xl border-0 rounded-xl sm:rounded-2xl overflow-hidden">
-          <CardHeader className="text-center pb-6 sm:pb-8 lg:pb-10 px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-10 bg-gradient-to-r from-blue-50 to-indigo-50">
+          <CardHeader className="text-center pb-6 sm:pb-8 lg:pb-10 px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-10 bg-linear-to-r from-blue-50 to-indigo-50">
             <CardTitle className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">
               Membership Application
             </CardTitle>
@@ -435,7 +435,7 @@ export default function JoinPage() {
                   </div>
                   
                   {formData.followedX === "no" && (
-                    <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                    <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-linear-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
                       <p className="text-sm sm:text-base text-blue-800 mb-4 leading-relaxed">
                         Follow us on X to stay updated with the latest blockchain news, events, and opportunities!
                       </p>
@@ -585,7 +585,7 @@ export default function JoinPage() {
                 <Button 
                   type="button" 
                   onClick={handleSubmit}
-                  className="w-full h-12 sm:h-14 text-base sm:text-lg font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200" 
+                  className="w-full h-12 sm:h-14 text-base sm:text-lg font-semibold bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200" 
                   disabled={isSubmitting || !formData.terms}
                 >
                   {isSubmitting ? (

@@ -74,7 +74,7 @@ export default function BlogPage() {
 
       <div className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
+        <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="font-serif text-4xl md:text-6xl font-bold text-primary mb-6">Blockchain Club Lautech Blog</h1>
@@ -195,7 +195,7 @@ function FeaturedBlogCard({ blog }: { blog: Blog }) {
           alt={blog.title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
       <CardContent className="p-8">
         <h3 className="font-serif text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-primary transition-colors duration-200">
@@ -225,7 +225,7 @@ function BlogCard({ blog }: { blog: Blog }) {
           alt={blog.title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
       <CardContent className="p-6 flex flex-col h-full">
         <div className="flex-1">

@@ -170,7 +170,7 @@ export default function CohortsPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-12">
+      <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-4">
@@ -333,7 +333,7 @@ export default function CohortsPage() {
       </section>
 
       {/* CTA Section */}
-      {/* <section className="py-16 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5">
+      {/* <section className="py-16 bg-linear-to-br from-primary/10 via-accent/5 to-primary/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="border-0 shadow-xl">
             <CardHeader>

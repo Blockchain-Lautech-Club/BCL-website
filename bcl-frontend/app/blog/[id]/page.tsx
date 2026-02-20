@@ -150,7 +150,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
           <ul key={index} className="space-y-3 my-6 ml-4">
             {listItems.map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-gray-700 leading-relaxed text-lg">
-                <div className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-3"></div>
+                <div className="shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-3"></div>
                 <span>{item.replace('- ', '')}</span>
               </li>
             ))}

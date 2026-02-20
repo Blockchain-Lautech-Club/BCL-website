@@ -58,7 +58,7 @@ export default function DevelopmentCohortsPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
+      <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-4 bg-primary text-white">
@@ -90,7 +90,7 @@ export default function DevelopmentCohortsPage() {
 
           {/* Quick Overview */}
           <div className="mb-2">
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/5 to-accent/5">
+            <Card className="border-0 shadow-xl bg-linear-to-br from-primary/5 to-accent/5">
               <CardContent className="p-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                   <div>
@@ -112,7 +112,7 @@ export default function DevelopmentCohortsPage() {
                   </div>
                 </div>
                 <div className="text-center mt-5">
-                  {/* <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/5 to-accent/5">
+                  {/* <Card className="border-0 shadow-xl bg-linear-to-br from-primary/5 to-accent/5">
               <CardContent className="p-8"> */}
                   <h3 className="font-serif text-2xl font-bold text-gray-900 mb-4">
                     Ready to Join Developer Cohort 1?
@@ -147,7 +147,7 @@ export default function DevelopmentCohortsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Web2 Track */}
               {/* <Card className="border-0 shadow-xl">
-                <CardHeader className="bg-gradient-to-br from-primary/10 to-primary/5">
+                <CardHeader className="bg-linear-to-br from-primary/10 to-primary/5">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="p-3 bg-primary/20 rounded-lg">
                       <Code className="h-8 w-8 text-primary" />
@@ -191,7 +191,7 @@ export default function DevelopmentCohortsPage() {
 
               {/* Web3 Track */}
               {/* <Card className="border-0 shadow-xl">
-                <CardHeader className="bg-gradient-to-br from-accent/10 to-accent/5">
+                <CardHeader className="bg-linear-to-br from-accent/10 to-accent/5">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="p-3 bg-accent/20 rounded-lg">
                       <Blocks className="h-8 w-8 text-accent" />
@@ -237,7 +237,7 @@ export default function DevelopmentCohortsPage() {
 
           {/* CTA for Current Cohort */}
           {/* <div className="text-center">
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/5 to-accent/5">
+            <Card className="border-0 shadow-xl bg-linear-to-br from-primary/5 to-accent/5">
               <CardContent className="p-8">
                 <h3 className="font-serif text-2xl font-bold text-gray-900 mb-4">
                   Ready to Join Developer Cohort 1?

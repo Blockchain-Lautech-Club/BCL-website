@@ -111,7 +111,7 @@ export default function DevelopmentCohortPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
+      <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-4 bg-primary text-white">Developer Cohort</Badge>
@@ -139,7 +139,7 @@ export default function DevelopmentCohortPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Web2 Track */}
             <Card className="border-0 shadow-xl">
-              <CardHeader className="bg-gradient-to-br from-primary/10 to-primary/5">
+              <CardHeader className="bg-linear-to-br from-primary/10 to-primary/5">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="p-3 bg-primary/20 rounded-lg">
                     <Code className="h-8 w-8 text-primary" />
@@ -163,7 +163,7 @@ export default function DevelopmentCohortPage() {
                 <ul className="space-y-3 mb-6">
                   {web2Skills.map((skill, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                       <span className="text-gray-600 leading-relaxed">{skill}</span>
                     </li>
                   ))}
@@ -183,7 +183,7 @@ export default function DevelopmentCohortPage() {
 
             {/* Web3 Track */}
             <Card className="border-0 shadow-xl">
-              <CardHeader className="bg-gradient-to-br from-accent/10 to-accent/5">
+              <CardHeader className="bg-linear-to-br from-accent/10 to-accent/5">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="p-3 bg-accent/20 rounded-lg">
                     <Blocks className="h-8 w-8 text-accent" />
@@ -207,7 +207,7 @@ export default function DevelopmentCohortPage() {
                 <ul className="space-y-3 mb-6">
                   {web3Skills.map((skill, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-accent mt-0.5 shrink-0" />
                       <span className="text-gray-600 leading-relaxed">{skill}</span>
                     </li>
                   ))}
@@ -231,7 +231,7 @@ export default function DevelopmentCohortPage() {
           {/* Duration Badge */}
       <section className="py-8 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="border-0 shadow-lg bg-gradient-to-r from-primary/5 to-accent/5">
+          <Card className="border-0 shadow-lg bg-linear-to-r from-primary/5 to-accent/5">
             <CardContent className="p-6">
               <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
                 <Calendar className="h-8 w-8 text-primary" />
@@ -348,7 +348,7 @@ export default function DevelopmentCohortPage() {
       </section> */}
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5">
+      <section className="py-16 bg-linear-to-br from-primary/10 via-accent/5 to-primary/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="border-0 shadow-xl">
             <CardHeader>
@@ -362,8 +362,8 @@ export default function DevelopmentCohortPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="text-lg px-8">
-                  <Link href="" className="flex items-center gap-2">
-                    Join the Developer Cohort <ArrowRight className="h-5 w-5" />
+                  <Link href="/cohorts/development/devcohort1/register" className="flex items-center gap-2">
+                    Register for the Cohort <ArrowRight className="h-5 w-5" />
                   </Link>
                 </Button>
                 <Button variant="outline" asChild size="lg" className="bg-transparent text-lg px-8">
