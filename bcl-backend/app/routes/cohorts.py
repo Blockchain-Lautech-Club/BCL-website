@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 # 1. Fixed Model Import (Pointing to the actual file)
-from app.models import CohortApplication  
+from app.db_models import CohortApplication 
 # 2. Fixed Schema Import (Aliased as 'schemas' to fix your NameError)
 from app.models import schemas as schemas       
 from datetime import datetime
