@@ -10,6 +10,14 @@ load_dotenv()
 # Fetch the URL
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
+# Add this fix
+if SQLALCHEMY_DATABASE_URL and SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
+    SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    pool_pre_ping=True
+)
 if not SQLALCHEMY_DATABASE_URL:
     raise ValueError("No DATABASE_URL found in environment variables")
 
