@@ -1,10 +1,31 @@
 from pydantic import BaseModel, HttpUrl, EmailStr
 from typing import Optional, List
-
+from datetime import datetime # Make sure this is imported
 class AdminLogin(BaseModel):
     username: str
     password: str
+class CohortCreate(BaseModel):
+    first_name: str
+    last_name: str
+    email: EmailStr
+    github_handle: Optional[str] = None
+    department: str
+    level: str
+    experience: str
+    registering_for: str  # "web2" or "web3"
+    motivation: str
+    commitment: bool
+    terms: bool
+    cohort_name: str = "DEV-COHORT-I"
 
+
+
+class CohortResponse(CohortCreate):
+    id: int
+    applied_at: datetime  # Change from 'str' to 'datetime'
+
+    class Config:
+        from_attributes = True
 class EventCreate(BaseModel):
     title: str
     description: str
