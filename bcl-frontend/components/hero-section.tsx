@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/dist/client/link';
 
 const images = [
   // '/banner.jpg',
@@ -56,10 +57,10 @@ export function HeroSection() {
           >
             <h1 className="text-3xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
               BLOCKCHAIN
-              <span className="block bg-gradient-to-r text-white bg-clip-text text-transparent">
+              <span className="block bg-linear-to-r text-white bg-clip-text ">
                 LADOKE AKINTOLA
               </span>
-              <span className="block bg-gradient-to-r text-white bg-clip-text text-transparent">
+              <span className="block bg-linear-to-r text-white bg-clip-text ">
                 UNIVERSITY OF TECHNOLOGY
               </span>
             </h1>
@@ -91,13 +92,16 @@ export function HeroSection() {
             >
               Explore Events
             </motion.button>
-            <motion.button
+            <Link href="/join">
+               <motion.button
               className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-blue-600 rounded-lg text-white text-sm xs:text-base font-medium hover:bg-blue-700 transition-all duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Join Community
             </motion.button>
+            </Link>
+           
           </motion.div>
         </div>
       </div>
@@ -125,7 +129,7 @@ export function HeroSection() {
 
       {/* Subtle accent element */}
       <div className="absolute top-1/4 right-8 w-32 h-32 border border-white/10 rounded-full hidden md:block" />
-      <div className="absolute bottom-1/4 left-8 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full hidden md:block" />
+      <div className="absolute bottom-1/4 left-8 w-20 h-20 bg-linear-to-br from-blue-500/10 to-cyan-500/10 rounded-full hidden md:block" />
     </div>
   );
 }
