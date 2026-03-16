@@ -111,7 +111,7 @@ export default function DevelopmentCohortPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
+      <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-4 bg-primary text-white">Developer Cohort</Badge>
@@ -122,6 +122,13 @@ export default function DevelopmentCohortPage() {
               This cohort blends Web2 foundations with Web3 development, ensuring participants gain the skills 
               needed to build modern blockchain-enabled applications.
             </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-3">
+            <Button asChild size="lg" className="text-lg px-8">
+              <Link href="/cohorts/development/devcohort1/register" className="flex items-center gap-2">
+                Register for the Cohort <ArrowRight className="h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -361,11 +368,11 @@ export default function DevelopmentCohortPage() {
                 Take the first step into blockchain development with Blockchain LAUTECH.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="text-lg px-8">
+                {/* <Button asChild size="lg" className="text-lg px-8">
                   <Link href="/cohorts/development/devcohort1/register" className="flex items-center gap-2">
                     Register for the Cohort <ArrowRight className="h-5 w-5" />
                   </Link>
-                </Button>
+                </Button> */}
                 <Button variant="outline" asChild size="lg" className="bg-transparent text-lg px-8">
                   <Link href="/cohorts">View All Cohorts</Link>
                 </Button>
