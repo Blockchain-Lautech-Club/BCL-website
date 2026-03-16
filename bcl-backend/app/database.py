@@ -4,21 +4,24 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+# Load the variables from .env
 load_dotenv()
 
+# Fetch the URL
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
-if not SQLALCHEMY_DATABASE_URL:
-    raise ValueError("DATABASE_URL environment variable is not set")
-
-# Fix postgres:// → postgresql:// (Render/Heroku style URLs)
-if SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
+# Add this fix
+if SQLALCHEMY_DATABASE_URL and SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
     SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-# Fix asyncpg prefix if accidentally used here
-if SQLALCHEMY_DATABASE_URL.startswith("postgresql+asyncpg://"):
-    SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgresql+asyncpg://", "postgresql://", 1)
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    pool_pre_ping=True
+)
+if not SQLALCHEMY_DATABASE_URL:
+    raise ValueError("No DATABASE_URL found in environment variables")
 
+# pool_pre_ping is vital for Supabase to prevent "Server closed the connection unexpectedly"
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
     pool_pre_ping=True
