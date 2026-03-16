@@ -1,1 +1,1 @@
-from app.models.models import CohortApplication
+from app.db_models import CohortApplication
