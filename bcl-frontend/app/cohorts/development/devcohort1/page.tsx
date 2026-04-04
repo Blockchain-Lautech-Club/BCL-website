@@ -25,7 +25,7 @@ import {
   Loader2,
 } from "lucide-react"
 
-const API_BASE = "http://127.0.0.1:8000"
+const API_BASE = "https://bcl-website.onrender.com"
 
 const web2Skills = [
   "HTML, CSS, JavaScript, Next.js & Node.js",

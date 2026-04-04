@@ -21,7 +21,7 @@ import {
 } from "lucide-react"
 import { adminApi, eventApi, blogApi, memberApi, Event, Blog, Member, formatDate } from "@/lib/api"
 
-const API_BASE = "http://127.0.0.1:8000"
+const API_BASE = "https://bcl-website.onrender.com"
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
