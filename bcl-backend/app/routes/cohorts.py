@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+import io
 from app.database import get_db
 from app.db_models import CohortApplication, CohortSettings
 from app.models import schemas as schemas
