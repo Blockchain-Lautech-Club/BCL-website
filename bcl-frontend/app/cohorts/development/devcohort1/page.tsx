@@ -1,13 +1,14 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { 
-  Code, 
+import {
+  Code,
   CheckCircle,
   ArrowRight,
   Users,
@@ -19,15 +20,19 @@ import {
   Lightbulb,
   GitBranch,
   Blocks,
-  Briefcase
+  Briefcase,
+  Lock,
+  Loader2,
 } from "lucide-react"
+
+const API_BASE = "http://127.0.0.1:8000"
 
 const web2Skills = [
   "HTML, CSS, JavaScript, Next.js & Node.js",
   "Frontend frameworks & basic backend concepts",
   "Version control (Git & GitHub)",
   "Building and deploying real-world projects",
-  "Introduction to APIs & databases"
+  "Introduction to APIs & databases",
 ]
 
 const web3Skills = [
@@ -35,77 +40,62 @@ const web3Skills = [
   "Smart contracts & decentralized applications (dApps)",
   "Wallets, transactions & on-chain interactions",
   "Building on real blockchain ecosystems",
-  "Web3 tooling & developer best practices"
+  "Web3 tooling & developer best practices",
 ]
 
 const targetAudience = [
-  {
-    icon: Code,
-    text: "Beginners interested in software development"
-  },
-  {
-    icon: Rocket,
-    text: "Students transitioning into Web3"
-  },
-  {
-    icon: Lightbulb,
-    text: "Developers who want blockchain experience"
-  },
-  {
-    icon: Target,
-    text: "Anyone passionate about building real products"
-  }
+  { icon: Code,      text: "Beginners interested in software development" },
+  { icon: Rocket,    text: "Students transitioning into Web3" },
+  { icon: Lightbulb, text: "Developers who want blockchain experience" },
+  { icon: Target,    text: "Anyone passionate about building real products" },
 ]
 
 const benefits = [
-  {
-    icon: BookOpen,
-    title: "Strong Web2 and Web3 Foundation",
-    description: "Comprehensive understanding of both traditional and blockchain development"
-  },
-  {
-    icon: Code,
-    title: "Real Project Portfolio",
-    description: "Build and deploy actual applications to showcase your skills"
-  },
-  {
-    icon: Users,
-    title: "Expert Mentorship",
-    description: "Learn from experienced builders throughout your journey"
-  },
-  {
-    icon: Lightbulb,
-    title: "Community Support",
-    description: "Collaborate with peers and get help when you need it"
-  },
-  {
-    icon: Award,
-    title: "Hackathon Ready",
-    description: "Prepare for competitions and real-world challenges"
-  },
-  {
-    icon: Briefcase,
-    title: "Internship Preparation",
-    description: "Gain skills that make you competitive for opportunities"
-  }
-]
-
-const otherCohorts = [
-  {
-    title: "Advanced Web3 Development",
-    description: "Deep dive into complex smart contracts, DeFi protocols, and advanced blockchain architecture",
-    status: "Coming Soon",
-    icon: Blocks
-  },
-  {
-    title: "Full-Stack Blockchain Development",
-    description: "Master end-to-end blockchain application development with advanced tooling",
-    status: "Coming Soon",
-    icon: GitBranch
-  }
+  { icon: BookOpen,  title: "Strong Web2 and Web3 Foundation",   description: "Comprehensive understanding of both traditional and blockchain development" },
+  { icon: Code,      title: "Real Project Portfolio",             description: "Build and deploy actual applications to showcase your skills" },
+  { icon: Users,     title: "Expert Mentorship",                  description: "Learn from experienced builders throughout your journey" },
+  { icon: Lightbulb, title: "Community Support",                  description: "Collaborate with peers and get help when you need it" },
+  { icon: Award,     title: "Hackathon Ready",                    description: "Prepare for competitions and real-world challenges" },
+  { icon: Briefcase, title: "Internship Preparation",             description: "Gain skills that make you competitive for opportunities" },
 ]
 
 export default function DevelopmentCohortPage() {
+  const [applicationsOpen, setApplicationsOpen] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    fetch(`${API_BASE}/cohorts/applications/status`)
+      .then((r) => r.json())
+      .then((d) => setApplicationsOpen(d.applications_open))
+      .catch(() => setApplicationsOpen(true)) // fail open — don't block if API is down
+  }, [])
+
+  const RegisterButton = ({ size = "lg", className = "" }: { size?: "lg" | "sm", className?: string }) => {
+    // Still fetching
+    if (applicationsOpen === null) {
+      return (
+        <Button size={size} className={className} disabled>
+          <Loader2 className="h-5 w-5 mr-2 animate-spin" /> Checking...
+        </Button>
+      )
+    }
+    // Closed
+    if (!applicationsOpen) {
+      return (
+        <Button size={size} className={className} disabled>
+          <Lock className="h-5 w-5 mr-2" /> Applications Closed
+        </Button>
+      )
+    }
+    // Open
+    return (
+      <Button asChild size={size} className={`${className}`}>
+        <Link href="/cohorts/development/devcohort1/register" className="flex items-center gap-2">
+          Register for the Cohort <ArrowRight className="h-5 w-5" />
+        </Link>
+      </Button>
+    )
+  }
+
   return (
     <main className="min-h-screen bg-gray-50">
       <Navigation />
@@ -119,16 +109,20 @@ export default function DevelopmentCohortPage() {
               DEV - COHORT I
             </h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mt-4">
-              This cohort blends Web2 foundations with Web3 development, ensuring participants gain the skills 
+              This cohort blends Web2 foundations with Web3 development, ensuring participants gain the skills
               needed to build modern blockchain-enabled applications.
             </p>
+
+            {/* Closed notice banner */}
+            {applicationsOpen === false && (
+              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-full text-red-700 text-sm font-medium">
+                <Lock className="h-4 w-4" />
+                Applications for this cohort are currently closed.
+              </div>
+            )}
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-3">
-            <Button asChild size="lg" className="text-lg px-8">
-              <Link href="/cohorts/development/devcohort1/register" className="flex items-center gap-2">
-                Register for the Cohort <ArrowRight className="h-5 w-5" />
-              </Link>
-            </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+            <RegisterButton size="lg" className="text-lg px-8" />
           </div>
         </div>
       </section>
@@ -153,9 +147,7 @@ export default function DevelopmentCohortPage() {
                   </div>
                   <div className="py-2">
                     <Badge className="bg-primary text-white mb-2">Foundation</Badge>
-                    <CardTitle className="font-serif text-2xl font-bold text-gray-900">
-                      Web2 Track
-                    </CardTitle>
+                    <CardTitle className="font-serif text-2xl font-bold text-gray-900">Web2 Track</CardTitle>
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed mt-2">
@@ -164,8 +156,7 @@ export default function DevelopmentCohortPage() {
               </CardHeader>
               <CardContent className="p-6">
                 <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-primary" />
-                  What You'll Learn:
+                  <BookOpen className="h-5 w-5 text-primary" /> What You'll Learn:
                 </h4>
                 <ul className="space-y-3 mb-6">
                   {web2Skills.map((skill, index) => (
@@ -177,11 +168,10 @@ export default function DevelopmentCohortPage() {
                 </ul>
                 <div className="bg-primary/5 p-4 rounded-lg border-l-4 border-primary">
                   <h5 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                    <Award className="h-5 w-5 text-primary" />
-                    Outcome:
+                    <Award className="h-5 w-5 text-primary" /> Outcome:
                   </h5>
                   <p className="text-gray-600 leading-relaxed">
-                    Participants will be able to build and deploy functional web applications and understand 
+                    Participants will be able to build and deploy functional web applications and understand
                     modern development workflows.
                   </p>
                 </div>
@@ -197,9 +187,7 @@ export default function DevelopmentCohortPage() {
                   </div>
                   <div className="py-2">
                     <Badge className="bg-accent text-white mb-2">Blockchain</Badge>
-                    <CardTitle className="font-serif text-2xl font-bold text-gray-900">
-                      Web3 Track
-                    </CardTitle>
+                    <CardTitle className="font-serif text-2xl font-bold text-gray-900">Web3 Track</CardTitle>
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed mt-2">
@@ -208,8 +196,7 @@ export default function DevelopmentCohortPage() {
               </CardHeader>
               <CardContent className="p-6">
                 <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-accent" />
-                  What You'll Learn:
+                  <BookOpen className="h-5 w-5 text-accent" /> What You'll Learn:
                 </h4>
                 <ul className="space-y-3 mb-6">
                   {web3Skills.map((skill, index) => (
@@ -221,11 +208,10 @@ export default function DevelopmentCohortPage() {
                 </ul>
                 <div className="bg-accent/5 p-4 rounded-lg border-l-4 border-accent">
                   <h5 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                    <Award className="h-5 w-5 text-accent" />
-                    Outcome:
+                    <Award className="h-5 w-5 text-accent" /> Outcome:
                   </h5>
                   <p className="text-gray-600 leading-relaxed">
-                    Participants will be able to build basic dApps and understand how blockchain integrates 
+                    Participants will be able to build basic dApps and understand how blockchain integrates
                     with web applications.
                   </p>
                 </div>
@@ -234,8 +220,8 @@ export default function DevelopmentCohortPage() {
           </div>
         </div>
       </section>
-    
-          {/* Duration Badge */}
+
+      {/* Duration Badge */}
       <section className="py-8 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="border-0 shadow-lg bg-linear-to-r from-primary/5 to-accent/5">
@@ -259,11 +245,8 @@ export default function DevelopmentCohortPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-serif text-3xl font-bold text-primary mb-4">Who This Cohort Is For</h2>
-            <p className="text-lg text-gray-600">
-              This program is designed for motivated learners at any stage
-            </p>
+            <p className="text-lg text-gray-600">This program is designed for motivated learners at any stage</p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {targetAudience.map((item, index) => (
               <Card key={index} className="border-0 shadow-lg">
@@ -286,11 +269,8 @@ export default function DevelopmentCohortPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-serif text-3xl font-bold text-primary mb-4">What You'll Gain</h2>
-            <p className="text-lg text-gray-600">
-              The skills, experience, and connections you need to succeed
-            </p>
+            <p className="text-lg text-gray-600">The skills, experience, and connections you need to succeed</p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
@@ -299,12 +279,8 @@ export default function DevelopmentCohortPage() {
                     <div className="p-4 bg-primary/10 rounded-lg mb-4">
                       <benefit.icon className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="font-serif text-lg font-bold text-gray-900 mb-2">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {benefit.description}
-                    </p>
+                    <h3 className="font-serif text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -312,47 +288,6 @@ export default function DevelopmentCohortPage() {
           </div>
         </div>
       </section>
-
-      {/* Other Developer Cohorts */}
-      {/* <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">
-              More Developer Cohorts
-            </h2>
-            <p className="text-lg text-gray-600">
-              We're expanding our developer program with specialized tracks
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {otherCohorts.map((cohort, index) => (
-              <Card key={index} className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gray-100 rounded-lg">
-                      <cohort.icon className="h-8 w-8 text-gray-400" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h3 className="font-serif text-xl font-bold text-gray-900">
-                          {cohort.title}
-                        </h3>
-                        <Badge variant="outline" className="text-xs">
-                          {cohort.status}
-                        </Badge>
-                      </div>
-                      <p className="text-gray-600 leading-relaxed">
-                        {cohort.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* CTA Section */}
       <section className="py-16 bg-linear-to-br from-primary/10 via-accent/5 to-primary/5">
@@ -368,11 +303,7 @@ export default function DevelopmentCohortPage() {
                 Take the first step into blockchain development with Blockchain LAUTECH.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                {/* <Button asChild size="lg" className="text-lg px-8">
-                  <Link href="/cohorts/development/devcohort1/register" className="flex items-center gap-2">
-                    Register for the Cohort <ArrowRight className="h-5 w-5" />
-                  </Link>
-                </Button> */}
+                <RegisterButton size="lg" className="text-lg px-8" />
                 <Button variant="outline" asChild size="lg" className="bg-transparent text-lg px-8">
                   <Link href="/cohorts">View All Cohorts</Link>
                 </Button>

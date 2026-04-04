@@ -2,6 +2,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, Text, DateTime
 from sqlalchemy.sql import func
 from app.database import Base 
+from datetime import datetime          
+
 
 class CohortApplication(Base):
     __tablename__ = "cohort_applications"
@@ -19,3 +21,10 @@ class CohortApplication(Base):
     commitment = Column(Boolean, default=False)
     terms = Column(Boolean, default=False)
     applied_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+class CohortSettings(Base):
+    __tablename__ = "cohort_settings"
+
+    id = Column(Integer, primary_key=True, default=1)
+    applications_open = Column(Boolean, default=True, nullable=False)
+    updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)

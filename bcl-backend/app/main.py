@@ -6,24 +6,17 @@ from app.routes import auth, events, blogs, uploads, members, cohorts
 from datetime import datetime
 app = FastAPI()
 
-# Add CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Adjust for your frontend URL
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://blockchainlautech.club",
-        "http://localhost:3000",  
-        "http://localhost:3001",
-        "http://127.0.0.1:3000",
-    ],
+    "https://blockchainlautech.club",
+    "https://www.blockchainlautech.club",  # ← add this
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3000",
+],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 # Mount routes
