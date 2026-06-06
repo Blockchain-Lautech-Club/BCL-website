@@ -1,0 +1,244 @@
+{
+  "organization": {
+    "name": "Blockchain Club LAUTECH",
+    "shortName": "BCL",
+    "foundedYear": 2020,
+    "tagline": "Building the Future, One Block at a Time.",
+    "vision": "To create a LAUTECH where every student is equipped with blockchain knowledge and contributes to Nigeria's leadership in Web3 innovation.",
+    "mission": "To empower LAUTECH students with blockchain expertise, drive innovation, and build a vibrant ecosystem for future blockchain leaders through workshops, hackathons, and collaborative projects.",
+    "description": "Connecting curious minds to blockchain education, hands-on experience, and a community of future tech leaders."
+  },
+  
+  "navigation": {
+    "headerLinks": [
+      { "label": "Home", "url": "/" },
+      { "label": "About", "url": "/about" },
+      { "label": "Events", "url": "/events" },
+      { "label": "Cohorts", "url": "/cohorts" },
+      { "label": "Blog", "url": "/blog" },
+      { "label": "Contacts", "url": "/contact" }
+    ],
+    "ctaButtons": [
+      { "label": "Join BCL", "url": "/join" },
+      { "label": "The Team", "url": "/team" }
+    ]
+  },
+
+  "aboutUs": {
+    "history": {
+      "p1": "Blockchain club lautech, founded 2020 by a group of innovatives driven by the mission to teach beyond technical knowledge, to demystify the blockchain and make it accessible to beginners while also providing advanced learning opportunities for more experienced members.",
+      "p2": "The club was established as a collaborative learning community where members could explore the fundamentals of blockchain technology, understand how cryptocurrencies function, and examine real world applications across every sector.",
+      "p3": "Through structured activities including workshops, seminars, hackathons and collaborative projects, blockchain club lautech fosters an environment that encourages innovation, critical thinking, and skill development."
+    },  
+    "statistics": [
+      { "metric": "2500+", "label": "Students Trained" },
+      { "metric": "5+", "label": "Workshops & Hackathons" },
+      { "metric": "20+", "label": "Industry Partners" },
+      { "metric": "5+", "label": "Years Active" }
+    ],
+    "achievements": [
+      { "title": "1st place - CrossFi Africa hackathon", "date": "March 2025" },
+      { "title": "3rd place - CrossFi Global hackathon", "date": "August 2025" },
+      { "title": "Free tickets to ETH Denver", "date": "September 2024" }
+    ]
+  },
+
+  "team": {
+    "quote": "Our team is made up of passionate builders, innovators, and problem-solvers dedicated to exploring the endless various possibilities of blockchain technology.They are committed to fostering innovation, collaboration, and education within the ecosystem.",
+    "founders": [
+      {
+        "name": "John ADEKUNJO",
+        "role": "Founder / Lead Executive",
+        "image": "/team/johnAdekunjo.jpg",
+        "social": {
+          "x": "https://x.com/johnadekunjo",
+          "linkedin": "https://linkedin.com/in/johnadekunjo"
+        }
+      },
+      {
+        "name": "Thelma OPURUM",
+        "role": "Co-Founder",
+        "image": "/team/thelmaOpurum.jpg",
+        "social": {
+          "x": "https://x.com/thelmaopurum",
+          "linkedin": "https://linkedin.com/in/thelmaopurum"
+        }
+      },
+      {
+        "name": "Blessing OLUWABAMIDELE",
+        "role": "Co-Founder",
+        "image": "/team/blessingOluwabamidele.jpg",
+        "social": {
+          "x": "https://x.com/blessingoluwabamidele",
+          "linkedin": "https://linkedin.com/in/blessingoluwabamidele"
+        }
+      }
+    ],
+    "moderators": [
+      {
+        "name": "Favour ABIDOYE-OLADEJO",
+        "role": "Lead CM",
+        "image": "/team/favourAbidoyeOadejo.jpg",
+        "social": {
+          "x": "https://x.com/favourabidoyeoadejo",
+          "linkedin": "https://linkedin.com/in/favourabidoyeoadejo"
+        }
+      },
+      {
+        "name": "Precious ADEBISI",
+        "role": "Project Manager",
+        "image": "/team/preciousAdebisi.png",
+        "social": {
+          "x": "https://x.com/preciousadebisi",
+          "linkedin": "https://linkedin.com/in/preciousadebisi"
+        }
+      },
+      {
+        "name": "Maryam TIJANI",
+        "role": "Female Guild Lead",
+        "image": "/team/maryamTijani.jpg",
+        "social": {
+          "x": "https://x.com/maryamtijani",
+          "linkedin": "https://linkedin.com/in/maryamtijani"
+        }
+      },
+      {
+        "name": "Jeremiah OYENIRAN",
+        "role": "Dev Lead",
+        "image": "/team/jeremiahOyeniran.jpg",
+        "social": {
+          "x": "https://x.com/jeremiahoyeniran",
+          "linkedin": "https://linkedin.com/in/jeremiahoyeniran"
+        }
+      },
+      {
+        "name": "Abdulhamid BAKARE",
+        "role": "Project Manager",
+        "image": "/team/abdulhamidBakare.jpg",
+        "social": {
+          "x": "https://x.com/abdulhamidbakare",
+          "linkedin": "https://linkedin.com/in/abdulhamidbakare"
+        }
+      },
+      {
+        "name": "Tomiwa KAYODE",
+        "role": "Project Manager",
+        "image": "/team/tomiwaKayode.jpg",
+        "social": {
+          "x": "https://x.com/tomiwakayode",
+          "linkedin": "https://linkedin.com/in/tomiwakayode"
+        }
+      }
+    ]
+  },
+
+  "cohorts": {
+    "header": "Level up your Web3 Skills with a Cohorts",
+    "subHeader": "Our Cohort Programs are structured learning tracks designed to help students gain real-world blockchain skills in focused areas.",
+    "tracks": [
+      {
+        "id": "dev-cohort-1",
+        "title": "Web & Blockchain Dev Cohort",
+        "category": "Development",
+        "description": "Build modern web apps and decentralized applications from scratch, frontend to smart contracts.",
+        "status": "Now Open",
+        "duration": "12 Weeks",
+        "slotsAvailable": 100,
+        "format": "Hybrid",
+        "learningPoints": ["Frontend & Backend", "Solidity", "Blockchain Fundamentals", "DeFi & NFTs", "Web3 Integration"],
+        "targetAudience": "Aspiring developers who want to build real blockchain-based products from day one.",
+        "curriculum": {
+          "phase1": {
+            "title": "Web2 Track (Foundation)",
+            "subtitle": "Core technologies for building modern web applications...",
+            "topics": ["HTML, CSS & JavaScript", "Git & GitHub", "Building & deploying web projects", "APIs & databases", "Next.js & Node.js"],
+            "outcome": "Build and deploy functional web applications and understand modern development workflows."
+          },
+          "phase2": {
+            "title": "Web3 Track (Blockchain)",
+            "subtitle": "Transition into decentralized development...",
+            "topics": ["Blockchain Fundamentals & Web3", "Smart contracts & dApps", "Web3 Testing", "Wallets, transactions & basic chains", "Building on real blockchain ecosystem"],
+            "outcome": "Build basic dApps and understand how blockchain integrates with web applications end-to-end."
+          }
+        },
+        "timeline": [
+          { "weeks": "Weeks 1-4", "title": "Web Fundamentals", "detail": "HTML, CSS, JavaScript basics & version control" },
+          { "weeks": "Weeks 5-6", "title": "Frameworks & Backend", "detail": "Next.js, Node.js, APIs & database integration" },
+          { "weeks": "Weeks 7-9", "title": "Blockchain Foundation", "detail": "Web3 concepts, wallets, on-chain interactions" },
+          { "weeks": "Weeks 10-12", "title": "Build & Ship", "detail": "Smart contracts, dApp dev & final project demo" }
+        ]
+      },
+      {
+        "id": "design-product-cohort",
+        "title": "Design & Product Cohort",
+        "category": "UI/UX & Product",
+        "description": "Design user-friendly and visually compelling Web3 products that people actually want to use.",
+        "status": "Opening Soon",
+        "learningPoints": ["UI/UX for Web3", "Product Design", "Branding Systems", "Figma", "Prototyping"],
+        "targetAudience": "Creative students into design, branding, and user experience within the Web3 space."
+      }
+    ]
+  },
+
+  "events": {
+    "featured": {
+      "title": "Confluence 1.0",
+      "tagline": "Tech Extravaganza",
+      "theme": "Ogbomoso's Digital Transformation: Blockchain as a Catalyst",
+      "description": "The flagship tech conference uniting students, developers, and industry leaders at the intersection of blockchain, Web3, and emerging technologies.",
+      "dates": "November 7 & 8, 2025",
+      "time": "9:00 AM",
+      "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
+      "image": "/event/confluence.jpg",
+      "agenda": {
+        "day1": {
+          "track": "Developer Track",
+          "date": "November 7, 2025",
+          "items": ["Demo Day", "Hackathons & Coding Competitions", "Technical Workshops", "Bounty Challenges", "Developer Networking", "Panel Session"]
+        },
+        "day2": {
+          "track": "Community Track",
+          "date": "November 8, 2025",
+          "items": ["Keynote Presentations", "Expert Panel Discussions", "Women in Web3 Sessions", "Startup Exhibitions", "Interactive Workshops", "Networking Opportunities", "Prize Distribution"]
+        }
+      },
+      "type": "string",
+      "max_attendees": 0,
+      "speaker_name": "string",
+      "speaker_title": "string",
+      "speaker_bio": "string",
+      "speaker_avatar": "string"
+    }
+  },
+
+  "partners": [
+    { "name": "Nova Labs", "logo": "/partners/novaLabs.jpg" },
+    { "name": "CrossFi", "logo": "/partners/crossFi.jpg" },
+    { "name": "Backpack", "logo": "/partners/backpack.jpg" },
+    { "name": "Celo Africa DAO", "logo": "/partners/celoAfricaDao.jpg" },
+    { "name": "GIDA", "logo": "/partners/gida.jpg" },
+    { "name": "CoinEx", "logo": "/partners/coinEx.jpg" },
+    { "name": "AllstarsNG", "logo": "/partners/allstarsNg.jpg" },
+    { "name": "FaucetDrops", "logo": "/partners/faucetdrops.jpg" },
+    { "name": "Sui", "logo": "/partners/sui.jpg" },
+    { "name": "Web3Bridge", "logo": "/partners/web3bridge.jpg" }
+  ],
+
+  "contact": {
+    "phones": ["+234 803 123 4567", "+234 901 234 5678"],
+    "emails": ["blockchain@lautech.edu.ng", "info@lautechblockchain.org", "blockchainlautech@gmail.com"],
+    "address": "LAUTECH Campus, Ogbomoso, Oyo State, Nigeria",
+    "officeHours": {
+      "weekdays": "Monday - Friday: 9:00 AM - 5:00 PM",
+      "saturday": "Saturday: 10:00 AM - 2:00 PM",
+      "sunday": "Sunday: Closed"
+    },
+    "socials": {
+      "x": "https://x.com/blockchainlautech",
+      "linkedin": "https://linkedin.com/company/blockchainlautech",
+      "github": "https://github.com/blockchainlautech",
+      "telegram": "https://t.me/blockchainlautech",
+      "discord": "https://discord.com/blockchainlautech"
+    }
+  }
+}

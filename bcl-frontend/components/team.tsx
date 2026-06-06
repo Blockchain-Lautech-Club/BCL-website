@@ -15,18 +15,18 @@ export function TeamSection() {
   const founders = [
     {
       name: "John ADEKUNJO",
-      image: "/johnadek1.jpg",
+      image: "/team/johnAdekunjo.jpg",
       twitter: "https://x.com/@Johnadek_",
       linkedin: "https://www.linkedin.com/in/john-adekunjo-6757271b5",
     },
     {
       name: "Thelma OPURUM",
-      image: "/thelma1.jpg",
+      image: "/team/thelmaOpurum.jpg",
       twitter: "https://x.com/@thelma_opurum",
     },
     {
       name: "Blessing OLUWABAMIDELE",
-      image: "/blessing1.jpg",
+      image: "/team/blessingOluwabamidele.jpg",
       twitter: "#",
     },
   ];
@@ -35,40 +35,40 @@ export function TeamSection() {
     {
       name: "Favour ABIDOYE-OLADEJO",
       role: "Lead C.M",
-      image: "/favour.jpg",
+      image: "/team/favourAbidoyeOadejo.jpg",
       twitter: "https://x.com/@FavourAbidoye",
       github: "https://github.com/Favour4712",
     },
     {
       name: "Precious ADEBISI",
       role: "Project Manager",
-      image: "/acunetix.png",
+      image: "/team/preciousAdebisi.png",
       twitter: "https://x.com/@acunetixtech001",
       github: "https://github.com/devacunetixtech",
     },
     {
       name: "Maryam TIJANI",
       role: "Female Guild Lead",
-      image: "/teem12.jpg",
+      image: "/team/maryamTijani.jpg",
       twitter: "https://x.com/@thetee_m",
     },
     {
       name: "Jeremiah OYENIRAN",
       role: "Dev. Lead",
-      image: "/jerrydam.jpg",
+      image: "/team/jeremiahOyeniran.jpg",
       twitter: "https://x.com/@Jerydam00",
       github: "https://github.com/jerydam",
     },
     {
       name: "Abdulhamid BAKARE",
       role: "Events Manager",
-      image: "/herman.jpg",
+      image: "/team/abdulhamidBakare.jpg",
       twitter: "https://x.com/@starkhubz",
     },
     {
       name: "Tomiwa KAYODE",
       role: "Design Lead",
-      image: "/trems.jpg",
+      image: "/team/tomiwaKayode.jpg",
       twitter: "https://x.com/@TommyTrems",
     },
   ];

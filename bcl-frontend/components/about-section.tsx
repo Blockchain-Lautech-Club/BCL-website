@@ -59,16 +59,16 @@ export function AboutSection() {
   const [selectedImage, setSelectedImage] = useState<{ src: string; index: number } | null>(null);
 
   const partners = [
-    { name: "Celo Africa DAO", logo: "./celoraw.jpg" },
-    { name: "Web3Bridge", logo: "./web3bridgeraw.jpg" },
-    { name: "CrossFi", logo: "./crossfiraw.jpg" },
-    { name: "CoinEx", logo: "./coinex.jpg" },
-    { name: "Sui", logo: "./suiraw.jpg" },
-    { name: "GIDA", logo: "./gidaraw.jpg" },
-    { name: "Nova Labs", logo: "./novalabsraw.jpg" },
-    { name: "FaucetDrops", logo: "./faucetdropsraw.jpg" },
-    { name: "AllstarsNG", logo: "./solanaraw.jpg" },
-    { name: "Backpack", logo: "./backpack.jpg" },
+    { name: "Celo Africa DAO", logo: "./partners/celoAfricaDao.jpg" },
+    { name: "Web3Bridge", logo: "./partners/web3bridge.jpg" },
+    { name: "CrossFi", logo: "./partners/crossFi.jpg" },
+    { name: "CoinEx", logo: "./partners/coinEx.jpg" },
+    { name: "Sui", logo: "./partners/sui.jpg" },
+    { name: "GIDA", logo: "./partners/gida.jpg" },
+    { name: "Nova Labs", logo: "./partners/novaLabs.jpg" },
+    { name: "FaucetDrops", logo: "./partners/faucetdrops.jpg" },
+    { name: "AllstarsNG", logo: "./partners/allstarsNg.jpg" },
+    { name: "Backpack", logo: "./partners/backpack.jpg" },
   ];
 
   const containerVariants = {

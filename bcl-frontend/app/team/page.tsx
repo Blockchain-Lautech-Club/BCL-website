@@ -46,7 +46,7 @@ export default function TeamLayout() {
                                 <div className="text-center text-gray-500 dark:text-gray-400">
                                     <img
                                         className="mx-auto mb-4 w-36 h-36 rounded-full"
-                                        src="/johnadek1.jpg"
+                                        src="/team/johnAdekunjo.jpg"
                                         alt="Johnadek Avatar"
                                     />
                                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
@@ -67,7 +67,7 @@ export default function TeamLayout() {
                                 <div className="text-center text-gray-500 dark:text-gray-400">
                                     <img
                                         className="mx-auto mb-4 w-36 h-36 rounded-full"
-                                        src="/thelma1.jpg"
+                                        src="/team/thelmaOpurum.jpg"
                                         alt="Thelma Avatar"
                                     />
                                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
@@ -87,7 +87,7 @@ export default function TeamLayout() {
                                     <div>
                                         <img
                                             className="mx-auto mb-4 w-36 h-36 rounded-full"
-                                            src="blessing1.jpg"
+                                            src="/team/blessingOluwabamidele.jpg"
                                             alt="Blessing Avatar"
                                         />
                                         <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
@@ -117,7 +117,7 @@ export default function TeamLayout() {
                             <div className="grid gap-14 grid-cols-2 md:grid-cols-3 lg:grid-cols-3 w-full justify-content-center">
                                 {/* Favour */}
                                 <div className="text-center text-gray-500 dark:text-gray-400">
-                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/favour.jpg" alt="Leslie Avatar" />
+                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/team/favourAbidoyeOadejo.jpg" alt="Favour Avatar" />
                                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
                                         <a href="#">Favour ABIDOYE-OLADEJO</a>
                                     </h3>
@@ -135,7 +135,7 @@ export default function TeamLayout() {
                                 </div>
                                 {/* Acunetix */}
                                 <div className="text-center text-gray-500 dark:text-gray-400">
-                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="acunetix.png" alt="Joseph Avatar" />
+                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/team/preciousAdebisi.png" alt="Precious Avatar" />
                                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
                                         <a href="#">Precious ADEBISI</a>
                                     </h3>
@@ -153,7 +153,7 @@ export default function TeamLayout() {
                                 </div>
                                 {/* Maryam */}
                                 <div className="text-center text-gray-500 dark:text-gray-400">
-                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/teem12.jpg" alt="Michael Avatar" />
+                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/team/maryamTijani.jpg" alt="Maryam Avatar" />
                                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
                                         <a href="#">Maryam TIJANI</a>
                                     </h3>
@@ -168,7 +168,7 @@ export default function TeamLayout() {
                                 </div>
                                 {/* CyberHackB */}
                                 <div className="text-center text-gray-500 dark:text-gray-400">
-                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/jerrydam.jpg" alt="Jerry Avatar" />
+                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/team/jeremiahOyeniran.jpg" alt="Jeremiah Avatar" />
                                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
                                         <a href="#">Jeremiah OYENIRAN</a>
                                     </h3>
@@ -186,7 +186,7 @@ export default function TeamLayout() {
                                 </div>
                                 {/* Herman */}
                                 <div className="text-center text-gray-500 dark:text-gray-400">
-                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="herman.jpg" alt="Neil Avatar" />
+                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/team/abdulhamidBakare.jpg" alt="Abdulhamid Avatar" />
                                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
                                         <a href="#">Abdulhamid BAKARE</a>
                                     </h3>
@@ -202,7 +202,7 @@ export default function TeamLayout() {
 
                                 {/* Trems */}
                                 <div className="text-center text-gray-500 dark:text-gray-400">
-                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="trems.jpg" alt="Trems Avatar" />
+                                    <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/team/tomiwaKayode.jpg" alt="Tomiwa Avatar" />
                                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-primary dark:text-white">
                                         <a href="#">Tomiwa KAYODE</a>
                                     </h3>
