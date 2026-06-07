@@ -44,6 +44,37 @@
     ]
   },
 
+  "testimonial": [
+    {
+      "avatar": "/testimonial/abdulAnchor.png",
+      "name": "Abdul-Anchor",
+      "departement": "Fishery Science and Technology",
+      "note": "BCL is one of the big family in Lautech, safe and welcoming. She makes the saying ‘all work and no play makes Jack a dull boy’. I love it, because opportunities are always shared.",
+      "rate": 5
+    },
+    {
+      "avatar": "/testimonial/fatimaAbdullahi.png",
+      "name": "Fatima Abdullahi",
+      "departement": "Information Technology",
+      "note": "From zero blockchain knowledge to building my own DApp in three months-this club’s hands-on approach and supportive community made it possible.",
+      "rate": 3.3
+    },
+    {
+      "avatar": "/testimonial/chineduOkwu.png",
+      "name": "Chinedu Okwu",
+      "departement": "Software Engineering",
+      "note": "The club exposed me to cutting-edge blockchain technologies not covered in class. The guest speakers are always inspiring and insightful.",
+      "rate": 4.6
+    },
+    {
+      "avatar": "/testimonial/chineduOkwu.png",
+      "name": "Chinedu Okwu",
+      "departement": "Software Engineering",
+      "note": "The club exposed me to cutting-edge blockchain technologies not covered in class. The guest speakers are always inspiring and insightful.",
+      "rate": 2.5
+    }
+  ],
+
   "team": {
     "quote": "Our team is made up of passionate builders, innovators, and problem-solvers dedicated to exploring the endless various possibilities of blockchain technology.They are committed to fostering innovation, collaboration, and education within the ecosystem.",
     "founders": [

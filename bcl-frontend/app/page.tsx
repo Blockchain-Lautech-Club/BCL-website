@@ -14,7 +14,7 @@ export default function HomePage() {
         <AboutSection />
         <TeamSection />
         <TestimonialsSection />
-        <PastEvents />
+        {/* <PastEvents /> */}
       </div>
     </div>
   )

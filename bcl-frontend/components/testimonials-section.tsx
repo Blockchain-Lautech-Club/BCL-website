@@ -3,34 +3,33 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
 import { motion } from 'framer-motion';
+import { testimonial } from "@/lib/data.json";
+
+function renderRating(rate: number) {
+  const clampedRate = Math.min(Math.max(rate, 0), 5);
+
+  return (
+    <div className="flex items-center gap-1">
+      {Array.from({ length: 5 }).map((_, index) => {
+        const fillPercent = Math.round(Math.max(0, Math.min(clampedRate - index, 1)) * 100);
+
+        return (
+          <span key={index} className="relative inline-flex h-5 w-5">
+            <Star className="h-5 w-5 text-gray-300" />
+            <span
+              className="absolute inset-y-0 left-0 overflow-hidden"
+              style={{ width: `${fillPercent}%` }}
+            >
+              <Star className="h-5 w-5 text-yellow-400" fill="currentColor" />
+            </span>
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 export function TestimonialsSection() {
-  const testimonials = [
-    {
-      name: "Abdul-Anchor",
-      role: "Fishery Science and Technology.",
-      avatar: "/anchor.png",
-      content:
-        "BCL is one of the big family in Lautech, safe and welcoming. She makes the saying ‘all work and no play makes Jack a dull boy’. I love it, because opportunities are always shared.",
-      rating: 5,
-    },
-    {
-      name: "Fatima Abdullahi",
-      role: "Information Technology, 300L",
-      avatar: "/diverse-female-student.png",
-      content:
-        "From zero blockchain knowledge to building my own DApp in three months—this club’s hands-on approach and supportive community made it possible.",
-      rating: 5,
-    },
-    {
-      name: "Chinedu Okwu",
-      role: "Software Engineering, 500L",
-      avatar: "/male-student-portrait.png",
-      content:
-        "The club exposed me to cutting-edge blockchain technologies not covered in class. The guest speakers are always inspiring and insightful.",
-      rating: 5,
-    },
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -48,38 +47,36 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="pt-20">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6">
-            What Our Members Say
-          </h2>
+          <div className="inline-flex items-center justify-center px-6 py-3 mx-auto mb-6 rounded-full border border-blue-300 bg-blue-50 text-blue-700 shadow-md shadow-blue-100/50">
+            <span className="font-semibold text-base sm:text-lg">What Our Members Say</span>
+          </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Discover the transformative experiences and achievements of our blockchain community members.
           </p>
         </motion.div>
 
+        <div className="bg-gradient-to-b from-[#7C3AED] to-[#3B82F6]">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl mx-auto p-20 rounded-lg"
         >
-          {testimonials.map((testimonial, index) => (
+          {testimonial.map((testimonial, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
+                    {renderRating(testimonial.rate)}
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-6 italic">"{testimonial.content}"</p>
+                  <p className="text-gray-600 leading-relaxed mb-6 italic">"{testimonial.note}"</p>
                   <div className="flex items-center">
                     <Avatar className="h-12 w-12 mr-4">
                       <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
@@ -92,7 +89,7 @@ export function TestimonialsSection() {
                     </Avatar>
                     <div>
                       <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.role}</div>
+                      <div className="text-sm text-gray-600">{testimonial.departement}</div>
                     </div>
                   </div>
                 </CardContent>
@@ -100,7 +97,7 @@ export function TestimonialsSection() {
             </motion.div>
           ))}
         </motion.div>
-      </div>
+        </div>
     </section>
   );
 }
