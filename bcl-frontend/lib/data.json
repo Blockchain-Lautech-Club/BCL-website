@@ -6,7 +6,8 @@
     "tagline": "Building the Future, One Block at a Time.",
     "vision": "To create a LAUTECH where every student is equipped with blockchain knowledge and contributes to Nigeria's leadership in Web3 innovation.",
     "mission": "To empower LAUTECH students with blockchain expertise, drive innovation, and build a vibrant ecosystem for future blockchain leaders through workshops, hackathons, and collaborative projects.",
-    "description": "Connecting curious minds to blockchain education, hands-on experience, and a community of future tech leaders."
+    "description": "Connecting curious minds to blockchain education, hands-on experience, and a community of future tech leaders.",
+    "logos": ["/logos/whitelogo.png", "/logos/logoNoBackground.png"]
   },
   
   "navigation": {
@@ -51,8 +52,8 @@
         "role": "Founder / Lead Executive",
         "image": "/team/johnAdekunjo.jpg",
         "social": {
-          "x": "https://x.com/johnadekunjo",
-          "linkedin": "https://linkedin.com/in/johnadekunjo"
+          "x": {"link": "https://x.com/johnadekunjo", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/johnadekunjo", "icon": "/linkedIn.png"}
         }
       },
       {
@@ -60,8 +61,8 @@
         "role": "Co-Founder",
         "image": "/team/thelmaOpurum.jpg",
         "social": {
-          "x": "https://x.com/thelmaopurum",
-          "linkedin": "https://linkedin.com/in/thelmaopurum"
+          "x": {"link": "https://x.com/thelmaopurum", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/thelmaopurum", "icon": "/linkedIn.png"}
         }
       },
       {
@@ -69,8 +70,8 @@
         "role": "Co-Founder",
         "image": "/team/blessingOluwabamidele.jpg",
         "social": {
-          "x": "https://x.com/blessingoluwabamidele",
-          "linkedin": "https://linkedin.com/in/blessingoluwabamidele"
+          "x": {"link": "https://x.com/blessingoluwabamidele", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/blessingoluwabamidele", "icon": "/linkedIn.png"}
         }
       }
     ],
@@ -80,8 +81,8 @@
         "role": "Lead CM",
         "image": "/team/favourAbidoyeOadejo.jpg",
         "social": {
-          "x": "https://x.com/favourabidoyeoadejo",
-          "linkedin": "https://linkedin.com/in/favourabidoyeoadejo"
+          "x": {"link": "https://x.com/favourabidoyeoadejo", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/favourabidoyeoadejo", "icon": "/linkedIn.png"}
         }
       },
       {
@@ -89,8 +90,8 @@
         "role": "Project Manager",
         "image": "/team/preciousAdebisi.png",
         "social": {
-          "x": "https://x.com/preciousadebisi",
-          "linkedin": "https://linkedin.com/in/preciousadebisi"
+          "x": {"link": "https://x.com/preciousadebisi", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/preciousadebisi", "icon": "/linkedIn.png"}
         }
       },
       {
@@ -98,8 +99,8 @@
         "role": "Female Guild Lead",
         "image": "/team/maryamTijani.jpg",
         "social": {
-          "x": "https://x.com/maryamtijani",
-          "linkedin": "https://linkedin.com/in/maryamtijani"
+          "x": {"link": "https://x.com/maryamtijani", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/maryamtijani", "icon": "/linkedIn.png"}
         }
       },
       {
@@ -107,8 +108,8 @@
         "role": "Dev Lead",
         "image": "/team/jeremiahOyeniran.jpg",
         "social": {
-          "x": "https://x.com/jeremiahoyeniran",
-          "linkedin": "https://linkedin.com/in/jeremiahoyeniran"
+          "x": {"link": "https://x.com/jeremiahoyeniran", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/jeremiahoyeniran", "icon": "/linkedIn.png"}
         }
       },
       {
@@ -116,8 +117,8 @@
         "role": "Project Manager",
         "image": "/team/abdulhamidBakare.jpg",
         "social": {
-          "x": "https://x.com/abdulhamidbakare",
-          "linkedin": "https://linkedin.com/in/abdulhamidbakare"
+          "x": {"link": "https://x.com/abdulhamidbakare", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/abdulhamidbakare", "icon": "/linkedIn.png"}
         }
       },
       {
@@ -125,8 +126,8 @@
         "role": "Project Manager",
         "image": "/team/tomiwaKayode.jpg",
         "social": {
-          "x": "https://x.com/tomiwakayode",
-          "linkedin": "https://linkedin.com/in/tomiwakayode"
+          "x": {"link": "https://x.com/tomiwakayode", "icon": "/x.png"},
+          "linkedin": {"link": "https://linkedin.com/in/tomiwakayode", "icon": "/linkedIn.png"}
         }
       }
     ]
@@ -226,19 +227,43 @@
 
   "contact": {
     "phones": ["+234 803 123 4567", "+234 901 234 5678"],
-    "emails": ["blockchain@lautech.edu.ng", "info@lautechblockchain.org", "blockchainlautech@gmail.com"],
+    "emails": ["blockchainlautech@gmail.com", "blockchain@lautech.edu.ng", "info@lautechblockchain.org"],
     "address": "LAUTECH Campus, Ogbomoso, Oyo State, Nigeria",
     "officeHours": {
       "weekdays": "Monday - Friday: 9:00 AM - 5:00 PM",
       "saturday": "Saturday: 10:00 AM - 2:00 PM",
       "sunday": "Sunday: Closed"
     },
-    "socials": {
-      "x": "https://x.com/blockchainlautech",
-      "linkedin": "https://linkedin.com/company/blockchainlautech",
-      "github": "https://github.com/blockchainlautech",
-      "telegram": "https://t.me/blockchainlautech",
-      "discord": "https://discord.com/blockchainlautech"
-    }
+    "socials": [
+      {"name": "x", "link": "https://x.com/blockchainlautech", "icon": "x"},
+      {"name": "linkedin", "link": "https://linkedin.com/company/blockchainlautech", "icon": "linkedin"},
+      {"name": "github", "link": "https://github.com/blockchainlautech", "icon": "github"},
+      {"name": "telegram", "link": "https://t.me/blockchainlautech", "icon": "telegram"},
+      {"name": "discord", "link": "https://discord.com/blockchainlautech", "icon": "discord"}
+    ]
+  },
+
+  "footerLink": {
+     "QuickLink": [
+      { "name": "Home", "link": "/" },
+      { "name": "About", "link": "/about" },
+      { "name": "Events", "link": "/events" },
+      { "name": "Cohorts", "link": "/cohorts"},
+      { "name": "Blog", "link": "/blog" },
+      { "name": "Join the Club", "link": "/join" },
+      { "name": "Contact", "link": "/contact" }
+    ],
+    "Resources": [
+      { "name": "Beginner Guides", "link": "/" },
+      { "name": "Blockchain Glossary", "link": "/" },
+      { "name": "Learning Materials", "link": "/" },
+      { "name": "FAQs", "link": "/"}
+    ],
+     "Community": [
+      { "name": "Events & Meetups", "link": "/" },
+      { "name": "Hackathons", "link": "/" },
+      { "name": "Member Spotlight", "link": "/" },
+      { "name": "Newsletter Signup", "link": "/"}
+    ]
   }
 }

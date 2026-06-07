@@ -1,8 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -77,7 +75,6 @@ export default function MembersPage() {
   if (error) {
     return (
       <main className="min-h-screen bg-gray-50">
-        <Navigation />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Members</h1>
           <p className="text-gray-600 mb-8">{error}</p>
@@ -85,14 +82,12 @@ export default function MembersPage() {
             <Link href="/">Back to Home</Link>
           </Button>
         </div>
-        <Footer />
       </main>
     )
   }
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
@@ -266,7 +261,6 @@ export default function MembersPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

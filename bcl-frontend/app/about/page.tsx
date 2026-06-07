@@ -1,7 +1,5 @@
 "use client"
 
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -78,7 +76,6 @@ const achievements = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
@@ -326,7 +323,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

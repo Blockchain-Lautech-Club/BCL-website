@@ -2,6 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Playfair_Display, Source_Sans_3 as Source_Sans_Pro } from "next/font/google"
 import "./globals.css"
+import { Header } from "@/components/header"
+import Footer from "@/components/footer"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -45,9 +47,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 </head>
       <body className="flex flex-col min-h-screen">
         <div className="flex flex-col min-h-screen">
+          <Header />
           <main className="flex-1">
             {children}
           </main>
+          <Footer />
         </div>
       </body>
     </html>

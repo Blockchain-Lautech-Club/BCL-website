@@ -3,8 +3,6 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -90,7 +88,6 @@ export default function ContactPage() {
   if (isSubmitted) {
     return (
       <main className="min-h-screen bg-gray-50">
-        <Navigation />
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <Card className="text-center">
             <CardContent className="p-12">
@@ -110,14 +107,12 @@ export default function ContactPage() {
             </CardContent>
           </Card>
         </div>
-        <Footer />
       </main>
     )
   }
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
@@ -308,7 +303,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

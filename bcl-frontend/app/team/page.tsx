@@ -3,8 +3,6 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import Link from "next/link";
 import { Linkedin, Github } from "lucide-react";
 
@@ -19,7 +17,6 @@ export default function TeamLayout() {
 
     return (
         <div className="flex min-h-screen flex-col">
-            <Navigation />
             <main className="min-h-screen bg-gray-50">
                 <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-12 sm:py-16">
                     <div className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-2 text-center">
@@ -220,7 +217,6 @@ export default function TeamLayout() {
                     </section>
                 </section>
             </main>
-            <Footer />
         </div>
     )
 }

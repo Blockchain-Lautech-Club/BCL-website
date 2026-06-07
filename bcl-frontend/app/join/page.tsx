@@ -2,8 +2,6 @@
 
 import type React from "react"
 import { useState } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -146,7 +144,6 @@ export default function JoinPage() {
   if (isSubmitted) {
     return (
       <main className="min-h-screen bg-gray-50">
-        <Navigation />
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <Card className="text-center">
             <CardContent className="p-12">
@@ -167,14 +164,12 @@ export default function JoinPage() {
             </CardContent>
           </Card>
         </div>
-        <Footer />
       </main>
     )
   }
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
       {/* Hero Section */}
       <section className="bg-linear-to-br from-blue-600/10 via-blue-100/5 to-blue-600/5 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -608,7 +603,6 @@ export default function JoinPage() {
       </div>
     </section>
 
-      <Footer />
     </main>
   )
 }

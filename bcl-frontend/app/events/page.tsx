@@ -1,8 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -57,7 +55,6 @@ export default function EventsPage() {
   if (error) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50">
-        <Navigation />
         <div className="flex-1 flex items-center justify-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Events</h1>
@@ -65,14 +62,12 @@ export default function EventsPage() {
             <Button onClick={() => window.location.reload()}>Try Again</Button>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Navigation />
 
       <div className="flex-1">
         {/* Hero Section */}
@@ -200,7 +195,6 @@ export default function EventsPage() {
         </section>
       </div>
 
-      <Footer />
     </div>
   )
 }

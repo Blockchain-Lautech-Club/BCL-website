@@ -1,7 +1,5 @@
 "use client"
 
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -167,7 +165,6 @@ const benefits = [
 export default function CohortsPage() {
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-12">
@@ -372,7 +369,6 @@ export default function CohortsPage() {
         </div>
       </section> */}
 
-      <Footer />
     </main>
   )
 }

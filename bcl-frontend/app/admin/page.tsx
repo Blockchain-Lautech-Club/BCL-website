@@ -1,8 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -118,11 +116,9 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <main className="min-h-screen bg-gray-50">
-        <Navigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <p>Loading...</p>
         </div>
-        <Footer />
       </main>
     )
   }
@@ -130,7 +126,6 @@ export default function AdminDashboard() {
   if (!isAuthenticated) {
     return (
       <main className="min-h-screen bg-gray-50">
-        <Navigation />
         <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <Card>
             <CardHeader>
@@ -162,14 +157,12 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
-        <Footer />
       </main>
     )
   }
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       <section className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -494,7 +487,6 @@ export default function AdminDashboard() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }
@@ -746,7 +738,7 @@ function EventForm({
             <CardContent>
               <div className="max-w-md">
                 <Label htmlFor="status">Current Status</Label>
-                <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
+                <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value as "upcoming" | "past" | "cancelled" })}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="upcoming">Upcoming</SelectItem>

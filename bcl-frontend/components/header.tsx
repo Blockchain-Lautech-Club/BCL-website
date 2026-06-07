@@ -3,10 +3,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import bclLogo from "../public/logoblacknew.png";
+import bclLogo from "../public/logos/logoNoBackground.png";
 import { motion } from 'framer-motion';
+import { organization, navigation } from '@/lib/data.json'
 
-export function Navigation() {
+export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navVariants = {
@@ -30,33 +31,26 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/">
-              <img className="h-12 w-auto" src={bclLogo.src} alt="Blockchain Lautech Logo" />
+              <img className="h-12 w-auto" src={organization.logos[1]} alt="Blockchain Lautech Logo" />
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            {[
-              { href: "/", label: "Home" },
-              { href: "/about", label: "About" },
-              { href: "/events", label: "Events" },
-              { href: "/cohorts", label: "Cohorts" },
-              { href: "/blog", label: "Blog" },
-              { href: "/contact", label: "Contact" },
-            ].map((link) => (
+            {navigation.headerLinks.map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.label}
+                href={link.url}
                 className="text-gray-900 hover:text-primary py-2 text-lg font-bold transition-colors duration-200"
               >
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="ml-3 text-md font-bold bg-primary hover:bg-primary/90">
-              <Link href="/team">The Team</Link>
-            </Button>
-            <Button asChild className="ml-2 text-md font-bold bg-primary hover:bg-primary/90">
-              <Link href="/join">Join BCL</Link>
-            </Button>
+
+            {navigation.ctaButtons.map((button) => (
+              <Button asChild key={button.label} className="ml-3 text-md font-bold bg-primary hover:bg-primary/90">
+                <Link href={button.url}>{button.label}</Link>
+              </Button>
+            ))}
           </div>
 
           <div className="md:hidden">
@@ -81,33 +75,23 @@ export function Navigation() {
               className="md:hidden fixed top-16 left-0 w-full bg-white z-50 shadow-lg"
             >
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-                {[
-                  { href: "/", label: "Home" },
-                  { href: "/about", label: "About" },
-                  { href: "/events", label: "Events" },
-                  { href: "/cohorts", label: "Cohorts" },
-                  { href: "/blog", label: "Blog" },
-                  { href: "/contact", label: "Contact" },
-                ].map((link) => (
+                {navigation.headerLinks.map((link) => (
                   <Link
-                    key={link.href}
-                    href={link.href}
+                    key={link.label}
+                    href={link.url}
                     className="block px-3 py-2 text-md font-bold text-gray-900 hover:text-primary transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </Link>
                 ))}
-                <div className="px-3 py-2">
-                  <Button asChild className="w-full text-md font-bold bg-primary hover:bg-primary/90">
-                    <Link href="/team" onClick={() => setIsOpen(false)}>The Team</Link>
-                  </Button>
-                </div>
-                <div className="px-3 py-2">
-                  <Button asChild className="w-full text-md font-bold bg-primary hover:bg-primary/90">
-                    <Link href="/join" onClick={() => setIsOpen(false)}>Join Club</Link>
-                  </Button>
-                </div>
+                {navigation.ctaButtons.map((button) => (
+                  <div key={button.label} className="px-3 py-2">
+                    <Button asChild className="w-full text-md font-bold bg-primary hover:bg-primary/90">
+                      <Link href={button.url} onClick={() => setIsOpen(false)}>{button.label}</Link>
+                    </Button>
+                  </div>
+                ))}
               </div>
             </motion.div>
             <div
