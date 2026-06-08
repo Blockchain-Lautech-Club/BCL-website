@@ -1,9 +1,11 @@
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { EventsTeaser } from "@/components/events-teaser"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { TeamSection } from "@/components/team"
-import { PastEvents } from "@/components/past-events"
+import { Testimonials } from "@/components/landingPage/testimonials"
+import Team from "@/components/team"
+import Partners from "@/components/landingPage/partners"
+import GalleryCarousel from "@/components/landingPage/galleries"
+
 
 export default function HomePage() {
   return (
@@ -12,9 +14,10 @@ export default function HomePage() {
         <HeroSection />
         <EventsTeaser />
         <AboutSection />
-        <TeamSection />
-        <TestimonialsSection />
-        {/* <PastEvents /> */}
+        <GalleryCarousel />
+        <Partners /> {/* done from the ui*/}
+        <Team /> {/* half-done from the ui*/}
+        <Testimonials /> {/* done from the ui*/}
       </div>
     </div>
   )

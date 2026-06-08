@@ -29,7 +29,7 @@ function renderRating(rate: number) {
   );
 }
 
-export function TestimonialsSection() {
+export function Testimonials() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -54,8 +54,10 @@ export function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center justify-center px-6 py-3 mx-auto mb-6 rounded-full border border-blue-300 bg-blue-50 text-blue-700 shadow-md shadow-blue-100/50">
-            <span className="font-semibold text-base sm:text-lg">What Our Members Say</span>
+           <div className="mx-auto mb-10 inline-flex rounded-full p-[1.5px]" style={{ background: 'linear-gradient(to bottom, #7C3AED, #3B82F6)' }}>
+            <div className="rounded-full bg-gray-100/90 px-6 py-2">
+              <span className="text-sm font-semibold text-blue-600">What Our Members Say</span>
+            </div>
           </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Discover the transformative experiences and achievements of our blockchain community members.

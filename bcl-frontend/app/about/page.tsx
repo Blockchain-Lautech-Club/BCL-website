@@ -21,7 +21,7 @@ import {
   ArrowRight,
   Star
 } from "lucide-react"
-import { TeamSection } from "@/components/team"
+import Team from "@/components/team"
 
 const stats = [
   { number: "2500+", label: "Students Trained", icon: Users },
@@ -227,7 +227,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <TeamSection/>
+      <Team/>
 
       {/* Recent Achievements */}
       <section className="py-16 bg-gray-50">
