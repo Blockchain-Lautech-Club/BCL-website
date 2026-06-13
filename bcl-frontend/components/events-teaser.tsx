@@ -1,74 +1,54 @@
 'use client';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
-import { Calendar, MapPin, Users, ArrowRight, Timer } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { motion } from 'framer-motion';
+import { events } from '@/lib/data.json'
+import LandingPageEventCard from "@/components/events/eventCard"
 
-export function EventsTeaser() {
-  const upcomingEvents = [
-    {
-      title: "DEV-COHORT I",
-      date: "TBA, 2026",
-      time: "TBA",
-      location: "Virtual",
-      type: "TRAINING",
-      attendees: 100,
-      description:
-        "A Comprehensive Curriculum on Web fundamentals & Blockchain development",
-    },
-  ];
+const EventsTeaserContent = () => {
+   const [selectedEvent, setSelectedEvent] = useState<typeof events[number] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const pastEvents = [
-  //   {
-  //     title: "CONFLUENCE 1.0",
-  //     date: "November 7 & 8, 2025",
-  //     time: "9:00 AM",
-  //     location: "The Assembly, Beside Bon Nest Hotel, along Lautech main gate, Ogbomoso, Nigeria",
-  //     type: "TECH EXTRAVAGANZA",
-  //     attendees: 500,
-  //     description:
-  //       "Ogbomoso's Digital Transformation: Blockchain as a Catalyst.",
-  //   },
-  // ];
+  const upcomingEvents = events.filter((event) => event.status === 'upcoming')
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  const viewEvent = (event: typeof events[number]) => {
+    setSelectedEvent(event);
+    setIsModalOpen(true);
   };
 
   return (
-    <section className="pt-18 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-4"
-        >
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6">
-            Upcoming Events
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Join our exciting workshops, seminars, and networking events to accelerate your blockchain journey.
-          </p>
-        </motion.div>
+    <section className="relative min-h-screen w-full overflow-hidden bg-white">
+      {/* Blue diagonal triangle */}
+      <div
+        className="absolute inset-0 rounded-t-3xl sm:rounded-t-4xl md:rounded-t-5xl"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(59, 130, 246, 1.0) 0%, rgba(124, 58, 237, 1.0) 30%, transparent 30%, transparent 100%)",
+        }}
+      />
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+      <div className="text-center mb-16">
+        <div
+          className="mx-auto mb-10 inline-flex rounded-full p-[1.5px]"
+          style={{ background: "linear-gradient(to bottom, #7C3AED, #3B82F6)" }}
+        >
+          <div className="rounded-full bg-gray-100/90 px-6 py-2">
+            <span className="text-sm font-semibold text-blue-600">
+              Upcoming Events
+            </span>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Join our exciting workshops, seminars, and networking events to accelerate your blockchain journey
+        </p>
+      </div>
+
+      {/* Your content goes here */}
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
+        <div className="relative mx-auto max-w-4xl px-4">
+          
+          <div
           className={`
         ${upcomingEvents.length === 1
               ? "flex justify-center items-center max-w-lg mx-auto px-4 mb-12"
@@ -76,136 +56,242 @@ export function EventsTeaser() {
       `}
         >
           {upcomingEvents.map((event, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
+            <div
               className="w-full max-w-sm"
             >
-              <Card className="hover:shadow-2xl transition-all duration-300 border-0 shadow-lg group w-full">
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start mb-3">
-                    <Badge variant="secondary" className="bg-primary/10 text-primary text-sm">
-                      {event.type}
-                    </Badge>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Users className="h-4 w-4 mr-1" />
-                      {event.attendees}
-                    </div>
-                  </div>
-                  <CardTitle className="font-serif text-2xl text-gray-900 leading-tight">
-                    {event.title}
-                  </CardTitle>
-                  <p className="text-gray-600 text-lg leading-relaxed">{event.description}</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 mb-4">
-                    <div className="flex items-center text-gray-600">
-                      <Calendar className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
-                      <span className="text-sm">{event.date}</span>
-                    </div>
-                    <div className="flex items-center text-gray-600">
-                      <Timer className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
-                      <span className="text-sm">{event.time}</span>
-                    </div>
-                    <div className="flex items-center text-gray-600">
-                      <MapPin className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
-                      <span className="text-sm">{event.location}</span>
-                    </div>
-                  </div>
-                  <a href="/cohorts/development/devcohort1">
-                    <Button className="w-full bg-primary text-white hover:bg-primary/90 transition-colors" variant="default">
-                      Details
-                    </Button>
-                  </a>
-                </CardContent>
-              </Card>
-            </motion.div>
+              <LandingPageEventCard event={event} onViewDetails={() => viewEvent(event)} />
+            </div>
           ))}
-        </motion.div>
 
-        {/* <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-4"
-        >
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6">
-            Past Events
-          </h2>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className={`
-        ${pastEvents.length === 1
-              ? "flex justify-center items-center max-w-lg mx-auto px-4 mb-12"
-              : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto px-4"}
-      `}
-        >
-          {pastEvents.map((pevent, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="w-full max-w-sm"
-            >
-              <Card className="hover:shadow-2xl transition-all duration-300 border-0 shadow-lg group w-full">
-                <CardHeader className="pb-2">
-                  <div className="flex justify-between items-start mb-3">
-                    <Badge variant="secondary" className="bg-primary/10 text-primary text-sm">
-                      {pevent.type}
-                    </Badge>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Users className="h-4 w-4 mr-1" />
-                      {pevent.attendees}
+          {selectedEvent && (
+            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+              <DialogContent className="max-w-3xl">
+                <DialogHeader>
+                  <DialogTitle>{selectedEvent.title}</DialogTitle>
+                  <DialogDescription>{selectedEvent.tagline}</DialogDescription>
+                </DialogHeader>
+                <div className="mt-4 space-y-6">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="rounded-2xl bg-slate-50 p-4">
+                      <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Date</p>
+                      <p className="mt-1 text-sm text-slate-700">{selectedEvent.date}</p>
+                    </div>
+                    <div className="rounded-2xl bg-slate-50 p-4">
+                      <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Time</p>
+                      <p className="mt-1 text-sm text-slate-700">{selectedEvent.time}</p>
+                    </div>
+                    <div className="rounded-2xl bg-slate-50 p-4 sm:col-span-2">
+                      <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Location</p>
+                      <p className="mt-1 text-sm text-slate-700">{selectedEvent.location}</p>
                     </div>
                   </div>
-                  <CardTitle className="font-serif text-2xl text-gray-900 leading-tight">
-                    {pevent.title}
-                  </CardTitle>
-                  <p className="text-gray-600 text-lg leading-relaxed">{pevent.description}</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3 mb-4">
-                    <div className="flex items-center text-gray-600">
-                      <Calendar className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
-                      <span className="text-sm">{pevent.date}</span>
+
+                  <div className="rounded-3xl overflow-hidden bg-slate-100">
+                    <img
+                      src={selectedEvent.image || "/placeholder-event.jpg"}
+                      alt={selectedEvent.title}
+                      className="w-full object-cover"
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-sm font-semibold text-slate-800">Description</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedEvent.description}</p>
                     </div>
-                    <div className="flex items-center text-gray-600">
-                      <Timer className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
-                      <span className="text-sm">{pevent.time}</span>
+
+                    <div>
+                      <h3 className="text-sm font-semibold text-slate-800">Agenda</h3>
+                      <ul className="mt-2 list-disc list-inside space-y-2 text-sm text-slate-600">
+                        {selectedEvent.agenda?.map((item, agendaIndex) => (
+                          <li key={agendaIndex}>
+                            {item.time ? <span className="font-medium">{item.time}: </span> : null}
+                            {item.activity}
+                          </li>
+                        )) || <li>No agenda available</li>}
+                      </ul>
                     </div>
-                    <div className="flex items-center text-gray-600">
-                      <MapPin className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
-                      <span className="text-sm">{pevent.location}</span>
+
+                    <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                      <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Speaker</p>
+                      <p className="mt-2 text-sm font-semibold text-slate-800">{selectedEvent.speaker_name}</p>
+                      <p className="text-sm text-slate-600">{selectedEvent.speaker_title}</p>
+                      <p className="mt-2 text-sm text-slate-500">{selectedEvent.speaker_bio}</p>
+                    </div>
+
+                    <div className="flex justify-end">
+                      <button
+                        type="button"
+                        className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90"
+                        onClick={() => setIsModalOpen(false)}
+                      >
+                        Close
+                      </button>
                     </div>
                   </div>
-                  <a href="https://confluence.blockchainlautech.club/">
-                    <Button className="w-full bg-primary text-white hover:bg-primary/90 transition-colors" variant="default" disabled>
-                      ENDED
-                    </Button>
-                  </a>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div> */}
+                </div>
+              </DialogContent>
+            </Dialog>
+          )}
 
+          {upcomingEvents.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-600">No upcoming events at the moment.</p>
+            </div>
+          )}
+        </div>
 
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <Button asChild size="lg" className="text-lg px-8 py-6 mb-4 w-auto">
-            <Link href="/events" className="flex items-center justify-center gap-2">
-              View All Events <ArrowRight className="h-5 w-5" />
-            </Link>
-          </Button>
-        </motion.div> */}
+        </div>
       </div>
     </section>
   );
+};
+
+export default function EventsTeaser() {
+  return (
+    <section className="relative overflow-hidden bg-white py-20">
+      <EventsTeaserContent />
+    </section>
+  );
 }
+
+// 'use client';
+// import { useState } from "react";
+// import { Button } from "@/components/ui/button";
+// import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+// import { motion } from 'framer-motion';
+// import { events } from '@/lib/data.json'
+// import EventCard from "@/components/events/eventCard"
+
+// export function EventsTeaser() {
+  // const [selectedEvent, setSelectedEvent] = useState<typeof events[number] | null>(null);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const upcomingEvents = events.filter((event) => event.status === 'upcoming')
+
+  // const viewEvent = (event: typeof events[number]) => {
+  //   setSelectedEvent(event);
+  //   setIsModalOpen(true);
+  // };
+
+//   return (
+//     <section className="pt-18 bg-white">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         <motion.div
+//           initial={{ opacity: 0, y: -20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.6 }}
+//           className="text-center mb-4"
+//         >
+//           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-6">
+//             Upcoming Events
+//           </h2>
+//           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+//             Join our exciting workshops, seminars, and networking events to accelerate your blockchain journey.
+//           </p>
+//         </motion.div>
+
+      //   <motion.div
+      //     variants={containerVariants}
+      //     initial="hidden"
+      //     animate="visible"
+      //     className={`
+      //   ${upcomingEvents.length === 1
+      //         ? "flex justify-center items-center max-w-lg mx-auto px-4 mb-12"
+      //         : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto px-4"}
+      // `}
+      //   >
+      //     {upcomingEvents.map((event, index) => (
+      //       <motion.div
+      //         key={index}
+      //         variants={itemVariants}
+      //         className="w-full max-w-sm"
+      //       >
+      //         <EventCard event={event} onViewDetails={() => viewEvent(event)} />
+      //       </motion.div>
+      //     ))}
+
+      //     {selectedEvent && (
+      //       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      //         <DialogContent className="max-w-3xl">
+      //           <DialogHeader>
+      //             <DialogTitle>{selectedEvent.title}</DialogTitle>
+      //             <DialogDescription>{selectedEvent.tagline}</DialogDescription>
+      //           </DialogHeader>
+      //           <div className="mt-4 space-y-6">
+      //             <div className="grid gap-4 sm:grid-cols-2">
+      //               <div className="rounded-2xl bg-slate-50 p-4">
+      //                 <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Date</p>
+      //                 <p className="mt-1 text-sm text-slate-700">{selectedEvent.date}</p>
+      //               </div>
+      //               <div className="rounded-2xl bg-slate-50 p-4">
+      //                 <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Time</p>
+      //                 <p className="mt-1 text-sm text-slate-700">{selectedEvent.time}</p>
+      //               </div>
+      //               <div className="rounded-2xl bg-slate-50 p-4 sm:col-span-2">
+      //                 <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Location</p>
+      //                 <p className="mt-1 text-sm text-slate-700">{selectedEvent.location}</p>
+      //               </div>
+      //             </div>
+
+      //             <div className="rounded-3xl overflow-hidden bg-slate-100">
+      //               <img
+      //                 src={selectedEvent.image || "/placeholder-event.jpg"}
+      //                 alt={selectedEvent.title}
+      //                 className="w-full object-cover"
+      //               />
+      //             </div>
+
+      //             <div className="space-y-4">
+      //               <div>
+      //                 <h3 className="text-sm font-semibold text-slate-800">Description</h3>
+      //                 <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedEvent.description}</p>
+      //               </div>
+
+      //               <div>
+      //                 <h3 className="text-sm font-semibold text-slate-800">Agenda</h3>
+      //                 <ul className="mt-2 list-disc list-inside space-y-2 text-sm text-slate-600">
+      //                   {selectedEvent.agenda?.map((item, agendaIndex) => (
+      //                     <li key={agendaIndex}>
+      //                       {item.time ? <span className="font-medium">{item.time}: </span> : null}
+      //                       {item.activity}
+      //                     </li>
+      //                   )) || <li>No agenda available</li>}
+      //                 </ul>
+      //               </div>
+
+      //               <div className="rounded-2xl border border-slate-200 bg-white p-4">
+      //                 <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Speaker</p>
+      //                 <p className="mt-2 text-sm font-semibold text-slate-800">{selectedEvent.speaker_name}</p>
+      //                 <p className="text-sm text-slate-600">{selectedEvent.speaker_title}</p>
+      //                 <p className="mt-2 text-sm text-slate-500">{selectedEvent.speaker_bio}</p>
+      //               </div>
+
+      //               <div className="flex justify-end">
+      //                 <button
+      //                   type="button"
+      //                   className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90"
+      //                   onClick={() => setIsModalOpen(false)}
+      //                 >
+      //                   Close
+      //                 </button>
+      //               </div>
+      //             </div>
+      //           </div>
+      //         </DialogContent>
+      //       </Dialog>
+      //     )}
+
+      //     {upcomingEvents.length === 0 && (
+      //       <motion.div
+      //         variants={itemVariants}
+      //         className="text-center py-12"
+      //       >
+      //         <p className="text-gray-600">No upcoming events at the moment.</p>
+      //       </motion.div>
+      //     )}
+      //   </motion.div>
+//       </div>
+//     </section>
+//   );
+// }

@@ -1,6 +1,6 @@
 'use client';
 import { motion, } from 'framer-motion';
-import { Lightbulb, Globe, Shield, Handshake, Users, Target, Compass, Eye } from "lucide-react";
+import { Lightbulb, Globe, Shield, Handshake, Users, Target } from "lucide-react";
 
 export function AboutSection() {
   const features = [
@@ -86,78 +86,6 @@ export function AboutSection() {
               <li>Bridge LAUTECH to the global blockchain community.</li>
             </ul>
           </motion.div>
-        </motion.div>
-        {/* MISSION & VISION */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="container mx-auto rounded-2xl py-8"
-        >
-          <h2 className="text-center font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-blue-600 mb-8">
-            Mission & Vision
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-4">
-            {/* Mission Section */}
-            <div className="flex flex-col">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-                className="mb-6"
-              >
-                <img
-                  // src="./mission.jpg"
-                  src="./conflu8.jpg"
-                  alt="Students learning blockchain technology"
-                  className="rounded-xl shadow-lg w-full h-auto hover:scale-105 transition-transform duration-300"
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="flex items-center space-x-3 mb-6">
-                  <Compass className="w-8 h-8 text-blue-600 hover:text-blue-400 transition-colors" aria-label="Our Mission" />
-                  <h3 className="font-serif text-2xl font-bold text-blue-600">Our Mission</h3>
-                </div>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  To empower LAUTECH students with blockchain expertise, drive innovation, and build a vibrant ecosystem for future blockchain leaders through workshops, hackathons, and collaborative projects.
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Vision Section */}
-            <div className="flex flex-col">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-                className="mb-6"
-              >
-                <img
-                  // src="./event65.jpg"
-                  src="./conflu3.jpg"
-                  alt="Blockchain classroom"
-                  className="rounded-xl shadow-lg w-full h-auto hover:scale-105 transition-transform duration-300"
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="flex items-center space-x-3 mb-6">
-                  <Eye className="w-8 h-8 text-blue-600 hover:text-blue-400 transition-colors" aria-label="Our Vision" />
-                  <h3 className="font-serif text-2xl font-bold text-blue-600">Our Vision</h3>
-                </div>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  To create a LAUTECH where every student is equipped with blockchain knowledge and contributes to Nigeria's leadership in Web3 innovation.
-                </p>
-              </motion.div>
-            </div>
-          </div>
         </motion.div>
         
       </div>

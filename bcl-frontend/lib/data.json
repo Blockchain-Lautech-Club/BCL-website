@@ -212,36 +212,158 @@
     ]
   },
 
-  "events": {
-    "featured": {
+  "events": [
+    {
+      "id": "confluence-1",
       "title": "Confluence 1.0",
       "tagline": "Tech Extravaganza",
       "theme": "Ogbomoso's Digital Transformation: Blockchain as a Catalyst",
       "description": "The flagship tech conference uniting students, developers, and industry leaders at the intersection of blockchain, Web3, and emerging technologies.",
-      "dates": "November 7 & 8, 2025",
+      "date": "2025-11-07",
       "time": "9:00 AM",
       "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
-      "image": "/event/confluence.jpg",
-      "agenda": {
-        "day1": {
-          "track": "Developer Track",
-          "date": "November 7, 2025",
-          "items": ["Demo Day", "Hackathons & Coding Competitions", "Technical Workshops", "Bounty Challenges", "Developer Networking", "Panel Session"]
-        },
-        "day2": {
-          "track": "Community Track",
-          "date": "November 8, 2025",
-          "items": ["Keynote Presentations", "Expert Panel Discussions", "Women in Web3 Sessions", "Startup Exhibitions", "Interactive Workshops", "Networking Opportunities", "Prize Distribution"]
-        }
-      },
-      "type": "string",
-      "max_attendees": 0,
-      "speaker_name": "string",
-      "speaker_title": "string",
-      "speaker_bio": "string",
-      "speaker_avatar": "string"
+      "image": "/event/confluence-1.jpg",
+      "agenda": [
+        { "time": "10:00 AM", "activity": "Opening Keynote" },
+        { "time": "11:30 AM", "activity": "Developer Track Workshops" },
+        { "time": "1:00 PM", "activity": "Lunch & Networking" },
+        { "time": "2:30 PM", "activity": "Panel Discussion: Web3 in Education" },
+        { "time": "4:00 PM", "activity": "Hackathon Launch" }
+      ],
+      "type": "conference",
+      "status": "upcoming",
+      "attendees": 180,
+      "max_attendees": 250,
+      "speaker_name": "Dr. Adebayo",
+      "speaker_title": "Keynote Speaker",
+      "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
+      "speaker_avatar": "/team/johnAdekunjo.jpg"
+    },
+    {
+      "id": "web3-workshop",
+      "title": "Web3 Product Design Workshop",
+      "tagline": "Design for Decentralized Apps",
+      "theme": "Building user-friendly products for blockchain experiences",
+      "description": "A hands-on workshop focused on designing intuitive Web3 products, interfaces, and user journeys.",
+      "date": "2025-12-03",
+      "time": "10:00 AM",
+      "location": "LAUTECH Innovation Hub",
+      "image": "/event/confluence-2.jpg",
+      "agenda": [
+        { "time": "10:00 AM", "activity": "Intro to Web3 UX" },
+        { "time": "11:15 AM", "activity": "Design Thinking Workshop" },
+        { "time": "1:00 PM", "activity": "Prototyping Session" },
+        { "time": "3:00 PM", "activity": "Pitch Practice" }
+      ],
+      "type": "workshop",
+      "status": "upcoming",
+      "attendees": 60,
+      "max_attendees": 80,
+      "speaker_name": "Amina Hassan",
+      "speaker_title": "Design Lead",
+      "speaker_bio": "Experienced product designer focused on Web3 usability.",
+      "speaker_avatar": "/team/tomiwaKayode.jpg"
+    },
+    {
+      "id": "eth-denver-recap",
+      "title": "ETHDenver Recap Session",
+      "tagline": "From Conference to Community",
+      "theme": "Sharing lessons from blockchain events and developer culture",
+      "description": "A recap event where members share what they learned at ETHDenver, including workshops, networking, and product demos.",
+      "date": "2025-09-15",
+      "time": "4:00 PM",
+      "location": "LAUTECH Conference Hall",
+      "image": "/event/confluence-3.jpg",
+      "agenda": [
+        { "time": "4:00 PM", "activity": "Event Highlights" },
+        { "time": "4:45 PM", "activity": "Speaker Panels" },
+        { "time": "5:30 PM", "activity": "Community Discussion" }
+      ],
+      "type": "seminar",
+      "status": "past",
+      "attendees": 120,
+      "max_attendees": 120,
+      "speaker_name": "Chinedu Okwu",
+      "speaker_title": "Community Leader",
+      "speaker_bio": "Organizer of member events and blockchain learning sessions.",
+      "speaker_avatar": "/team/abdulhamidBakare.jpg"
+    },
+    {
+      "id": "confluence-4",
+      "title": "Confluence 1.0",
+      "tagline": "Tech Extravaganza",
+      "theme": "Ogbomoso's Digital Transformation: Blockchain as a Catalyst",
+      "description": "The flagship tech conference uniting students, developers, and industry leaders at the intersection of blockchain, Web3, and emerging technologies.",
+      "date": "2025-11-07",
+      "time": "9:00 AM",
+      "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
+      "image": "/event/confluence-1.jpg",
+      "agenda": [
+        { "time": "10:00 AM", "activity": "Opening Keynote" },
+        { "time": "11:30 AM", "activity": "Developer Track Workshops" },
+        { "time": "1:00 PM", "activity": "Lunch & Networking" },
+        { "time": "2:30 PM", "activity": "Panel Discussion: Web3 in Education" },
+        { "time": "4:00 PM", "activity": "Hackathon Launch" }
+      ],
+      "type": "conference",
+      "status": "upcoming",
+      "attendees": 180,
+      "max_attendees": 250,
+      "speaker_name": "Dr. Adebayo",
+      "speaker_title": "Keynote Speaker",
+      "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
+      "speaker_avatar": "/team/johnAdekunjo.jpg"
+    },
+    {
+      "id": "web3-workshop-2",
+      "title": "Web3 Product Design Workshop",
+      "tagline": "Design for Decentralized Apps",
+      "theme": "Building user-friendly products for blockchain experiences",
+      "description": "A hands-on workshop focused on designing intuitive Web3 products, interfaces, and user journeys.",
+      "date": "2025-12-03",
+      "time": "10:00 AM",
+      "location": "LAUTECH Innovation Hub",
+      "image": "/event/confluence-2.jpg",
+      "agenda": [
+        { "time": "10:00 AM", "activity": "Intro to Web3 UX" },
+        { "time": "11:15 AM", "activity": "Design Thinking Workshop" },
+        { "time": "1:00 PM", "activity": "Prototyping Session" },
+        { "time": "3:00 PM", "activity": "Pitch Practice" }
+      ],
+      "type": "workshop",
+      "status": "upcoming",
+      "attendees": 60,
+      "max_attendees": 80,
+      "speaker_name": "Amina Hassan",
+      "speaker_title": "Design Lead",
+      "speaker_bio": "Experienced product designer focused on Web3 usability.",
+      "speaker_avatar": "/team/tomiwaKayode.jpg"
+    },
+    {
+      "id": "eth-denver-recap-2",
+      "title": "ETHDenver Recap Session",
+      "tagline": "From Conference to Community",
+      "theme": "Sharing lessons from blockchain events and developer culture",
+      "description": "A recap event where members share what they learned at ETHDenver, including workshops, networking, and product demos.",
+      "date": "2025-09-15",
+      "time": "4:00 PM",
+      "location": "LAUTECH Conference Hall",
+      "image": "/event/confluence-3.jpg",
+      "agenda": [
+        { "time": "4:00 PM", "activity": "Event Highlights" },
+        { "time": "4:45 PM", "activity": "Speaker Panels" },
+        { "time": "5:30 PM", "activity": "Community Discussion" }
+      ],
+      "type": "seminar",
+      "status": "past",
+      "attendees": 120,
+      "max_attendees": 120,
+      "speaker_name": "Chinedu Okwu",
+      "speaker_title": "Community Leader",
+      "speaker_bio": "Organizer of member events and blockchain learning sessions.",
+      "speaker_avatar": "/team/abdulhamidBakare.jpg"
     }
-  },
+  ],
 
   "partners": [
     { "name": "Nova Labs", "logo": "/partners/novaLabs.jpg" },
