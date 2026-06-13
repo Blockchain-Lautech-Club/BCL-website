@@ -3,7 +3,7 @@ import { events } from '@/lib/data.json'
 
 interface EventCardProps {
   event?: typeof events[0]; // Optional event object for more details
-  onViewDetails?: () => string; // Route to event details page or open modal
+  onViewDetails?: () => void; // Route to event details page or open modal
 }
 
 export default function LandingPageEventCard({

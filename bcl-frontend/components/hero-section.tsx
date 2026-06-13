@@ -9,7 +9,6 @@ const images = [
   '/caroevent1.jpg',
   '/event10.jpg',
   '/caroevent2.jpg',
-  '/event5.jpg',
   '/caroevent4.jpg',
   '/caroevent3.jpg',
 ];

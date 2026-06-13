@@ -43,8 +43,8 @@ const Footer = () => {
           <div>
             <h3 className="mb-4 text-lg font-semibold text-white">Quick Links</h3>
             <ul className="space-y-3">
-              {quickLinks.map((quickLink) => (
-                <li key={quickLink.link}>
+              {quickLinks.map((quickLink, i) => (
+                <li key={`${quickLink.name}-${i}`}>
                   <Link href={quickLink.link} className="text-sm text-blue-100 transition-colors hover:text-white">
                     {quickLink.name}
                   </Link>
@@ -57,8 +57,8 @@ const Footer = () => {
           <div>
             <h3 className="mb-4 text-lg font-semibold text-white">Resources</h3>
             <ul className="space-y-3">
-              {resources.map((resource) => (
-                <li key={resource.link}>
+              {resources.map((resource, i) => (
+                <li key={`${resource.name}-${i}`}>
                   <Link href={resource.link} className="text-sm text-blue-100 transition-colors hover:text-white">
                     {resource.name}
                   </Link>
@@ -71,10 +71,10 @@ const Footer = () => {
           <div>
             <h3 className="mb-4 text-lg font-semibold text-white">Community</h3>
             <ul className="space-y-3">
-              {community.map((community) => (
-                <li key={community.link}>
-                  <Link href={community.link} className="text-sm text-blue-100 transition-colors hover:text-white">
-                    {community.name}
+              {community.map((c, i) => (
+                <li key={`${c.name}-${i}`}>
+                  <Link href={c.link} className="text-sm text-blue-100 transition-colors hover:text-white">
+                    {c.name}
                   </Link>
                 </li>
               ))}

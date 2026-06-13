@@ -1,93 +1,82 @@
-'use client';
-import { motion, } from 'framer-motion';
-import { Lightbulb, Globe, Shield, Handshake, Users, Target } from "lucide-react";
+"use client";
+import { Card, CardContent } from "@/components/ui/card";
+import { Globe, Code, Network } from 'lucide-react';
 
-export function AboutSection() {
-  const features = [
+export default function AboutSection() {
+  const pillars = [
     {
-      icon: Lightbulb,
-      title: "Innovation",
-      description: "We push boundaries to create cutting-edge blockchain solutions without limits.",
+      icon: Network,
+      text: "Democratize\nblockchain\neducation.",
+    },
+    {
+      icon: Code,
+      text: "Empower\nmembers with\nWeb3 skills.",
     },
     {
       icon: Globe,
-      title: "Impact",
-      description: "We drive meaningful change in the blockchain ecosystem.",
-    },
-    {
-      icon: Shield,
-      title: "Integrity",
-      description: "We promote ethical blockchain adoption and transparency.",
-    },
-    {
-      icon: Handshake,
-      title: "Collaboration",
-      description: "We foster partnerships to grow the blockchain community.",
+      text: "Bridge\nLAUTECH\nto the global.",
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
   return (
-    <section className="py-17 md:py-15 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-blue-600 mb-8"
+    <section className="relative py-20 overflow-hidden bg-white">
+      <div className="text-center mb-16">
+        <div
+          className="mx-auto mb-10 inline-flex rounded-[28px] p-[1.5px]"
+          style={{ background: "linear-gradient(to bottom, #7C3AED, #3B82F6)" }}
         >
-          About Our Club
-        </motion.h2>
-        {/* WHO WE ARE */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
-          >
-            <div className="flex items-center space-x-3 mb-6">
-              <Users className="w-8 h-8 text-blue-400 group-hover:text-blue-300 transition-colors" aria-label="Who We Are" />
-              <h3 className="font-serif text-2xl font-bold text-blue-400">Who We Are</h3>
-            </div>
-            <p className="text-gray-200 text-lg leading-relaxed">
-              Blockchain Lautech is a dynamic student-led community at LAUTECH, dedicated to advancing blockchain education, innovation, and adoption through collaboration and hands-on learning.
-            </p>
-          </motion.div>
+          <div className="rounded-full bg-gray-100/90 px-6 py-2">
+            <span className="text-sm font-semibold text-blue-600">
+              About Our Club
+            </span>
+          </div>
+        </div>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Blockchain Lautech is a dynamic student-led community at LAUTECH,
+          dedicated to advancing blockchain education, innovation, and adoption
+          through collaboration and hands-on learning.
+        </p>
+      </div>
+      {/* Decorative horizontal lines */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 space-y-6">
+        {[...Array(7)].map((_, i) => (
+          <div key={`left-${i}`} className="h-2 w-80 bg-gray-200" />
+        ))}
+      </div>
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 space-y-6">
+        {[...Array(7)].map((_, i) => (
+          <div key={`right-${i}`} className="h-2 w-80 bg-gray-200" />
+        ))}
+      </div>
 
-          <motion.div
-            variants={itemVariants}
-            className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
-          >
-            <div className="flex items-center space-x-3 mb-6">
-              <Target className="w-8 h-8 text-blue-400 group-hover:text-blue-300 transition-colors" aria-label="We Exist To" />
-              <h3 className="font-serif text-2xl font-bold text-blue-400">We Exist To</h3>
-            </div>
-            <ul className="text-gray-200 text-lg leading-relaxed space-y-3">
-              <li>Democratize blockchain education for all students.</li>
-              <li>Empower members with Web3 skills for real-world impact.</li>
-              <li>Bridge LAUTECH to the global blockchain community.</li>
-            </ul>
-          </motion.div>
-        </motion.div>
-        
+      {/* Center dotted line */}
+      <div className="absolute left-1/2 top-0 h-full w-px border-l border-dashed border-gray-300" />
+
+      {/* Pillars Container */}
+      <div className="relative mx-auto grid max-w-3xl grid-cols-1 gap-6 px-4 lg:grid-cols-3 lg:px-0">
+        {pillars.map((pillar, index) => {
+          const Icon = pillar.icon;
+          return (
+            <Card
+              key={index}
+              className="mx-auto mb-10 w-full rounded-[28px] border-0 p-[1.5px] shadow-sm transition-shadow duration-200 hover:shadow-lg"
+              style={{
+                background: "linear-gradient(to bottom, #7C3AED, #3B82F6)",
+              }}
+            >
+              <CardContent className="flex min-h-[180px] flex-col items-center justify-center gap-6 rounded-[26px] bg-white px-6 py-8 text-center">
+                {/* Icon container */}
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-b from-[#7C3AED] to-[#3B82F6] shadow-lg">
+                  {Icon ? <Icon className="h-10 w-10 text-white" /> : null}
+                </div>
+                {/* Text */}
+                <p className="text-center text-lg font-bold leading-6 text-blue-600">
+                  {pillar.text}
+                </p>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </section>
   );

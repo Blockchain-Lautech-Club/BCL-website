@@ -1,5 +1,5 @@
 import { HeroSection } from "@/components/hero-section"
-import { AboutSection } from "@/components/about-section"
+import AboutSection from "@/components/about-section"
 import EventsTeaser from "@/components/events-teaser"
 import { Testimonials } from "@/components/landingPage/testimonials"
 import Team from "@/components/team"
@@ -13,13 +13,13 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       <div className="flex-1">
         <HeroSection />
-        <EventsTeaser />
         <AboutSection />
+        <EventsTeaser />
         <VisionMission />
         <GalleryCarousel />
-        <Partners /> {/* done from the ui*/}
-        <Team /> {/* half-done from the ui*/}
-        <Testimonials /> {/* done from the ui*/}
+        <Partners />
+        <Team />
+        <Testimonials />
       </div>
     </div>
   )

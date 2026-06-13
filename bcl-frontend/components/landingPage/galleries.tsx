@@ -12,15 +12,6 @@ interface GalleryImage {
   caption?: string;
 }
 
-const galleryImages: GalleryImage[] = [
-  { id: 1, src: '/event/confluence-1.jpg', alt: 'Event 1', caption: 'Events Pictures' },
-  { id: 2, src: '/event/confluence-2.jpg', alt: 'Event 2', caption: 'Events Pictures' },
-  { id: 3, src: '/event/confluence-3.jpg', alt: 'Event 3', caption: 'Events Pictures' },
-  { id: 4, src: '/event/confluence-4.jpg', alt: 'Event 4', caption: 'Events Pictures' },
-  { id: 5, src: '/event/confluence-5.jpg', alt: 'Event 5', caption: 'Events Pictures' },
-  // ... add all 20+ images
-];
-
 const CIRCLES_VISIBLE = 3;
 
 export default function GalleryCarousel() {
