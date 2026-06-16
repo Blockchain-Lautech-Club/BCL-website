@@ -6,7 +6,8 @@
     "tagline": "Building the Future, One Block at a Time.",
     "vision": "To create a LAUTECH where every student is equipped with blockchain knowledge and contributes to Nigeria's leadership in Web3 innovation.",
     "mission": "To empower LAUTECH students with blockchain expertise, drive innovation, and build a vibrant ecosystem for future blockchain leaders through workshops, hackathons, and collaborative projects.",
-    "description": "Connecting curious minds to blockchain education, hands-on experience, and a community of future tech leaders."
+    "description": "Connecting curious minds to blockchain education, hands-on experience, and a community of future tech leaders.",
+    "logos": ["/logos/whitelogo.png", "/logos/logoNoBackground.png"]
   },
   
   "navigation": {
@@ -43,6 +44,37 @@
     ]
   },
 
+  "testimonial": [
+    {
+      "avatar": "/testimonial/abdulAnchor.png",
+      "name": "Abdul-Anchor",
+      "departement": "Fishery Science and Technology",
+      "note": "BCL is one of the big family in Lautech, safe and welcoming. She makes the saying ‘all work and no play makes Jack a dull boy’. I love it, because opportunities are always shared.",
+      "rate": 5
+    },
+    {
+      "avatar": "/testimonial/fatimaAbdullahi.png",
+      "name": "Fatima Abdullahi",
+      "departement": "Information Technology",
+      "note": "From zero blockchain knowledge to building my own DApp in three months-this club’s hands-on approach and supportive community made it possible.",
+      "rate": 3.3
+    },
+    {
+      "avatar": "/testimonial/chineduOkwu.png",
+      "name": "Chinedu Okwu",
+      "departement": "Software Engineering",
+      "note": "The club exposed me to cutting-edge blockchain technologies not covered in class. The guest speakers are always inspiring and insightful.",
+      "rate": 4.6
+    },
+    {
+      "avatar": "/testimonial/chineduOkwu.png",
+      "name": "Chinedu Okwu",
+      "departement": "Software Engineering",
+      "note": "The club exposed me to cutting-edge blockchain technologies not covered in class. The guest speakers are always inspiring and insightful.",
+      "rate": 2.5
+    }
+  ],
+
   "team": {
     "quote": "Our team is made up of passionate builders, innovators, and problem-solvers dedicated to exploring the endless various possibilities of blockchain technology.They are committed to fostering innovation, collaboration, and education within the ecosystem.",
     "founders": [
@@ -51,8 +83,8 @@
         "role": "Founder / Lead Executive",
         "image": "/team/johnAdekunjo.jpg",
         "social": {
-          "x": "https://x.com/johnadekunjo",
-          "linkedin": "https://linkedin.com/in/johnadekunjo"
+          "x": {"link": "https://x.com/johnadekunjo", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/johnadekunjo", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -60,8 +92,8 @@
         "role": "Co-Founder",
         "image": "/team/thelmaOpurum.jpg",
         "social": {
-          "x": "https://x.com/thelmaopurum",
-          "linkedin": "https://linkedin.com/in/thelmaopurum"
+          "x": {"link": "https://x.com/thelmaopurum", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/thelmaopurum", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -69,8 +101,8 @@
         "role": "Co-Founder",
         "image": "/team/blessingOluwabamidele.jpg",
         "social": {
-          "x": "https://x.com/blessingoluwabamidele",
-          "linkedin": "https://linkedin.com/in/blessingoluwabamidele"
+          "x": {"link": "https://x.com/blessingoluwabamidele", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/blessingoluwabamidele", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       }
     ],
@@ -80,8 +112,8 @@
         "role": "Lead CM",
         "image": "/team/favourAbidoyeOadejo.jpg",
         "social": {
-          "x": "https://x.com/favourabidoyeoadejo",
-          "linkedin": "https://linkedin.com/in/favourabidoyeoadejo"
+          "x": {"link": "https://x.com/favourabidoyeoadejo", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/favourabidoyeoadejo", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -89,8 +121,8 @@
         "role": "Project Manager",
         "image": "/team/preciousAdebisi.png",
         "social": {
-          "x": "https://x.com/preciousadebisi",
-          "linkedin": "https://linkedin.com/in/preciousadebisi"
+          "x": {"link": "https://x.com/preciousadebisi", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/preciousadebisi", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -98,8 +130,8 @@
         "role": "Female Guild Lead",
         "image": "/team/maryamTijani.jpg",
         "social": {
-          "x": "https://x.com/maryamtijani",
-          "linkedin": "https://linkedin.com/in/maryamtijani"
+          "x": {"link": "https://x.com/maryamtijani", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/maryamtijani", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -107,8 +139,8 @@
         "role": "Dev Lead",
         "image": "/team/jeremiahOyeniran.jpg",
         "social": {
-          "x": "https://x.com/jeremiahoyeniran",
-          "linkedin": "https://linkedin.com/in/jeremiahoyeniran"
+          "x": {"link": "https://x.com/jeremiahoyeniran", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/jeremiahoyeniran", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -116,8 +148,8 @@
         "role": "Project Manager",
         "image": "/team/abdulhamidBakare.jpg",
         "social": {
-          "x": "https://x.com/abdulhamidbakare",
-          "linkedin": "https://linkedin.com/in/abdulhamidbakare"
+          "x": {"link": "https://x.com/abdulhamidbakare", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/abdulhamidbakare", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -125,8 +157,8 @@
         "role": "Project Manager",
         "image": "/team/tomiwaKayode.jpg",
         "social": {
-          "x": "https://x.com/tomiwakayode",
-          "linkedin": "https://linkedin.com/in/tomiwakayode"
+          "x": {"link": "https://x.com/tomiwakayode", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/tomiwakayode", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       }
     ]
@@ -180,36 +212,158 @@
     ]
   },
 
-  "events": {
-    "featured": {
+  "events": [
+    {
+      "id": "confluence-1",
       "title": "Confluence 1.0",
       "tagline": "Tech Extravaganza",
       "theme": "Ogbomoso's Digital Transformation: Blockchain as a Catalyst",
       "description": "The flagship tech conference uniting students, developers, and industry leaders at the intersection of blockchain, Web3, and emerging technologies.",
-      "dates": "November 7 & 8, 2025",
+      "date": "2025-11-07",
       "time": "9:00 AM",
       "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
-      "image": "/event/confluence.jpg",
-      "agenda": {
-        "day1": {
-          "track": "Developer Track",
-          "date": "November 7, 2025",
-          "items": ["Demo Day", "Hackathons & Coding Competitions", "Technical Workshops", "Bounty Challenges", "Developer Networking", "Panel Session"]
-        },
-        "day2": {
-          "track": "Community Track",
-          "date": "November 8, 2025",
-          "items": ["Keynote Presentations", "Expert Panel Discussions", "Women in Web3 Sessions", "Startup Exhibitions", "Interactive Workshops", "Networking Opportunities", "Prize Distribution"]
-        }
-      },
-      "type": "string",
-      "max_attendees": 0,
-      "speaker_name": "string",
-      "speaker_title": "string",
-      "speaker_bio": "string",
-      "speaker_avatar": "string"
+      "image": "/event/confluence-1.jpg",
+      "agenda": [
+        { "time": "10:00 AM", "activity": "Opening Keynote" },
+        { "time": "11:30 AM", "activity": "Developer Track Workshops" },
+        { "time": "1:00 PM", "activity": "Lunch & Networking" },
+        { "time": "2:30 PM", "activity": "Panel Discussion: Web3 in Education" },
+        { "time": "4:00 PM", "activity": "Hackathon Launch" }
+      ],
+      "type": "conference",
+      "status": "upcoming",
+      "attendees": 180,
+      "max_attendees": 250,
+      "speaker_name": "Dr. Adebayo",
+      "speaker_title": "Keynote Speaker",
+      "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
+      "speaker_avatar": "/team/johnAdekunjo.jpg"
+    },
+    {
+      "id": "web3-workshop",
+      "title": "Web3 Product Design Workshop",
+      "tagline": "Design for Decentralized Apps",
+      "theme": "Building user-friendly products for blockchain experiences",
+      "description": "A hands-on workshop focused on designing intuitive Web3 products, interfaces, and user journeys.",
+      "date": "2025-12-03",
+      "time": "10:00 AM",
+      "location": "LAUTECH Innovation Hub",
+      "image": "/event/confluence-2.jpg",
+      "agenda": [
+        { "time": "10:00 AM", "activity": "Intro to Web3 UX" },
+        { "time": "11:15 AM", "activity": "Design Thinking Workshop" },
+        { "time": "1:00 PM", "activity": "Prototyping Session" },
+        { "time": "3:00 PM", "activity": "Pitch Practice" }
+      ],
+      "type": "workshop",
+      "status": "upcoming",
+      "attendees": 60,
+      "max_attendees": 80,
+      "speaker_name": "Amina Hassan",
+      "speaker_title": "Design Lead",
+      "speaker_bio": "Experienced product designer focused on Web3 usability.",
+      "speaker_avatar": "/team/tomiwaKayode.jpg"
+    },
+    {
+      "id": "eth-denver-recap",
+      "title": "ETHDenver Recap Session",
+      "tagline": "From Conference to Community",
+      "theme": "Sharing lessons from blockchain events and developer culture",
+      "description": "A recap event where members share what they learned at ETHDenver, including workshops, networking, and product demos.",
+      "date": "2025-09-15",
+      "time": "4:00 PM",
+      "location": "LAUTECH Conference Hall",
+      "image": "/event/confluence-3.jpg",
+      "agenda": [
+        { "time": "4:00 PM", "activity": "Event Highlights" },
+        { "time": "4:45 PM", "activity": "Speaker Panels" },
+        { "time": "5:30 PM", "activity": "Community Discussion" }
+      ],
+      "type": "seminar",
+      "status": "past",
+      "attendees": 120,
+      "max_attendees": 120,
+      "speaker_name": "Chinedu Okwu",
+      "speaker_title": "Community Leader",
+      "speaker_bio": "Organizer of member events and blockchain learning sessions.",
+      "speaker_avatar": "/team/abdulhamidBakare.jpg"
+    },
+    {
+      "id": "confluence-4",
+      "title": "Confluence 1.0",
+      "tagline": "Tech Extravaganza",
+      "theme": "Ogbomoso's Digital Transformation: Blockchain as a Catalyst",
+      "description": "The flagship tech conference uniting students, developers, and industry leaders at the intersection of blockchain, Web3, and emerging technologies.",
+      "date": "2025-11-07",
+      "time": "9:00 AM",
+      "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
+      "image": "/event/confluence-1.jpg",
+      "agenda": [
+        { "time": "10:00 AM", "activity": "Opening Keynote" },
+        { "time": "11:30 AM", "activity": "Developer Track Workshops" },
+        { "time": "1:00 PM", "activity": "Lunch & Networking" },
+        { "time": "2:30 PM", "activity": "Panel Discussion: Web3 in Education" },
+        { "time": "4:00 PM", "activity": "Hackathon Launch" }
+      ],
+      "type": "conference",
+      "status": "upcoming",
+      "attendees": 180,
+      "max_attendees": 250,
+      "speaker_name": "Dr. Adebayo",
+      "speaker_title": "Keynote Speaker",
+      "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
+      "speaker_avatar": "/team/johnAdekunjo.jpg"
+    },
+    {
+      "id": "web3-workshop-2",
+      "title": "Web3 Product Design Workshop",
+      "tagline": "Design for Decentralized Apps",
+      "theme": "Building user-friendly products for blockchain experiences",
+      "description": "A hands-on workshop focused on designing intuitive Web3 products, interfaces, and user journeys.",
+      "date": "2025-12-03",
+      "time": "10:00 AM",
+      "location": "LAUTECH Innovation Hub",
+      "image": "/event/confluence-2.jpg",
+      "agenda": [
+        { "time": "10:00 AM", "activity": "Intro to Web3 UX" },
+        { "time": "11:15 AM", "activity": "Design Thinking Workshop" },
+        { "time": "1:00 PM", "activity": "Prototyping Session" },
+        { "time": "3:00 PM", "activity": "Pitch Practice" }
+      ],
+      "type": "workshop",
+      "status": "upcoming",
+      "attendees": 60,
+      "max_attendees": 80,
+      "speaker_name": "Amina Hassan",
+      "speaker_title": "Design Lead",
+      "speaker_bio": "Experienced product designer focused on Web3 usability.",
+      "speaker_avatar": "/team/tomiwaKayode.jpg"
+    },
+    {
+      "id": "eth-denver-recap-2",
+      "title": "ETHDenver Recap Session",
+      "tagline": "From Conference to Community",
+      "theme": "Sharing lessons from blockchain events and developer culture",
+      "description": "A recap event where members share what they learned at ETHDenver, including workshops, networking, and product demos.",
+      "date": "2025-09-15",
+      "time": "4:00 PM",
+      "location": "LAUTECH Conference Hall",
+      "image": "/event/confluence-3.jpg",
+      "agenda": [
+        { "time": "4:00 PM", "activity": "Event Highlights" },
+        { "time": "4:45 PM", "activity": "Speaker Panels" },
+        { "time": "5:30 PM", "activity": "Community Discussion" }
+      ],
+      "type": "seminar",
+      "status": "past",
+      "attendees": 120,
+      "max_attendees": 120,
+      "speaker_name": "Chinedu Okwu",
+      "speaker_title": "Community Leader",
+      "speaker_bio": "Organizer of member events and blockchain learning sessions.",
+      "speaker_avatar": "/team/abdulhamidBakare.jpg"
     }
-  },
+  ],
 
   "partners": [
     { "name": "Nova Labs", "logo": "/partners/novaLabs.jpg" },
@@ -226,19 +380,60 @@
 
   "contact": {
     "phones": ["+234 803 123 4567", "+234 901 234 5678"],
-    "emails": ["blockchain@lautech.edu.ng", "info@lautechblockchain.org", "blockchainlautech@gmail.com"],
+    "emails": ["blockchainlautech@gmail.com", "blockchain@lautech.edu.ng", "info@lautechblockchain.org"],
     "address": "LAUTECH Campus, Ogbomoso, Oyo State, Nigeria",
     "officeHours": {
       "weekdays": "Monday - Friday: 9:00 AM - 5:00 PM",
       "saturday": "Saturday: 10:00 AM - 2:00 PM",
       "sunday": "Sunday: Closed"
     },
-    "socials": {
-      "x": "https://x.com/blockchainlautech",
-      "linkedin": "https://linkedin.com/company/blockchainlautech",
-      "github": "https://github.com/blockchainlautech",
-      "telegram": "https://t.me/blockchainlautech",
-      "discord": "https://discord.com/blockchainlautech"
-    }
-  }
+    "socials": [
+      {"name": "x", "link": "https://x.com/blockchainlautech", "icon": "/socialIcons/xlogo.png"},
+      {"name": "linkedin", "link": "https://linkedin.com/company/blockchainlautech", "icon": "linkedin"},
+      {"name": "github", "link": "https://github.com/blockchainlautech", "icon": "github"},
+      {"name": "telegram", "link": "https://t.me/blockchainlautech", "icon": "/socialIcons/telegram.png"},
+      {"name": "discord", "link": "https://discord.com/blockchainlautech", "icon": "discord"}
+    ]
+  },
+
+  "footerLink": {
+     "QuickLink": [
+      { "name": "Home", "link": "/" },
+      { "name": "About", "link": "/about" },
+      { "name": "Events", "link": "/events" },
+      { "name": "Cohorts", "link": "/cohorts"},
+      { "name": "Blog", "link": "/blog" },
+      { "name": "Join the Club", "link": "/join" },
+      { "name": "Contact", "link": "/contact" }
+    ],
+    "Resources": [
+      { "name": "Beginner Guides", "link": "/" },
+      { "name": "Blockchain Glossary", "link": "/" },
+      { "name": "Learning Materials", "link": "/" },
+      { "name": "FAQs", "link": "/"}
+    ],
+     "Community": [
+      { "name": "Events & Meetups", "link": "/" },
+      { "name": "Hackathons", "link": "/" },
+      { "name": "Member Spotlight", "link": "/" },
+      { "name": "Newsletter Signup", "link": "/"}
+    ]
+  },
+
+  "galleries": [
+    { "id": 1, "src": "/event/confluence-1.jpg", "alt": "Event 1", "caption": "Confluence Pictures" },
+    { "id": 2, "src": "/event/confluence-2.jpg", "alt": "Event 2", "caption": "Confluence Pictures" },
+    { "id": 3, "src": "/event/confluence-3.jpg", "alt": "Event 3", "caption": "Confluence Pictures" },
+    { "id": 4, "src": "/event/confluence-4.jpg", "alt": "Event 4", "caption": "Confluence Pictures" },
+    { "id": 5, "src": "/event/confluence-5.jpg", "alt": "Event 5", "caption": "Confluence Pictures" },
+    { "id": 7, "src": "/event/confluence-7.jpg", "alt": "Event 7", "caption": "Confluence Pictures" },
+    { "id": 8, "src": "/event/coinEx.jpg", "alt": "Event 8", "caption": "CoinEx Pictures" },
+    { "id": 9, "src": "/event/gida.jpg", "alt": "Event 9", "caption": "GIDA Pictures" },
+    { "id": 10, "src": "/event/celoEvent.jpg", "alt": "Event 10", "caption": "Celo Africa DAO Pictures" },
+    { "id": 11, "src": "/event/crossFiEvent.jpg", "alt": "Event 11", "caption": "CrossFi Pictures" },
+    { "id": 12, "src": "/event/crossFiEvent-2.jpg", "alt": "Event 12", "caption": "CrossFi Pictures" },
+    { "id": 13, "src": "/event/coinEx-2.jpg", "alt": "Event 13", "caption": "CoinEx Pictures" },
+    { "id": 14, "src": "/event/blockdag.jpg", "alt": "Event 14", "caption": "BlockDAG Pictures" },
+    { "id": 15, "src": "/event/bitcoinPizzaDay.jpg", "alt": "Event 15", "caption": "Bitcoin Pizza Day Pictures" }
+  ]
 }

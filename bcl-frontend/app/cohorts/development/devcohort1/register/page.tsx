@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -76,7 +74,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     }
     setIsSubmitted(true);
   } catch (err) {
-    setError(err.message);
+    setError((err as Error).message);
   } finally {
     setIsSubmitting(false);
   }
@@ -84,7 +82,6 @@ const handleSubmit = async (e: React.FormEvent) => {
   if (isSubmitted) {
     return (
       <main className="min-h-screen bg-gray-50 flex flex-col">
-        <Navigation />
         <div className="flex-1 flex items-center justify-center p-4">
           <Card className="max-w-md w-full text-center shadow-2xl">
             <CardContent className="p-10">
@@ -101,14 +98,12 @@ const handleSubmit = async (e: React.FormEvent) => {
             </CardContent>
           </Card>
         </div>
-        <Footer />
       </main>
     )
   }
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       <section className="py-12 bg-linear-to-b from-primary/10 to-transparent">
         <div className="max-w-4xl mx-auto px-4">
@@ -237,7 +232,6 @@ const handleSubmit = async (e: React.FormEvent) => {
           </Card>
         </div>
       </section>
-      <Footer />
     </main>
   )
 }

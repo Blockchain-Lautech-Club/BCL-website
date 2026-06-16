@@ -1,7 +1,5 @@
 "use client";
 
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -55,7 +53,6 @@ const upcomingCohorts = [
 export default function DevelopmentCohortsPage() {
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
@@ -316,7 +313,6 @@ export default function DevelopmentCohortsPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

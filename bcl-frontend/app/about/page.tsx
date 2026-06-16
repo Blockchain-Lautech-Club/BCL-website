@@ -1,7 +1,5 @@
 "use client"
 
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -23,7 +21,7 @@ import {
   ArrowRight,
   Star
 } from "lucide-react"
-import { TeamSection } from "@/components/team"
+import Team from "@/components/team"
 
 const stats = [
   { number: "2500+", label: "Students Trained", icon: Users },
@@ -78,7 +76,6 @@ const achievements = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
@@ -230,7 +227,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <TeamSection/>
+      <Team/>
 
       {/* Recent Achievements */}
       <section className="py-16 bg-gray-50">
@@ -326,7 +323,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

@@ -1,8 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -98,7 +96,6 @@ export default function DevelopmentCohortPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-14">
@@ -313,7 +310,6 @@ export default function DevelopmentCohortPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

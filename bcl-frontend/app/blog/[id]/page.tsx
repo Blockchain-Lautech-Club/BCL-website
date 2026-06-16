@@ -1,8 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -197,7 +195,6 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
   if (error) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50">
-        <Navigation />
         <div className="flex-1 flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
             <div className="bg-red-50 border border-red-200 rounded-lg p-8">
@@ -211,7 +208,6 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
@@ -219,7 +215,6 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50">
-        <Navigation />
         
         <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
           <div className="h-full bg-blue-500 transition-all duration-300" style={{ width: '0%' }} />
@@ -259,7 +254,6 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
           </article>
         </div>
 
-        <Footer />
       </div>
     )
   }
@@ -270,7 +264,6 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Navigation />
 
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
@@ -404,7 +397,6 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
         </article>
       </div>
 
-      <Footer />
     </div>
   )
 }

@@ -1,8 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -70,7 +69,6 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
   if (error) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50">
-        <Navigation />
         <div className="flex-1 flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Event</h1>
@@ -80,7 +78,6 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
             </Button>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
@@ -88,7 +85,6 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
   if (loading) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50">
-        <Navigation />
         
         <div className="flex-1">
           {/* Back Button */}
@@ -153,7 +149,6 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
           </section>
         </div>
 
-        <Footer />
       </div>
     )
   }
@@ -205,7 +200,6 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Navigation />
 
       <div className="flex-1">
         {/* Back Button */}
@@ -438,7 +432,6 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
         </section>
       </div>
 
-      <Footer />
     </div>
   )
 }
