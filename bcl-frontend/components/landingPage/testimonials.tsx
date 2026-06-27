@@ -56,7 +56,7 @@ export function Testimonials() {
         >
            <div className="mx-auto mb-10 inline-flex rounded-full p-[1.5px]" style={{ background: 'linear-gradient(to bottom, #7C3AED, #3B82F6)' }}>
             <div className="rounded-full bg-gray-100/90 px-6 py-2">
-              <span className="text-sm font-semibold text-blue-600">What Our Members Say</span>
+              <span className="text-lg font-semibold text-blue-600">What Our Members Say</span>
             </div>
           </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

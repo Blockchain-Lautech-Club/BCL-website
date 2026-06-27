@@ -1,64 +1,3 @@
-  // const founders = [
-  //   {
-  //     name: "John ADEKUNJO",
-  //     image: "/team/johnAdekunjo.jpg",
-  //     twitter: "https://x.com/@Johnadek_",
-  //     linkedin: "https://www.linkedin.com/in/john-adekunjo-6757271b5",
-  //   },
-  //   {
-  //     name: "Thelma OPURUM",
-  //     image: "/team/thelmaOpurum.jpg",
-  //     twitter: "https://x.com/@thelma_opurum",
-  //   },
-  //   {
-  //     name: "Blessing OLUWABAMIDELE",
-  //     image: "/team/blessingOluwabamidele.jpg",
-  //     twitter: "#",
-  //   },
-  // ];
-
-  // const moderators = [
-  //   {
-  //     name: "Favour ABIDOYE-OLADEJO",
-  //     role: "Lead C.M",
-  //     image: "/team/favourAbidoyeOadejo.jpg",
-  //     twitter: "https://x.com/@FavourAbidoye",
-  //     github: "https://github.com/Favour4712",
-  //   },
-  //   {
-  //     name: "Precious ADEBISI",
-  //     role: "Project Manager",
-  //     image: "/team/preciousAdebisi.png",
-  //     twitter: "https://x.com/@acunetixtech001",
-  //     github: "https://github.com/devacunetixtech",
-  //   },
-  //   {
-  //     name: "Maryam TIJANI",
-  //     role: "Female Guild Lead",
-  //     image: "/team/maryamTijani.jpg",
-  //     twitter: "https://x.com/@thetee_m",
-  //   },
-  //   {
-  //     name: "Jeremiah OYENIRAN",
-  //     role: "Dev. Lead",
-  //     image: "/team/jeremiahOyeniran.jpg",
-  //     twitter: "https://x.com/@Jerydam00",
-  //     github: "https://github.com/jerydam",
-  //   },
-  //   {
-  //     name: "Abdulhamid BAKARE",
-  //     role: "Events Manager",
-  //     image: "/team/abdulhamidBakare.jpg",
-  //     twitter: "https://x.com/@starkhubz",
-  //   },
-  //   {
-  //     name: "Tomiwa KAYODE",
-  //     role: "Design Lead",
-  //     image: "/team/tomiwaKayode.jpg",
-  //     twitter: "https://x.com/@TommyTrems",
-  //   },
-  // ];
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { team } from '@/lib/data.json';
@@ -68,7 +7,7 @@ interface SocialLink {
   icon: string;
 }
 
-interface TeamMember {
+export interface TeamMember {
   name: string;
   role: string;
   image: string;
@@ -78,7 +17,7 @@ interface TeamMember {
   };
 }
 
-function SocialIcons({ social }: { social: TeamMember['social'] }) {
+export function SocialIcons({ social }: { social: TeamMember['social'] }) {
   return (
     <div className="mt-5 flex items-center justify-center gap-4">
       {social.x?.link && (
@@ -107,20 +46,21 @@ function SocialIcons({ social }: { social: TeamMember['social'] }) {
   );
 }
 
-function TeamCard({ member }: { member: TeamMember }) {
+// only for landing page. teamCard for page is in the page directory
+export function TeamCard({ member }: { member: TeamMember }) {
   return (
-    <div className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
-      <div className="mx-auto mb-6 flex h-40 w-40 items-center justify-center overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
+    <div className="group p-6 transition-transform duration-300 hover:-translate-y-1">
+      <div className="h-70 w-60 overflow-hidden rounded-[50px] rounded-bl-[110px] mx-auto mb-4 border-2 p-4 border-sky-800 ">
         <Image
           src={member.image}
           alt={member.name}
           width={260}
           height={260}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover overflow-hidden rounded-[40px] rounded-bl-[100px] "
         />
       </div>
       <h3 className="text-center text-lg font-semibold text-sky-900">{member.name}</h3>
-      <p className="mt-2 text-center text-sm text-slate-500">{member.role}</p>
+      <p className="mt-1 text-center text-base text-slate-500">{member.role}</p>
       <SocialIcons social={member.social} />
     </div>
   );
@@ -139,7 +79,7 @@ export default function Team() {
         <div className="text-center mb-16">
            <div className="mx-auto mb-10 inline-flex rounded-full p-[1.5px]" style={{ background: 'linear-gradient(to bottom, #7C3AED, #3B82F6)' }}>
             <div className="rounded-full bg-gray-100/90 px-6 py-2">
-              <span className="text-sm font-semibold text-blue-600">Meet the Builders</span>
+              <span className="text-lg font-semibold text-blue-600">Meet the Builders</span>
             </div>
           </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">{quote}</p>
