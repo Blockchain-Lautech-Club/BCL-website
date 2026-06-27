@@ -26,7 +26,7 @@ export default function AboutSection() {
           style={{ background: "linear-gradient(to bottom, #7C3AED, #3B82F6)" }}
         >
           <div className="rounded-full bg-gray-100/90 px-6 py-2">
-            <span className="text-sm font-semibold text-blue-600">
+            <span className="text-lg font-semibold text-blue-600">
               About Our Club
             </span>
           </div>

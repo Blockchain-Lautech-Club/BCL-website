@@ -64,7 +64,7 @@ export default function GalleryCarousel() {
         >
            <div className="mx-auto mb-14 inline-flex rounded-full p-[1.5px]" style={{ background: 'linear-gradient(to bottom, #7C3AED, #3B82F6)' }}>
             <div className="rounded-full bg-gray-100/90 px-6 py-2">
-              <span className="text-sm font-semibold text-blue-600">Photo Gallery</span>
+              <span className="text-lg font-semibold text-blue-600">Photo Gallery</span>
             </div>
           </div>
         </motion.div>
