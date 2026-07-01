@@ -83,8 +83,8 @@
         "role": "Co-Founder",
         "image": "/team/johnAdekunjo.jpg",
         "social": {
-          "x": {"link": "https://x.com/johnadekunjo", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/johnadekunjo", "icon": "/socialIcons/linkedInLogo.svg"}
+          "x": {"link": "https://x.com/@Johnadek_", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://www.linkedin.com/in/john-adekunjo-6757271b5/", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -92,7 +92,7 @@
         "role": "Co-Founder",
         "image": "/team/thelmaOpurum.jpg",
         "social": {
-          "x": {"link": "https://x.com/thelmaopurum", "icon": "/socialIcons/xlogo.svg"},
+          "x": {"link": "https://x.com/@thelma_opurum", "icon": "/socialIcons/xlogo.svg"},
           "linkedin": {"link": "https://linkedin.com/in/thelmaopurum", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
@@ -112,7 +112,7 @@
         "role": "Lead CM",
         "image": "/team/favourAbidoyeOadejo.jpg",
         "social": {
-          "x": {"link": "https://x.com/favourabidoyeoadejo", "icon": "/socialIcons/xlogo.svg"},
+          "x": {"link": "https://x.com/@FavourAbidoye", "icon": "/socialIcons/xlogo.svg"},
           "linkedin": {"link": "https://linkedin.com/in/favourabidoyeoadejo", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
@@ -121,7 +121,7 @@
         "role": "Project Manager",
         "image": "/team/preciousAdebisi.png",
         "social": {
-          "x": {"link": "https://x.com/preciousadebisi", "icon": "/socialIcons/xlogo.svg"},
+          "x": {"link": "https://x.com/@acunetixtech001", "icon": "/socialIcons/xlogo.svg"},
           "linkedin": {"link": "https://linkedin.com/in/preciousadebisi", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
@@ -139,7 +139,7 @@
         "role": "Dev Lead",
         "image": "/team/jeremiahOyeniran.jpg",
         "social": {
-          "x": {"link": "https://x.com/jeremiahoyeniran", "icon": "/socialIcons/xlogo.svg"},
+          "x": {"link": "https://x.com/@Jerydam00", "icon": "/socialIcons/xlogo.svg"},
           "linkedin": {"link": "https://linkedin.com/in/jeremiahoyeniran", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
