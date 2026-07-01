@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export function PhotoGrid() {
   return (
-    <div className="absolute right-10 top-0 bottom-5">
+    <div className="absolute right-10 top-0 bottom-5 hidden lg:block">
             <div className="space-x-">
               <div className="shape-1 absolute right-60 top-[40px] w-80 h-64">
                 <Image

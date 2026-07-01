@@ -10,7 +10,7 @@ const HeroText = () => {
     <div className='absolute w-full h-full flex items-center justify-center;'>
     <div className="flex flex-col gap-5 px-8 lg:px-16 xl:px-24">
       {/* Headline */}
-      <h1 className="mb-6 max-w-lg text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+      <h1 className="max-lg:bg-white mb-6 max-w-lg text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
         <span className="text-blue-600">Building</span>{' '}
         <span className="text-slate-800">the Future,</span>
         <br />
@@ -47,7 +47,7 @@ const HeroText = () => {
 
 export function HeroSection() {
   return (
-    <section className="relative h-screen w-full bg-white pb-12">
+    <section className="relative h-screen w-full max-lg:m-4 max-lg:bg-[url('/event/confluence-1.jpg')] bg-cover bg-center bg-no-repeat lg:bg-white pb-12">
       {/* Gradient background - curves up behind cards */}
       <div
         className="absolute bottom-0 left-0 right-0 h-[45%]"
