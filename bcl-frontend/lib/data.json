@@ -79,21 +79,21 @@
     "quote": "Our team is made up of passionate builders, innovators, and problem-solvers dedicated to exploring the endless various possibilities of blockchain technology.They are committed to fostering innovation, collaboration, and education within the ecosystem.",
     "founders": [
       {
+        "name": "Thelma OPURUM",
+        "role": "Founder",
+        "image": "/team/thelmaOpurum.jpg",
+        "social": {
+          "x": {"link": "https://x.com/@thelma_opurum", "icon": "/socialIcons/xlogo.svg"},
+          "linkedin": {"link": "https://linkedin.com/in/thelmaopurum", "icon": "/socialIcons/linkedInLogo.svg"}
+        }
+      },
+      {
         "name": "John ADEKUNJO",
         "role": "Co-Founder",
         "image": "/team/johnAdekunjo.jpg",
         "social": {
           "x": {"link": "https://x.com/@Johnadek_", "icon": "/socialIcons/xlogo.svg"},
           "linkedin": {"link": "https://www.linkedin.com/in/john-adekunjo-6757271b5/", "icon": "/socialIcons/linkedInLogo.svg"}
-        }
-      },
-      {
-        "name": "Thelma OPURUM",
-        "role": "Co-Founder",
-        "image": "/team/thelmaOpurum.jpg",
-        "social": {
-          "x": {"link": "https://x.com/@thelma_opurum", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/thelmaopurum", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
       {
@@ -113,7 +113,7 @@
         "image": "/team/favourAbidoyeOadejo.jpg",
         "social": {
           "x": {"link": "https://x.com/@FavourAbidoye", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/favourabidoyeoadejo", "icon": "/socialIcons/linkedInLogo.svg"}
+          "github": {"link": "https://githubcom/Favour4712", "icon": "/socialIcons/githublogo.png"}
         }
       },
       {
@@ -122,7 +122,7 @@
         "image": "/team/preciousAdebisi.png",
         "social": {
           "x": {"link": "https://x.com/@acunetixtech001", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/preciousadebisi", "icon": "/socialIcons/linkedInLogo.svg"}
+          "github": {"link": "https://github.com/devacunetixtech", "icon": "/socialIcons/githublogo.png"}
         }
       },
       {
@@ -140,7 +140,7 @@
         "image": "/team/jeremiahOyeniran.jpg",
         "social": {
           "x": {"link": "https://x.com/@Jerydam00", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/jeremiahoyeniran", "icon": "/socialIcons/linkedInLogo.svg"}
+          "github": {"link": "https://github.com/jerydam", "icon": "/socialIcons/githubogo.png"}
         }
       },
       {
@@ -148,7 +148,7 @@
         "role": "Project Manager",
         "image": "/team/abdulhamidBakare.jpg",
         "social": {
-          "x": {"link": "https://x.com/abdulhamidbakare", "icon": "/socialIcons/xlogo.svg"},
+          "x": {"link": "ttps://x.com/@starkhubz", "icon": "/socialIcons/xlogo.svg"},
           "linkedin": {"link": "https://linkedin.com/in/abdulhamidbakare", "icon": "/socialIcons/linkedInLogo.svg"}
         }
       },
