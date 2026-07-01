@@ -99,7 +99,7 @@ export default function GalleryCarousel() {
               onClick={() => openModal(image)}
               className={`
                 relative transition-all duration-500 ease-in-out
-                ${isCenter ? 'z-10 scale-150' : 'z-0 scale-90 opacity-70'}
+                ${isCenter ? 'z-10 scale-150' : 'z-0 scale-90 opacity-70 max-lg:hidden'}
               `}
               style={{
                 transform: `translateX(${(position - 1) * 20}px)`,
@@ -107,7 +107,7 @@ export default function GalleryCarousel() {
             >
               <div className={`
                 relative overflow-hidden rounded-full border-4 bg-white shadow-lg
-                ${isCenter ? 'border-white shadow-xl' : 'border-gray-100'}
+                ${isCenter ? 'border-white shadow-xl' : 'border-gray-100 max-lg:hidden'}
               `}>
                 <Image
                   src={image.src}
