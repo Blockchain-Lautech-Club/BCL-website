@@ -14,6 +14,7 @@ export interface TeamMember {
   social: {
     x: SocialLink;
     linkedin: SocialLink;
+    github: SocialLink;
   };
 }
 
@@ -36,6 +37,17 @@ export function SocialIcons({ social }: { social: TeamMember['social'] }) {
           <Image
             src={social.linkedin.icon}
             alt="LinkedIn icon"
+            width={18}
+            height={18}
+            className="w-5 h-5 text-current"
+          />
+        </Link>
+      )}
+      {social.github?.link && (
+        <Link href={social.github.link} aria-label="GitHub profile" className="text-slate-400 transition-colors hover:text-slate-700">
+          <Image
+            src={social.github.icon}
+            alt="GitHub icon"
             width={18}
             height={18}
             className="w-5 h-5 text-current"
