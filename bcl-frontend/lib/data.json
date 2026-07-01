@@ -388,9 +388,9 @@
       "sunday": "Sunday: Closed"
     },
     "socials": [
-      {"name": "x", "link": "https://x.com/blockchainlautech", "icon": "/socialIcons/xlogo.png"},
-      {"name": "linkedin", "link": "https://linkedin.com/company/blockchainlautech", "icon": "linkedin"},
-      {"name": "github", "link": "https://github.com/blockchainlautech", "icon": "github"},
+      {"name": "x", "link": "https://x.com/BlockchainLAUT1", "icon": "/socialIcons/xlogo.png"},
+      {"name": "linkedin", "link": "https://www.linkedin.com/company/blockchain-club-lautech/", "icon": "linkedin"},
+      {"name": "github", "link": "https://github.com/Blockchain-Lautech-Club/", "icon": "github"},
       {"name": "telegram", "link": "https://t.me/blockchainlautech", "icon": "/socialIcons/telegram.png"},
       {"name": "discord", "link": "https://discord.com/blockchainlautech", "icon": "discord"}
     ]
