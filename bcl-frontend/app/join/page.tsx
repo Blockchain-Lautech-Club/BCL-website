@@ -6,11 +6,24 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Users, BookOpen, Network, Trophy, Gift, Star, ExternalLink, Twitter } from "lucide-react"
+import { Pill } from "@/components/section-intro"
+import {
+  CheckCircle,
+  Users,
+  BookOpen,
+  Network,
+  Trophy,
+  Gift,
+  Star,
+  ExternalLink,
+  Mail,
+  Apple,
+  CheckCircle2,
+  Circle,
+} from "lucide-react"
 
 // Custom X (formerly Twitter) icon component
 const XIcon = ({ className }: { className?: string }) => (
@@ -18,6 +31,12 @@ const XIcon = ({ className }: { className?: string }) => (
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
   </svg>
 );
+
+// Shared restyled classNames for the pill-shaped form controls
+const pillInput =
+  "h-auto rounded-[20px] border-gray-300 px-6 py-3 text-base placeholder:text-black/50"
+const pillLabel = "text-base sm:text-lg font-medium text-gray-900/80"
+const stepBadge = "flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-gradient-to-b from-violet-600 to-primary text-white font-semibold text-sm sm:text-base shrink-0"
 
 export default function JoinPage() {
   const [formData, setFormData] = useState({
@@ -144,39 +163,35 @@ export default function JoinPage() {
   if (isSubmitted) {
     return (
       <main className="min-h-screen bg-gray-50">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <Card className="text-center">
-            <CardContent className="p-12">
-              <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-6" />
-              <h1 className="font-serif text-3xl font-bold text-gray-900 mb-4">Welcome to the Club!</h1>
-              <p className="text-lg text-gray-600 mb-8">
-                Thank you for joining the LAUTECH Blockchain Club. We've sent a confirmation email with next steps and
-                information about upcoming events.
-              </p>
-              <div className="space-y-4">
-                <Button asChild className="w-full">
-                  <a href="/events">Explore Upcoming Events</a>
-                </Button>
-                <Button variant="outline" asChild className="w-full bg-transparent">
-                  <a href="/">Return to Homepage</a>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-6" />
+          <h1 className="font-serif text-3xl font-bold text-gray-900 mb-4">Welcome to the Club!</h1>
+          <p className="text-lg text-gray-600 mb-8">
+            Thank you for joining the LAUTECH Blockchain Club. We've sent a confirmation email with next steps and
+            information about upcoming events.
+          </p>
+          <div className="space-y-4 max-w-sm mx-auto">
+            <Button asChild className="w-full rounded-[20px]">
+              <a href="/events">Explore Upcoming Events</a>
+            </Button>
+            <Button variant="outline" asChild className="w-full rounded-[20px] bg-transparent">
+              <a href="/">Return to Homepage</a>
+            </Button>
+          </div>
         </div>
       </main>
     )
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-linear-to-br from-blue-600/10 via-blue-100/5 to-blue-600/5 py-12 sm:py-16">
+    <main className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="bg-[#ebf3fe] py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-4 sm:mb-6">
             Join Our Community
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+          <p className="text-lg sm:text-xl font-medium text-gray-900/80 max-w-3xl mx-auto leading-relaxed">
             Become part of LAUTECH's most innovative student community and start your journey into the future of
             technology.
           </p>
@@ -184,133 +199,157 @@ export default function JoinPage() {
       </section>
 
       {/* Member Benefits */}
-      <section className="py-12 sm:py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-primary mb-3 sm:mb-4">Member Benefits</h2>
-            <p className="text-base sm:text-lg text-gray-600">
+      <section className="relative overflow-hidden bg-white py-12 sm:py-16">
+        <div
+          className="absolute inset-x-0 bottom-0 h-64 bg-primary/10 [clip-path:polygon(0%_0%,100%_100%,0%_100%)]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-64 bg-primary/10 [clip-path:polygon(0%_100%,100%_0%,100%_100%)]"
+          aria-hidden="true"
+        />
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12 flex flex-col items-center gap-3">
+            <Pill>Member Benefits</Pill>
+            <p className="text-base sm:text-lg text-gray-900/80">
               Unlock exclusive opportunities and resources as a club member
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {memberBenefits.map((benefit, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-6 sm:p-8 text-center">
-                  <benefit.icon className="h-10 w-10 sm:h-12 sm:w-12 text-blue-600 mx-auto mb-4 sm:mb-6" />
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{benefit.description}</p>
-                </CardContent>
-              </Card>
+              <div
+                key={index}
+                className="flex flex-col items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-6 text-center shadow-sm"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-b from-violet-600 to-primary">
+                  <benefit.icon className="h-5 w-5 text-white" />
+                </div>
+                <h3 className="font-medium text-primary">{benefit.title}</h3>
+                <p className="text-sm text-gray-900/70 leading-relaxed">{benefit.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Membership Form */}
-       <section className="py-8 sm:py-12 lg:py-16 bg-gray-50 min-h-screen">
-      <div className="max-w-5xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
-        <Card className="shadow-xl border-0 rounded-xl sm:rounded-2xl overflow-hidden">
-          <CardHeader className="text-center pb-6 sm:pb-8 lg:pb-10 px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-10 bg-linear-to-r from-blue-50 to-indigo-50">
-            <CardTitle className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-primary mb-3">
               Membership Application
-            </CardTitle>
-            <p className="text-gray-600 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
+            </h2>
+            <p className="text-gray-900 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
               Fill out the form below to join our community of blockchain enthusiasts
             </p>
-          </CardHeader>
-          
-          <CardContent className="p-4 sm:p-6 lg:p-8 xl:p-10">
-            {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm sm:text-base">
-                {error}
-              </div>
-            )}
-            
-            <div className="space-y-8 sm:space-y-10 lg:space-y-12">
-              {/* Personal Information */}
-              <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-100">
-                <h3 className="font-serif text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 lg:mb-8 flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                    <span className="text-blue-600 font-bold text-sm sm:text-base">1</span>
-                  </div>
-                  Personal Information
-                </h3>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName" className="text-sm sm:text-base font-semibold">
-                      First Name *
-                    </Label>
-                    <Input
-                      id="firstName"
-                      value={formData.firstName}
-                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      required
-                      className="h-11 sm:h-12 text-base"
-                      placeholder="Enter your first name"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName" className="text-sm sm:text-base font-semibold">
-                      Last Name *
-                    </Label>
-                    <Input
-                      id="lastName"
-                      value={formData.lastName}
-                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      required
-                      className="h-11 sm:h-12 text-base"
-                      placeholder="Enter your last name"
-                    />
-                  </div>
-                  
-                  <div className="lg:col-span-2 space-y-2">
-                    <Label htmlFor="email" className="text-sm sm:text-base font-semibold">
-                      Email Address *
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      className="h-11 sm:h-12 text-base"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                  
-                  <div className="lg:col-span-2 space-y-2">
-                    <Label htmlFor="phone" className="text-sm sm:text-base font-semibold">
-                      Phone Number
-                    </Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="h-11 sm:h-12 text-base"
-                      placeholder="+234 xxx xxx xxxx"
-                    />
-                  </div>
+          </div>
+
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm sm:text-base">
+              {error}
+            </div>
+          )}
+
+          <div className="space-y-10 sm:space-y-14">
+            {/* Personal Information */}
+            <div>
+              <h3 className="flex items-center gap-4 text-2xl sm:text-3xl font-semibold text-gray-900 mb-6 sm:mb-8">
+                <span className={stepBadge}>1</span>
+                Personal Information
+              </h3>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+                <div className="space-y-2">
+                  <Label htmlFor="firstName" className={pillLabel}>
+                    First Name *
+                  </Label>
+                  <Input
+                    id="firstName"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    required
+                    className={pillInput}
+                    placeholder="Enter your first name"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="lastName" className={pillLabel}>
+                    Last Name *
+                  </Label>
+                  <Input
+                    id="lastName"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    required
+                    className={pillInput}
+                    placeholder="Enter your last name"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email" className={pillLabel}>
+                    E-mail Address *
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    className={pillInput}
+                    placeholder="example@gmail.com"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="phone" className={pillLabel}>
+                    Phone Number *
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className={pillInput}
+                    placeholder="+234 8000000000"
+                  />
                 </div>
               </div>
 
-              {/* Academic Information */}
-              <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-100">
-                <h3 className="font-serif text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 lg:mb-8 flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                    <span className="text-green-600 font-bold text-sm sm:text-base">2</span>
-                  </div>
+              {/* Visual only — no auth system wired up behind these */}
+              <div className="mt-8 flex flex-col items-center gap-4 max-w-xl mx-auto">
+                <Button
+                  type="button"
+                  className="w-full rounded-[20px] bg-gradient-to-b from-violet-600 to-primary py-6 text-base"
+                >
+                  <Apple className="h-5 w-5" /> Sign in with Apple
+                </Button>
+                <Button
+                  type="button"
+                  className="w-full rounded-[20px] bg-gradient-to-b from-violet-600 to-primary py-6 text-base"
+                >
+                  <Mail className="h-5 w-5" /> Sign in with Email
+                </Button>
+                <span className="text-sm text-gray-900">
+                  Already have an Account? <span className="text-primary underline">Login here</span>
+                </span>
+              </div>
+            </div>
+
+            {/* Academic Information & Stay Connected */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+              <div>
+                <h3 className="flex items-center gap-4 text-2xl sm:text-3xl font-semibold text-gray-900 mb-6 sm:mb-8">
+                  <span className={stepBadge}>2</span>
                   Academic Information
                 </h3>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+
+                <div className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="studentId" className="text-sm sm:text-base font-semibold">
+                    <Label htmlFor="studentId" className={pillLabel}>
                       Student ID *
                     </Label>
                     <Input
@@ -318,13 +357,13 @@ export default function JoinPage() {
                       value={formData.studentId}
                       onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
                       required
-                      className="h-11 sm:h-12 text-base"
-                      placeholder="e.g., 18/0001"
+                      className={pillInput}
+                      placeholder="e.g 26/005"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
-                    <Label htmlFor="department" className="text-sm sm:text-base font-semibold">
+                    <Label htmlFor="department" className={pillLabel}>
                       Department *
                     </Label>
                     <Input
@@ -332,277 +371,242 @@ export default function JoinPage() {
                       value={formData.department}
                       onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                       required
-                      className="h-11 sm:h-12 text-base"
-                      placeholder="e.g., Computer Science"
+                      className={pillInput}
+                      placeholder="e.g Nursing"
                     />
                   </div>
-                  
-                  <div className="lg:col-span-2 space-y-2">
-                    <Label htmlFor="level" className="text-sm sm:text-base font-semibold">
-                      Current Level *
+
+                  <div className="space-y-2">
+                    <Label htmlFor="level" className={pillLabel}>
+                      Current level *
                     </Label>
-                    <Select
+                    <Input
+                      id="level"
                       value={formData.level}
-                      onValueChange={(value) => setFormData({ ...formData, level: value })}
-                    >
-                      <SelectTrigger className="h-11 sm:h-12">
-                        <SelectValue placeholder="Select your current level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="100">100 Level</SelectItem>
-                        <SelectItem value="200">200 Level</SelectItem>
-                        <SelectItem value="300">300 Level</SelectItem>
-                        <SelectItem value="400">400 Level</SelectItem>
-                        <SelectItem value="500">500 Level</SelectItem>
-                        <SelectItem value="postgraduate">Postgraduate</SelectItem>
-                      </SelectContent>
-                    </Select>
+                      onChange={(e) => setFormData({ ...formData, level: e.target.value })}
+                      required
+                      className={pillInput}
+                      placeholder="Enter your current level"
+                    />
                   </div>
                 </div>
               </div>
 
-              {/* Social Media Follow */}
-              <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-100">
-                <h3 className="font-serif text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 lg:mb-8 flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                    <span className="text-purple-600 font-bold text-sm sm:text-base">3</span>
-                  </div>
+              <div>
+                <h3 className="flex items-center gap-4 text-2xl sm:text-3xl font-semibold text-gray-900 mb-6 sm:mb-8">
+                  <span className={stepBadge}>3</span>
                   Stay Connected
                 </h3>
-                
-                <div className="space-y-4 sm:space-y-6">
-                  <div>
-                    <Label className="text-sm sm:text-base font-semibold mb-3 sm:mb-4 block">
-                      Have you followed our X (Twitter) account? *
-                    </Label>
-                    
-                    <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-1 lg:grid-cols-2 sm:gap-4">
-                      <button
-                        type="button"
-                        onClick={() => setFormData({ ...formData, followedX: "yes" })}
-                        className={`w-full p-4 sm:p-5 rounded-lg border-2 transition-all text-left touch-manipulation ${
-                          formData.followedX === "yes"
-                            ? "border-blue-500 bg-blue-50 text-blue-800 shadow-md"
-                            : "border-gray-300 hover:border-gray-400 hover:bg-gray-50"
-                        }`}
-                      >
-                        <div className="flex items-center">
-                          <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 mr-3 sm:mr-4 flex items-center justify-center ${
-                            formData.followedX === "yes"
-                              ? "border-blue-500 bg-blue-500"
-                              : "border-gray-300"
-                          }`}>
-                            {formData.followedX === "yes" && (
-                              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white"></div>
-                            )}
-                          </div>
-                          <span className="text-sm sm:text-base font-medium">
-                            Yes, I'm already following @BlockchainLaut1
-                          </span>
-                        </div>
-                      </button>
-                      
-                      <button
-                        type="button"
-                        onClick={() => setFormData({ ...formData, followedX: "no" })}
-                        className={`w-full p-4 sm:p-5 rounded-lg border-2 transition-all text-left touch-manipulation ${
-                          formData.followedX === "no"
-                            ? "border-blue-500 bg-blue-50 text-blue-800 shadow-md"
-                            : "border-gray-300 hover:border-gray-400 hover:bg-gray-50"
-                        }`}
-                      >
-                        <div className="flex items-center">
-                          <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 mr-3 sm:mr-4 flex items-center justify-center ${
-                            formData.followedX === "no"
-                              ? "border-blue-500 bg-blue-500"
-                              : "border-gray-300"
-                          }`}>
-                            {formData.followedX === "no" && (
-                              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white"></div>
-                            )}
-                          </div>
-                          <span className="text-sm sm:text-base font-medium">
-                            No, I haven't followed yet
-                          </span>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                  
+
+                <div className="space-y-4">
+                  <Label className={`${pillLabel} block`}>
+                    Have you followed our X (Twitter) account? *
+                  </Label>
+
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, followedX: "yes" })}
+                    className={`flex w-full items-center gap-3 rounded-[20px] border px-6 py-3 text-left transition-colors ${
+                      formData.followedX === "yes"
+                        ? "border-primary bg-primary/5"
+                        : "border-gray-300 hover:border-gray-400"
+                    }`}
+                  >
+                    {formData.followedX === "yes" ? (
+                      <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
+                    ) : (
+                      <Circle className="h-5 w-5 shrink-0 text-gray-400" />
+                    )}
+                    <span className="text-sm sm:text-base">Yes, I&apos;m already following @BlockchainLaut1</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, followedX: "no" })}
+                    className={`flex w-full items-center gap-3 rounded-[20px] border px-6 py-3 text-left transition-colors ${
+                      formData.followedX === "no"
+                        ? "border-primary bg-primary/5"
+                        : "border-gray-300 hover:border-gray-400"
+                    }`}
+                  >
+                    {formData.followedX === "no" ? (
+                      <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
+                    ) : (
+                      <Circle className="h-5 w-5 shrink-0 text-gray-400" />
+                    )}
+                    <span className="text-sm sm:text-base">No, I haven&apos;t followed yet</span>
+                  </button>
+
                   {formData.followedX === "no" && (
-                    <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-linear-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                      <p className="text-sm sm:text-base text-blue-800 mb-4 leading-relaxed">
+                    <div className="flex flex-col items-center gap-4 rounded-[20px] border border-gray-200 px-6 py-4 text-center">
+                      <p className="text-sm text-gray-900/70 leading-relaxed">
                         Follow us on X to stay updated with the latest blockchain news, events, and opportunities!
                       </p>
                       <Button
                         type="button"
                         onClick={handleFollowX}
-                        variant="outline"
-                        className="w-full sm:w-auto bg-black text-white hover:bg-gray-800 border-black h-11 sm:h-12 px-6"
+                        className="w-fit gap-2 rounded-[10px] bg-gradient-to-b from-violet-600 to-primary px-4 py-2"
                       >
-                        <XIcon className="w-4 h-4 mr-2" />
-                        Follow @BlockchainLaut1
-                        <ExternalLink className="w-4 h-4 ml-2" />
+                        <XIcon className="w-4 h-4" />
+                        BlockchainLaut1
+                        <ExternalLink className="w-4 h-4" />
                       </Button>
                     </div>
                   )}
                 </div>
               </div>
+            </div>
 
-              {/* Interests */}
-              <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-100">
-                <h3 className="font-serif text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 lg:mb-8 flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                    <span className="text-orange-600 font-bold text-sm sm:text-base">4</span>
-                  </div>
-                  Areas of Interest
-                </h3>
-                
-                <p className="text-gray-600 mb-6 text-sm sm:text-base leading-relaxed">
-                  Select all blockchain topics that interest you:
-                </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
-                  {interests.map((interest) => (
-                    <div key={interest} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                      <Checkbox
-                        id={interest}
-                        checked={formData.interests.includes(interest)}
-                        onCheckedChange={() => handleInterestToggle(interest)}
-                        className="w-5 h-5"
-                      />
-                      <Label htmlFor={interest} className="text-sm sm:text-base cursor-pointer leading-relaxed flex-1">
+            {/* Areas of Interest */}
+            <div>
+              <h3 className="flex items-center gap-4 text-2xl sm:text-3xl font-semibold text-gray-900 mb-2">
+                <span className={stepBadge}>4</span>
+                Areas of Interest
+              </h3>
+              <p className="text-gray-900 mb-6 text-base leading-relaxed">
+                Select all blockchain topics that interest you:
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
+                {interests.map((interest) => (
+                  <label
+                    key={interest}
+                    htmlFor={interest}
+                    className="flex items-center gap-3 rounded-[15px] border border-gray-200 bg-gray-50 px-6 py-3 cursor-pointer"
+                  >
+                    <Checkbox
+                      id={interest}
+                      checked={formData.interests.includes(interest)}
+                      onCheckedChange={() => handleInterestToggle(interest)}
+                    />
+                    <span className="text-sm leading-relaxed flex-1">{interest}</span>
+                  </label>
+                ))}
+              </div>
+
+              {formData.interests.length > 0 && (
+                <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm font-medium text-gray-700 mb-3">Selected interests:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {formData.interests.map((interest) => (
+                      <Badge key={interest} variant="secondary" className="bg-primary/10 text-primary text-xs sm:text-sm px-3 py-1">
                         {interest}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-                
-                {formData.interests.length > 0 && (
-                  <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm font-medium text-gray-700 mb-3">Selected interests:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {formData.interests.map((interest) => (
-                        <Badge key={interest} variant="secondary" className="bg-blue-100 text-blue-800 text-xs sm:text-sm px-3 py-1">
-                          {interest}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Experience & Goals */}
-              <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-100">
-                <h3 className="font-serif text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 lg:mb-8 flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-teal-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                    <span className="text-teal-600 font-bold text-sm sm:text-base">5</span>
-                  </div>
-                  Experience & Goals
-                </h3>
-                
-                <div className="space-y-6 sm:space-y-8">
-                  <div className="space-y-2">
-                    <Label htmlFor="experience" className="text-sm sm:text-base font-semibold">
-                      Previous Blockchain Experience
-                    </Label>
-                    <Select
-                      value={formData.experience}
-                      onValueChange={(value) => setFormData({ ...formData, experience: value })}
-                    >
-                      <SelectTrigger className="h-11 sm:h-12">
-                        <SelectValue placeholder="Select your experience level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">Complete Beginner</SelectItem>
-                        <SelectItem value="basic">Basic Knowledge</SelectItem>
-                        <SelectItem value="intermediate">Some Experience</SelectItem>
-                        <SelectItem value="advanced">Advanced</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="goals" className="text-sm sm:text-base font-semibold">
-                      What do you hope to achieve through the club?
-                    </Label>
-                    <Textarea
-                      id="goals"
-                      value={formData.goals}
-                      onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
-                      rows={5}
-                      placeholder="Tell us about your goals, what you hope to learn, and how you'd like to contribute to the blockchain community..."
-                      className="text-base resize-none"
-                    />
+                      </Badge>
+                    ))}
                   </div>
                 </div>
-              </div>
+              )}
+            </div>
 
-              {/* Newsletter & Terms */}
-              <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-100">
-                <h3 className="font-serif text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 lg:mb-8 flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-rose-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                    <span className="text-rose-600 font-bold text-sm sm:text-base">6</span>
-                  </div>
-                  Final Steps
-                </h3>
-                
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="flex items-start space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors">
-                    <Checkbox
-                      id="newsletter"
-                      checked={formData.newsletter}
-                      onCheckedChange={(checked) => setFormData({ ...formData, newsletter: checked === true })}
-                      className="mt-1 w-5 h-5"
-                    />
-                    <Label htmlFor="newsletter" className="cursor-pointer text-sm sm:text-base leading-relaxed flex-1">
-                      Subscribe to our newsletter for updates on events, blockchain news, and exclusive opportunities
-                    </Label>
-                  </div>
-                  
-                  <div className="flex items-start space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border-l-4 border-blue-500">
-                    <Checkbox
-                      id="terms"
-                      checked={formData.terms}
-                      onCheckedChange={(checked) => setFormData({ ...formData, terms: checked === true })}
-                      required
-                      className="mt-1 w-5 h-5"
-                    />
-                    <Label htmlFor="terms" className="cursor-pointer text-sm sm:text-base leading-relaxed flex-1 font-medium">
-                      I agree to the club's terms and conditions and privacy policy *
-                    </Label>
-                  </div>
+            {/* Experience & Goals */}
+            <div>
+              <h3 className="flex items-center gap-4 text-2xl sm:text-3xl font-semibold text-gray-900 mb-6 sm:mb-8">
+                <span className={stepBadge}>5</span>
+                Experience & Goals
+              </h3>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <Label htmlFor="experience" className={pillLabel}>
+                    Previous Blockchain Experience
+                  </Label>
+                  <Select
+                    value={formData.experience}
+                    onValueChange={(value) => setFormData({ ...formData, experience: value })}
+                  >
+                    <SelectTrigger className={`${pillInput} w-full`}>
+                      <SelectValue placeholder="Select your experience level" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">Complete Beginner</SelectItem>
+                      <SelectItem value="basic">Basic Knowledge</SelectItem>
+                      <SelectItem value="intermediate">Some Experience</SelectItem>
+                      <SelectItem value="advanced">Advanced</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-              </div>
 
-              {/* Submit Button */}
-              <div className="pt-4 sm:pt-6">
-                <Button 
-                  type="button" 
-                  onClick={handleSubmit}
-                  className="w-full h-12 sm:h-14 text-base sm:text-lg font-semibold bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200" 
-                  disabled={isSubmitting || !formData.terms}
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                      Submitting Application...
-                    </div>
-                  ) : (
-                    "Join the Blockchain Community"
-                  )}
-                </Button>
-                
-                <p className="text-xs sm:text-sm text-gray-500 text-center mt-3 sm:mt-4 leading-relaxed">
-                  By submitting this form, you'll receive a confirmation email within 24 hours
-                </p>
+                <div className="space-y-2">
+                  <Label htmlFor="goals" className={pillLabel}>
+                    What do you hope to achieve through the Club
+                  </Label>
+                  <Textarea
+                    id="goals"
+                    value={formData.goals}
+                    onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
+                    rows={5}
+                    placeholder="Tell us about what you want to learn, your goal and how you'd like to contribute to the blockchain community"
+                    className="rounded-[20px] border-gray-300 px-6 py-3 text-base resize-none placeholder:text-black/50"
+                  />
+                </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
 
+            {/* Final Steps */}
+            <div>
+              <h3 className="flex items-center gap-4 text-2xl sm:text-3xl font-semibold text-gray-900 mb-6 sm:mb-8">
+                <span className={stepBadge}>6</span>
+                Final Steps
+              </h3>
+
+              <div className="space-y-4">
+                <label
+                  htmlFor="newsletter"
+                  className="flex items-center gap-3 rounded-[15px] border border-gray-200 bg-gray-50 px-6 py-4 cursor-pointer"
+                >
+                  <Checkbox
+                    id="newsletter"
+                    checked={formData.newsletter}
+                    onCheckedChange={(checked) => setFormData({ ...formData, newsletter: checked === true })}
+                  />
+                  <span className="text-sm leading-relaxed flex-1">
+                    Subscribe to our newsletter for updates on events, blockchain news and exclusive opportunities
+                  </span>
+                </label>
+
+                <label
+                  htmlFor="terms"
+                  className="flex items-center gap-3 rounded-[15px] border border-gray-200 bg-gray-50 px-6 py-4 cursor-pointer"
+                >
+                  <Checkbox
+                    id="terms"
+                    checked={formData.terms}
+                    onCheckedChange={(checked) => setFormData({ ...formData, terms: checked === true })}
+                    required
+                  />
+                  <span className="text-sm leading-relaxed flex-1">
+                    I agree to the club&apos;s term, condition and privacy policy
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            {/* Submit */}
+            <div className="pt-2">
+              <Button
+                type="button"
+                onClick={handleSubmit}
+                className="w-full h-auto rounded-[20px] bg-gradient-to-b from-violet-600 to-primary py-4 text-lg font-medium"
+                disabled={isSubmitting || !formData.terms}
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center gap-3">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    Submitting Application...
+                  </div>
+                ) : (
+                  "Join the Blockchain Community"
+                )}
+              </Button>
+
+              <p className="text-sm text-gray-900/50 text-center mt-4 leading-relaxed">
+                By submitting this form, you&apos;ll receive a confirmation email within{" "}
+                <span className="text-primary">24 hours</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
