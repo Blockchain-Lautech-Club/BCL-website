@@ -2,22 +2,15 @@
 
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Pill, SectionIntro } from "@/components/section-intro"
 import Link from "next/link"
 import {
-  Code,
-  CheckCircle,
   ArrowRight,
   Users,
-  Target,
   Award,
-  Calendar,
   BookOpen,
   Rocket,
-  Lightbulb,
-  GitBranch,
-  Blocks,
+  MessageCircle,
   Briefcase,
   Lock,
   Loader2,
@@ -25,36 +18,137 @@ import {
 
 const API_BASE = "https://bcl-website.onrender.com"
 
-const web2Skills = [
-  "HTML, CSS, JavaScript, Next.js & Node.js",
-  "Frontend frameworks & basic backend concepts",
-  "Version control (Git & GitHub)",
-  "Building and deploying real-world projects",
-  "Introduction to APIs & databases",
+type Theme = {
+  tagBg: string
+  tagText: string
+  tagBorder: string
+  cardBg: string
+  accentBar: string
+}
+
+const themes: Record<"violet" | "amber", Theme> = {
+  violet: {
+    tagBg: "bg-violet-50",
+    tagText: "text-violet-700",
+    tagBorder: "border-violet-200",
+    cardBg: "bg-gradient-to-b from-violet-50 to-white",
+    accentBar: "bg-violet-500",
+  },
+  amber: {
+    tagBg: "bg-amber-50",
+    tagText: "text-amber-700",
+    tagBorder: "border-amber-200",
+    cardBg: "bg-gradient-to-b from-amber-50 to-white",
+    accentBar: "bg-amber-400",
+  },
+}
+
+const tracks = [
+  {
+    theme: themes.violet,
+    phaseTag: "FOUNDATION · PHASE 1",
+    title: "Web2 Track",
+    description:
+      "Core technologies for building modern web applications the foundation every blockchain developer needs.",
+    skills: [
+      "HTML, CSS & JavaScript",
+      "Git & GitHub (Version Control)",
+      "Building & deploying real projects",
+      "APIs & databases",
+      "Next.js & Node.js",
+    ],
+    outcome:
+      "Build and deploy functional web applications and understand modern development workflows.",
+  },
+  {
+    theme: themes.amber,
+    phaseTag: "BLOCKCHAIN · PHASE 2",
+    title: "Web3 Track",
+    description:
+      "Transition into decentralized development smart contracts, dApps, and real blockchain ecosystems.",
+    skills: [
+      "Blockchain fundamentals & Web3",
+      "Smart contracts & dApps",
+      "Wallets, transactions & on-chain",
+      "Building on real blockchain ecosystem",
+      "Web3 Tooling",
+    ],
+    outcome:
+      "Build basic dApps and understand how blockchain integrates with web applications end-to-end.",
+  },
 ]
 
-const web3Skills = [
-  "Blockchain fundamentals & Web3 concepts",
-  "Smart contracts & decentralized applications (dApps)",
-  "Wallets, transactions & on-chain interactions",
-  "Building on real blockchain ecosystems",
-  "Web3 tooling & developer best practices",
+const accentCycleTop = ["border-t-blue-500", "border-t-violet-500", "border-t-amber-400", "border-t-emerald-500"]
+const accentCycleLeft = ["border-l-blue-500", "border-l-violet-500", "border-l-amber-400", "border-l-emerald-500"]
+
+const phases = [
+  {
+    label: "PHASE 01 · WEEKS 1–4",
+    title: "Web Fundamentals",
+    description: "HTML, CSS, JavaScript basics & version control",
+  },
+  {
+    label: "PHASE 02 · WEEKS 5–6",
+    title: "Frameworks & Backend",
+    description: "Next.js, Node.js, APIs & database integration",
+  },
+  {
+    label: "PHASE 03 · WEEKS 7–9",
+    title: "Blockchain Foundation",
+    description: "Web3 concepts, wallets, on-chain interactions",
+  },
+  {
+    label: "PHASE 04 · WEEKS 10–12",
+    title: "Build & Ship",
+    description: "Smart contracts, dApp dev & final project demo",
+  },
 ]
 
 const targetAudience = [
-  { icon: Code,      text: "Beginners interested in software development" },
-  { icon: Rocket,    text: "Students transitioning into Web3" },
-  { icon: Lightbulb, text: "Developers who want blockchain experience" },
-  { icon: Target,    text: "Anyone passionate about building real products" },
+  "Beginners curious about software development",
+  "Students transitioning into Web3",
+  "Developers who want blockchain experience",
+  "Anyone passionate about building real products",
 ]
 
 const benefits = [
-  { icon: BookOpen,  title: "Strong Web2 and Web3 Foundation",   description: "Comprehensive understanding of both traditional and blockchain development" },
-  { icon: Code,      title: "Real Project Portfolio",             description: "Build and deploy actual applications to showcase your skills" },
-  { icon: Users,     title: "Expert Mentorship",                  description: "Learn from experienced builders throughout your journey" },
-  { icon: Lightbulb, title: "Community Support",                  description: "Collaborate with peers and get help when you need it" },
-  { icon: Award,     title: "Hackathon Ready",                    description: "Prepare for competitions and real-world challenges" },
-  { icon: Briefcase, title: "Internship Preparation",             description: "Gain skills that make you competitive for opportunities" },
+  {
+    icon: BookOpen,
+    title: "Web2 & Web3 Foundation",
+    description: "Comprehensive grasp of both traditional and blockchain development, the full stack.",
+  },
+  {
+    icon: Briefcase,
+    title: "Real Project Portfolio",
+    description: "Build and deploy actual applications you can show employers and pitch to investors.",
+  },
+  {
+    icon: Users,
+    title: "Expert Mentorship",
+    description: "Learn from experienced builders who've shipped real products in Web3.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Community Support",
+    description: "Collaborate with peers, get unstuck fast, and build lasting professional connections.",
+  },
+  {
+    icon: Award,
+    title: "Hackathon Ready",
+    description: "Come out equipped to compete in blockchain hackathons and real-world challenges.",
+  },
+  {
+    icon: Rocket,
+    title: "Internship Preparation",
+    description: "Gain the skills and portfolio that make you competitive for Web3 internships and jobs.",
+  },
+]
+
+const stats = [
+  { value: "12", label: "Weeks Duration", filled: true },
+  { value: "100", label: "Available Slots", filled: false },
+  { value: "2", label: "Learning Tracks", filled: false },
+  { value: "Hybrid", label: "Format", filled: false },
 ]
 
 export default function DevelopmentCohortPage() {
@@ -67,249 +161,218 @@ export default function DevelopmentCohortPage() {
       .catch(() => setApplicationsOpen(true)) // fail open — don't block if API is down
   }, [])
 
-  const RegisterButton = ({ size = "lg", className = "" }: { size?: "lg" | "sm", className?: string }) => {
-    // Still fetching
+  const RegisterButton = ({ className = "" }: { className?: string }) => {
     if (applicationsOpen === null) {
       return (
-        <Button size={size} className={className} disabled>
-          <Loader2 className="h-5 w-5 mr-2 animate-spin" /> Checking...
+        <Button className={className} disabled>
+          <Loader2 className="h-5 w-5 animate-spin" /> Checking...
         </Button>
       )
     }
-    // Closed
     if (!applicationsOpen) {
       return (
-        <Button size={size} className={className} disabled>
-          <Lock className="h-5 w-5 mr-2" /> Applications Closed
+        <Button className={className} disabled>
+          <Lock className="h-5 w-5" /> Applications Closed
         </Button>
       )
     }
-    // Open
     return (
-      <Button asChild size={size} className={`${className}`}>
+      <Button asChild className={className}>
         <Link href="/cohorts/development/devcohort1/register" className="flex items-center gap-2">
-          Register for the Cohort <ArrowRight className="h-5 w-5" />
+          Apply Now <ArrowRight className="h-5 w-5" />
         </Link>
       </Button>
     )
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="bg-primary/5 py-12">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 text-center sm:px-6 lg:px-8">
+          <Pill>Developer Cohort Programs</Pill>
+          <h1 className="font-serif text-4xl font-bold text-gray-900 md:text-5xl">
+            Developer Cohort Programs
+          </h1>
+          <p className="text-gray-600 leading-relaxed">
+            Structured learning paths to transform you from beginner to blockchain developer
+          </p>
+        </div>
+      </section>
 
-      {/* Hero Section */}
-      <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-14">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Badge className="mb-4 bg-primary text-white">Developer Cohort</Badge>
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
-              DEV - COHORT I
-            </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mt-4">
-              This cohort blends Web2 foundations with Web3 development, ensuring participants gain the skills
-              needed to build modern blockchain-enabled applications.
+      {/* Current Cohort */}
+      <section className="bg-white py-16">
+        <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:px-8 lg:flex-row lg:items-start lg:justify-between">
+          <div className="flex max-w-lg flex-col items-start gap-4">
+            <Pill>{applicationsOpen === false ? "Applications Closed" : "Now Open"}</Pill>
+            <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-4xl">
+              Current Cohort: <span className="text-primary">Developer Cohort 1</span>
+            </h2>
+            <p className="text-gray-400">
+              A comprehensive 12-week program blending Web2 foundations with Web3 development
+              built to take you from beginner to blockchain builder.
             </p>
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <RegisterButton className="rounded-xl px-6 py-3" />
+              <Button variant="outline" asChild className="rounded-xl px-6 py-3">
+                <Link href="/cohorts" className="flex items-center gap-2">
+                  ← All Cohorts
+                </Link>
+              </Button>
+            </div>
+          </div>
 
-            {/* Closed notice banner */}
-            {applicationsOpen === false && (
-              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-full text-red-700 text-sm font-medium">
-                <Lock className="h-4 w-4" />
-                Applications for this cohort are currently closed.
+          <div className="grid w-full max-w-xs grid-cols-2 gap-4 lg:flex lg:w-auto lg:flex-col">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className={`flex flex-col gap-1 rounded-lg px-4 py-3 ${
+                  stat.filled
+                    ? "bg-primary text-white"
+                    : "border border-primary/30 bg-white text-primary"
+                }`}
+              >
+                <span className="text-base font-semibold">{stat.value}</span>
+                <span className={`text-sm ${stat.filled ? "text-white/80" : "text-gray-400"}`}>
+                  {stat.label}
+                </span>
               </div>
-            )}
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-            <RegisterButton size="lg" className="text-lg px-8" />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Learning Tracks */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Learning Tracks</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              A comprehensive curriculum that takes you from web fundamentals to blockchain development
-            </p>
-          </div>
+      {/* Curriculum */}
+      <section className="bg-gray-50 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            align="left"
+            pill="Curriculum"
+            heading="Two tracks, one complete journey"
+            subtext="Start with the web fundamentals that power every great product, then move into blockchain development."
+          />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Web2 Track */}
-            <Card className="border-0 shadow-xl">
-              <CardHeader className="bg-linear-to-br from-primary/10 to-primary/5">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-3 bg-primary/20 rounded-lg">
-                    <Code className="h-8 w-8 text-primary" />
-                  </div>
-                  <div className="py-2">
-                    <Badge className="bg-primary text-white mb-2">Foundation</Badge>
-                    <CardTitle className="font-serif text-2xl font-bold text-gray-900">Web2 Track</CardTitle>
-                  </div>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {tracks.map((track) => (
+              <div
+                key={track.title}
+                className={`flex flex-col gap-4 rounded-2xl border border-gray-100 p-8 shadow-sm ${track.theme.cardBg}`}
+              >
+                <div className="flex flex-col gap-2">
+                  <span
+                    className={`inline-flex w-fit items-center rounded-md border px-4 py-1 text-sm ${track.theme.tagBg} ${track.theme.tagText} ${track.theme.tagBorder}`}
+                  >
+                    {track.phaseTag}
+                  </span>
+                  <h3 className="text-xl font-semibold text-gray-900">{track.title}</h3>
+                  <p className="text-gray-400">{track.description}</p>
                 </div>
-                <p className="text-gray-600 leading-relaxed mt-2">
-                  You will learn the core technologies required to build modern web applications.
-                </p>
-              </CardHeader>
-              <CardContent className="p-6">
-                <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-primary" /> What You'll Learn:
-                </h4>
-                <ul className="space-y-3 mb-6">
-                  {web2Skills.map((skill, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-gray-600 leading-relaxed">{skill}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="bg-primary/5 p-4 rounded-lg border-l-4 border-primary">
-                  <h5 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                    <Award className="h-5 w-5 text-primary" /> Outcome:
-                  </h5>
-                  <p className="text-gray-600 leading-relaxed">
-                    Participants will be able to build and deploy functional web applications and understand
-                    modern development workflows.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
 
-            {/* Web3 Track */}
-            <Card className="border-0 shadow-xl">
-              <CardHeader className="bg-linear-to-br from-accent/10 to-accent/5">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-3 bg-accent/20 rounded-lg">
-                    <Blocks className="h-8 w-8 text-accent" />
-                  </div>
-                  <div className="py-2">
-                    <Badge className="bg-accent text-white mb-2">Blockchain</Badge>
-                    <CardTitle className="font-serif text-2xl font-bold text-gray-900">Web3 Track</CardTitle>
-                  </div>
-                </div>
-                <p className="text-gray-600 leading-relaxed mt-2">
-                  You will transition into blockchain development and decentralized systems.
-                </p>
-              </CardHeader>
-              <CardContent className="p-6">
-                <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-accent" /> What You'll Learn:
-                </h4>
-                <ul className="space-y-3 mb-6">
-                  {web3Skills.map((skill, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-accent mt-0.5 shrink-0" />
-                      <span className="text-gray-600 leading-relaxed">{skill}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="bg-accent/5 p-4 rounded-lg border-l-4 border-accent">
-                  <h5 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                    <Award className="h-5 w-5 text-accent" /> Outcome:
-                  </h5>
-                  <p className="text-gray-600 leading-relaxed">
-                    Participants will be able to build basic dApps and understand how blockchain integrates
-                    with web applications.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+                <div className={`h-0.5 w-full rounded-full ${track.theme.accentBar}`} />
 
-      {/* Duration Badge */}
-      <section className="py-8 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="border-0 shadow-lg bg-linear-to-r from-primary/5 to-accent/5">
-            <CardContent className="p-6">
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
-                <Calendar className="h-8 w-8 text-primary" />
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-gray-900">Cohort Duration</h3>
-                  <p className="text-gray-600 text-lg">
-                    12 Weeks of structured learning, mentorship, and hands-on project building
-                  </p>
+                  <h4 className="mb-3 font-semibold text-gray-600">What you&apos;ll learn</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {track.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className={`inline-flex items-center rounded-md border px-4 py-1 text-sm ${track.theme.tagBg} ${track.theme.tagText} ${track.theme.tagBorder}`}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  className={`rounded-md border px-4 py-2 text-sm ${track.theme.tagBg} ${track.theme.tagBorder} ${track.theme.tagText}`}
+                >
+                  <span className="font-semibold">Tracking Outcome</span>
+                  <br />
+                  {track.outcome}
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Who This Is For */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Who This Cohort Is For</h2>
-            <p className="text-lg text-gray-600">This program is designed for motivated learners at any stage</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {targetAudience.map((item, index) => (
-              <Card key={index} className="border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-primary/10 rounded-lg">
-                      <item.icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <p className="text-gray-700 font-medium leading-relaxed">{item.text}</p>
-                  </div>
-                </CardContent>
-              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* What You'll Gain */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">What You'll Gain</h2>
-            <p className="text-lg text-gray-600">The skills, experience, and connections you need to succeed</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="p-4 bg-primary/10 rounded-lg mb-4">
-                      <benefit.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="font-serif text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Project Structure */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            align="left"
+            pill="Project Structure"
+            heading="12 weeks, structured progression"
+            subtext="Each phase builds on the last no jumping ahead, no skipping the foundations."
+          />
 
-      {/* CTA Section */}
-      <section className="py-16 bg-linear-to-br from-primary/10 via-accent/5 to-primary/5">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="border-0 shadow-xl">
-            <CardHeader>
-              <CardTitle className="font-serif text-3xl font-bold text-primary text-center">
-                Ready to Start?
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 leading-relaxed text-center mb-8 text-lg">
-                Take the first step into blockchain development with Blockchain LAUTECH.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <RegisterButton size="lg" className="text-lg px-8" />
-                <Button variant="outline" asChild size="lg" className="bg-transparent text-lg px-8">
-                  <Link href="/cohorts">View All Cohorts</Link>
-                </Button>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {phases.map((phase, i) => (
+              <div
+                key={phase.label}
+                className={`flex flex-col gap-1 rounded-lg border border-gray-200 border-t-4 bg-white px-6 py-4 ${accentCycleTop[i % accentCycleTop.length]}`}
+              >
+                <span className="text-xs font-medium text-gray-400">{phase.label}</span>
+                <span className="font-medium text-gray-900">{phase.title}</span>
+                <span className="text-sm text-gray-600">{phase.description}</span>
               </div>
-            </CardContent>
-          </Card>
+            ))}
+          </div>
         </div>
       </section>
 
+      {/* Who It's For */}
+      <section className="bg-gray-50 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            align="left"
+            pill="Who It's For"
+            heading="Built for motivated learners at any stage"
+            subtext="No prior blockchain experience needed — just the drive to build."
+          />
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {targetAudience.map((text, i) => (
+              <div
+                key={text}
+                className={`flex items-center rounded-lg border border-gray-200 border-l-4 bg-white px-6 py-4 ${accentCycleLeft[i % accentCycleLeft.length]}`}
+              >
+                <span className="text-sm text-gray-900">{text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills gained */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            align="left"
+            pill="What You'll Gain"
+            heading="Skills, experience & community"
+            subtext="Everything you need to complete in the Web3 job market after 12 weeks."
+          />
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {benefits.map((benefit) => (
+              <div
+                key={benefit.title}
+                className="flex flex-col gap-4 rounded-lg border border-gray-100 bg-white px-8 py-6 shadow-sm"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+                  <benefit.icon className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="mb-1 font-medium text-primary">{benefit.title}</h3>
+                  <p className="text-sm leading-relaxed text-gray-900">{benefit.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   )
 }

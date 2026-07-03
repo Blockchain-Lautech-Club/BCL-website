@@ -1,374 +1,360 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Pill, SectionIntro } from "@/components/section-intro"
 import Link from "next/link"
-import { 
-  Code, 
-  Palette, 
-  TrendingUp, 
+import {
+  Code,
+  Palette,
+  TrendingUp,
   BookOpen,
   Users,
-  CheckCircle,
   ArrowRight,
   GraduationCap,
   Target,
-  Lightbulb,
+  MessageCircle,
   Award,
-  Calendar,
-  UserPlus
+  PenLine,
+  Wrench,
+  Presentation,
+  type LucideIcon,
 } from "lucide-react"
+
+type Theme = {
+  tagBg: string
+  tagText: string
+  tagBorder: string
+  accentBar: string
+  whoBg: string
+  whoBorder: string
+  whoText: string
+}
+
+const themes: Record<"violet" | "amber" | "emerald" | "blue", Theme> = {
+  violet: {
+    tagBg: "bg-violet-50",
+    tagText: "text-violet-700",
+    tagBorder: "border-violet-200",
+    accentBar: "bg-violet-500",
+    whoBg: "bg-violet-50",
+    whoBorder: "border-violet-200",
+    whoText: "text-violet-700",
+  },
+  amber: {
+    tagBg: "bg-amber-50",
+    tagText: "text-amber-700",
+    tagBorder: "border-amber-200",
+    accentBar: "bg-amber-400",
+    whoBg: "bg-amber-50",
+    whoBorder: "border-amber-200",
+    whoText: "text-amber-700",
+  },
+  emerald: {
+    tagBg: "bg-emerald-50",
+    tagText: "text-emerald-700",
+    tagBorder: "border-emerald-200",
+    accentBar: "bg-emerald-500",
+    whoBg: "bg-emerald-50",
+    whoBorder: "border-emerald-200",
+    whoText: "text-emerald-700",
+  },
+  blue: {
+    tagBg: "bg-blue-50",
+    tagText: "text-blue-700",
+    tagBorder: "border-blue-200",
+    accentBar: "bg-blue-500",
+    whoBg: "bg-blue-50",
+    whoBorder: "border-blue-200",
+    whoText: "text-blue-700",
+  },
+}
 
 const cohorts = [
   {
     icon: Code,
-    iconColor: "text-primary",
-    bgColor: "bg-primary/10",
-    title: "Development Cohort",
-    description: "Learn how to build modern web applications & decentralized applications from scratch.",
+    theme: themes.violet,
+    category: "Development",
+    title: "Web & Blockchain Dev Cohort",
+    description:
+      "Build modern web apps and decentralized applications from scratch, frontend to smart contracts.",
     skills: [
-      "Frontend & Backend Frameworks",
-      "Blockchain fundamentals",
-      "Smart contracts (Solidity)",
-      "Web3 integration",
-      "DeFi, NFTs, and on-chain apps"
+      "Frontend & Backend",
+      "Blockchain Fundamentals",
+      "Web3 Integration",
+      "DeFi & NFTs",
+      "Solidity",
     ],
-    targetAudience: "Aspiring developers and programmers who want to build blockchain-based products.",
-    outcome: "Graduate with hands-on project experience and a solid foundation in Web3 development.",
-    ctaText: "View Development Cohorts",
+    targetAudience:
+      "Aspiring developers who want to build real blockchain-based products from day one.",
+    ctaText: "View Details",
     ctaLink: "/cohorts/development",
-    disabled: false
+    statusText: "Cohort 1 - 100 slots",
+    disabled: false,
   },
   {
     icon: Palette,
-    iconColor: "text-accent",
-    bgColor: "bg-accent/10",
-    title: "UI/UX & Product Cohort",
-    description: "Design user-friendly and visually appealing Web3 products.",
-    skills: [
-      "UI/UX principles for Web3 apps",
-      "Product design for blockchain platforms",
-      "Branding and visual systems",
-      "Design tools (Figma, prototyping)"
-    ],
-    targetAudience: "Creative students interested in design, branding, and user experience within Web3.",
-    outcome: "Build a portfolio of blockchain-focused design projects.",
-    ctaText: "Coming Soon",
+    theme: themes.amber,
+    category: "UI/UX & Product",
+    title: "Design & Product Cohort",
+    description:
+      "Design user-friendly and visually compelling Web3 products that people actually want to use.",
+    skills: ["UI/UX for Web3", "Branding Systems", "Prototyping", "Figma", "Product Design"],
+    targetAudience:
+      "Creative students into design, branding, and user experience within the Web3 space.",
+    ctaText: "View Details",
     ctaLink: "/cohorts/design",
-    disabled: true
+    statusText: "Opening Soon",
+    disabled: true,
   },
   {
     icon: TrendingUp,
-    iconColor: "text-green-600",
-    bgColor: "bg-green-600/10",
-    title: "Crypto Trading & Market Analysis Cohort",
-    description: "Understand the crypto market and learn responsible trading strategies.",
-    skills: [
-      "Market fundamentals",
-      "Technical and basic fundamental analysis",
-      "Risk management",
-      "Trading psychology"
-    ],
-    targetAudience: "Students interested in crypto markets, investing, and financial literacy.",
-    outcome: "Gain structured knowledge to navigate crypto markets responsibly.",
-    ctaText: "Coming Soon",
+    theme: themes.emerald,
+    category: "Trading & Markets",
+    title: "Crypto Trading & Analysis Cohort",
+    description:
+      "Understand crypto markets and develop responsible, strategy-backed trading habits.",
+    skills: ["Market Fundamentals", "Risk Management", "Trading Psychology", "Technical Analysis"],
+    targetAudience:
+      "Students curious about crypto markets, investing strategies, and financial literacy in Web3.",
+    ctaText: "View Details",
     ctaLink: "/cohorts/trading",
-    disabled: true
+    statusText: "Opening Soon",
+    disabled: true,
   },
   {
     icon: BookOpen,
-    iconColor: "text-purple-600",
-    bgColor: "bg-purple-600/10",
+    theme: themes.blue,
+    category: "Research & Education",
     title: "Web3 Research & Education Cohort",
-    description: "Focus on blockchain theory, governance, and education.",
-    skills: [
-      "Blockchain concepts and history",
-      "Tokenomics and governance",
-      "Web3 ethics and regulation",
-      "Content creation and community education"
-    ],
-    targetAudience: "Students who prefer research, writing, teaching, and community building in Web3.",
-    outcome: "Become a blockchain educator, researcher, or community advocate.",
-    ctaText: "Coming Soon",
+    description:
+      "Dive deep into blockchain theory, governance, and build your voice as a Web3 educator.",
+    skills: ["Blockchain History", "Governance", "Web3 Ethics", "Community Education", "Tokenomics"],
+    targetAudience:
+      "Students who prefer research, writing, teaching, and building Web3 communities.",
+    ctaText: "View Details",
     ctaLink: "/cohorts/research",
-    disabled: true
-  }
+    statusText: "Opening Soon",
+    disabled: true,
+  },
 ]
 
-const howItWorks = [
+const howItWorks: { title: string; description: string; icon: LucideIcon }[] = [
   {
-    step: "1",
-    title: "Apply or Register",
+    title: "Apply & Register",
     description: "Choose a cohort and sign up when registration opens.",
-    icon: UserPlus
+    icon: PenLine,
   },
   {
-    step: "2",
     title: "Learn",
     description: "Attend structured sessions, workshops, and tutorials.",
-    icon: BookOpen
+    icon: BookOpen,
   },
   {
-    step: "3",
     title: "Build",
-    description: "Work on real-world projects individually and in teams.",
-    icon: Code
+    description: "Work on real-world projects solo and in teams.",
+    icon: Wrench,
   },
   {
-    step: "4",
     title: "Mentorship",
     description: "Get guidance from experienced mentors and facilitators.",
-    icon: Users
+    icon: Presentation,
   },
   {
-    step: "5",
     title: "Graduate",
-    description: "Complete the program and receive certification and community recognition.",
-    icon: GraduationCap
-  }
+    description: "Complete the program and receive certification.",
+    icon: GraduationCap,
+  },
 ]
 
-const benefits = [
+const benefits: { title: string; description: string; icon: LucideIcon }[] = [
   {
     icon: Target,
     title: "Structured Learning Paths",
-    description: "Follow carefully designed curricula tailored to each specialization"
+    description: "Follow carefully designed curricula tailored to each specialization",
   },
   {
     icon: Code,
     title: "Hands-on Projects",
-    description: "Build real-world applications and solve practical problems"
+    description: "Build real-world applications and solve practical problems",
   },
   {
     icon: Users,
     title: "Expert Mentorship",
-    description: "Access to mentors and industry professionals throughout your journey"
+    description: "Access to mentors and industry professionals throughout your journey",
   },
   {
-    icon: Lightbulb,
+    icon: MessageCircle,
     title: "Community Support",
-    description: "Learn alongside passionate peers in a collaborative environment"
+    description: "Learn alongside passionate peers in a collaborative environment",
+  },
+  {
+    icon: TrendingUp,
+    title: "Career Preparation",
+    description: "Get ready for hackathons, internships, and job opportunities",
   },
   {
     icon: Award,
-    title: "Career Preparation",
-    description: "Get ready for hackathons, internships, and job opportunities"
-  },
-  {
-    icon: GraduationCap,
     title: "Certification",
-    description: "Receive recognition for completing the program successfully"
-  }
+    description: "Receive recognition for completing the program successfully",
+  },
 ]
 
 export default function CohortsPage() {
   return (
-    <main className="min-h-screen bg-gray-50">
-
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-linear-to-br from-primary/10 via-accent/5 to-primary/5 py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-4">
-              Our Cohorts
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-2">
-              Learn. Build. Grow.
-            </p>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our Cohort Programs are structured learning tracks designed to help students gain real-world 
-              blockchain skills in focused areas.
-            </p>
-            {/* <p className="text-lg text-gray-700 font-medium max-w-3xl mx-auto leading-relaxed mt-6">
-              Whether you are a beginner or already building, there is a cohort tailored for you.
-            </p> */}
-          </div>
-        </div>
-      </section>
-
-      {/* Available Cohorts */}
-      <section className="py-8 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Available Cohorts</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Choose the learning path that matches your interests and goals
-            </p>
-          </div> */}
-
-          <div className="space-y-8">
-            {cohorts.map((cohort, index) => (
-              <Card key={index} className="border-0 shadow-xl hover:shadow-2xl transition-shadow">
-                <CardContent className="p-8">
-                  <div className="flex flex-col lg:flex-row gap-8">
-                    {/* Icon & Title */}
-                    <div className="lg:w-1/3">
-                      <div className={`inline-flex p-4 ${cohort.bgColor} rounded-lg mb-4`}>
-                        <cohort.icon className={`h-12 w-12 ${cohort.iconColor}`} />
-                      </div>
-                      <h3 className="font-serif text-2xl font-bold text-gray-900 mb-2">
-                        {cohort.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed mb-6">
-                        {cohort.description}
-                      </p>
-                      {cohort.disabled ? (
-                        <Button disabled className="w-full lg:w-auto opacity-60 cursor-not-allowed">
-                          {cohort.ctaText}
-                        </Button>
-                      ) : (
-                        <Button asChild className="w-full lg:w-auto">
-                          <Link href={cohort.ctaLink} className="flex items-center justify-center gap-2">
-                            {cohort.ctaText} <ArrowRight className="h-4 w-4" />
-                          </Link>
-                        </Button>
-                      )}
-                    </div>
-
-                    {/* Details */}
-                    <div className="lg:w-2/3 space-y-6">
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                          <CheckCircle className="h-5 w-5 text-primary" />
-                          What You'll Learn:
-                        </h4>
-                        <ul className="space-y-2 ml-7">
-                          {cohort.skills.map((skill, idx) => (
-                            <li key={idx} className="text-gray-600 leading-relaxed">
-                              • {skill}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                          <Users className="h-5 w-5 text-accent" />
-                          Who It's For:
-                        </h4>
-                        <p className="text-gray-600 leading-relaxed ml-7">
-                          {cohort.targetAudience}
-                        </p>
-                      </div>
-
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                          <Award className="h-5 w-5 text-green-600" />
-                          Outcome:
-                        </h4>
-                        <p className="text-gray-600 leading-relaxed ml-7">
-                          {cohort.outcome}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How Our Cohorts Work */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">How Our Cohorts Work</h2>
-            <p className="text-lg text-gray-600">A simple, effective process to guide your learning journey</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {howItWorks.map((item, index) => (
-              <Card key={index} className="border-0 shadow-lg text-center">
-                <CardContent className="p-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full font-bold text-xl mb-4">
-                    {item.step}
-                  </div>
-                  <item.icon className="h-10 w-10 text-primary mx-auto mb-4" />
-                  <h3 className="font-serif text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Join */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">
-              Why Join a Blockchain LAUTECH Cohort?
-            </h2>
-            <p className="text-lg text-gray-600">The benefits that make our cohorts stand out</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/10 rounded-lg">
-                      <benefit.icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-serif text-lg font-bold text-gray-900 mb-2">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed text-sm">
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      {/* <section className="py-16 bg-linear-to-br from-primary/10 via-accent/5 to-primary/5">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="border-0 shadow-xl">
-            <CardHeader>
-              <CardTitle className="font-serif text-3xl font-bold text-primary text-center">
-                Ready to Start Your Journey?
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600 leading-relaxed text-center mb-8 text-lg">
-                Join one of our cohorts and take your first step into the blockchain ecosystem.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
-                  <Link href="/cohorts/all" className="flex items-center gap-2">
-                    Browse All Cohorts <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button variant="outline" asChild size="lg" className="bg-transparent">
-                  <Link href="/join">Join the Next Cohort</Link>
-                </Button>
-                <Button variant="outline" asChild size="lg" className="bg-transparent">
-                  <Link href="/mentor">Become a Mentor</Link>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section> */}
-
-      {/* Footer Tagline */}
-      {/* <section className="py-8 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-600 text-lg">
-            <span className="font-semibold text-primary">Blockchain LAUTECH</span> – Building the next generation of Web3 talent at LAUTECH.
+      <section className="bg-primary/5 py-12">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 text-center sm:px-6 lg:px-8">
+          <Pill>Our Cohorts</Pill>
+          <h1 className="font-serif text-4xl font-bold text-gray-900 md:text-5xl">
+            Level up your <span className="text-primary">Web3 Skills</span> with a Cohorts
+          </h1>
+          <p className="text-gray-600 leading-relaxed">
+            Our Cohort Programs are structured learning tracks designed to help students gain
+            real-world blockchain skills in focused areas.
           </p>
         </div>
-      </section> */}
+      </section>
 
+      {/* Choose your track */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            pill="Our Programs"
+            heading="Choose your track"
+            subtext="Each cohort is a focused learning path. Pick what aligns with your goals."
+          />
+
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {cohorts.map((cohort) => (
+              <div
+                key={cohort.title}
+                className="flex flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-8 shadow-sm"
+              >
+                <div className="flex flex-col gap-2">
+                  <span
+                    className={`inline-flex w-fit items-center rounded-md border px-4 py-1 text-sm ${cohort.theme.tagBg} ${cohort.theme.tagText} ${cohort.theme.tagBorder}`}
+                  >
+                    {cohort.category}
+                  </span>
+                  <h3 className="text-xl font-semibold text-gray-900">{cohort.title}</h3>
+                  <p className="text-gray-400">{cohort.description}</p>
+                </div>
+
+                <div className={`h-0.5 w-full rounded-full ${cohort.theme.accentBar}`} />
+
+                <div>
+                  <h4 className="mb-3 font-semibold text-gray-600">What you&apos;ll learn</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {cohort.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className={`inline-flex items-center rounded-md border px-4 py-1 text-sm ${cohort.theme.tagBg} ${cohort.theme.tagText} ${cohort.theme.tagBorder}`}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  className={`rounded-md border px-4 py-2 text-sm ${cohort.theme.whoBg} ${cohort.theme.whoBorder} ${cohort.theme.whoText}`}
+                >
+                  <span className="font-semibold">WHO IT&apos;S FOR</span>
+                  <br />
+                  {cohort.targetAudience}
+                </div>
+
+                <div className="flex items-center justify-between gap-4 border-t border-gray-100 pt-4">
+                  <span className="text-sm text-gray-400">{cohort.statusText}</span>
+                  {cohort.disabled ? (
+                    <Button className="rounded-xl opacity-70 pointer-events-none">
+                      {cohort.ctaText}
+                    </Button>
+                  ) : (
+                    <Button asChild className="rounded-xl">
+                      <Link href={cohort.ctaLink} className="flex items-center gap-2">
+                        {cohort.ctaText} <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How our cohorts work */}
+      <section className="bg-gray-50 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            pill="The Process"
+            heading="How our cohorts work"
+            subtext="A simple, effective process to guide your learning journey from zero to graduate."
+          />
+
+          <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+            {howItWorks.map((step, index) => (
+              <div key={step.title} className="relative flex flex-1 flex-col items-center gap-4 text-center">
+                {index < howItWorks.length - 1 && (
+                  <div className="absolute left-1/2 top-8 hidden h-px w-full bg-gray-200 md:block" />
+                )}
+                <div
+                  className={`relative z-10 flex h-16 w-16 items-center justify-center rounded-full ${
+                    index === 0
+                      ? "bg-primary text-white"
+                      : "border-2 border-primary bg-white text-primary"
+                  }`}
+                >
+                  <step.icon className="h-7 w-7" />
+                </div>
+                <h3 className="font-serif text-lg font-bold text-gray-900">{step.title}</h3>
+                <p className="max-w-[180px] text-sm leading-relaxed text-gray-600">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Us */}
+      <section className="relative overflow-hidden bg-white py-16">
+        <div
+          className="absolute inset-x-0 bottom-0 h-64 bg-primary/10 [clip-path:polygon(0%_0%,100%_100%,0%_100%)]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-64 bg-primary/10 [clip-path:polygon(0%_100%,100%_0%,100%_100%)]"
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            pill="Why Us?"
+            heading="Built To Make You Stand Out"
+            subtext="The benefits that at our program apart from generic courses."
+          />
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {benefits.map((benefit) => (
+              <div
+                key={benefit.title}
+                className="flex items-start gap-4 rounded-lg border border-gray-100 bg-white px-8 py-6 shadow-sm"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-b from-violet-600 to-primary">
+                  <benefit.icon className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="mb-1 font-medium text-primary">{benefit.title}</h3>
+                  <p className="text-sm leading-relaxed text-gray-900">{benefit.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
