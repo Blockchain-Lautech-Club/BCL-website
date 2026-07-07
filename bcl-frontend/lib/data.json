@@ -9,7 +9,7 @@
     "description": "Connecting curious minds to blockchain education, hands-on experience, and a community of future tech leaders.",
     "logos": ["/logos/whitelogo.png", "/logos/logoNoBackground.png"]
   },
-  
+
   "navigation": {
     "headerLinks": [
       { "label": "Home", "url": "/" },
@@ -30,7 +30,7 @@
       "p1": "Blockchain club lautech, founded 2020 by a group of innovatives driven by the mission to teach beyond technical knowledge, to demystify the blockchain and make it accessible to beginners while also providing advanced learning opportunities for more experienced members.",
       "p2": "The club was established as a collaborative learning community where members could explore the fundamentals of blockchain technology, understand how cryptocurrencies function, and examine real world applications across every sector.",
       "p3": "Through structured activities including workshops, seminars, hackathons and collaborative projects, blockchain club lautech fosters an environment that encourages innovation, critical thinking, and skill development."
-    },  
+    },
     "statistics": [
       { "metric": "2500+", "label": "Students Trained" },
       { "metric": "5+", "label": "Workshops & Hackathons" },
@@ -39,7 +39,10 @@
     ],
     "achievements": [
       { "title": "1st place - CrossFi Africa hackathon", "date": "March 2025" },
-      { "title": "3rd place - CrossFi Global hackathon", "date": "August 2025" },
+      {
+        "title": "3rd place - CrossFi Global hackathon",
+        "date": "August 2025"
+      },
       { "title": "Free tickets to ETH Denver", "date": "September 2024" }
     ]
   },
@@ -83,8 +86,14 @@
         "role": "Founder",
         "image": "/team/thelmaOpurum.jpg",
         "social": {
-          "x": {"link": "https://x.com/@thelma_opurum", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/thelmaopurum", "icon": "/socialIcons/linkedInLogo.svg"}
+          "x": {
+            "link": "https://x.com/@thelma_opurum",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "linkedin": {
+            "link": "https://linkedin.com/in/thelmaopurum",
+            "icon": "/socialIcons/linkedInLogo.svg"
+          }
         }
       },
       {
@@ -92,8 +101,14 @@
         "role": "Co-Founder",
         "image": "/team/johnAdekunjo.jpg",
         "social": {
-          "x": {"link": "https://x.com/@Johnadek_", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://www.linkedin.com/in/john-adekunjo-6757271b5/", "icon": "/socialIcons/linkedInLogo.svg"}
+          "x": {
+            "link": "https://x.com/@Johnadek_",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "linkedin": {
+            "link": "https://www.linkedin.com/in/john-adekunjo-6757271b5/",
+            "icon": "/socialIcons/linkedInLogo.svg"
+          }
         }
       },
       {
@@ -101,8 +116,14 @@
         "role": "Co-Founder",
         "image": "/team/blessingOluwabamidele.jpg",
         "social": {
-          "x": {"link": "https://x.com/blessingoluwabamidele", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/blessingoluwabamidele", "icon": "/socialIcons/linkedInLogo.svg"}
+          "x": {
+            "link": "https://x.com/blessingoluwabamidele",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "linkedin": {
+            "link": "https://linkedin.com/in/blessingoluwabamidele",
+            "icon": "/socialIcons/linkedInLogo.svg"
+          }
         }
       }
     ],
@@ -112,8 +133,14 @@
         "role": "Lead CM",
         "image": "/team/favourAbidoyeOadejo.jpg",
         "social": {
-          "x": {"link": "https://x.com/@FavourAbidoye", "icon": "/socialIcons/xlogo.svg"},
-          "github": {"link": "https://githubcom/Favour4712", "icon": "/socialIcons/githublogo.png"}
+          "x": {
+            "link": "https://x.com/@FavourAbidoye",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "github": {
+            "link": "https://githubcom/Favour4712",
+            "icon": "/socialIcons/githublogo.png"
+          }
         }
       },
       {
@@ -121,8 +148,14 @@
         "role": "Project Manager",
         "image": "/team/preciousAdebisi.png",
         "social": {
-          "x": {"link": "https://x.com/@acunetixtech001", "icon": "/socialIcons/xlogo.svg"},
-          "github": {"link": "https://github.com/devacunetixtech", "icon": "/socialIcons/githublogo.png"}
+          "x": {
+            "link": "https://x.com/@acunetixtech001",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "github": {
+            "link": "https://github.com/devacunetixtech",
+            "icon": "/socialIcons/githublogo.png"
+          }
         }
       },
       {
@@ -130,8 +163,14 @@
         "role": "Female Guild Lead",
         "image": "/team/maryamTijani.jpg",
         "social": {
-          "x": {"link": "https://x.com/maryamtijani", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/maryamtijani", "icon": "/socialIcons/linkedInLogo.svg"}
+          "x": {
+            "link": "https://x.com/maryamtijani",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "linkedin": {
+            "link": "https://linkedin.com/in/maryamtijani",
+            "icon": "/socialIcons/linkedInLogo.svg"
+          }
         }
       },
       {
@@ -139,8 +178,14 @@
         "role": "Dev Lead",
         "image": "/team/jeremiahOyeniran.jpg",
         "social": {
-          "x": {"link": "https://x.com/@Jerydam00", "icon": "/socialIcons/xlogo.svg"},
-          "github": {"link": "https://github.com/jerydam", "icon": "/socialIcons/githubogo.png"}
+          "x": {
+            "link": "https://x.com/@Jerydam00",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "github": {
+            "link": "https://github.com/jerydam",
+            "icon": "/socialIcons/githublogo.png"
+          }
         }
       },
       {
@@ -148,8 +193,14 @@
         "role": "Project Manager",
         "image": "/team/abdulhamidBakare.jpg",
         "social": {
-          "x": {"link": "ttps://x.com/@starkhubz", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/abdulhamidbakare", "icon": "/socialIcons/linkedInLogo.svg"}
+          "x": {
+            "link": "ttps://x.com/@starkhubz",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "linkedin": {
+            "link": "https://linkedin.com/in/abdulhamidbakare",
+            "icon": "/socialIcons/linkedInLogo.svg"
+          }
         }
       },
       {
@@ -157,8 +208,14 @@
         "role": "Project Manager",
         "image": "/team/tomiwaKayode.jpg",
         "social": {
-          "x": {"link": "https://x.com/tomiwakayode", "icon": "/socialIcons/xlogo.svg"},
-          "linkedin": {"link": "https://linkedin.com/in/tomiwakayode", "icon": "/socialIcons/linkedInLogo.svg"}
+          "x": {
+            "link": "https://x.com/tomiwakayode",
+            "icon": "/socialIcons/xlogo.svg"
+          },
+          "linkedin": {
+            "link": "https://linkedin.com/in/tomiwakayode",
+            "icon": "/socialIcons/linkedInLogo.svg"
+          }
         }
       }
     ]
@@ -177,27 +234,61 @@
         "duration": "12 Weeks",
         "slotsAvailable": 100,
         "format": "Hybrid",
-        "learningPoints": ["Frontend & Backend", "Solidity", "Blockchain Fundamentals", "DeFi & NFTs", "Web3 Integration"],
+        "learningPoints": [
+          "Frontend & Backend",
+          "Solidity",
+          "Blockchain Fundamentals",
+          "DeFi & NFTs",
+          "Web3 Integration"
+        ],
         "targetAudience": "Aspiring developers who want to build real blockchain-based products from day one.",
         "curriculum": {
           "phase1": {
             "title": "Web2 Track (Foundation)",
             "subtitle": "Core technologies for building modern web applications...",
-            "topics": ["HTML, CSS & JavaScript", "Git & GitHub", "Building & deploying web projects", "APIs & databases", "Next.js & Node.js"],
+            "topics": [
+              "HTML, CSS & JavaScript",
+              "Git & GitHub",
+              "Building & deploying web projects",
+              "APIs & databases",
+              "Next.js & Node.js"
+            ],
             "outcome": "Build and deploy functional web applications and understand modern development workflows."
           },
           "phase2": {
             "title": "Web3 Track (Blockchain)",
             "subtitle": "Transition into decentralized development...",
-            "topics": ["Blockchain Fundamentals & Web3", "Smart contracts & dApps", "Web3 Testing", "Wallets, transactions & basic chains", "Building on real blockchain ecosystem"],
+            "topics": [
+              "Blockchain Fundamentals & Web3",
+              "Smart contracts & dApps",
+              "Web3 Testing",
+              "Wallets, transactions & basic chains",
+              "Building on real blockchain ecosystem"
+            ],
             "outcome": "Build basic dApps and understand how blockchain integrates with web applications end-to-end."
           }
         },
         "timeline": [
-          { "weeks": "Weeks 1-4", "title": "Web Fundamentals", "detail": "HTML, CSS, JavaScript basics & version control" },
-          { "weeks": "Weeks 5-6", "title": "Frameworks & Backend", "detail": "Next.js, Node.js, APIs & database integration" },
-          { "weeks": "Weeks 7-9", "title": "Blockchain Foundation", "detail": "Web3 concepts, wallets, on-chain interactions" },
-          { "weeks": "Weeks 10-12", "title": "Build & Ship", "detail": "Smart contracts, dApp dev & final project demo" }
+          {
+            "weeks": "Weeks 1-4",
+            "title": "Web Fundamentals",
+            "detail": "HTML, CSS, JavaScript basics & version control"
+          },
+          {
+            "weeks": "Weeks 5-6",
+            "title": "Frameworks & Backend",
+            "detail": "Next.js, Node.js, APIs & database integration"
+          },
+          {
+            "weeks": "Weeks 7-9",
+            "title": "Blockchain Foundation",
+            "detail": "Web3 concepts, wallets, on-chain interactions"
+          },
+          {
+            "weeks": "Weeks 10-12",
+            "title": "Build & Ship",
+            "detail": "Smart contracts, dApp dev & final project demo"
+          }
         ]
       },
       {
@@ -206,7 +297,13 @@
         "category": "UI/UX & Product",
         "description": "Design user-friendly and visually compelling Web3 products that people actually want to use.",
         "status": "Opening Soon",
-        "learningPoints": ["UI/UX for Web3", "Product Design", "Branding Systems", "Figma", "Prototyping"],
+        "learningPoints": [
+          "UI/UX for Web3",
+          "Product Design",
+          "Branding Systems",
+          "Figma",
+          "Prototyping"
+        ],
         "targetAudience": "Creative students into design, branding, and user experience within the Web3 space."
       }
     ]
@@ -224,11 +321,33 @@
       "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
       "image": "/event/confluence-1.jpg",
       "agenda": [
-        { "time": "10:00 AM", "activity": "Opening Keynote" },
-        { "time": "11:30 AM", "activity": "Developer Track Workshops" },
-        { "time": "1:00 PM", "activity": "Lunch & Networking" },
-        { "time": "2:30 PM", "activity": "Panel Discussion: Web3 in Education" },
-        { "time": "4:00 PM", "activity": "Hackathon Launch" }
+        {
+          "title": "Day 1: Developer Track",
+          "date": "November 7, 2025",
+          "button": "Apply for Dev Track",
+          "activities": [
+            { "icon": "🎤", "title": "Demo Day" },
+            { "icon": "🚀", "title": "Hackathins & Coding Competition" },
+            { "icon": "🧑‍💻", "title": "Technical Workshops" },
+            { "icon": "🤝", "title": "Bounty Challenges" },
+            { "icon": "🍽️", "title": "Developer Networking" },
+            { "icon": "🎤", "title": "Panel Session" }
+          ]
+        },
+        {
+          "title": "Day 2: Community Track",
+          "date": "November 8, 2025",
+          "button": "Register for Community Track",
+          "activities": [
+            { "icon": "🎤", "title": "Keynote Presentation" },
+            { "icon": "🎤", "title": "Expert Panel Discussion" },
+            { "icon": "🚀", "title": "Women in web3 Session" },
+            { "icon": "🧑‍💻", "title": "Startup Exhibition" },
+            { "icon": "🤝", "title": "Interactive Workshops" },
+            { "icon": "🍽️", "title": "Networking Oppurtunity" },
+            { "icon": "🎉", "title": "Prize Distribution" }
+          ]
+        }
       ],
       "type": "conference",
       "status": "upcoming",
@@ -249,12 +368,7 @@
       "time": "10:00 AM",
       "location": "LAUTECH Innovation Hub",
       "image": "/event/confluence-2.jpg",
-      "agenda": [
-        { "time": "10:00 AM", "activity": "Intro to Web3 UX" },
-        { "time": "11:15 AM", "activity": "Design Thinking Workshop" },
-        { "time": "1:00 PM", "activity": "Prototyping Session" },
-        { "time": "3:00 PM", "activity": "Pitch Practice" }
-      ],
+      "agenda": [],
       "type": "workshop",
       "status": "upcoming",
       "attendees": 60,
@@ -274,11 +388,7 @@
       "time": "4:00 PM",
       "location": "LAUTECH Conference Hall",
       "image": "/event/confluence-3.jpg",
-      "agenda": [
-        { "time": "4:00 PM", "activity": "Event Highlights" },
-        { "time": "4:45 PM", "activity": "Speaker Panels" },
-        { "time": "5:30 PM", "activity": "Community Discussion" }
-      ],
+      "agenda": [],
       "type": "seminar",
       "status": "past",
       "attendees": 120,
@@ -298,13 +408,7 @@
       "time": "9:00 AM",
       "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
       "image": "/event/confluence-1.jpg",
-      "agenda": [
-        { "time": "10:00 AM", "activity": "Opening Keynote" },
-        { "time": "11:30 AM", "activity": "Developer Track Workshops" },
-        { "time": "1:00 PM", "activity": "Lunch & Networking" },
-        { "time": "2:30 PM", "activity": "Panel Discussion: Web3 in Education" },
-        { "time": "4:00 PM", "activity": "Hackathon Launch" }
-      ],
+      "agenda": [],
       "type": "conference",
       "status": "upcoming",
       "attendees": 180,
@@ -324,12 +428,7 @@
       "time": "10:00 AM",
       "location": "LAUTECH Innovation Hub",
       "image": "/event/confluence-2.jpg",
-      "agenda": [
-        { "time": "10:00 AM", "activity": "Intro to Web3 UX" },
-        { "time": "11:15 AM", "activity": "Design Thinking Workshop" },
-        { "time": "1:00 PM", "activity": "Prototyping Session" },
-        { "time": "3:00 PM", "activity": "Pitch Practice" }
-      ],
+      "agenda": [],
       "type": "workshop",
       "status": "upcoming",
       "attendees": 60,
@@ -349,11 +448,7 @@
       "time": "4:00 PM",
       "location": "LAUTECH Conference Hall",
       "image": "/event/confluence-3.jpg",
-      "agenda": [
-        { "time": "4:00 PM", "activity": "Event Highlights" },
-        { "time": "4:45 PM", "activity": "Speaker Panels" },
-        { "time": "5:30 PM", "activity": "Community Discussion" }
-      ],
+      "agenda": [],
       "type": "seminar",
       "status": "past",
       "attendees": 120,
@@ -380,7 +475,11 @@
 
   "contact": {
     "phones": ["+234 803 123 4567", "+234 901 234 5678"],
-    "emails": ["blockchainlautech@gmail.com", "blockchain@lautech.edu.ng", "info@lautechblockchain.org"],
+    "emails": [
+      "blockchainlautech@gmail.com",
+      "blockchain@lautech.edu.ng",
+      "info@lautechblockchain.org"
+    ],
     "address": "LAUTECH Campus, Ogbomoso, Oyo State, Nigeria",
     "officeHours": {
       "weekdays": "Monday - Friday: 9:00 AM - 5:00 PM",
@@ -388,20 +487,40 @@
       "sunday": "Sunday: Closed"
     },
     "socials": [
-      {"name": "x", "link": "https://x.com/BlockchainLAUT1", "icon": "/socialIcons/xlogo.png"},
-      {"name": "linkedin", "link": "https://www.linkedin.com/company/blockchain-club-lautech/", "icon": "linkedin"},
-      {"name": "github", "link": "https://github.com/Blockchain-Lautech-Club/", "icon": "github"},
-      {"name": "telegram", "link": "https://t.me/blockchainlautech", "icon": "/socialIcons/telegram.png"},
-      {"name": "discord", "link": "https://discord.com/blockchainlautech", "icon": "discord"}
+      {
+        "name": "x",
+        "link": "https://x.com/BlockchainLAUT1",
+        "icon": "/socialIcons/xlogo.png"
+      },
+      {
+        "name": "linkedin",
+        "link": "https://www.linkedin.com/company/blockchain-club-lautech/",
+        "icon": "linkedin"
+      },
+      {
+        "name": "github",
+        "link": "https://github.com/Blockchain-Lautech-Club/",
+        "icon": "github"
+      },
+      {
+        "name": "telegram",
+        "link": "https://t.me/blockchainlautech",
+        "icon": "/socialIcons/telegram.png"
+      },
+      {
+        "name": "discord",
+        "link": "https://discord.com/blockchainlautech",
+        "icon": "discord"
+      }
     ]
   },
 
   "footerLink": {
-     "QuickLink": [
+    "QuickLink": [
       { "name": "Home", "link": "/" },
       { "name": "About", "link": "/about" },
       { "name": "Events", "link": "/events" },
-      { "name": "Cohorts", "link": "/cohorts"},
+      { "name": "Cohorts", "link": "/cohorts" },
       { "name": "Blog", "link": "/blog" },
       { "name": "Join the Club", "link": "/join" },
       { "name": "Contact", "link": "/contact" }
@@ -410,30 +529,100 @@
       { "name": "Beginner Guides", "link": "/" },
       { "name": "Blockchain Glossary", "link": "/" },
       { "name": "Learning Materials", "link": "/" },
-      { "name": "FAQs", "link": "/"}
+      { "name": "FAQs", "link": "/" }
     ],
-     "Community": [
+    "Community": [
       { "name": "Events & Meetups", "link": "/" },
       { "name": "Hackathons", "link": "/" },
       { "name": "Member Spotlight", "link": "/" },
-      { "name": "Newsletter Signup", "link": "/"}
+      { "name": "Newsletter Signup", "link": "/" }
     ]
   },
 
   "galleries": [
-    { "id": 1, "src": "/event/confluence-1.jpg", "alt": "Event 1", "caption": "Confluence Pictures" },
-    { "id": 2, "src": "/event/confluence-2.jpg", "alt": "Event 2", "caption": "Confluence Pictures" },
-    { "id": 3, "src": "/event/confluence-3.jpg", "alt": "Event 3", "caption": "Confluence Pictures" },
-    { "id": 4, "src": "/event/confluence-4.jpg", "alt": "Event 4", "caption": "Confluence Pictures" },
-    { "id": 5, "src": "/event/confluence-5.jpg", "alt": "Event 5", "caption": "Confluence Pictures" },
-    { "id": 7, "src": "/event/confluence-7.jpg", "alt": "Event 7", "caption": "Confluence Pictures" },
-    { "id": 8, "src": "/event/coinEx.jpg", "alt": "Event 8", "caption": "CoinEx Pictures" },
-    { "id": 9, "src": "/event/gida.jpg", "alt": "Event 9", "caption": "GIDA Pictures" },
-    { "id": 10, "src": "/event/celoEvent.jpg", "alt": "Event 10", "caption": "Celo Africa DAO Pictures" },
-    { "id": 11, "src": "/event/crossFiEvent.jpg", "alt": "Event 11", "caption": "CrossFi Pictures" },
-    { "id": 12, "src": "/event/crossFiEvent-2.jpg", "alt": "Event 12", "caption": "CrossFi Pictures" },
-    { "id": 13, "src": "/event/coinEx-2.jpg", "alt": "Event 13", "caption": "CoinEx Pictures" },
-    { "id": 14, "src": "/event/blockdag.jpg", "alt": "Event 14", "caption": "BlockDAG Pictures" },
-    { "id": 15, "src": "/event/bitcoinPizzaDay.jpg", "alt": "Event 15", "caption": "Bitcoin Pizza Day Pictures" }
+    {
+      "id": 1,
+      "src": "/event/confluence-1.jpg",
+      "alt": "Event 1",
+      "caption": "Confluence Pictures"
+    },
+    {
+      "id": 2,
+      "src": "/event/confluence-2.jpg",
+      "alt": "Event 2",
+      "caption": "Confluence Pictures"
+    },
+    {
+      "id": 3,
+      "src": "/event/confluence-3.jpg",
+      "alt": "Event 3",
+      "caption": "Confluence Pictures"
+    },
+    {
+      "id": 4,
+      "src": "/event/confluence-4.jpg",
+      "alt": "Event 4",
+      "caption": "Confluence Pictures"
+    },
+    {
+      "id": 5,
+      "src": "/event/confluence-5.jpg",
+      "alt": "Event 5",
+      "caption": "Confluence Pictures"
+    },
+    {
+      "id": 7,
+      "src": "/event/confluence-7.jpg",
+      "alt": "Event 7",
+      "caption": "Confluence Pictures"
+    },
+    {
+      "id": 8,
+      "src": "/event/coinEx.jpg",
+      "alt": "Event 8",
+      "caption": "CoinEx Pictures"
+    },
+    {
+      "id": 9,
+      "src": "/event/gida.jpg",
+      "alt": "Event 9",
+      "caption": "GIDA Pictures"
+    },
+    {
+      "id": 10,
+      "src": "/event/celoEvent.jpg",
+      "alt": "Event 10",
+      "caption": "Celo Africa DAO Pictures"
+    },
+    {
+      "id": 11,
+      "src": "/event/crossFiEvent.jpg",
+      "alt": "Event 11",
+      "caption": "CrossFi Pictures"
+    },
+    {
+      "id": 12,
+      "src": "/event/crossFiEvent-2.jpg",
+      "alt": "Event 12",
+      "caption": "CrossFi Pictures"
+    },
+    {
+      "id": 13,
+      "src": "/event/coinEx-2.jpg",
+      "alt": "Event 13",
+      "caption": "CoinEx Pictures"
+    },
+    {
+      "id": 14,
+      "src": "/event/blockdag.jpg",
+      "alt": "Event 14",
+      "caption": "BlockDAG Pictures"
+    },
+    {
+      "id": 15,
+      "src": "/event/bitcoinPizzaDay.jpg",
+      "alt": "Event 15",
+      "caption": "Bitcoin Pizza Day Pictures"
+    }
   ]
 }

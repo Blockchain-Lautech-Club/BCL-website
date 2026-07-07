@@ -3,6 +3,8 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://bcl-website.onr
 export interface Event {
   id: string
   title: string
+  tagline: string // newly added
+  theme: string // newly added
   description: string
   full_description?: string
   date: string
@@ -17,7 +19,7 @@ export interface Event {
   speaker_bio: string
   speaker_avatar?: string
   image?: string
-  agenda?: Array<{ time: string; activity: string }>
+  agenda?: Array<{ title:string; date: string; activities: { icon: string; title: string }[]; button: string }> // edited
   created_at: string
   updated_at: string
 }

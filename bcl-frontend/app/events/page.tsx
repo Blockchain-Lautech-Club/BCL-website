@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Search, ArrowRight } from "lucide-react"
 import { events as sampleEvents } from '@/lib/data.json'
 import EventCard from "@/components/events/eventCard"
+import { useRouter, useParams } from "next/navigation"
 
 export default function Page() {
   const [query, setQuery] = useState("")
@@ -17,6 +18,9 @@ export default function Page() {
     return matchesCategory && matchesQuery
   })
 
+  const router = useRouter()
+  const params = useParams()
+
   return (
     <main className="w-full">
       {/* Hero */}
@@ -25,8 +29,8 @@ export default function Page() {
           <h1 className="text-5xl font-extrabold text-blue-600 mb-4">Blockchain Events</h1>
           <p className="max-w-2xl mx-auto text-gray-600 mb-6">Join our community events, workshops, and seminars to expand your blockchain knowledge and network with fellow enthusiasts.</p>
           <div className="flex justify-center gap-4">
-            <Link href="#events" className="rounded-lg bg-blue-600 px-5 py-2.5 text-white">Explore Events</Link>
-            <Link href="#join" className="rounded-lg border border-blue-200 px-5 py-2.5 text-blue-600">Join community</Link>
+            <Link href="#events" className="rounded-lg bg-blue-600 px-5 py-2.5 text-white whitespace-nowrap">Explore Events</Link>
+            <Link href="/join" className="rounded-lg border border-blue-200 px-5 py-2.5 text-blue-600 whitespace-nowrap">Join community</Link>
           </div>
         </div>
       </section>
@@ -51,12 +55,12 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mt-6">
+        <div className="flex flex-row overflow-hidden overflow-x-auto lg:justify-center gap-3 mt-6">
           {categories.map((c) => (
             <button
               key={c}
               onClick={() => setActive(c)}
-              className={`px-4 py-2 rounded-xl text-sm border ${active===c ? 'bg-blue-700 text-blue-100 border-blue-700' : 'bg-transparent text-blue-600 border-blue-200'}`}
+              className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap border ${active===c ? 'bg-blue-700 text-blue-100 border-blue-700' : 'bg-transparent text-blue-600 border-blue-200'}`}
             >
               {c}
             </button>
@@ -66,13 +70,13 @@ export default function Page() {
         {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
           {filtered.length ? filtered.map((event) => (
-            <EventCard key={event.id} event={event} />
+            <EventCard key={event.id} event={event} onViewDetails={() => { router.push(`/events/${event.id}`) }} />
           )) : (
             <div className="col-span-full py-12 text-center">
               <h3 className="text-2xl font-semibold">No upcoming events yet</h3>
               <p className="text-gray-600 mt-2">Stay updated by joining our community today!</p>
               <div className="mt-4">
-                <Link href="#join" className="inline-block rounded-md bg-blue-600 px-4 py-2 text-white">Join Community</Link>
+                <Link href="/join" className="inline-block rounded-md bg-blue-600 px-4 py-2 text-white">Join Community</Link>
               </div>
             </div>
           )}

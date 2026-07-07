@@ -1,47 +1,90 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useMemo } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
-import { Skeleton } from "@/components/ui/skeleton"
-import Link from "next/link"
-import { Calendar, MapPin, Users, ArrowLeft, Share2, Bookmark } from "lucide-react"
-import { eventApi, Event, formatDate, isEventFull } from "@/lib/api"
-import { notFound } from "next/navigation"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
+import {
+  Calendar,
+  MapPin,
+  Users,
+  ArrowLeft,
+  Share2,
+  Bookmark,
+  X,
+  Linkedin,
+  Github,
+  Clock,
+} from "lucide-react";
+import { Event as Events, formatDate, isEventFull } from "@/lib/api";
+import { events } from "@/lib/data.json";
+import { notFound, useParams } from "next/navigation";
+import Image from "next/image";
+import LandingPageEventCard from "@/components/events/eventCard";
 
-export default function EventDetailPage({ params }: { params: { id: string } }) {
-  const [event, setEvent] = useState<Event | null>(null)
-  const [relatedEvents, setRelatedEvents] = useState<Event[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+export interface EventActivity {
+  icon: string;
+  title: string;
+}
 
-  useEffect(() => {
-    const fetchEvent = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-        
-        // Fetch the event
-        const eventData = await eventApi.getEvent(params.id)
-        setEvent(eventData)
-        
-        // Fetch related events (upcoming events of same type)
-        const related = await eventApi.getEvents({ status: 'upcoming', limit: 4 })
-        setRelatedEvents(related.filter(e => e.id !== eventData.id && e.type === eventData.type).slice(0, 2))
-        
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch event')
-      } finally {
-        setLoading(false)
-      }
-    }
+export interface EventDay {
+  name: string;
+  time: string;
+  activities: EventActivity[];
+}
 
-    fetchEvent()
-  }, [params.id])
+interface EventAgenda {
+  title: string;
+  date: string;
+  button: string;
+  activities: EventActivity[];
+}
+
+export interface Event {
+  id: string;
+  title: string;
+  tagline: string;
+  theme: string;
+  description: string;
+  date: string;
+  time: string;
+  location: string;
+  image: string;
+
+  agenda: EventAgenda[];
+
+  type: string;
+  status: string;
+
+  attendees: number;
+  max_attendees: number;
+
+  speaker_name: string;
+  speaker_title: string;
+  speaker_bio: string;
+  speaker_avatar: string;
+}
+
+export default function EventDetailPage() {
+  const params = useParams();
+  const event = useMemo(() => {
+    const matchedEvent = (events as unknown as Events[]).find(
+      (item) => item.id === params.id,
+    );
+    return matchedEvent ?? null;
+  }, [params.id]);
+
+  const relatedEvents = useMemo(() => {
+    if (!event) return [];
+
+    return (events as unknown as Event[])
+      .filter((item) => item.id !== event.id && item.type === event.type)
+      .slice(0, 2);
+  }, [event]);
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -50,274 +93,185 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
           title: event?.title,
           text: event?.description,
           url: window.location.href,
-        })
+        });
       } catch (error) {
-        console.log('Error sharing:', error)
+        console.log("Error sharing:", error);
       }
     } else {
       // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href)
-      alert('Link copied to clipboard!')
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard!");
     }
-  }
+  };
 
   const handleRegister = () => {
     // In a real app, this would handle event registration
-    alert('Registration functionality would be implemented here')
-  }
-
-  if (error) {
-    return (
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        <div className="flex-1 flex items-center justify-center">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Event</h1>
-            <p className="text-gray-600 mb-8">{error}</p>
-            <Button asChild>
-              <Link href="/events">Back to Events</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (loading) {
-    return (
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        
-        <div className="flex-1">
-          {/* Back Button */}
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <Skeleton className="h-10 w-32" />
-          </div>
-
-          {/* Event Header */}
-          <section className="bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2">
-                  <div className="flex items-start justify-between mb-4">
-                    <Skeleton className="h-6 w-24" />
-                    <div className="flex gap-2">
-                      <Skeleton className="h-8 w-8" />
-                      <Skeleton className="h-8 w-8" />
-                    </div>
-                  </div>
-
-                  <Skeleton className="h-10 w-full mb-4" />
-                  <Skeleton className="h-10 w-3/4 mb-6" />
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    {[...Array(3)].map((_, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <Skeleton className="h-5 w-5" />
-                        <div>
-                          <Skeleton className="h-4 w-32 mb-1" />
-                          <Skeleton className="h-3 w-24" />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <Skeleton className="h-6 w-full mb-2" />
-                  <Skeleton className="h-6 w-2/3" />
-                </div>
-
-                <div className="lg:col-span-1">
-                  <Card>
-                    <CardHeader>
-                      <Skeleton className="h-6 w-32 mx-auto" />
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <Skeleton className="h-10 w-full" />
-                      <Skeleton className="h-4 w-full" />
-                      <Separator />
-                      <div className="space-y-2">
-                        {[...Array(4)].map((_, i) => (
-                          <div key={i} className="flex justify-between">
-                            <Skeleton className="h-4 w-20" />
-                            <Skeleton className="h-4 w-24" />
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-      </div>
-    )
-  }
+    alert("Registration functionality would be implemented here");
+  };
 
   if (!event) {
-    notFound()
+    notFound();
   }
 
-  const isUpcoming = event.status === 'upcoming'
-  const isFull = isEventFull(event)
+  const isUpcoming = event.status === "upcoming";
+  const isFull = isEventFull(event);
 
   const formatDescription = (description: string) => {
-    if (!description) return []
-    
-    return description.split('\n\n').map((paragraph, index) => {
-      if (paragraph.startsWith('## ')) {
+    if (!description) return [];
+
+    return description.split("\n\n").map((paragraph, index) => {
+      if (paragraph.startsWith("## ")) {
         return (
-          <h2 key={index} className="font-serif text-2xl font-bold text-gray-900 mt-8 mb-4">
-            {paragraph.replace('## ', '')}
+          <h2
+            key={index}
+            className="font-serif text-2xl font-bold text-gray-900 mt-8 mb-4"
+          >
+            {paragraph.replace("## ", "")}
           </h2>
-        )
+        );
       }
-      if (paragraph.startsWith('### ')) {
+      if (paragraph.startsWith("### ")) {
         return (
-          <h3 key={index} className="font-serif text-xl font-bold text-gray-900 mt-6 mb-3">
-            {paragraph.replace('### ', '')}
+          <h3
+            key={index}
+            className="font-serif text-xl font-bold text-gray-900 mt-6 mb-3"
+          >
+            {paragraph.replace("### ", "")}
           </h3>
-        )
+        );
       }
-      if (paragraph.startsWith('• ') || paragraph.includes('\n• ')) {
-        const listItems = paragraph.split('\n').filter(item => item.startsWith('• '))
+      if (paragraph.startsWith("• ") || paragraph.includes("\n• ")) {
+        const listItems = paragraph
+          .split("\n")
+          .filter((item) => item.startsWith("• "));
         return (
           <ul key={index} className="list-disc list-inside space-y-2 mb-6">
             {listItems.map((item, i) => (
               <li key={i} className="text-gray-700">
-                {item.replace('• ', '')}
+                {item.replace("• ", "")}
               </li>
             ))}
           </ul>
-        )
+        );
       }
       return (
         <p key={index} className="text-gray-700 leading-relaxed mb-6">
           {paragraph}
         </p>
-      )
-    })
-  }
+      );
+    });
+  };
+
+  // const agendaDays = event.agenda?.flatMap(item => Object.values(item).flat());
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-
       <div className="flex-1">
-        {/* Back Button */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <Button variant="ghost" asChild className="mb-4">
-            <Link href="/events" className="flex items-center gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Events
-            </Link>
-          </Button>
-        </div>
 
         {/* Event Header */}
-        <section className="bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex gap-3">
-                    <Badge
-                      variant={isUpcoming ? "default" : "secondary"}
-                      className={isUpcoming ? "bg-primary" : "bg-gray-500"}
-                    >
-                      {event.type}
-                    </Badge>
-                    {isUpcoming && isFull && <Badge variant="destructive">Full</Badge>}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={handleShare}>
-                      <Share2 className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Bookmark className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
+        <section className="relative h-[430px] overflow-hidden">
+          <Image
+            src={event.image || "/placeholder-event.jpg"}
+            fill
+            priority
+            alt={event.title}
+            className="object-cover"
+          />
 
-                <h1 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-4">{event.title}</h1>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#02152d]/95 via-[#02152d]/80 to-[#02152d]/60" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="flex items-center text-gray-600">
-                    <Calendar className="h-5 w-5 mr-3 text-primary" />
-                    <div>
-                      <div className="font-medium">
-                        {formatDate(event.date)}
+          <div className="absolute inset-0 flex items-center">
+            <div className="container mx-auto px-6">
+              <Badge className="rounded-full bg-white/20 backdrop-blur text-white border mb-4">
+                {event.tagline}
+              </Badge>
+
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">
+                {event.title}
+              </h1>
+
+              <h2 className="text-2xl md:text-3xl text-white font-semibold leading-snug mb-4">
+                THEME:
+                <span className="text-blue-400"> {event.theme}</span>
+              </h2>
+
+              <p className="max-w-2xl text-lg text-gray-200 leading-relaxed">
+                {event.description}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* organizer and details card */}
+        <section className="-mt-16 relative z-20">
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-[2fr_1fr] gap-6">
+              <div>
+                <Button variant="outline" className="mb-4 rounded-full border-2 border-[#02152d] text-[#02152d] hover:bg-[#02152d] hover:text-white">
+                  Event Organizer
+                </Button>
+                <Card className="rounded-3xl shadow-xl border-2">
+                  <CardHeader>
+                    <CardTitle className="text-2xl">Blockchain LAUTECH Club</CardTitle>
+                  </CardHeader>
+
+                  <CardContent>
+                    <p className="text-gray-600 leading-relaxed mb-6">
+                      Blockchain LAUTECH has been championing blockchain education
+                      since 2020, empowering students with blockchain expertise,
+                      driving innovation, and building a vibrant ecosystem for
+                      future blockchain leaders through workshops, hackathons,
+                      and collaborative projects.
+                    </p>
+
+                    <div className="flex gap-4">
+                      <Link href="https://x.com/BlockchainLAUT1" target="_blank" rel="noopener noreferrer">
+                        <X className="h-6 w-6 text-gray-600 hover:text-[#02152d]" />
+                      </Link>
+                      <Link href="https://www.linkedin.com/company/blockchain-club-lautech/" target="_blank" rel="noopener noreferrer">
+                        <Linkedin className="h-6 w-6 text-gray-600 hover:text-[#02152d]" />
+                      </Link>
+                      <Link href="https://github.com/Blockchain-Lautech-Club/" target="_blank" rel="noopener noreferrer">
+                        <Github className="h-6 w-6 text-gray-600 hover:text-[#02152d]" />
+                      </Link>
+                      <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <svg className="h-6 w-6 text-gray-600 hover:text-[#02152d]" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                      </Link>
+                      <div className="h-6 w-6 flex items-center justify-center">
+                        <svg className="h-5 w-5 text-gray-600" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 1a5 5 0 0 0-5 5v1H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm0 2a3 3 0 0 1 3 3v1H9V6a3 3 0 0 1 3-3zm0 7a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+                        </svg>
                       </div>
-                      <div className="text-sm">{event.time}</div>
                     </div>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <MapPin className="h-5 w-5 mr-3 text-primary" />
-                    <div>
-                      <div className="font-medium">{event.location}</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <Users className="h-5 w-5 mr-3 text-primary" />
-                    <div>
-                      <div className="font-medium">
-                        {event.attendees}/{event.max_attendees} registered
-                      </div>
-                      <div className="text-sm">{event.max_attendees - event.attendees} spots remaining</div>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-lg text-gray-700 leading-relaxed">{event.description}</p>
+                  </CardContent>
+                </Card>
               </div>
 
-              <div className="lg:col-span-1">
-                <Card className="sticky top-24">
+              <div>
+                <Button variant="outline" className="mb-4 rounded-full border-2 border-[#02152d] text-[#02152d] hover:bg-[#02152d] hover:text-white">
+                  Event Details
+                </Button>
+                <Card className="rounded-3xl shadow-xl border-2">
                   <CardHeader>
-                    <CardTitle className="text-center">Event Registration</CardTitle>
+                    <CardTitle className="text-2xl">Event Details</CardTitle>
                   </CardHeader>
+
                   <CardContent className="space-y-4">
-                    {isUpcoming && !isFull ? (
-                      <>
-                        <Button className="w-full" size="lg" onClick={handleRegister}>
-                          Register Now - Free
-                        </Button>
-                        <p className="text-sm text-gray-600 text-center">
-                          {event.max_attendees - event.attendees} spots remaining
-                        </p>
-                      </>
-                    ) : isUpcoming && isFull ? (
-                      <>
-                        <Button disabled className="w-full" size="lg">
-                          Event Full
-                        </Button>
-                        <Button variant="outline" className="w-full bg-transparent">
-                          Join Waitlist
-                        </Button>
-                      </>
-                    ) : (
-                      <Button disabled className="w-full" size="lg">
-                        Event Completed
-                      </Button>
-                    )}
+                    <div className="flex items-start gap-3">
+                      <Calendar className="h-5 w-5 text-[#02152d] mt-0.5" />
+                      <span className="text-gray-700">{formatDate(event.date)}</span>
+                    </div>
 
-                    <Separator />
+                    <div className="flex items-start gap-3">
+                      <Clock className="h-5 w-5 text-[#02152d] mt-0.5" />
+                      <span className="text-gray-700">{event.time}</span>
+                    </div>
 
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Date:</span>
-                        <span className="font-medium">{formatDate(event.date)}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Time:</span>
-                        <span className="font-medium">{event.time}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Location:</span>
-                        <span className="font-medium">{event.location}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Cost:</span>
-                        <span className="font-medium text-green-600">Free</span>
-                      </div>
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-[#02152d] mt-0.5" />
+                      <span className="text-gray-700">{event.location}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -326,112 +280,77 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
           </div>
         </section>
 
-        {/* Event Image */}
-        {event.image && (
-          <section className="bg-white border-t">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <img
-                src={event.image}
-                alt={event.title}
-                className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
-              />
-            </div>
-          </section>
-        )}
+        {/* overview card */}
+        <section className="container mx-auto px-6 mt-12">
+          <div className="text-center mb-6">
+            <Button variant="outline" className="rounded-full border-2 border-[#02152d] text-[#02152d] hover:bg-[#02152d] hover:text-white">
+              Overview
+            </Button>
+          </div>
 
-        {/* Event Details */}
-        <section className="bg-white border-t">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              <div className="lg:col-span-2 space-y-8">
-                {/* Description */}
-                {event.full_description && (
-                  <div>
-                    <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
-                    <div className="prose prose-gray max-w-none">
-                      {formatDescription(event.full_description)}
+          <Card className="rounded-3xl shadow-lg">
+            <CardContent className="p-8 text-gray-700 leading-relaxed">
+              <p className="mb-4">
+                {event.description}
+              </p>
+              {/* <p>
+                Confluence 2025 brings together the brightest minds in blockchain, Web3, and emerging technologies for two days of immersive learning, networking, and innovation. Whether you're a developer looking to build the next big thing or a community member eager to learn about the future of technology, this event has something for everyone.
+              </p> */}
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* agenda */}
+        <section className="container mx-auto px-6 mt-12">
+          <div className="text-center mb-6">
+            <Button variant="outline" className="rounded-full border-2 border-[#02152d] text-[#02152d] hover:bg-[#02152d] hover:text-white">
+              Agenda
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {event.agenda && event.agenda.length > 0 ? (
+              event.agenda?.map((day) => (
+              <Card key={day.title} className="rounded-3xl bg-gradient-to-br from-[#2E6AF7] to-[#1F3F97] text-white border-0 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="text-3xl">{day.title}</CardTitle>
+                  <p className="text-blue-100 text-lg">{day.date}</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {day.activities?.map((activity) => (
+                    <div key={activity.title} className="flex items-center gap-3">
+                      <div className="text-2xl">{activity.icon}</div>
+                      <p className="text-lg">{activity.title}</p>
                     </div>
-                  </div>
-                )}
+                  ))}
+                </CardContent>
+                <div className="p-6 pt-0">
+                  <Button className="w-full rounded-full bg-white text-[#02152d] hover:bg-gray-100 font-semibold">
+                    {day.button} →
+                  </Button>
+                </div>
+              </Card>
+            ))
+            ) : (
+              <p className="">
+                No agenda set by the organiser
+              </p>
+            )}
+          </div>
+        </section>
 
-                {/* Agenda */}
-                {event.agenda && event.agenda.length > 0 && (
-                  <div>
-                    <h2 className="font-serif text-2xl font-bold text-gray-900 mb-6">Event Agenda</h2>
-                    <div className="space-y-4">
-                      {event.agenda.map((item, index) => (
-                        <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                          <div className="flex items-center justify-center w-16 h-10 bg-primary text-primary-foreground rounded-md text-sm font-medium">
-                            {item.time}
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="font-medium text-gray-900">{item.activity}</h3>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+        {/* related event */}
+        <section className="container mx-auto px-6 py-20">
+          <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center">
+            While you are here, you can checkout our other events
+          </h2>
 
-              <div className="space-y-8">
-                {/* Speaker */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-xl">Speaker</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-start gap-4">
-                      <Avatar className="h-16 w-16">
-                        <AvatarImage src={event.speaker_avatar || "/placeholder.svg"} alt={event.speaker_name} />
-                        <AvatarFallback>
-                          {event.speaker_name
-                            .split(" ")
-                            .map((n: string) => n[0])
-                            .join("")}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900">{event.speaker_name}</h3>
-                        {event.speaker_title && (
-                          <p className="text-sm text-gray-600 mb-2">{event.speaker_title}</p>
-                        )}
-                        {event.speaker_bio && (
-                          <p className="text-sm text-gray-700 leading-relaxed">{event.speaker_bio}</p>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Related Events */}
-                {relatedEvents.length > 0 && (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-xl">Related Events</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        {relatedEvents.map((relatedEvent) => (
-                          <Link key={relatedEvent.id} href={`/events/${relatedEvent.id}`} className="block">
-                            <div className="p-3 border rounded-lg hover:bg-gray-50 transition-colors">
-                              <h4 className="font-medium text-gray-900 text-sm mb-1">{relatedEvent.title}</h4>
-                              <p className="text-xs text-gray-600">
-                                {formatDate(relatedEvent.date)} • {relatedEvent.location}
-                              </p>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                )}
-              </div>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
+            {relatedEvents.map((event) => (
+              <LandingPageEventCard key={event.id} event={event} />
+            ))}
           </div>
         </section>
       </div>
-
     </div>
-  )
+  );
 }

@@ -128,14 +128,17 @@ const EventsTeaserContent = () => {
                     Agenda
                   </h3>
                   <ul className="mt-2 list-inside list-disc space-y-2 text-sm text-slate-600">
-                    {selectedEvent.agenda?.map((item, agendaIndex) => (
-                      <li key={agendaIndex}>
-                        {item.time ? (
-                          <span className="font-medium">{item.time}: </span>
-                        ) : null}
-                        {item.activity}
-                      </li>
-                    )) || <li>No agenda available</li>}
+                    {selectedEvent.agenda?.map((item, agendaIndex) => {
+                      const agendaItem = item as { time?: string; activity?: string };
+                      return (
+                        <li key={agendaIndex}>
+                          {agendaItem.time ? (
+                            <span className="font-medium">{agendaItem.time}: </span>
+                          ) : null}
+                          {agendaItem.activity}
+                        </li>
+                      );
+                    }) || <li>No agenda available</li>}
                   </ul>
                 </div>
 

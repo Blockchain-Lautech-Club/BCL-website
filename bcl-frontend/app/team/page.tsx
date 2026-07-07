@@ -28,7 +28,7 @@ export function TeamCard({ member }: { member: TeamInterface }) {
 }
 
 export default function TeamLayout() {
-  const { quote, founders, moderators } = team as {
+  const { quote, founders, moderators } = team as unknown as {
     quote: string;
     founders: TeamInterface[];
     moderators: TeamInterface[];
