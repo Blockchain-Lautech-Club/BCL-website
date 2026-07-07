@@ -13,8 +13,8 @@ export interface TeamMember {
   image: string;
   social: {
     x: SocialLink;
-    linkedin: SocialLink;
-    github: SocialLink;
+    linkedin: SocialLink | null;
+    github: SocialLink | null;
   };
 }
 
@@ -79,7 +79,7 @@ export function TeamCard({ member }: { member: TeamMember }) {
 }
 
 export default function Team() {
-  const { quote, founders, moderators } = team as {
+  const { quote, founders, moderators } = team as unknown as {
     quote: string;
     founders: TeamMember[];
     moderators: TeamMember[];

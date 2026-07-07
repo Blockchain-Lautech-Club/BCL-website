@@ -1,72 +1,69 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { events } from '@/lib/data.json'
+import { Badge } from '@/components/ui/badge';
 
 interface EventCardProps {
-  event?: typeof events[0]; // Optional event object for more details
-  onViewDetails?: () => void; // Route to event details page or open modal
+  event?: typeof events[0];
+  onViewDetails?: () => void;
 }
 
-export default function LandingPageEventCard({
-  event,
-  onViewDetails
-}: EventCardProps) {
+export default function LandingPageEventCard({ event, onViewDetails }: EventCardProps) {
   return (
-    <div className="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg">
-      {/* Event Image */}
-      <div className="relative h-48 w-full overflow-hidden">
+    <article className="group relative rounded-3xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+      <div className="overflow-hidden h-48 relative">
         <Image
-          src={event?.image || '/placeholder-event.jpg'} // Fallback image if event image is not provided
+          src={event?.image || '/placeholder-event.jpg'}
           alt={event?.title || 'Event Image'}
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
+        {event?.type && (
+          <Badge className="absolute left-4 top-4 rounded-full bg-[#02152d] text-white border-0">
+            {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+          </Badge>
+        )}
       </div>
 
-      {/* Card Content */}
-      <div className="p-5">
-        {/* Title */}
-        <h3 className="mb-1 text-xl font-bold text-blue-600">
-          {event?.title || 'Event Title'}
-        </h3>
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-gray-900 mb-2">{event?.title || 'Event Title'}</h3>
+        <p className="text-sm text-gray-600 mb-4 line-clamp-2">{event?.description || 'Event Description'}</p>
 
-        {/* Description */}
-        <p className="mb-4 text-sm text-gray-600">
-          {event?.description || 'Event Description'}
-        </p>
-
-        {/* Event Details */}
-        <div className="mb-5 space-y-2">
-          <div className="flex items-center gap-3 text-sm text-gray-500">
-            <svg className="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-            </svg>
-            <span>{event?.date || 'Event Date'}</span>
-          </div>
-
-          <div className="flex items-center gap-3 text-sm text-gray-500">
-            <svg className="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>{event?.time || 'Event Time'}</span>
-          </div>
-
-          <div className="flex items-center gap-3 text-sm text-gray-500">
-            <svg className="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-            </svg>
-            <span>{event?.location || 'Event Location'}</span>
-          </div>
+        <div className="space-y-2 text-sm text-gray-700 mb-6">
+          {event?.date && (
+            <div className="flex items-center gap-2">
+              <svg className="h-4 w-4 text-[#02152d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            </div>
+          )}
+          {event?.time && (
+            <div className="flex items-center gap-2">
+              <svg className="h-4 w-4 text-[#02152d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{event.time}</span>
+            </div>
+          )}
+          {event?.location && (
+            <div className="flex items-center gap-2">
+              <svg className="h-4 w-4 text-[#02152d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="line-clamp-1">{event.location}</span>
+            </div>
+          )}
         </div>
 
-        {/* CTA Button */}
-        <button
-          onClick={onViewDetails}
-          className="w-full rounded-lg bg-blue-500 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-600"
+        <Link
+          href={`/events/${event?.id}`}
+          className="block w-full rounded-full border-2 border-[#02152d] bg-white py-2 text-center text-sm font-semibold text-[#02152d] hover:bg-[#02152d] hover:text-white transition-colors"
         >
           View Details
-        </button>
+        </Link>
       </div>
-    </div>
+    </article>
   );
 }
