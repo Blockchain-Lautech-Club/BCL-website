@@ -461,16 +461,16 @@
   ],
 
   "partners": [
-    { "name": "Nova Labs", "logo": "/partners/novaLabs.jpg" },
-    { "name": "CrossFi", "logo": "/partners/crossFi.jpg" },
-    { "name": "Backpack", "logo": "/partners/backpack.jpg" },
-    { "name": "Celo Africa DAO", "logo": "/partners/celoAfricaDao.jpg" },
-    { "name": "GIDA", "logo": "/partners/gida.jpg" },
-    { "name": "CoinEx", "logo": "/partners/coinEx.jpg" },
-    { "name": "AllstarsNG", "logo": "/partners/allstarsNg.jpg" },
-    { "name": "FaucetDrops", "logo": "/partners/faucetdrops.jpg" },
-    { "name": "Sui", "logo": "/partners/sui.jpg" },
-    { "name": "Web3Bridge", "logo": "/partners/web3bridge.jpg" }
+    { "name": "Nova Labs", "logo": "/partners/novaLabs.jpg", "bgColor": "#000000", "textColor": "#FFFFFF" },
+    { "name": "CrossFi", "logo": "/partners/crossFi.jpg", "bgColor": "#011E30", "textColor": "#0ABCF8" },
+    { "name": "Backpack", "logo": "/partners/backpack.jpg", "bgColor": "#000000", "textColor": "#FF003C" },
+    { "name": "Celo Africa DAO", "logo": "/partners/celoAfricaDao.jpg", "bgColor": "#FCFE52", "textColor": "#000000" },
+    { "name": "GIDA", "logo": "/partners/gida.jpg", "bgColor": "#BD1522", "textColor": "#FFFFFF" },
+    { "name": "CoinEx", "logo": "/partners/coinEx.jpg", "bgColor": "#023026", "textColor": "#14C196" },
+    { "name": "AllstarsNG", "logo": "/partners/allstarsNg.jpg", "bgColor": "black", "textColor": "white" },
+    { "name": "FaucetDrops", "logo": "/partners/faucetdrops.jpg", "bgColor": "#26A9E1", "textColor": "#FFFFFF" },
+    { "name": "Sui", "logo": "/partners/sui.jpg", "bgColor": "#4DA2FF", "textColor": "#FFFFFF" },
+    { "name": "Web3Bridge", "logo": "/partners/web3bridge.jpg", "bgColor": "#FA0001", "textColor": "#FFFFFF" }
   ],
 
   "contact": {
@@ -522,7 +522,7 @@
       { "name": "Events", "link": "/events" },
       { "name": "Cohorts", "link": "/cohorts" },
       { "name": "Blog", "link": "/blog" },
-      { "name": "Join the Club", "link": "/join" },
+      { "name": "Partners", "link": "/partners" },
       { "name": "Contact", "link": "/contact" }
     ],
     "Resources": [

@@ -23,9 +23,9 @@ const HeroText = () => {
   return (
     <>
       <div className="absolute inset-0 flex items-center max-h-screen">
-        <div className="flex flex-col gap-5 px-8 lg:px-16 xl:px-24">
+        <div className="flex flex-col gap-5 md:gap-15 px-8 lg:px-16 xl:px-24">
           {/* Headline */}
-          <h1 className="mb-6 max-w-2xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl max-lg:bg-white">
+          <h1 className="mb-6 max-w-2xl font-extrabold leading-tight text-4xl sm:text-5xl lg:text-5xl max-lg:bg-white">
             <span className="relative inline-flex min-h-[1.2em] items-center text-blue-600">
               <span
                 key={activeWord}
@@ -42,7 +42,7 @@ const HeroText = () => {
 
           {/* Subheadline - sits on the gradient area */}
           <div className="flex flex-col max-w-md gap-5">
-            <p className="mb-8 text-sm leading-relaxed text-white/90 sm:text-lg">
+            <p className="mb-8 text-sm leading-relaxed text-blue sm:text-lg">
               Connecting curious minds to blockchain education, hands-on
               experience, and a community of future tech leaders.
             </p>

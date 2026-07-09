@@ -84,7 +84,7 @@ const Footer = () => {
           {/* Contact */}
             {/* NOTE: only the first phone and email will be used in the footer */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-white">Contact</h3>
+            <h3 className="mb-4 text-lg font-semibold text-white">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <svg className="mt-0.5 h-5 w-5 shrink-0 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

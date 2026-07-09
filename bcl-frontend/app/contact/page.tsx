@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { MapPin, Mail, Phone, Clock, MessageCircle, Users, Calendar, CheckCircle } from "lucide-react"
+import { contact as contactData } from "@/lib/data.json"
+import Image from "next/image"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -34,29 +36,30 @@ export default function ContactPage() {
     setIsSubmitted(true)
   }
 
+  // Transform contact data to match component structure
   const contactInfo = [
     {
       icon: MapPin,
       title: "Visit Us",
-      details: ["LAUTECH Campus", "Ogbomoso, Oyo State", "Nigeria"],
+      details: [contactData.address],
       color: "text-primary",
     },
     {
       icon: Mail,
       title: "Email Us",
-      details: ["blockchain@lautech.edu.ng", "info@lautechblockchain.org"],
+      details: contactData.emails,
       color: "text-accent",
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: ["+234 803 123 4567", "+234 901 234 5678"],
+      details: contactData.phones,
       color: "text-green-600",
     },
     {
       icon: Clock,
       title: "Office Hours",
-      details: ["Monday - Friday: 9:00 AM - 5:00 PM", "Saturday: 10:00 AM - 2:00 PM", "Sunday: Closed"],
+      details: [contactData.officeHours.weekdays, contactData.officeHours.saturday, contactData.officeHours.sunday],
       color: "text-purple-600",
     },
   ]
@@ -81,7 +84,7 @@ export default function ContactPage() {
       title: "Join Discord",
       description: "Connect with our community on Discord",
       action: "Join Discord",
-      link: "#",
+      link: contactData.socials.find((s: any) => s.name === "discord")?.link || "#",
     },
   ]
 
@@ -115,194 +118,170 @@ export default function ContactPage() {
     <main className="min-h-screen bg-gray-50">
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">Get in Touch</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Have questions about blockchain technology, our events, or want to join our community? We'd love to hear
-              from you!
-            </p>
-          </div>
-        </div>
+      <section className="relative h-[360px] lg:h-[420px]">
+        <Image
+          src="/event/confluence-4.jpg"
+          alt="Blockchain LAUTECH"
+          fill
+          priority
+          className="object-cover"
+        />
+      </section>
+
+      <section className="container mx-auto py-16">
+        <h1 className="text-5xl lg:text-6xl font-bold text-primary leading-tight max-w-3xl">
+          We are always ready to
+          attend to your questions
+          and enquiries.
+        </h1>
       </section>
 
       {/* Contact Information */}
       <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div className="border border-primary">
+
+          <div className="grid md:grid-cols-2">
             {contactInfo.map((info, index) => (
-              <Card
+              <div
                 key={index}
-                className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="flex flex-col items-center justify-center text-center p-16 border-b md:border-r border-primary"
               >
-                <CardContent className="p-8">
+                <div className="space-y-6">
                   <info.icon className={`h-12 w-12 ${info.color} mx-auto mb-6`} />
-                  <h3 className="font-serif text-xl font-bold text-gray-900 mb-4">{info.title}</h3>
-                  <div className="space-y-2">
-                    {info.details.map((detail, i) => (
-                      <p key={i} className="text-gray-600 text-sm">
-                        {detail}
-                      </p>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+
+                  <h3 className={`${info.color} text-3xl font-semibold`}>
+                    {info.title}
+                  </h3>
+                  {info.details.map((d, i) => (
+                    <p
+                      key={i}
+                      className="font-bold text-3xl"
+                    >
+                      {d}
+                    </p>
+                  ))}
+
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact Form and Quick Actions */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <Card className="shadow-xl">
-                <CardHeader>
-                  <CardTitle className="font-serif text-2xl font-bold text-primary">Send us a Message</CardTitle>
-                  <p className="text-gray-600">Fill out the form below and we'll get back to you soon.</p>
-                </CardHeader>
-                <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          required
-                          className="mt-2"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          required
-                          className="mt-2"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="mt-2"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="category">Inquiry Type *</Label>
-                        <Select
-                          value={formData.category}
-                          onValueChange={(value) => setFormData({ ...formData, category: value })}
-                        >
-                          <SelectTrigger className="mt-2">
-                            <SelectValue placeholder="Select inquiry type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="membership">Membership Inquiry</SelectItem>
-                            <SelectItem value="events">Event Information</SelectItem>
-                            <SelectItem value="partnership">Partnership Opportunity</SelectItem>
-                            <SelectItem value="speaking">Speaking Engagement</SelectItem>
-                            <SelectItem value="technical">Technical Support</SelectItem>
-                            <SelectItem value="media">Media Inquiry</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="subject">Subject *</Label>
-                      <Input
-                        id="subject"
-                        value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        required
-                        className="mt-2"
-                        placeholder="Brief description of your inquiry"
-                      />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        required
-                        className="mt-2"
-                        rows={6}
-                        placeholder="Please provide details about your inquiry..."
-                      />
-                    </div>
-
-                    <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-                      {isSubmitting ? "Sending Message..." : "Send Message"}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-serif text-2xl font-bold text-primary mb-6">Quick Actions</h3>
-                <div className="space-y-4">
-                  {quickActions.map((action, index) => (
-                    <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <CardContent className="p-6">
-                        <action.icon className="h-8 w-8 text-primary mb-4" />
-                        <h4 className="font-serif text-lg font-bold text-gray-900 mb-2">{action.title}</h4>
-                        <p className="text-gray-600 text-sm mb-4">{action.description}</p>
-                        <Button asChild variant="outline" size="sm" className="w-full bg-transparent">
-                          <a href={action.link}>{action.action}</a>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-
-              {/* FAQ */}
-              <Card className="border-0 shadow-lg">
-                <CardHeader>
-                  <CardTitle className="font-serif text-xl font-bold text-primary">Frequently Asked</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4 text-sm">
-                    <div>
-                      <h5 className="font-medium text-gray-900 mb-1">How do I join the club?</h5>
-                      <p className="text-gray-600">Fill out our membership form and attend an orientation session.</p>
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-gray-900 mb-1">Are events free for members?</h5>
-                      <p className="text-gray-600">Yes, most events are free for club members.</p>
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-gray-900 mb-1">Do I need prior blockchain experience?</h5>
-                      <p className="text-gray-600">No, we welcome beginners and provide foundational training.</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+      <section className="container mx-auto py-20">
+        <div className="max-w-6xl">
+          <h2 className="text-6xl font-bold text-primary">
+            Get in touch.
+          </h2>
+          <p className="text-2xl font-semibold mt-5">
+            Fill this form and we'll get back to you.
+          </p>
         </div>
-      </section>
 
+        <form
+          onSubmit={handleSubmit}
+          className="mt-14"
+        >
+          <div className="grid md:grid-cols-3 gap-10">
+            <div>
+              <Label htmlFor="name">Full Name *</Label>
+              <Input
+                className="h-14 rounded-xl shadow-lg border-gray-200 mt-2"
+                id="name"
+                value={formData.name}
+                placeholder="John Doe"
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="email">Email Address *</Label>
+              <Input
+                className="h-14 rounded-xl shadow-lg border-gray-200 mt-2"
+                id="email"
+                type="email"
+                value={formData.email}
+                placeholder="example@gmail.com"
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+              />
+            </div>
+
+            {/* coming back for styling */}
+            <div>
+              <Label htmlFor="category">Inquiry Type *</Label>
+              <Select
+                value={formData.category}
+                onValueChange={(value) => setFormData({ ...formData, category: value })}
+              >
+                <SelectTrigger className="h-14 rounded-xl shadow-lg border-gray-200 mt-2">
+                  <SelectValue placeholder="Select inquiry type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="membership">Membership Inquiry</SelectItem>
+                  <SelectItem value="events">Event Information</SelectItem>
+                  <SelectItem value="partnership">Partnership Opportunity</SelectItem>
+                  <SelectItem value="speaking">Speaking Engagement</SelectItem>
+                  <SelectItem value="technical">Technical Support</SelectItem>
+                  <SelectItem value="media">Media Inquiry</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <Label htmlFor="phone">Phone Number</Label>
+              <Input
+                className="h-14 rounded-xl shadow-lg border-gray-200 mt-2"
+                id="phone"
+                type="tel"
+                value={formData.phone}
+                placeholder="+20 123 456 7890"
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="subject">Subject *</Label>
+              <Input
+                className="h-14 rounded-xl shadow-lg border-gray-200 mt-2"
+                id="subject"
+                value={formData.subject}
+                placeholder="Brief description of your inquiry"
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                required
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="message">Message *</Label>
+              <Textarea
+                className="h-14 rounded-xl shadow-lg border-gray-200 resize-none mt-2"
+                id="message"
+                value={formData.message}
+                placeholder="Enter details about your inquiry..."
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                required
+                rows={4}
+              />
+            </div>
+
+          </div>
+          <div className="flex justify-center mt-12">
+            <Button
+              type="submit"
+              className="px-20 h-14 rounded-full text-lg"
+              disabled={isSubmitting}
+              size="lg"
+            >
+              {isSubmitting ? "Sending Message..." : "Send us a message"}
+            </Button>
+          </div>
+        </form>
+      </section>
     </main>
   )
 }

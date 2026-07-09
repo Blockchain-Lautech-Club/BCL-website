@@ -15,20 +15,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Blockchain LAUTECH- Empowering the Next Generation",
   description: "Join the LAUTECH Blockchain Club and explore the future of technology through workshops, networking, and innovation.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      { url: '/favico.png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#000000' },
-    ],
-  },
+  generator: "Next.js",
+  keywords: ["Blockchain", "LAUTECH", "Technology", "Innovation", "Workshops", "Networking"],
+  icons: "/bannernew.jpg",
   manifest: '/site.webmanifest',
 }
 
