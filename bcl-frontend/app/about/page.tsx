@@ -43,11 +43,11 @@ export default function AboutPage() {
 
       {/* About Us Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl md:text-6xl font-bold text-blue-600 mb-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-12">
             About Us
-          </h1>
-          <div className="space-y-6 text-lg text-gray-700 leading-relaxed max-w-4xl">
+          </h2>
+          <div className="space-y-6 text-lg text-justify text-gray-700 leading-relaxed max-w-4xl">
             <p>{history.p1}</p>
             <p>{history.p2}</p>
             <p>{history.p3}</p>
@@ -61,7 +61,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <Card key={index} className="text-center border-0 shadow-lg rounded-2xl">
-                <CardContent className="p-8">
+                <CardContent className="p-4">
                   <Image
                     src={`/about${stat.icon}`}
                     alt={stat.label}
@@ -104,8 +104,8 @@ export default function AboutPage() {
 
       {/* Team Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-5xl md:text-6xl font-bold text-blue-600 mb-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
             The Team.
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
@@ -136,14 +136,14 @@ export default function AboutPage() {
 
       {/* Recent Achievements */}
       <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-5xl md:text-6xl font-bold text-blue-600 mb-12">
+        <div className=" container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
             Recent Achievements.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
             {achievement.map((ach, index) => (
               <Card key={index} className="border-0 shadow-lg rounded-2xl">
-                <CardContent className="p-8 text-center">
+                <CardContent className="p-4 text-center">
                   <ach.icon className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                   <h3 className="font-semibold text-gray-900 mb-2">{ach.title}</h3>
                   <p className="text-gray-600">{ach.date}</p>
@@ -156,25 +156,25 @@ export default function AboutPage() {
 
       {/* Contact Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-5xl md:text-6xl font-bold text-blue-600 mb-12">
+        <div className=" container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
             Contact Us.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="border-0 shadow-lg rounded-2xl">
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-4 text-center">
                 <Mail className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <p className="text-gray-800 font-medium">{contact.emails[0]}</p>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-lg rounded-2xl">
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-4 text-center">
                 <MapPin className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <p className="text-gray-800 font-medium">{contact.address}</p>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-lg rounded-2xl">
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-4 text-center">
                 <Phone className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <p className="text-gray-800 font-medium">{contact.phones[0]}</p>
               </CardContent>
