@@ -1,114 +1,75 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { 
-  Users, 
-  Target, 
-  BookOpen, 
-  Calendar, 
-  Award, 
   MapPin, 
   Mail, 
   Phone,
-  Lightbulb,
-  Code,
-  Handshake,
+  Award,
+  BookOpen,
+  Users,
   TrendingUp,
-  ArrowRight,
-  Star
 } from "lucide-react"
-import Team from "@/components/team"
+import { aboutUs, contact, team } from "@/lib/data.json"
+import Image from "next/image"
 
-const stats = [
-  { number: "2500+", label: "Students Trained", icon: Users },
-  { number: "5+", label: "Workshops & Hackathons", icon: Calendar },
-  { number: "20+", label: "Industry Partners", icon: Handshake },
-  { number: "5", label: "Years Active", icon: Award },
-]
-
-const values = [
-  {
-    icon: Target,
-    title: "Innovation",
-    description: "Fostering cutting-edge blockchain solutions and encouraging creative problem-solving among our members.",
-  },
-  {
-    icon: BookOpen,
-    title: "Education",
-    description: "Providing comprehensive learning resources and hands-on experience in blockchain technology.",
-  },
-  {
-    icon: Users,
-    title: "Community",
-    description: "Building a supportive network of blockchain enthusiasts, developers, and industry professionals.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Growth",
-    description: "Continuously evolving with the blockchain space and preparing members for future opportunities.",
-  },
-]
-
-
-
-const achievements = [
-  {
-    title: "3rd place Crossfi Global Hackathon",
-    description: "Our Community members won the second runner-up of the Crossfi Global Hackathon 2025",
-    date: "August 2025"
-  },
-  {
-    title: "1st place Crossfi Africa Hackathon",
-    description: "Our Community members won the Crossfi Africa Hackathon 2025",
-    date: "March 2025"
-  },
-    {
-    title: "Free Ticket to EthDenver 2024 with all accomodation sorted",
-    description: "Our Community members is part of the team that won free tickets to ETHDenver 2024 at the Web3Lagos conference 2024 Hackathon",
-    date: "September 2024"
-  },
-]
+const stats = aboutUs.statistics
+const achievements = aboutUs.achievements
+const history = aboutUs.history
 
 export default function AboutPage() {
+
+  const achievement = [
+    {
+      title: achievements[0].title,
+      date: achievements[0].date,
+      icon: BookOpen,
+    },
+    {
+      title: achievements[1].title,
+      date: achievements[1].date,
+      icon: Users,
+    },
+    {
+      title: achievements[2].title,
+      date: achievements[2].date,
+      icon: TrendingUp
+    }
+  ]
   return (
     <main className="min-h-screen bg-gray-50">
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-primary/5 py-16">
+      {/* About Us Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
-              About Blockchain Club LAUTECH
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-              Empowering the next generation of blockchain innovators through education, collaboration, and 
-              hands-on experience at Ladoke Akintola University of Technology.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg">
-                <Link href="/join">Join Our Community</Link>
-              </Button>
-              <Button variant="outline" asChild size="lg" className="bg-transparent">
-                <Link href="/events">View Our Events</Link>
-              </Button>
-            </div>
+          <h1 className="text-5xl md:text-6xl font-bold text-blue-600 mb-12">
+            About Us
+          </h1>
+          <div className="space-y-6 text-lg text-gray-700 leading-relaxed max-w-4xl">
+            <p>{history.p1}</p>
+            <p>{history.p2}</p>
+            <p>{history.p3}</p>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <Card key={index} className="text-center border-0 shadow-lg">
-                <CardContent className="p-6">
-                  <stat.icon className="h-10 w-10 text-primary mx-auto mb-4" />
-                  <div className="font-serif text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
+              <Card key={index} className="text-center border-0 shadow-lg rounded-2xl">
+                <CardContent className="p-8">
+                  <Image
+                    src={`/about${stat.icon}`}
+                    alt={stat.label}
+                    width={50}
+                    height={50}
+                    className="h-12 w-12 mx-auto mb-4"
+                  />
+                  <div className="text-3xl font-bold text-gray-900 mb-2">{stat.metric}</div>
                   <div className="text-gray-600 font-medium">{stat.label}</div>
                 </CardContent>
               </Card>
@@ -117,142 +78,75 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <Card className="border-0 shadow-xl">
-              <CardHeader>
-                <CardTitle className="font-serif text-2xl font-bold text-primary flex items-center gap-3">
-                  <Target className="h-8 w-8 text-primary" />
-                  Our Mission
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  To empower LAUTECH students with blockchain expertise, drive innovation, and build a vibrant ecosystem for future blockchain leaders through workshops, hackathons, and collaborative projects.
-
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-xl">
-              <CardHeader>
-                <CardTitle className="font-serif text-2xl font-bold text-primary flex items-center gap-3">
-                  <Lightbulb className="h-8 w-8 text-accent" />
-                  Our Vision
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  To create a LAUTECH where every student is equipped with blockchain knowledge and contributes to Nigeria's leadership in Web3 innovation.
-
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Do */}
+      {/* Image Gallery */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">What We Do</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We provide comprehensive blockchain education through various initiatives and programs
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-8 text-center">
-                <Code className="h-12 w-12 text-primary mx-auto mb-6" />
-                <h3 className="font-serif text-xl font-bold text-gray-900 mb-4">Technical Workshops</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Hands-on coding sessions covering smart contracts, DeFi protocols, NFTs, and blockchain development
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-8 text-center">
-                <Users className="h-12 w-12 text-accent mx-auto mb-6" />
-                <h3 className="font-serif text-xl font-bold text-gray-900 mb-4">Industry Connections</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Regular panels with blockchain professionals, mentorship programs, and internship opportunities
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-8 text-center">
-                <Calendar className="h-12 w-12 text-green-600 mx-auto mb-6" />
-                <h3 className="font-serif text-xl font-bold text-gray-900 mb-4">Hackathons & Competitions</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Regular hackathons and competitions to challenge members and showcase innovative blockchain solutions
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/event/confluence-1.jpg"
+                alt="Workshop presentation"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/event/confluence-2.jpg"
+                alt="Event attendees"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="py-16 bg-gray-50">
+      {/* Team Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Our Core Values</h2>
-            <p className="text-lg text-gray-600">The principles that guide everything we do</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/10 rounded-lg">
-                      <value.icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-serif text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{value.description}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+          <h2 className="text-5xl md:text-6xl font-bold text-blue-600 mb-12">
+            The Team.
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            {[...team.founders, ...team.moderators].slice(0, 8).map((member, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg mb-4">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <p className="text-center font-semibold text-gray-800 text-sm md:text-base">
+                  {member.name}
+                </p>
+                <p className="text-center text-gray-600 text-xs md:text-sm">
+                  {member.role}
+                </p>
+              </div>
             ))}
           </div>
+          <blockquote className="text-center text-xl md:text-2xl italic text-gray-700 max-w-3xl mx-auto">
+            "Great minds don't just follow systems, they build decentralized ones that empower the world"
+          </blockquote>
         </div>
       </section>
-
-      {/* Leadership Team */}
-      <Team/>
 
       {/* Recent Achievements */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold text-primary mb-4">Recent Achievements</h2>
-            <p className="text-lg text-gray-600">Milestones that showcase our impact and growth</p>
-          </div>
-
-          <div className="space-y-6">
-            {achievements.map((achievement, index) => (
-              <Card key={index} className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/10 rounded-full">
-                      <Star className="h-6 w-6 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                        <h3 className="font-serif text-xl font-bold text-gray-900">{achievement.title}</h3>
-                        <span className="text-gray-500 text-sm mt-1 md:mt-0">{achievement.date}</span>
-                      </div>
-                      <p className="text-gray-600 leading-relaxed">{achievement.description}</p>
-                    </div>
-                  </div>
+          <h2 className="text-5xl md:text-6xl font-bold text-blue-600 mb-12">
+            Recent Achievements.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {achievement.map((ach, index) => (
+              <Card key={index} className="border-0 shadow-lg rounded-2xl">
+                <CardContent className="p-8 text-center">
+                  <ach.icon className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                  <h3 className="font-semibold text-gray-900 mb-2">{ach.title}</h3>
+                  <p className="text-gray-600">{ach.date}</p>
                 </CardContent>
               </Card>
             ))}
@@ -260,63 +154,29 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Location & Contact */}
-      <section className="py-16 bg-white">
+      {/* Contact Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="font-serif text-3xl font-bold text-primary mb-6">Find Us</h2>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <MapPin className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-medium text-gray-900 mb-1">Location</h3>
-                    <p className="text-gray-600">
-                      Ladoke Akintola Univerity of Technology<br />
-                      Ogbomoso, Oyo State, Nigeria
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Mail className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-medium text-gray-900 mb-1">Email</h3>
-                    <p className="text-gray-600">
-                      blockchainlautech@gmail.com
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Phone className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-medium text-gray-900 mb-1">Phone</h3>
-                    <p className="text-gray-600">
-                      +234 916 270 6257
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <Card className="border-0 shadow-xl">
-              <CardHeader>
-                <CardTitle className="font-serif text-2xl font-bold text-primary">Ready to Join Us?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  Whether you're a complete beginner or an experienced developer, there's a place for you in our 
-                  community. Join us and be part of the blockchain revolution!
-                </p>
-                <div className="space-y-4">
-                  <Button asChild className="w-full">
-                    <Link href="/join" className="flex items-center justify-center gap-2">
-                      Join the Club <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button variant="outline" asChild className="w-full bg-transparent">
-                    <Link href="/contact">Get in Touch</Link>
-                  </Button>
-                </div>
+          <h2 className="text-5xl md:text-6xl font-bold text-blue-600 mb-12">
+            Contact Us.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="border-0 shadow-lg rounded-2xl">
+              <CardContent className="p-8 text-center">
+                <Mail className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <p className="text-gray-800 font-medium">{contact.emails[0]}</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg rounded-2xl">
+              <CardContent className="p-8 text-center">
+                <MapPin className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <p className="text-gray-800 font-medium">{contact.address}</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg rounded-2xl">
+              <CardContent className="p-8 text-center">
+                <Phone className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <p className="text-gray-800 font-medium">{contact.phones[0]}</p>
               </CardContent>
             </Card>
           </div>

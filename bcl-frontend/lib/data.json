@@ -32,18 +32,40 @@
       "p3": "Through structured activities including workshops, seminars, hackathons and collaborative projects, blockchain club lautech fosters an environment that encourages innovation, critical thinking, and skill development."
     },
     "statistics": [
-      { "metric": "2500+", "label": "Students Trained" },
-      { "metric": "5+", "label": "Workshops & Hackathons" },
-      { "metric": "20+", "label": "Industry Partners" },
-      { "metric": "5+", "label": "Years Active" }
+      { 
+        "metric": "2500+", 
+        "label": "Students Trained",
+        "icon": "/student.png"
+      },
+      { 
+        "metric": "5+", 
+        "label": "Workshops & Hackathons", 
+        "icon": "/hackathon.png" 
+      },
+      { 
+        "metric": "20+", 
+        "label": "Industry Partners", 
+        "icon": "/industrial.png" 
+      },
+      { 
+        "metric": "5+", 
+        "label": "Years Active", 
+        "icon": "/calendar.png" 
+      }
     ],
     "achievements": [
-      { "title": "1st place - CrossFi Africa hackathon", "date": "March 2025" },
+      { 
+        "title": "1st place - CrossFi Africa hackathon", 
+        "date": "March 2025"
+      },
       {
         "title": "3rd place - CrossFi Global hackathon",
         "date": "August 2025"
       },
-      { "title": "Free tickets to ETH Denver", "date": "September 2024" }
+      { 
+        "title": "Free tickets to ETH Denver", 
+        "date": "September 2024"
+      }
     ]
   },
 
