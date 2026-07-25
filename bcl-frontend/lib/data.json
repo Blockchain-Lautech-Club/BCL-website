@@ -432,7 +432,10 @@
     { "name": "AllstarsNG", "logo": "/partners/allstarsNg.jpg", "bgColor": "black", "textColor": "white" },
     { "name": "FaucetDrops", "logo": "/partners/faucetdrops.jpg", "bgColor": "#26A9E1", "textColor": "#FFFFFF" },
     { "name": "Sui", "logo": "/partners/sui.jpg", "bgColor": "#4DA2FF", "textColor": "#FFFFFF" },
-    { "name": "Web3Bridge", "logo": "/partners/web3bridge.jpg", "bgColor": "#FA0001", "textColor": "#FFFFFF" }
+    { "name": "Web3Bridge", "logo": "/partners/web3bridge.jpg", "bgColor": "#FA0001", "textColor": "#FFFFFF" },
+    { "name": "Zcash", "logo": "/partners/zCash.jpg", "bgColor": "#FA0001", "textColor": "#FFFFFF" },
+    { "name": "Beacon Labs", "logo": "/partners/beaconLabs.jpg", "bgColor": "#023026", "textColor": "#FFFFFF" },
+    { "name": "web3 Ogbomoso", "logo": "/partners/web3mosho.png", "bgColor": "#023026", "textColor": "#FFFFFF" }
   ],
 
   "contact": {

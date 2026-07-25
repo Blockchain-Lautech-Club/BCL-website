@@ -2,7 +2,7 @@ import { Binoculars, Settings } from "lucide-react";
 
 const VisionMissionContent = () => {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-white">
+    <div className="relative w-full overflow-hidden bg-white">
       {/* Blue diagonal triangle */}
       <div
         className="absolute inset-0"
@@ -21,7 +21,7 @@ const VisionMissionContent = () => {
       />
 
       {/* Your content goes here */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-3 py-10 sm:px-4 sm:py-16">
+      <div className="relative z-10 flex items-center justify-center px-3 py-8 sm:px-4 sm:py-16 md:min-h-[500px]">
         <div className="relative mx-auto flex w-full max-w-4xl flex-col gap-6 px-0 sm:px-4">
           {/* Vision Card */}
           <div className="mx-auto w-full max-w-lg rounded-xl bg-[#1e3a8a] p-6 text-white shadow-lg sm:p-8">
@@ -63,14 +63,14 @@ const VisionMissionContent = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
 export default function VisionMission() {
   return (
-    <section className="relative overflow-hidden bg-white py-20">
-      <div className="text-center mb-16">
+    <section className="relative overflow-hidden bg-white py-12 sm:py-20">
+      <div className="text-center mb-10 sm:mb-16">
         <div
           className="mx-auto mb-10 inline-flex rounded-full p-[1.5px]"
           style={{ background: "linear-gradient(to bottom, #7C3AED, #3B82F6)" }}

@@ -73,21 +73,23 @@ export function SocialIcons({ social }: { social: TeamMember["social"] }) {
 // only for landing page. teamCard for page is in the page directory
 export function TeamCard({ member }: { member: TeamMember }) {
   return (
-    <div className="group p-3 transition-transform duration-300 hover:-translate-y-1 sm:p-6">
-      <div className="mx-auto mb-4 h-[280px] w-full max-w-[240px] overflow-hidden rounded-[40px] rounded-bl-[100px] border-2 border-sky-800 p-3 sm:h-[320px] sm:max-w-[260px] sm:p-4">
+    <div className="group p-2 transition-transform duration-300 hover:-translate-y-1 sm:p-3 lg:p-6">
+      <div className="mx-auto mb-3 h-[180px] w-full max-w-[240px] overflow-hidden rounded-[24px] rounded-bl-[60px] border-2 border-sky-800 p-2 sm:h-[280px] sm:rounded-[40px] sm:rounded-bl-[100px] sm:p-3 lg:h-[320px] lg:max-w-[260px] lg:p-4">
         <Image
           src={member.image}
           alt={member.name}
           width={260}
           height={260}
-          className="h-full w-full overflow-hidden rounded-[32px] rounded-bl-[90px] object-cover"
+          className="h-full w-full overflow-hidden rounded-[16px] rounded-bl-[50px] object-cover sm:rounded-[32px] sm:rounded-bl-[90px]"
         />
       </div>
-      <h3 className="text-center text-lg font-semibold text-sky-900">
+      <h3 className="text-center text-sm font-semibold text-sky-900 sm:text-lg">
         {member.name}
       </h3>
-      <p className="mt-1 text-center text-base text-slate-500">{member.role}</p>
-      <SocialIcons social={member.social} />
+      <p className="mt-1 text-center text-xs text-slate-500 sm:text-base">{member.role}</p>
+      <div className="scale-75 sm:scale-100">
+        <SocialIcons social={member.social} />
+      </div>
     </div>
   );
 }
@@ -127,7 +129,7 @@ export default function Team() {
                 Founders
               </p>
             </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-8 lg:grid-cols-3">
               {founders.map((founder) => (
                 <TeamCard key={founder.name} member={founder} />
               ))}
@@ -140,7 +142,7 @@ export default function Team() {
                 Community Managers
               </p>
             </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-8 lg:grid-cols-3">
               {moderators.map((manager) => (
                 <TeamCard key={manager.name} member={manager} />
               ))}

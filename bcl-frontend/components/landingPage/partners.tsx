@@ -1,19 +1,6 @@
 import { partners } from "@/lib/data.json";
 import Image from "next/image";
 
-// const partners = [
-//   { name: 'Celo Africa\nDAO', logo: '/logos/celo-africa.png', bg: 'bg-yellow-300' },
-//   { name: 'Web3Bridge', logo: '/logos/web3bridge.png', bg: 'bg-white' },
-//   { name: 'CrossFi', logo: '/logos/crossfi.png', bg: 'bg-slate-900' },
-//   { name: 'CoinEx', logo: '/logos/coinex.png', bg: 'bg-emerald-500' },
-//   { name: 'Celo Africa\nDAO', logo: '/logos/celo-africa.png', bg: 'bg-blue-500' },
-//   { name: 'GIDA', logo: '/logos/gida.png', bg: 'bg-red-700' },
-//   { name: 'Nova\nLabs', logo: '/logos/nova-labs.png', bg: 'bg-black' },
-//   { name: 'FaucetDrops', logo: '/logos/faucet-drops.png', bg: 'bg-blue-400' },
-//   { name: 'AllstarsNG', logo: '/logos/allstarsng.png', bg: 'bg-black' },
-//   { name: 'Backpack', logo: '/logos/backpack.png', bg: 'bg-black' },
-// ];
-
 // Gradient border badge
 const SectionBadge = () => (
   <div
@@ -26,37 +13,72 @@ const SectionBadge = () => (
   </div>
 );
 
+const PartnerCard = ({ partner }: { partner: typeof partners[0] }) => (
+  <div className="flex w-32 shrink-0 flex-col items-center rounded-2xl bg-white p-2 shadow-sm transition-shadow hover:shadow-md sm:w-40 sm:p-4 lg:w-48 lg:p-6">
+    <div className="mb-2 flex h-16 w-16 items-center justify-center rounded-lg sm:mb-3 sm:h-24 sm:w-24 lg:h-28 lg:w-28">
+      <Image
+        src={partner.logo}
+        alt={partner.name}
+        width={200}
+        height={200}
+        className="h-full w-full rounded-xl object-contain"
+      />
+    </div>
+    <span className="whitespace-pre-line text-center text-xs font-medium text-blue-600 sm:text-sm">
+      {partner.name}
+    </span>
+  </div>
+);
+
 export default function Partners() {
+  // Split partners into two rows
+  const midIndex = Math.ceil(partners.length / 2);
+  const row1 = partners.slice(0, midIndex);
+  const row2 = partners.slice(midIndex);
+
   return (
-    <section className="bg-gray-100 py-16 sm:py-20">
+    <section className="overflow-hidden bg-gray-100 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <SectionBadge />
         </div>
+      </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center rounded-2xl bg-white p-4 shadow-sm transition-shadow hover:shadow-md sm:p-6"
-            >
-              <div className="mb-3 flex h-24 w-24 items-center justify-center rounded-lg sm:h-28 sm:w-28">
-                {/* Replace with actual Image component */}
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={1000}
-                  height={1000}
-                  className="h-full w-full object-contain"
-                />
-              </div>
-              <span className="text-center text-sm font-medium text-blue-600 whitespace-pre-line">
-                {partner.name}
-              </span>
-            </div>
+      <div className="relative mx-auto mt-4 flex max-w-[100vw] flex-col gap-6 overflow-hidden sm:gap-8">
+        {/* Row 1: Left to Right */}
+        <div className="animate-marquee flex w-max gap-4 sm:gap-6">
+          {[...row1, ...row1, ...row1, ...row1].map((partner, index) => (
+            <PartnerCard key={`r1-${index}`} partner={partner} />
+          ))}
+        </div>
+
+        {/* Row 2: Right to Left */}
+        <div className="animate-marquee-reverse flex w-max gap-4 sm:gap-6">
+          {[...row2, ...row2, ...row2, ...row2].map((partner, index) => (
+            <PartnerCard key={`r2-${index}`} partner={partner} />
           ))}
         </div>
       </div>
+
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-reverse {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0%); }
+        }
+        .animate-marquee {
+          animation: marquee 40s linear infinite;
+        }
+        .animate-marquee-reverse {
+          animation: marquee-reverse 40s linear infinite;
+        }
+        .animate-marquee:hover, .animate-marquee-reverse:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 }

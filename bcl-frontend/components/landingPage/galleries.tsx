@@ -56,15 +56,15 @@ export default function GalleryCarousel() {
   const visibleIndices = getVisibleIndices();
 
   return (
-    <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+    <section className="relative overflow-hidden bg-white py-10 sm:py-20">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-16"
+        className="mb-8 text-center sm:mb-16"
       >
         <div
-          className="mx-auto mb-14 inline-flex rounded-full p-[1.5px]"
+          className="mx-auto mb-6 inline-flex rounded-full p-[1.5px] sm:mb-14"
           style={{ background: "linear-gradient(to bottom, #7C3AED, #3B82F6)" }}
         >
           <div className="rounded-full bg-gray-100/90 px-6 py-2">
@@ -122,7 +122,7 @@ export default function GalleryCarousel() {
       </div>
 
       {/* Navigation dots */}
-      <div className="mt-12 flex justify-center gap-2 md:mt-20">
+      <div className="mt-8 flex justify-center gap-2 md:mt-20">
         {galleries.map((_, index) => (
           <button
             key={index}
@@ -134,7 +134,7 @@ export default function GalleryCarousel() {
         ))}
       </div>
 
-      <div className="mt-10 flex justify-center">
+      <div className="mt-6 flex justify-center sm:mt-10">
         <Link 
           href="https://drive.google.com/drive/folders/1P5HCovu72HRVmt0WEKReFMP8mwtGk-O3"
           className="rounded-full border border-blue-600 bg-transparent px-8 py-2.5 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-600 hover:text-white"
