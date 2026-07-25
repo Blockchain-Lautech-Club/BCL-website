@@ -23,10 +23,10 @@ const HeroText = () => {
   return (
     <>
       <div className="absolute inset-0 flex items-center max-h-screen">
-        <div className="flex flex-col gap-5 md:gap-15 px-8 lg:px-16 xl:px-24">
+        <div className="flex w-full flex-col gap-5 px-4 py-6 mt-16 sm:px-6 sm:py-8 md:gap-10 md:px-8 lg:px-16 xl:px-24">
           {/* Headline */}
-          <h1 className="mb-6 max-w-2xl font-extrabold leading-tight text-4xl sm:text-5xl lg:text-5xl max-lg:bg-white">
-            <span className="relative inline-flex min-h-[1.2em] items-center text-blue-600">
+          <h1 className="max-w-2xl font-extrabold leading-tight text-4xl sm:text-5xl lg:text-5xl">
+            <span className="relative inline-flex min-h-[1.2em] items-center text-blue-400 lg:text-blue-600">
               <span
                 key={activeWord}
                 className="inline-block"
@@ -35,29 +35,29 @@ const HeroText = () => {
                 {activeWord}
               </span>
             </span>
-            <span className="text-slate-800"> the Future,</span>
+            <span className="text-white lg:text-slate-800"> the Future,</span>
             <br />
-            <span className="text-slate-800">One Block at a Time.</span>
+            <span className="text-white lg:text-slate-800">One Block at a Time.</span>
           </h1>
 
           {/* Subheadline - sits on the gradient area */}
           <div className="flex flex-col max-w-md gap-5">
-            <p className="mb-8 text-sm leading-relaxed text-blue sm:text-lg">
+            <p className="text-sm leading-relaxed text-blue-50 sm:text-lg">
               Connecting curious minds to blockchain education, hands-on
               experience, and a community of future tech leaders.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <button
                 onClick={() => router.push("/join")}
-                className="cursor-pointer rounded-lg bg-white px-6 py-2.5 text-sm font-medium text-blue-600 shadow-lg transition-colors hover:bg-blue-50"
+                className="w-full cursor-pointer rounded-lg bg-white px-6 py-2.5 text-sm font-medium text-blue-600 shadow-lg transition-colors hover:bg-blue-50 sm:w-auto"
               >
                 Join Community
               </button>
               <button
                 onClick={() => router.push("/events")}
-                className="cursor-pointer rounded-lg border border-white/30 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                className="w-full cursor-pointer rounded-lg border border-white/30 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:w-auto"
               >
                 Explore Events
               </button>
@@ -84,7 +84,10 @@ const HeroText = () => {
 
 export function HeroSection() {
   return (
-    <section className="relative h-screen w-full bg-cover bg-center bg-no-repeat pb-12 max-lg:m-4 max-lg:bg-[url('/event/confluence-1.jpg')] lg:bg-white">
+    <section className="relative min-h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat pb-12 max-lg:bg-[url('/event/confluence-1.jpg')] lg:bg-white">
+      {/* Mobile dark overlay for image readability */}
+      <div className="absolute inset-0 bg-black/60 lg:hidden" />
+
       {/* Gradient background - curves up behind cards */}
       <div
         className="absolute bottom-0 left-0 right-0 h-[45%]"

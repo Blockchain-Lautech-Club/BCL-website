@@ -42,7 +42,7 @@ const EventsTeaserContent = () => {
         >
           <div className="rounded-full bg-gray-100/90 px-6 py-2">
             <span className="text-lg font-semibold text-blue-600">
-              Upcoming Events
+               Events
             </span>
           </div>
         </div>
@@ -66,6 +66,19 @@ const EventsTeaserContent = () => {
               />
             </div>
           ))}
+          
+          {/* Coming Soon Card */}
+          <div className="w-[85vw] shrink-0 sm:w-[45vw] lg:w-[30vw] xl:w-[25vw]">
+            <div className="flex h-full min-h-[300px] flex-col items-center justify-center rounded-3xl border-2 border-dashed border-gray-300 bg-white/50 p-6 text-center shadow-sm backdrop-blur-sm transition-all hover:border-blue-400 hover:bg-blue-50/50">
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-800">More Events</h3>
+              <p className="mt-2 text-sm text-gray-500">Stay tuned for more exciting workshops and hackathons coming your way!</p>
+            </div>
+          </div>
         </div>
       </div>
 

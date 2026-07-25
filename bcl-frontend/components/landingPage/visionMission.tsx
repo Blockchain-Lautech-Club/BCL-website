@@ -21,14 +21,14 @@ const VisionMissionContent = () => {
       />
 
       {/* Your content goes here */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-        <div className="relative mx-auto max-w-4xl px-4">
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-3 py-10 sm:px-4 sm:py-16">
+        <div className="relative mx-auto flex w-full max-w-4xl flex-col gap-6 px-0 sm:px-4">
           {/* Vision Card */}
-          <div className="mx-auto mb-6 max-w-lg rounded-xl bg-[#1e3a8a] p-8 text-white shadow-lg">
-            <div className="flex items-start gap-6">
+          <div className="mx-auto w-full max-w-lg rounded-xl bg-[#1e3a8a] p-6 text-white shadow-lg sm:p-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
               {/* Binoculars icon */}
               <div className="shrink-0">
-                <Binoculars className="w-18 h-18 text-white/70 " />
+                <Binoculars className="h-14 w-14 text-white/70 sm:h-16 sm:w-16" />
               </div>
               <div>
                 <h3 className="mb-3 text-2xl font-semibold">Vision</h3>
@@ -42,11 +42,11 @@ const VisionMissionContent = () => {
           </div>
 
           {/* Mission Card */}
-          <div className="mx-auto max-w-lg rounded-xl bg-white p-8 shadow-lg border border-gray-100">
-            <div className="flex items-start gap-6">
+          <div className="mx-auto w-full max-w-lg rounded-xl border border-gray-100 bg-white p-6 shadow-lg sm:p-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
               {/* Gear icon */}
               <div className="shrink-0">
-                <Settings className="w-16 h-16 text-blue-400" />
+                <Settings className="h-14 w-14 text-blue-400 sm:h-16 sm:w-16" />
               </div>
               <div>
                 <h3 className="mb-3 text-2xl font-semibold text-blue-900">
@@ -81,7 +81,7 @@ export default function VisionMission() {
             </span>
           </div>
         </div>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-gray-600 sm:px-6 sm:text-xl">
           What we want to achieve and how we achieve it
         </p>
       </div>

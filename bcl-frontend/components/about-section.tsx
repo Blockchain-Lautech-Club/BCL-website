@@ -1,6 +1,6 @@
 "use client";
 import { Card, CardContent } from "@/components/ui/card";
-import { Globe, Code, Network } from 'lucide-react';
+import { Globe, Code, Network } from "lucide-react";
 
 export default function AboutSection() {
   const pillars = [
@@ -19,10 +19,10 @@ export default function AboutSection() {
   ];
 
   return (
-    <section className="relative py-20 overflow-hidden bg-white">
-      <div className="text-center mb-16">
+    <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+      <div className="mb-10 text-center sm:mb-16">
         <div
-          className="mx-auto mb-10 inline-flex rounded-[28px] p-[1.5px]"
+          className="mx-auto mb-8 inline-flex rounded-[28px] p-[1.5px] sm:mb-10"
           style={{ background: "linear-gradient(to bottom, #7C3AED, #3B82F6)" }}
         >
           <div className="rounded-full bg-gray-100/90 px-6 py-2">
@@ -31,21 +31,21 @@ export default function AboutSection() {
             </span>
           </div>
         </div>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-gray-600 sm:px-6 sm:text-xl">
           Blockchain Lautech is a dynamic student-led community at LAUTECH,
           dedicated to advancing blockchain education, innovation, and adoption
           through collaboration and hands-on learning.
         </p>
       </div>
       {/* Decorative horizontal lines */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 space-y-6">
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 space-y-4 md:space-y-6">
         {[...Array(7)].map((_, i) => (
-          <div key={`left-${i}`} className="h-2 w-80 bg-gray-200" />
+          <div key={`left-${i}`} className="h-1 w-20 bg-gray-200 sm:w-40 md:h-2 md:w-80" />
         ))}
       </div>
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 space-y-6">
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 space-y-4 md:space-y-6">
         {[...Array(7)].map((_, i) => (
-          <div key={`right-${i}`} className="h-2 w-80 bg-gray-200" />
+          <div key={`right-${i}`} className="h-1 w-20 bg-gray-200 sm:w-40 md:h-2 md:w-80" />
         ))}
       </div>
 
@@ -53,7 +53,7 @@ export default function AboutSection() {
       <div className="absolute left-1/2 top-0 h-full w-px border-l border-dashed border-gray-300" />
 
       {/* Pillars Container */}
-      <div className="relative mx-auto grid max-w-3xl grid-cols-1 gap-6 px-4 lg:grid-cols-3 lg:px-0">
+      <div className="relative mx-auto grid max-w-3xl grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-3 lg:px-0">
         {pillars.map((pillar, index) => {
           const Icon = pillar.icon;
           return (
