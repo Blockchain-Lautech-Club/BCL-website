@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { galleries } from "@/lib/data.json";
 import { motion } from "framer-motion";
 
@@ -121,7 +122,7 @@ export default function GalleryCarousel() {
       </div>
 
       {/* Navigation dots */}
-      <div className="mt-20 flex justify-center gap-2">
+      <div className="mt-12 flex justify-center gap-2 md:mt-20">
         {galleries.map((_, index) => (
           <button
             key={index}
@@ -131,6 +132,15 @@ export default function GalleryCarousel() {
             }`}
           />
         ))}
+      </div>
+
+      <div className="mt-10 flex justify-center">
+        <Link 
+          href="https://drive.google.com/drive/folders/1P5HCovu72HRVmt0WEKReFMP8mwtGk-O3"
+          className="rounded-full border border-blue-600 bg-transparent px-8 py-2.5 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-600 hover:text-white"
+        >
+          View All
+        </Link>
       </div>
 
       {/* Modal */}
