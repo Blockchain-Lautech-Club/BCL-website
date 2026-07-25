@@ -58,7 +58,7 @@ const HeroText = () => {
               </button>
               <button
                 onClick={() => router.push("/events")}
-                className="w-full cursor-pointer rounded-lg border-2 border-white/30 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:w-auto"
+                className="w-full cursor-pointer rounded-lg border-2 border-white px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:w-auto"
               >
                 Explore Events
               </button>
