@@ -59,7 +59,7 @@ const Footer = () => {
         {/* Links Grid */}
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
           {/* Quick Links */}
-          <div className="text-center lg:text-left">
+          <div className="text-left">
             <h3 className="mb-4 text-lg font-semibold text-white">
               Quick Links
             </h3>
@@ -78,7 +78,7 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div className="text-center lg:text-left">
+          <div className="text-left">
             <h3 className="mb-4 text-lg font-semibold text-white">Resources</h3>
             <ul className="space-y-3">
               {resources.map((resource, i) => (
@@ -95,7 +95,7 @@ const Footer = () => {
           </div>
 
           {/* Community */}
-          <div className="text-center lg:text-left">
+          <div className="text-left">
             <h3 className="mb-4 text-lg font-semibold text-white">Community</h3>
             <ul className="space-y-3">
               {community.map((c, i) => (
@@ -112,7 +112,7 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="flex flex-col items-start text-left">
             <h3 className="mb-4 text-lg font-semibold text-white">
               Contact Us
             </h3>
@@ -184,11 +184,11 @@ const Footer = () => {
           </div>
 
           {/* Social Media */}
-          <div className="col-span-2 text-center lg:col-span-1 lg:text-left">
+          <div className="col-span-2 text-left lg:col-span-1">
             <h3 className="mb-4 text-lg font-semibold text-white">
               Social Media
             </h3>
-            <div className="flex justify-center gap-4 lg:justify-start">
+            <div className="flex justify-start gap-4">
               {socialIcons.map((icon) => (
                 <Link
                   key={icon.name}
