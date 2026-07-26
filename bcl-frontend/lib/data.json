@@ -7,68 +7,137 @@
     "vision": "To create a LAUTECH where every student is equipped with blockchain knowledge and contributes to Nigeria's leadership in Web3 innovation.",
     "mission": "To empower LAUTECH students with blockchain expertise, drive innovation, and build a vibrant ecosystem for future blockchain leaders through workshops, hackathons, and collaborative projects.",
     "description": "Connecting curious minds to blockchain education, hands-on experience, and a community of future tech leaders.",
-    "logos": ["/logos/whitelogo.png", "/logos/logoNoBackground.png"]
-  },
-
-  "navigation": {
-    "headerLinks": [
-      { "label": "Home", "url": "/" },
-      { "label": "About", "url": "/about" },
-      { "label": "Events", "url": "/events" },
-      { "label": "Cohorts", "url": "/cohorts" },
-      { "label": "Blog", "url": "/blog" },
-      { "label": "Contacts", "url": "/contact" }
-    ],
-    "ctaButtons": [
-      { "label": "Join BCL", "url": "/join" },
-      { "label": "The Team", "url": "/team" }
+    "logos": [
+      "/logos/whitelogo.png",
+      "/logos/logoNoBackground.png"
     ]
   },
-
+  "navigation": {
+    "headerLinks": [
+      {
+        "label": "Home",
+        "url": "/"
+      },
+      {
+        "label": "About",
+        "url": "/about"
+      },
+      {
+        "label": "Events",
+        "url": "/events"
+      },
+      {
+        "label": "Cohorts",
+        "url": "/cohorts"
+      },
+      {
+        "label": "Blog",
+        "url": "/blog"
+      },
+      {
+        "label": "Contacts",
+        "url": "/contact"
+      }
+    ],
+    "ctaButtons": [
+      {
+        "label": "Join BCL",
+        "url": "/join"
+      },
+      {
+        "label": "The Team",
+        "url": "/team"
+      }
+    ]
+  },
   "aboutUs": {
     "history": {
-      "p1": "Blockchain club lautech, founded 2020 by a group of innovatives driven by the mission to teach beyond technical knowledge, to demystify the blockchain and make it accessible to beginners while also providing advanced learning opportunities for more experienced members.",
-      "p2": "The club was established as a collaborative learning community where members could explore the fundamentals of blockchain technology, understand how cryptocurrencies function, and examine real world applications across every sector.",
-      "p3": "Through structured activities including workshops, seminars, hackathons and collaborative projects, blockchain club lautech fosters an environment that encourages innovation, critical thinking, and skill development."
+      "p1": "Blockchain LAUTECH is a leading student-led blockchain community dedicated to educating, empowering, and connecting the next generation of Web3 builders, innovators, and leaders.",
+      "p2": "Founded at Ladoke Akintola University of Technology (LAUTECH) in April, 2020, we have grown into one of Africa's most impactful university blockchain communities, serving as a launchpad for students seeking opportunities in blockchain, Web3, AI, and emerging technologies.",
+      "p3": "Over the years, we have successfully onboarded more than 7,500 students into the blockchain industry through educational programs, workshops, bootcamps, hackathons, mentorship initiatives, and ecosystem partnerships. Our community is committed to transforming curious learners into skilled developers, contributors, researchers, founders, and ecosystem leaders.",
+      "p4": "As a developer-focused community, we actively support technical talent development by providing hands-on learning opportunities, technical training, builder programs, and access to global blockchain ecosystems.",
+      "p5": "Our flagship annual conference, Confluence, brings together students, founders, developers, industry leaders, and ecosystem stakeholders for conversations, learning, networking, and innovation. The event attracts over 1,000 attendees annually, making it one of the largest student-led blockchain conferences in Africa.",
+      "p6": "Today, Blockchain LAUTECH is recognized as a Tier 1 University Blockchain Club in Africa and is widely regarded as one of the Top 3 grassroots student-led blockchain communities on the continent."
     },
+    "focusAreas": [
+      {
+        "title": "Blockchain & \n Web3 Education",
+        "description": "Equipping students with foundational and advanced knowledge in decentralized technologies.",
+        "image": "/focus/blockEdu.jpg"
+      },
+      {
+        "title": "Developer Training & Talent Development",
+        "description": "Providing technical training and hands-on experience to build skilled Web3 developers.",
+        "image": "/focus/devTrain.jpg"
+      },
+      {
+        "title": "Community Building & Ecosystem Growth",
+        "description": "Fostering a vibrant community and contributing to the broader blockchain ecosystem.",
+        "image": "/focus/comBuild.jpg"
+      },
+      {
+        "title": "Hackathons & Builder Programs",
+        "description": "Organizing competitive events and programs to encourage practical building and innovation.",
+        "image": "/focus/hackBuilder.jpg"
+      },
+      {
+        "title": "Career Development & Industry Opportunities",
+        "description": "Connecting students with internships, jobs, and career pathways in the blockchain industry.",
+        "image": "/focus/careerDevelop.jpg"
+      },
+      {
+        "title": "Strategic\nPartnerships",
+        "description": "Collaborating with industry leaders, protocols, and organizations to maximize impact.",
+        "image": "/focus/strategicPartnership.jpg"
+      }
+    ],
     "statistics": [
-      { 
-        "metric": "2500+", 
+      {
+        "metric": "7500+",
         "label": "Students Trained",
         "icon": "/student.png"
       },
-      { 
-        "metric": "5+", 
-        "label": "Workshops & Hackathons", 
-        "icon": "/hackathon.png" 
+      {
+        "metric": "8+",
+        "label": "Workshops & Hackathons",
+        "icon": "/hackathon.png"
       },
-      { 
-        "metric": "20+", 
-        "label": "Industry Partners", 
-        "icon": "/industrial.png" 
+      {
+        "metric": "20+",
+        "label": "Industry Partners",
+        "icon": "/industrial.png"
       },
-      { 
-        "metric": "5+", 
-        "label": "Years Active", 
-        "icon": "/calendar.png" 
+      {
+        "metric": "6+",
+        "label": "Years Active",
+        "icon": "/calendar.png"
+      },
+      {
+        "metric": "30+",
+        "label": "community Events",
+        "icon": "/event.png"
+      },
+      {
+        "metric": "$50k+",
+        "label": "Earnings",
+        "icon": "/earning.png"
       }
     ],
     "achievements": [
-      { 
-        "title": "1st place - CrossFi Africa hackathon", 
+      {
+        "title": "1st place - CrossFi Africa hackathon",
         "date": "March 2025"
       },
       {
         "title": "3rd place - CrossFi Global hackathon",
         "date": "August 2025"
       },
-      { 
-        "title": "Free tickets to ETH Denver", 
+      {
+        "title": "Free tickets to ETH Denver",
         "date": "September 2024"
       }
     ]
   },
-
   "testimonial": [
     {
       "avatar": "/testimonial/abdulAnchor.png",
@@ -99,7 +168,6 @@
       "rate": 2.5
     }
   ],
-
   "team": {
     "quote": "Our team is made up of passionate builders, innovators, and problem-solvers dedicated to exploring the endless various possibilities of blockchain technology.They are committed to fostering innovation, collaboration, and education within the ecosystem.",
     "founders": [
@@ -149,10 +217,101 @@
         }
       }
     ],
-    "moderators": [
+    "coreTeam": [
+      {
+        "name": "Dahunsi Opemiposi",
+        "role": "Lead CM",
+        "image": "/team/opemiposiDahunsi.jpg",
+        "social": {
+          "x": {
+            "link": "https://x.com/cyberOnChain",
+            "icon": "/socialIcons/xlogo.svg"
+          }
+        }
+      },
+      {
+        "name": "Abraham Pelumi Blessing",
+        "role": "Project Manager",
+        "image": "/team/pelumiBlessing.jpg",
+        "social": {
+          "x": {
+            "link": "https://x.com/Abrahampelumi7",
+            "icon": "/socialIcons/xlogo.svg"
+          }
+        }
+      },
+      {
+        "name": "Victoria Adeosun",
+        "role": "Female Guild Lead",
+        "image": "/team/victoriaAduosun.jpg",
+        "social": {
+          "x": {
+            "link": "https://x.com/justvictee",
+            "icon": "/socialIcons/xlogo.svg"
+          }
+        }
+      },
+      {
+        "name": "Jude Popoola",
+        "role": "Project Manager",
+        "image": "/team/judePopoola.jpg",
+        "social": {
+          "x": {
+            "link": "https://x.com/melchijude",
+            "icon": "/socialIcons/xlogo.svg"
+          }
+        }
+      },
+       {
+        "name": "Damilare Ogunwole",
+        "role": "Dev Lead",
+        "image": "/team/philipOgun.jpg",
+        "social": {
+         
+          "github": {
+            "link": "https://github.com/webtrovert0x",
+            "icon": "/socialIcons/githublogo.png"
+          }
+        }
+      },
+      {
+        "name": "Samad Liadi",
+        "role": "Social Manager",
+        "image": "/team/samadLiadi.jpg",
+        "social": {
+          "x": {
+            "link": "https://x.com/jesugbolahanmi",
+            "icon": "/socialIcons/xlogo.svg"
+          }
+        }
+      },
+      {
+        "name": "Oyewole Taiwo",
+        "role": "Design Lead",
+        "image": "/team/oyewoleTaiwo.jpg",
+        "social": {
+          "x": {
+            "link": "https://x.com/otaiwo622",
+            "icon": "/socialIcons/xlogo.svg"
+          }
+        }
+      },
+      {
+        "name": "Michael Olaiti",
+        "role": "Community Manager",
+        "image": "/team/michaelOlaoti.jpg",
+        "social": {
+          "x": {
+            "link": "https://x.com/0xMickey_xyz",
+            "icon": "/socialIcons/xlogo.svg"
+          }
+        }
+      }
+    ],
+    "advisoryBoard": [
       {
         "name": "Favour ABIDOYE-OLADEJO",
-        "role": "Lead CM",
+        "role": "Head of Operations",
         "image": "/team/favourAbidoyeOadejo.jpg",
         "social": {
           "x": {
@@ -167,7 +326,7 @@
       },
       {
         "name": "Precious ADEBISI",
-        "role": "Project Manager",
+        "role": "Advisor",
         "image": "/team/preciousAdebisi.png",
         "social": {
           "x": {
@@ -182,7 +341,7 @@
       },
       {
         "name": "Maryam TIJANI",
-        "role": "Female Guild Lead",
+        "role": "Advisor",
         "image": "/team/maryamTijani.jpg",
         "social": {
           "x": {
@@ -197,7 +356,7 @@
       },
       {
         "name": "Jeremiah OYENIRAN",
-        "role": "Dev Lead",
+        "role": "Advisor",
         "image": "/team/jeremiahOyeniran.jpg",
         "social": {
           "x": {
@@ -212,7 +371,7 @@
       },
       {
         "name": "Abdulhamid BAKARE",
-        "role": "Project Manager",
+        "role": "Advisor",
         "image": "/team/abdulhamidBakare.jpg",
         "social": {
           "x": {
@@ -227,7 +386,7 @@
       },
       {
         "name": "Tomiwa KAYODE",
-        "role": "Design Lead",
+        "role": "Advisor",
         "image": "/team/tomiwaKayode.jpg",
         "social": {
           "x": {
@@ -242,7 +401,6 @@
       }
     ]
   },
-
   "cohorts": {
     "header": "Level up your Web3 Skills with a Cohorts",
     "subHeader": "Our Cohort Programs are structured learning tracks designed to help students gain real-world blockchain skills in focused areas.",
@@ -330,7 +488,6 @@
       }
     ]
   },
-
   "events": [
     {
       "id": "confluence-1",
@@ -348,12 +505,30 @@
           "date": "November 7, 2025",
           "button": "Apply for Dev Track",
           "activities": [
-            { "icon": "🎤", "title": "Demo Day" },
-            { "icon": "🚀", "title": "Hackathins & Coding Competition" },
-            { "icon": "🧑‍💻", "title": "Technical Workshops" },
-            { "icon": "🤝", "title": "Bounty Challenges" },
-            { "icon": "🍽️", "title": "Developer Networking" },
-            { "icon": "🎤", "title": "Panel Session" }
+            {
+              "icon": "🎤",
+              "title": "Demo Day"
+            },
+            {
+              "icon": "🚀",
+              "title": "Hackathins & Coding Competition"
+            },
+            {
+              "icon": "🧑‍💻",
+              "title": "Technical Workshops"
+            },
+            {
+              "icon": "🤝",
+              "title": "Bounty Challenges"
+            },
+            {
+              "icon": "🍽️",
+              "title": "Developer Networking"
+            },
+            {
+              "icon": "🎤",
+              "title": "Panel Session"
+            }
           ]
         },
         {
@@ -361,13 +536,34 @@
           "date": "November 8, 2025",
           "button": "Register for Community Track",
           "activities": [
-            { "icon": "🎤", "title": "Keynote Presentation" },
-            { "icon": "🎤", "title": "Expert Panel Discussion" },
-            { "icon": "🚀", "title": "Women in web3 Session" },
-            { "icon": "🧑‍💻", "title": "Startup Exhibition" },
-            { "icon": "🤝", "title": "Interactive Workshops" },
-            { "icon": "🍽️", "title": "Networking Oppurtunity" },
-            { "icon": "🎉", "title": "Prize Distribution" }
+            {
+              "icon": "🎤",
+              "title": "Keynote Presentation"
+            },
+            {
+              "icon": "🎤",
+              "title": "Expert Panel Discussion"
+            },
+            {
+              "icon": "🚀",
+              "title": "Women in web3 Session"
+            },
+            {
+              "icon": "🧑‍💻",
+              "title": "Startup Exhibition"
+            },
+            {
+              "icon": "🤝",
+              "title": "Interactive Workshops"
+            },
+            {
+              "icon": "🍽️",
+              "title": "Networking Oppurtunity"
+            },
+            {
+              "icon": "🎉",
+              "title": "Prize Distribution"
+            }
           ]
         }
       ],
@@ -421,25 +617,139 @@
       "speaker_avatar": "/team/abdulhamidBakare.jpg"
     }
   ],
-
   "partners": [
-    { "name": "Nova Labs", "logo": "/partners/novaLabs.jpg", "bgColor": "#000000", "textColor": "#FFFFFF" },
-    { "name": "CrossFi", "logo": "/partners/crossFi.jpg", "bgColor": "#011E30", "textColor": "#0ABCF8" },
-    { "name": "Backpack", "logo": "/partners/backpack.jpg", "bgColor": "#000000", "textColor": "#FF003C" },
-    { "name": "Celo Africa DAO", "logo": "/partners/celoAfricaDao.jpg", "bgColor": "#FCFE52", "textColor": "#000000" },
-    { "name": "GIDA", "logo": "/partners/gida.jpg", "bgColor": "#BD1522", "textColor": "#FFFFFF" },
-    { "name": "CoinEx", "logo": "/partners/coinEx.jpg", "bgColor": "#023026", "textColor": "#14C196" },
-    { "name": "AllstarsNG", "logo": "/partners/allstarsNg.jpg", "bgColor": "black", "textColor": "white" },
-    { "name": "FaucetDrops", "logo": "/partners/faucetdrops.jpg", "bgColor": "#26A9E1", "textColor": "#FFFFFF" },
-    { "name": "Sui", "logo": "/partners/sui.jpg", "bgColor": "#4DA2FF", "textColor": "#FFFFFF" },
-    { "name": "Web3Bridge", "logo": "/partners/web3bridge.jpg", "bgColor": "#FA0001", "textColor": "#FFFFFF" },
-    { "name": "Zcash", "logo": "/partners/zCash.jpg", "bgColor": "#FA0001", "textColor": "#FFFFFF" },
-    { "name": "Beacon Labs", "logo": "/partners/beaconLabs.jpg", "bgColor": "#023026", "textColor": "#FFFFFF" },
-    { "name": "web3 Ogbomoso", "logo": "/partners/web3mosho.jpg", "bgColor": "#023026", "textColor": "#FFFFFF" }
+    {
+      "name": "Nova Labs",
+      "logo": "/partners/novaLabs.jpg",
+      "bgColor": "#000000",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "CrossFi",
+      "logo": "/partners/crossFi.jpg",
+      "bgColor": "#011E30",
+      "textColor": "#0ABCF8"
+    },
+    {
+      "name": "Backpack",
+      "logo": "/partners/backpack.jpg",
+      "bgColor": "#000000",
+      "textColor": "#FF003C"
+    },
+    {
+      "name": "Celo Africa DAO",
+      "logo": "/partners/celoAfricaDao.jpg",
+      "bgColor": "#FCFE52",
+      "textColor": "#000000"
+    },
+    {
+      "name": "GIDA",
+      "logo": "/partners/gida.jpg",
+      "bgColor": "#BD1522",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "CoinEx",
+      "logo": "/partners/coinEx.jpg",
+      "bgColor": "#023026",
+      "textColor": "#14C196"
+    },
+    {
+      "name": "AllstarsNG",
+      "logo": "/partners/allstarsNg.jpg",
+      "bgColor": "black",
+      "textColor": "white"
+    },
+    {
+      "name": "FaucetDrops",
+      "logo": "/partners/faucetdrops.jpg",
+      "bgColor": "#26A9E1",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Sui",
+      "logo": "/partners/sui.jpg",
+      "bgColor": "#4DA2FF",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Web3Bridge",
+      "logo": "/partners/web3bridge.jpg",
+      "bgColor": "#FA0001",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Zcash",
+      "logo": "/partners/zCash.jpg",
+      "bgColor": "#FA0001",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Beacon Labs",
+      "logo": "/partners/beaconLabs.jpg",
+      "bgColor": "#023026",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "web3 Ogbomoso",
+      "logo": "/partners/web3mosho.jpg",
+      "bgColor": "#023026",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Unilorin Blockchain community",
+      "logo": "/partners/unilorin.jpg",
+      "bgColor": "#023026",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "GDC Lautech",
+      "logo": "/partners/gdcLautech.jpg",
+      "bgColor": "#2e3135",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Coin Gabbar",
+      "logo": "/partners/coinGabbar.jpg",
+      "bgColor": "#023026",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Qubic",
+      "logo": "/partners/qubic.png",
+      "bgColor": "#2e3135",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Coinpedia",
+      "logo": "/partners/coinpedia.jpg",
+      "bgColor": "#2e3135",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "SQI College of ICT",
+      "logo": "/partners/sqiCict.jpg",
+      "bgColor": "#2e3135",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "The News Crypto",
+      "logo": "/partners/theNews.jpg",
+      "bgColor": "#2e3135",
+      "textColor": "#FFFFFF"
+    },
+    {
+      "name": "CAB",
+      "logo": "/partners/cryptoAsset.jpg",
+      "bgColor": "#2e3135",
+      "textColor": "#FFFFFF"
+    }
   ],
-
   "contact": {
-    "phones": ["+234 803 123 4567", "+234 901 234 5678"],
+    "phones": [
+      "+234 803 123 4567",
+      "+234 901 234 5678"
+    ],
     "emails": [
       "blockchainlautech@gmail.com",
       "blockchain@lautech.edu.ng",
@@ -479,31 +789,74 @@
       }
     ]
   },
-
   "footerLink": {
     "QuickLink": [
-      { "name": "Home", "link": "/" },
-      { "name": "About", "link": "/about" },
-      { "name": "Events", "link": "/events" },
-      { "name": "Cohorts", "link": "/cohorts" },
-      { "name": "Blog", "link": "/blog" },
-      { "name": "Partners", "link": "/partners" },
-      { "name": "Contact", "link": "/contact" }
+      {
+        "name": "Home",
+        "link": "/"
+      },
+      {
+        "name": "About",
+        "link": "/about"
+      },
+      {
+        "name": "Events",
+        "link": "/events"
+      },
+      {
+        "name": "Cohorts",
+        "link": "/cohorts"
+      },
+      {
+        "name": "Blog",
+        "link": "/blog"
+      },
+      {
+        "name": "Partners",
+        "link": "/partners"
+      },
+      {
+        "name": "Contact",
+        "link": "/contact"
+      }
     ],
     "Resources": [
-      { "name": "Beginner Guides", "link": "/" },
-      { "name": "Blockchain Glossary", "link": "/" },
-      { "name": "Learning Materials", "link": "/" },
-      { "name": "FAQs", "link": "/" }
+      {
+        "name": "Beginner Guides",
+        "link": "/"
+      },
+      {
+        "name": "Blockchain Glossary",
+        "link": "/"
+      },
+      {
+        "name": "Learning Materials",
+        "link": "/"
+      },
+      {
+        "name": "FAQs",
+        "link": "/"
+      }
     ],
     "Community": [
-      { "name": "Events & Meetups", "link": "/" },
-      { "name": "Hackathons", "link": "/" },
-      { "name": "Member Spotlight", "link": "/" },
-      { "name": "Newsletter Signup", "link": "/" }
+      {
+        "name": "Events & Meetups",
+        "link": "/"
+      },
+      {
+        "name": "Hackathons",
+        "link": "/"
+      },
+      {
+        "name": "Member Spotlight",
+        "link": "/"
+      },
+      {
+        "name": "Newsletter Signup",
+        "link": "/"
+      }
     ]
   },
-
   "galleries": [
     {
       "id": 1,

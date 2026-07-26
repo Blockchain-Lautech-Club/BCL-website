@@ -28,11 +28,7 @@ export function TeamCard({ member }: { member: TeamInterface }) {
 }
 
 export default function TeamLayout() {
-  const { quote, founders, moderators } = team as unknown as {
-    quote: string;
-    founders: TeamInterface[];
-    moderators: TeamInterface[];
-  };
+  const { quote, ...groups } = team as Record<string, any>;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -53,31 +49,28 @@ export default function TeamLayout() {
         </section>
 
         <div className="space-y-16 my-10">
-          <section>
-            <div className="text-center">
-              <p className="text-lg font-semibold uppercase tracking-[0.24em] text-slate-500">
-                Founders
-              </p>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {founders.map((founder) => (
-                <TeamCard key={founder.name} member={founder} />
-              ))}
-            </div>
-          </section>
+          {Object.entries(groups).map(([groupName, members]) => {
+            if (!Array.isArray(members) || members.length === 0) return null;
 
-          <section>
-            <div className="mb-8 text-center">
-              <p className="text-lg font-semibold uppercase tracking-[0.24em] text-slate-500">
-                Community Managers
-              </p>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {moderators.map((manager) => (
-                <TeamCard key={manager.name} member={manager} />
-              ))}
-            </div>
-          </section>
+            const formattedName = groupName
+              .replace(/([A-Z])/g, ' $1')
+              .replace(/^./, (str) => str.toUpperCase());
+
+            return (
+              <section key={groupName}>
+                <div className="mb-8 text-center">
+                  <p className="text-lg font-semibold uppercase tracking-[0.24em] text-slate-500">
+                    {formattedName}
+                  </p>
+                </div>
+                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                  {members.map((member: TeamInterface) => (
+                    <TeamCard key={member.name} member={member} />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
         {/* <section className="py-1">
                     

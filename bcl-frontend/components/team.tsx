@@ -18,15 +18,32 @@ export interface TeamMember {
   };
 }
 
+const SocialIconWrapper = ({ link, ariaLabel, children }: { link: string, ariaLabel: string, children: React.ReactNode }) => {
+  if (link === "#" || link === "") {
+    return (
+      <span className="text-slate-300 cursor-not-allowed" aria-label={ariaLabel}>
+        {children}
+      </span>
+    );
+  }
+  return (
+    <Link
+      href={link}
+      aria-label={ariaLabel}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-slate-400 transition-colors hover:text-slate-700"
+    >
+      {children}
+    </Link>
+  );
+};
+
 export function SocialIcons({ social }: { social: TeamMember["social"] }) {
   return (
     <div className="mt-5 flex items-center justify-center gap-4">
-      {social.x?.link && (
-        <Link
-          href={social.x.link}
-          aria-label="X profile"
-          className="text-slate-400 transition-colors hover:text-slate-700"
-        >
+      {social.x?.icon && (
+        <SocialIconWrapper link={social.x.link} ariaLabel="X profile">
           <Image
             src={social.x.icon}
             alt="X icon"
@@ -34,14 +51,10 @@ export function SocialIcons({ social }: { social: TeamMember["social"] }) {
             height={18}
             className="w-5 h-5 text-current"
           />
-        </Link>
+        </SocialIconWrapper>
       )}
-      {social.linkedin?.link && (
-        <Link
-          href={social.linkedin.link}
-          aria-label="LinkedIn profile"
-          className="text-slate-400 transition-colors hover:text-slate-700"
-        >
+      {social.linkedin?.icon && (
+        <SocialIconWrapper link={social.linkedin.link} ariaLabel="LinkedIn profile">
           <Image
             src={social.linkedin.icon}
             alt="LinkedIn icon"
@@ -49,14 +62,10 @@ export function SocialIcons({ social }: { social: TeamMember["social"] }) {
             height={18}
             className="w-5 h-5 text-current"
           />
-        </Link>
+        </SocialIconWrapper>
       )}
-      {social.github?.link && (
-        <Link
-          href={social.github.link}
-          aria-label="GitHub profile"
-          className="text-slate-400 transition-colors hover:text-slate-700"
-        >
+      {social.github?.icon && (
+        <SocialIconWrapper link={social.github.link} ariaLabel="GitHub profile">
           <Image
             src={social.github.icon}
             alt="GitHub icon"
@@ -64,7 +73,7 @@ export function SocialIcons({ social }: { social: TeamMember["social"] }) {
             height={18}
             className="w-5 h-5 text-current"
           />
-        </Link>
+        </SocialIconWrapper>
       )}
     </div>
   );
@@ -95,10 +104,9 @@ export function TeamCard({ member }: { member: TeamMember }) {
 }
 
 export default function Team() {
-  const { quote, founders, moderators } = team as unknown as {
+  const { quote, founders } = team as unknown as {
     quote: string;
     founders: TeamMember[];
-    moderators: TeamMember[];
   };
 
   return (
@@ -134,18 +142,13 @@ export default function Team() {
                 <TeamCard key={founder.name} member={founder} />
               ))}
             </div>
-          </section>
-
-          <section>
-            <div className="mb-8 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
-                Community Managers
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-3 sm:gap-8 lg:grid-cols-3">
-              {moderators.map((manager) => (
-                <TeamCard key={manager.name} member={manager} />
-              ))}
+            <div className="mt-12 flex justify-center">
+              <Link
+                href="/team"
+                className="inline-flex items-center justify-center rounded-full bg-blue-600 px-8 py-3 text-sm font-medium text-white transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30"
+              >
+                See All Builders
+              </Link>
             </div>
           </section>
         </div>

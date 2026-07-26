@@ -47,18 +47,18 @@ export default function AboutPage() {
           <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-12">
             About Us
           </h2>
-          <div className="space-y-6 text-lg text-justify text-gray-700 leading-relaxed max-w-4xl">
-            <p>{history.p1}</p>
-            <p>{history.p2}</p>
-            <p>{history.p3}</p>
+          <div className="space-y-6 text-lg text-justify text-gray-700 leading-relaxed max-w-4xl ">
+            {Object.values(history).map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
             {stats.map((stat, index) => (
               <Card key={index} className="text-center border-0 shadow-lg rounded-2xl">
                 <CardContent className="p-4">
@@ -104,14 +104,14 @@ export default function AboutPage() {
 
       {/* Team Section */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="container mx-auto  px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
             The Team.
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-            {[...team.founders, ...team.moderators].slice(0, 8).map((member, index) => (
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-12">
+            {[...(team.founders || [])].slice(0, 8).map((member, index) => (
               <div key={index} className="flex flex-col items-center">
-                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg mb-4">
+                <div className="relative w-32 h-32 md:w-40 md:h-40  rounded-full overflow-hidden shadow-lg mb-4">
                   <Image
                     src={member.image}
                     alt={member.name}

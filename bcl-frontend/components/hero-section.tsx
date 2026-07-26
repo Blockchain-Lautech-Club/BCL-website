@@ -26,8 +26,8 @@ const HeroText = () => {
       <div className="absolute inset-0 z-20 flex items-center max-h-screen">
         <div className="flex w-full flex-col gap-5 px-4 py-6 mt-16 sm:px-6 sm:py-8 md:gap-10 md:px-8 lg:px-16 xl:px-24">
           {/* Headline */}
-          <h1 className="max-w-2xl font-extrabold leading-tight text-4xl sm:text-5xl lg:text-5xl">
-            <span className="relative inline-flex min-h-[1.2em] items-center text-blue-400 lg:text-blue-600">
+          <h1 className="max-w-2xl font-extrabold leading-tight text-3xl min-[400px]:text-[34px] sm:text-5xl lg:text-5xl">
+            <span className="relative inline-flex min-h-[1.2em] items-center text-blue-400 lg:text-blue-400">
               <span
                 key={activeWord}
                 className="inline-block"
@@ -43,7 +43,7 @@ const HeroText = () => {
 
           {/* Subheadline */}
           <div className="flex flex-col max-w-md gap-5">
-            <p className="text-sm leading-relaxed text-blue-50 sm:text-lg">
+            <p className="text-sm leading-relaxed text-blue-50 sm:text-lg ">
               Connecting curious minds to blockchain education, hands-on
               experience, and a community of future tech leaders.
             </p>
@@ -103,7 +103,7 @@ export function HeroSection() {
       </div>
 
       {/* Mobile Abstract Blob Image (Bottom-Right) */}
-      <div className="absolute -bottom-12 -right-12 h-[45%] w-[75%] opacity-90 lg:hidden">
+      <div className="absolute -bottom-12 -right-12 h-[45%] w-[65%] opacity-90 lg:hidden">
         {/* Organic blob shape */}
         <div 
           className="relative h-full w-full overflow-hidden shadow-[0_0_40px_rgba(59,130,246,0.2)]"

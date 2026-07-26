@@ -6,19 +6,21 @@ import Team from "@/components/team"
 import Partners from "@/components/landingPage/partners"
 import GalleryCarousel from "@/components/landingPage/galleries"
 import VisionMission from "@/components/landingPage/visionMission"
+import FocusSection from "@/components/landingPage/focus-section"
 
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-1">
-        <HeroSection />
+        <HeroSection /> 
         <AboutSection />
-        <EventsTeaser />
+        <FocusSection />   
         <VisionMission />
         <GalleryCarousel />
         <Partners />
-        <Team />
+        <Team /> 
+        <EventsTeaser />
         <Testimonials />
       </div>
     </div>

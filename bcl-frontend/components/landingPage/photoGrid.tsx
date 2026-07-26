@@ -50,4 +50,4 @@ export function PhotoGrid() {
             </div>
         </div>
   )
-}
+} 

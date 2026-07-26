@@ -33,9 +33,9 @@ const VisionMissionContent = () => {
               <div>
                 <h3 className="mb-3 text-2xl font-semibold">Vision</h3>
                 <p className="text-sm leading-relaxed text-blue-100">
-                  To create a LAUTECH where every student is equipped with
-                  blockchain knowledge and contributes to Nigeria's leadership
-                  in Web3 innovation.
+                  To build Africa's next generation of blockchain talent 
+                  and create pathways for 
+                  students to participate meaningfully in the global digital economy.
                 </p>
               </div>
             </div>
