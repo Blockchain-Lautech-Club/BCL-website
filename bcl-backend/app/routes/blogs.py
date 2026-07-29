@@ -7,7 +7,12 @@ from datetime import datetime
 import uuid
 
 router = APIRouter()
-
+def validate_blog_id(blog_id: str):
+    try:
+        uuid.UUID(blog_id)
+    except (ValueError, AttributeError, TypeError):
+        raise HTTPException(status_code=404, detail="Blog not found")
+    
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_blog(blog: BlogCreate, admin: str = Depends(get_admin_user)):
     blog_data = {
@@ -87,6 +92,7 @@ async def get_blogs(category: str | None = None, featured: bool | None = None, l
 
 @router.get("/{blog_id}")
 async def get_blog(blog_id: str):
+    validate_blog_id(blog_id)
     try:
         result = supabase.table("blogs").select("*").eq("id", blog_id).execute()
         if not result.data:
