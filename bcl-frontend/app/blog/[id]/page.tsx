@@ -29,7 +29,6 @@ export default function BlogPostPage() {
         setLoading(false)
         return
       }
-
       try {
         setLoading(true)
         setError(null)
