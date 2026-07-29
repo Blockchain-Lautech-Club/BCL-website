@@ -4,15 +4,18 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { notFound, useParams } from "next/navigation"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, Share2, ExternalLink, ChevronRight } from "lucide-react"
 import { blogApi, Blog, formatDate } from "@/lib/api"
-import { notFound } from "next/navigation"
 
-export default function BlogPostPage({ params }: { params: { id: string } }) {
+export default function BlogPostPage() {
+  const routeParams = useParams<{ id: string }>()
+  const id = routeParams?.id
+
   const [blog, setBlog] = useState<Blog | null>(null)
   const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>([])
   const [loading, setLoading] = useState(true)
@@ -21,18 +24,21 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     const fetchBlog = async () => {
+      if (!id || id === "undefined") {
+        setError("Invalid article link")
+        setLoading(false)
+        return
+      }
+
       try {
         setLoading(true)
         setError(null)
-        
-        // Fetch the blog post
-        const blogData = await blogApi.getBlog(params.id)
+
+        const blogData = await blogApi.getBlog(id)
         setBlog(blogData)
-        
-        // Fetch related blogs (same category)
+
         const related = await blogApi.getBlogsByCategory(blogData.category, 4)
         setRelatedBlogs(related.filter(b => b.id !== blogData.id).slice(0, 2))
-        
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch blog')
       } finally {
@@ -41,7 +47,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
     }
 
     fetchBlog()
-  }, [params.id])
+  }, [id])
 
   // Reading progress tracking
   useEffect(() => {
