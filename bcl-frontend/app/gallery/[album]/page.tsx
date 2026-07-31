@@ -8,8 +8,8 @@ interface AlbumPageProps {
   };
 }
 
-// Revalidate every hour
-export const revalidate = 3600;
+// Always server-render on demand (never pre-built statically)
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: AlbumPageProps) {
   const resolvedParams = await params;

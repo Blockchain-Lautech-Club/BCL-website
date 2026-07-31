@@ -13,8 +13,8 @@ export const metadata = {
   description: "Explore photos from our events, workshops, and hackathons.",
 };
 
-// Revalidate every hour so new uploads appear without redeploying
-export const revalidate = 3600;
+// Always server-render on demand (never pre-built statically)
+export const dynamic = 'force-dynamic';
 
 export default async function GalleryPage() {
   const cloudinaryAlbums = await getAlbums();
