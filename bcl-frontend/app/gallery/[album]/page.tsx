@@ -8,8 +8,8 @@ interface AlbumPageProps {
   };
 }
 
-// Always server-render on demand (never pre-built statically)
-export const dynamic = 'force-dynamic';
+// Cache for 1 hour — fast loads for visitors
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: AlbumPageProps) {
   const resolvedParams = await params;
