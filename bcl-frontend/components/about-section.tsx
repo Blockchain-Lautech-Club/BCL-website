@@ -53,7 +53,21 @@ export default function AboutSection() {
       <div className="absolute left-1/2 top-0 h-full w-px border-l border-dashed border-gray-300" />
 
       {/* Pillars Container */}
-      
+      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 sm:flex-row sm:justify-center sm:gap-8 sm:px-6">
+        {pillars.map(({ icon: Icon, text }, index) => (
+          <div
+            key={index}
+            className="flex w-full max-w-[260px] flex-col items-center gap-4 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:w-auto"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
+              <Icon className="h-6 w-6 text-blue-600" />
+            </div>
+            <p className="text-center text-sm font-semibold leading-snug text-gray-800 whitespace-pre-line">
+              {text}
+            </p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
