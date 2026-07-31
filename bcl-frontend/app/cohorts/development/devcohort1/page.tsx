@@ -16,7 +16,7 @@ import {
   Loader2,
 } from "lucide-react"
 
-const API_BASE = "https://bcl-website.onrender.com"
+const API_BASE = "https://bcl-website-95bd.onrender.com"
 
 type Theme = {
   tagBg: string
