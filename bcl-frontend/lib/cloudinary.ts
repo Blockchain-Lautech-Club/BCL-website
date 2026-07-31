@@ -30,6 +30,15 @@ export interface CloudinaryImage {
 }
 
 /**
+ * Inject Cloudinary transformations into a secure_url for web-optimized delivery.
+ * e.g. adds w_1200,q_auto,f_auto for auto quality and format (WebP).
+ */
+function optimizeUrl(url: string, width: number): string {
+  // Insert transformation before /upload/
+  return url.replace('/upload/', `/upload/w_${width},q_auto,f_auto/`);
+}
+
+/**
  * Get all subfolders inside the "gallery" root folder.
  */
 export async function getAlbums(): Promise<CloudinaryAlbum[]> {
@@ -57,7 +66,8 @@ export async function getAlbumCover(folderPath: string): Promise<string | null> 
       .execute();
 
     if (result.resources.length > 0) {
-      return result.resources[0].secure_url;
+      // Serve cover at 600px wide for fast album grid loading
+      return optimizeUrl(result.resources[0].secure_url, 600);
     }
     return null;
   } catch (error) {
@@ -85,7 +95,8 @@ export async function getAlbumImages(folderPath: string): Promise<CloudinaryImag
       for (const resource of result.resources) {
         images.push({
           public_id: resource.public_id,
-          url: resource.secure_url,
+          // Serve at 1200px wide with auto quality/format for fast gallery loading
+          url: optimizeUrl(resource.secure_url, 1200),
           width: resource.width,
           height: resource.height,
         });
