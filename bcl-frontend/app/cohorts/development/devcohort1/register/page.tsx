@@ -62,7 +62,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   };
 
   try {
-    const response = await fetch("https://bcl-website.onrender.com/cohorts/applications", {
+    const response = await fetch("https://bcl-website-95bd.onrender.com/cohorts/applications", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

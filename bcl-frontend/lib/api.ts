@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://bcl-website.onrender.com'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://bcl-website-95bd.onrender.com'
 
 export interface Event {
   id: string
