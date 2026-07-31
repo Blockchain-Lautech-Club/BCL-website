@@ -147,25 +147,68 @@
       "rate": 5
     },
     {
-      "avatar": "/testimonial/fatimaAbdullahi.png",
-      "name": "Fatima Abdullahi",
-      "departement": "Information Technology",
-      "note": "From zero blockchain knowledge to building my own DApp in three months-this club’s hands-on approach and supportive community made it possible.",
-      "rate": 3.3
+      "avatar": "/testimonial/default.png",
+      "name": "Owolabi Ayomide",
+      "departement": "Pure and Applied Biology",
+      "note": "I have learned how to connect with people and growth",
+      "rate": 5
+    },
+  
+    {
+      "avatar": "/testimonial/default.png",
+      "name": "Ladun",
+      "departement": "Computer science",
+      "note": "I've only attended one program so far, I connected with few people and they helped a lot when it comes to sharing insight and mentorship",
+      "rate": 5
     },
     {
-      "avatar": "/testimonial/chineduOkwu.png",
-      "name": "Chinedu Okwu",
-      "departement": "Software Engineering",
-      "note": "The club exposed me to cutting-edge blockchain technologies not covered in class. The guest speakers are always inspiring and insightful.",
-      "rate": 4.6
+      "avatar": "/testimonial/default.png",
+      "name": "Sunday David",
+      "departement": "Information system",
+      "note": "Connection and my first web3 event",
+      "rate": 5
     },
     {
-      "avatar": "/testimonial/chineduOkwu.png",
-      "name": "Chinedu Okwu",
-      "departement": "Software Engineering",
-      "note": "The club exposed me to cutting-edge blockchain technologies not covered in class. The guest speakers are always inspiring and insightful.",
-      "rate": 2.5
+      "avatar": "/testimonial/default.png",
+      "name": "Michael Olaoti",
+      "departement": "Surveying and Geoinformatics",
+      "note": "This community keeps the adrenaline high, sparking curiosity, driving meaningful discussions, and strengthening everyone's passion for crypto.",
+      "rate": 5
+    },
+    {
+      "avatar": "/testimonial/Profile AI - Victor Oluwapelumi.png",
+      "name": "Victor Oluwapelumi",
+      "departement": "Computer Science",
+      "note": "BCL has impacted my web3 journey a lot, through learning in web3 development and how to make it in web3. Thanks 🙏",
+      "rate": 5
+    },
+    {
+      "avatar": "/testimonial/judetestimonialjpeg.jpeg",
+      "name": "Jude Popoola",
+      "departement": "Computer Science",
+      "note": "Blockchain Lautech has helped me learn alot about the blockchain technology and with the knowledge i have acquired i am planning to practice my data science skill in the blockchain technology.\nI also participated in the Blockdag hackathon,i got to know about it through blockchain Lautech, My team won the hackathon.",
+      "rate": 5
+    },
+    {
+      "avatar": "/testimonial/dkmich.jpg",
+      "name": "Dk Micheal",
+      "departement": "Cybersecurity",
+      "note": "Blockchain LAUTECH has had a great impact on my journey so far. Through the community, I have learned more about blockchain technology, Web3, and the opportunities available in the ecosystem. It has also helped me improve my technical skills, gain practical knowledge, and connect with people who share similar interests in technology. The community has exposed me to new opportunities, ideas, and valuable connections that have motivated me to keep learning and growing in the Web3 space. Overall, Blockchain LAUTECH has played an important role in shaping my journey and giving me a better understanding of the Web3 ecosystem.",
+      "rate": 5
+    },
+    {
+      "avatar": "/testimonial/default.png",
+      "name": "Emmanuel Smart",
+      "departement": "Computer science",
+      "note": "Blockchain Lautech helped me understand Web3 concepts, expanded my knowledge of crypto and trading, and connected me with an active network of tech peers",
+      "rate": 5
+    },
+    {
+      "avatar": "/testimonial/Gamaliel.jpg",
+      "name": "Ogunleye Gamaliel Oladayo",
+      "departement": "Marketing.",
+      "note": "A lot fr.\nRight from the bitcoin pizza day 2025 and confluence \nA lot was taught which I learnt about.\nI had more knowledge about chain networks and how they work",
+      "rate": 5
     }
   ],
   "team": {
@@ -220,7 +263,7 @@
     "coreTeam": [
       {
         "name": "Dahunsi Opemiposi",
-        "role": "Lead CM",
+        "role": "Community Manager I",
         "image": "/team/opemiposiDahunsi.jpg",
         "social": {
           "x": {
@@ -231,7 +274,7 @@
       },
       {
         "name": "Abraham Pelumi Blessing",
-        "role": "Project Manager",
+        "role": "Programs Manager I",
         "image": "/team/pelumiBlessing.jpg",
         "social": {
           "x": {
@@ -253,7 +296,7 @@
       },
       {
         "name": "Jude Popoola",
-        "role": "Project Manager",
+        "role": "Programs Manager II",
         "image": "/team/judePopoola.jpg",
         "social": {
           "x": {
@@ -262,12 +305,11 @@
           }
         }
       },
-       {
+      {
         "name": "Damilare Ogunwole",
         "role": "Dev Lead",
         "image": "/team/philipOgun.jpg",
         "social": {
-         
           "github": {
             "link": "https://github.com/webtrovert0x",
             "icon": "/socialIcons/githublogo.png"
@@ -276,7 +318,7 @@
       },
       {
         "name": "Samad Liadi",
-        "role": "Social Manager",
+        "role": "Social Media Manager",
         "image": "/team/samadLiadi.jpg",
         "social": {
           "x": {
@@ -298,7 +340,7 @@
       },
       {
         "name": "Michael Olaiti",
-        "role": "Community Manager",
+        "role": "Community Manager II",
         "image": "/team/michaelOlaoti.jpg",
         "social": {
           "x": {
@@ -490,15 +532,16 @@
   },
   "events": [
     {
-      "id": "confluence-1",
-      "title": "Confluence 1.0",
+      "id": "confluence-2",
+      "title": "Confluence 2.0",
       "tagline": "Tech Extravaganza",
       "theme": "Ogbomoso's Digital Transformation: Blockchain as a Catalyst",
       "description": "The flagship tech conference uniting students, developers, and industry leaders at the intersection of blockchain, Web3, and emerging technologies.",
-      "date": "2025-11-07",
+      "date": "September 24-26",
       "time": "9:00 AM",
-      "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
-      "image": "/event/confluence-1.jpg",
+      "location": "The Assembly, Ogbomoso",
+      "externalLink": "https://confluence.blockchainlautech.club",
+      "image": "/event/confluence2.jpg",
       "agenda": [
         {
           "title": "Day 1: Developer Track",
@@ -577,44 +620,122 @@
       "speaker_avatar": "/team/johnAdekunjo.jpg"
     },
     {
-      "id": "web3-workshop",
-      "title": "Web3 Product Design Workshop",
-      "tagline": "Design for Decentralized Apps",
-      "theme": "Building user-friendly products for blockchain experiences",
-      "description": "A hands-on workshop focused on designing intuitive Web3 products, interfaces, and user journeys.",
-      "date": "2025-12-03",
-      "time": "10:00 AM",
-      "location": "LAUTECH Innovation Hub",
+      "id": "cohort-1",
+      "title": "Educational Cohorts",
+      "description": "Our Cohort Programs are structured learning tracks designed to help students gain real-world blockchain skills in focused areas.",
+      "tagline": "Structured Learning Tracks",
+      "theme": "Blockchain Skills Development",
+      "date": "Coming Soon",
+      "time": "TBD",
+      "location": "Online / Hybrid",
+      "externalLink": "https://blockchainlautech.club/cohorts",
       "image": "/event/confluence-2.jpg",
       "agenda": [],
-      "type": "workshop",
-      "status": "upcoming",
-      "attendees": 60,
-      "max_attendees": 80,
-      "speaker_name": "Amina Hassan",
-      "speaker_title": "Design Lead",
-      "speaker_bio": "Experienced product designer focused on Web3 usability.",
-      "speaker_avatar": "/team/tomiwaKayode.jpg"
+      "type": "cohort",
+      "status": "upcoming"
     },
     {
-      "id": "eth-denver-recap",
-      "title": "ETHDenver Recap Session",
-      "tagline": "From Conference to Community",
-      "theme": "Sharing lessons from blockchain events and developer culture",
-      "description": "A recap event where members share what they learned at ETHDenver, including workshops, networking, and product demos.",
-      "date": "2025-09-15",
-      "time": "4:00 PM",
-      "location": "LAUTECH Conference Hall",
-      "image": "/event/confluence-3.jpg",
+      "id": "meetup-pizza-day",
+      "title": "Bitcoin Pizza Day",
+      "description": "Annual Celebration of the legacy of Laszlo Hanyecz",
+      "tagline": "Community Meetup",
+      "theme": "Celebrating Bitcoin History",
+      "date": "May 22 (Annually)",
+      "time": "TBD",
+      "location": "TBD",
+      "disableViewDetails": true,
+      "image": "/event/pizzaday.jpg",
       "agenda": [],
-      "type": "seminar",
-      "status": "past",
-      "attendees": 120,
-      "max_attendees": 120,
-      "speaker_name": "Chinedu Okwu",
-      "speaker_title": "Community Leader",
-      "speaker_bio": "Organizer of member events and blockchain learning sessions.",
-      "speaker_avatar": "/team/abdulhamidBakare.jpg"
+      "type": "meetup",
+      "status": "upcoming"
+    },
+    {
+      "id": "confluence-1",
+      "title": "Confluence 1.0",
+      "tagline": "Tech Extravaganza",
+      "theme": "Ogbomoso's Digital Transformation: Blockchain as a Catalyst",
+      "description": "The flagship tech conference uniting students, developers, and industry leaders at the intersection of blockchain, Web3, and emerging technologies.",
+      "date": "November 7, 2025",
+      "time": "9:00 AM",
+      "location": "The Assembly, Beside Ben Nest Hotel, along LAUTECH Main Gate, Ogbomoso, Nigeria.",
+      "externalLink": "https://confluence.blockchainlautech.club/2025",
+      "image": "/event/confluence-1.jpg",
+      "agenda": [
+        {
+          "title": "Day 1: Developer Track",
+          "date": "November 7, 2025",
+          "button": "Apply for Dev Track",
+          "activities": [
+            {
+              "icon": "🎤",
+              "title": "Demo Day"
+            },
+            {
+              "icon": "🚀",
+              "title": "Hackathins & Coding Competition"
+            },
+            {
+              "icon": "🧑‍💻",
+              "title": "Technical Workshops"
+            },
+            {
+              "icon": "🤝",
+              "title": "Bounty Challenges"
+            },
+            {
+              "icon": "🍽️",
+              "title": "Developer Networking"
+            },
+            {
+              "icon": "🎤",
+              "title": "Panel Session"
+            }
+          ]
+        },
+        {
+          "title": "Day 2: Community Track",
+          "date": "November 8, 2025",
+          "button": "Register for Community Track",
+          "activities": [
+            {
+              "icon": "🎤",
+              "title": "Keynote Presentation"
+            },
+            {
+              "icon": "🎤",
+              "title": "Expert Panel Discussion"
+            },
+            {
+              "icon": "🚀",
+              "title": "Women in web3 Session"
+            },
+            {
+              "icon": "🧑‍💻",
+              "title": "Startup Exhibition"
+            },
+            {
+              "icon": "🤝",
+              "title": "Interactive Workshops"
+            },
+            {
+              "icon": "🍽️",
+              "title": "Networking Oppurtunity"
+            },
+            {
+              "icon": "🎉",
+              "title": "Prize Distribution"
+            }
+          ]
+        }
+      ],
+      "type": "conference",
+      "status": "upcoming",
+      "attendees": 180,
+      "max_attendees": 250,
+      "speaker_name": "Dr. Adebayo",
+      "speaker_title": "Keynote Speaker",
+      "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
+      "speaker_avatar": "/team/johnAdekunjo.jpg"
     }
   ],
   "partners": [
@@ -743,11 +864,17 @@
       "logo": "/partners/cryptoAsset.jpg",
       "bgColor": "#2e3135",
       "textColor": "#FFFFFF"
+    },
+    {
+      "name": "Finance School",
+      "logo": "/partners/financeSC.jpg",
+      "bgColor": "#2e3135",
+      "textColor": "#FFFFFF"
     }
   ],
   "contact": {
     "phones": [
-      "+234 803 123 4567",
+      "+234 916 270 6257",
       "+234 901 234 5678"
     ],
     "emails": [
@@ -781,11 +908,6 @@
         "name": "telegram",
         "link": "https://t.me/blockchainlautech",
         "icon": "/socialIcons/telegram.png"
-      },
-      {
-        "name": "discord",
-        "link": "https://discord.com/blockchainlautech",
-        "icon": "discord"
       }
     ]
   },
@@ -853,6 +975,10 @@
       },
       {
         "name": "Newsletter Signup",
+        "link": "/"
+      },
+      {
+        "name": "Contact Us",
         "link": "/"
       }
     ]
