@@ -8,21 +8,24 @@ export function TeamCard({ member }: { member: TeamInterface }) {
   const isFounder = member.role.toLowerCase().includes("founder");
 
   return (
-    <div className="group p-6 transition-transform duration-300 hover:-translate-y-1">
-      <div className={`h-70 w-60 overflow-hidden mx-auto mb-4 ${isFounder ? "" : "rounded-[50px] rounded-bl-[110px] border-3 border-sky-800"}`}>
+    <div className="group p-2 sm:p-6 transition-transform duration-300 hover:-translate-y-1 w-full flex flex-col items-center">
+      <div className={`aspect-[6/7] w-full max-w-[160px] sm:max-w-none sm:h-70 sm:w-60 overflow-hidden mx-auto mb-2 sm:mb-4 ${isFounder ? "" : "rounded-[30px] sm:rounded-[50px] rounded-bl-[60px] sm:rounded-bl-[110px] border-2 sm:border-3 border-sky-800"}`}>
         <Image
           src={member.image}
           alt={member.name}
           width={260}
           height={260}
-          className={`h-full w-full object-cover overflow-hidden ${isFounder ? "" : "rounded-[40px] rounded-bl-[100px]"}`}
+          className={`h-full w-full object-cover overflow-hidden ${isFounder ? "" : "rounded-[24px] sm:rounded-[40px] rounded-bl-[50px] sm:rounded-bl-[100px]"}`}
+          style={["Samad Liadi", "Michael Olaiti"].includes(member.name) ? { objectPosition: "center top" } : undefined}
         />
       </div>
-      <h3 className="text-center text-lg font-semibold text-sky-900">
+      <h3 className="text-center text-sm sm:text-lg font-semibold text-sky-900 leading-tight mt-2">
         {member.name}
       </h3>
-      <p className={`mt-1 text-center text-base text-slate-500 ${isFounder ? "hidden" : "block"}`}>{member.role}</p>
-      <SocialIcons social={member.social} />
+      <p className={`mt-1 text-center text-xs sm:text-base text-slate-500 ${isFounder ? "hidden" : "block"}`}>{member.role}</p>
+      <div className="mt-2 sm:mt-3 flex justify-center scale-90 sm:scale-100 origin-top">
+        <SocialIcons social={member.social} />
+      </div>
     </div>
   );
 }
@@ -63,9 +66,14 @@ export default function TeamLayout() {
                     {formattedName}
                   </p>
                 </div>
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-8 lg:gap-12 max-w-7xl mx-auto">
                   {members.map((member: TeamInterface) => (
-                    <TeamCard key={member.name} member={member} />
+                    <div 
+                      key={member.name} 
+                      className={`flex justify-center ${groupName === 'founders' ? 'w-full sm:w-[calc(50%-1rem)] lg:w-[calc(50%-2rem)]' : 'w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)]'}`}
+                    >
+                      <TeamCard member={member} />
+                    </div>
                   ))}
                 </div>
               </section>

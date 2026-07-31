@@ -5,8 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { 
   MapPin, 
-  Mail, 
-  Phone,
+  Mail,
   Award,
   BookOpen,
   Users,
@@ -80,22 +79,15 @@ export default function AboutPage() {
 
       {/* Image Gallery */}
       <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ">
+          <div className="flex justify-center">
+            <div className="w-full max-w-4xl rounded-2xl overflow-hidden shadow-lg flex">
               <Image
-                src="/event/confluence-1.jpg"
+                src="/event/pizzaAttendees.jpg"
                 alt="Workshop presentation"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-              <Image
-                src="/event/confluence-2.jpg"
-                alt="Event attendees"
-                fill
-                className="object-cover"
+                width={1200}
+                height={800}
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -138,7 +130,7 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className=" container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-6">
-            Recent Achievements.
+            Community wins.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
             {achievement.map((ach, index) => (
@@ -175,8 +167,20 @@ export default function AboutPage() {
             </Card>
             <Card className="border-0 shadow-lg rounded-2xl">
               <CardContent className="p-4 text-center">
-                <Phone className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <p className="text-gray-800 font-medium">{contact.phones[0]}</p>
+                <svg
+                  className="h-12 w-12 fill-blue-600 mx-auto mb-4"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M11.954.004C5.352.004 0 5.356 0 11.958c0 2.115.553 4.183 1.6 6.002L.055 23.46l5.642-1.48A11.892 11.892 0 0011.954 23.91c6.598 0 11.954-5.356 11.954-11.952S18.552.004 11.954.004zm6.474 16.924c-.266.75-1.526 1.451-2.126 1.545-.526.082-1.192.176-3.414-.746-2.665-1.106-4.38-3.83-4.512-4.006-.134-.176-1.077-1.433-1.077-2.736 0-1.303.682-1.944.921-2.203.24-.258.527-.323.7-.323.174 0 .346.006.502.012.164.006.386-.06.586.422.206.504.7 1.706.764 1.834.062.13.104.282.02.434-.082.152-.124.252-.25.375-.124.124-.266.27-.376.364-.124.106-.254.22-.112.464.142.246.634 1.05 1.356 1.693.93.83 1.716 1.085 1.956 1.216.24.13.38.106.522-.058.142-.164.614-.716.776-.963.164-.246.326-.205.546-.123.22.082 1.396.657 1.636.776.24.117.4.176.458.27.062.094.062.55-.204 1.301z" />
+                </svg>
+                <a 
+                  href={`https://wa.me/${contact.phones[0].replace(/[^0-9]/g, "")}`}
+                  className="text-gray-800 font-medium hover:text-blue-600 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {contact.phones[0]}
+                </a>
               </CardContent>
             </Card>
           </div>

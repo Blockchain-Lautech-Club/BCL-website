@@ -41,7 +41,7 @@ const HeroText = () => {
             <span className="text-white lg:text-slate-800">One Block at a Time.</span>
           </h1>
 
-          {/* Subheadline */}
+          {/* Subheadline */}  
           <div className="flex flex-col max-w-md gap-5">
             <p className="text-sm leading-relaxed text-blue-50 sm:text-lg ">
               Connecting curious minds to blockchain education, hands-on

@@ -53,31 +53,7 @@ export default function AboutSection() {
       <div className="absolute left-1/2 top-0 h-full w-px border-l border-dashed border-gray-300" />
 
       {/* Pillars Container */}
-      <div className="relative mx-auto grid max-w-3xl grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-3 lg:px-0">
-        {pillars.map((pillar, index) => {
-          const Icon = pillar.icon;
-          return (
-            <Card
-              key={index}
-              className="mx-auto mb-10 w-full rounded-[28px] border-0 p-[1.5px] shadow-sm transition-shadow duration-200 hover:shadow-lg"
-              style={{
-                background: "linear-gradient(to bottom, #7C3AED, #3B82F6)",
-              }}
-            >
-              <CardContent className="flex min-h-[180px] flex-col items-center justify-center gap-6 rounded-[26px] bg-white px-6 py-8 text-center">
-                {/* Icon container */}
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-b from-[#7C3AED] to-[#3B82F6] shadow-lg">
-                  {Icon ? <Icon className="h-10 w-10 text-white" /> : null}
-                </div>
-                {/* Text */}
-                <p className="text-center text-lg font-bold leading-6 text-blue-600">
-                  {pillar.text}
-                </p>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+      
     </section>
   );
 }

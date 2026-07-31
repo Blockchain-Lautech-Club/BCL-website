@@ -10,8 +10,8 @@ interface EventCardProps {
 
 export default function LandingPageEventCard({ event, onViewDetails }: EventCardProps) {
   return (
-    <article className="group relative rounded-3xl border border-gray-200 bg-white shadow-lg overflow-hidden">
-      <div className="overflow-hidden h-48 relative">
+    <article className="group relative rounded-3xl border border-gray-200 bg-white shadow-lg overflow-hidden h-full flex flex-col">
+      <div className="overflow-hidden h-48 relative shrink-0">
         <Image
           src={event?.image || '/placeholder-event.jpg'}
           alt={event?.title || 'Event Image'}
@@ -25,7 +25,7 @@ export default function LandingPageEventCard({ event, onViewDetails }: EventCard
         )}
       </div>
 
-      <div className="p-6">
+      <div className="p-6 flex flex-col grow">
         <h3 className="text-xl font-bold text-gray-900 mb-2">{event?.title || 'Event Title'}</h3>
         <p className="text-sm text-gray-600 mb-4 line-clamp-2">{event?.description || 'Event Description'}</p>
 
@@ -35,7 +35,7 @@ export default function LandingPageEventCard({ event, onViewDetails }: EventCard
               <svg className="h-4 w-4 text-[#02152d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span>{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+              <span>{/^\d{4}-\d{2}-\d{2}/.test(event.date) ? new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : event.date}</span>
             </div>
           )}
           {event?.time && (
@@ -57,12 +57,31 @@ export default function LandingPageEventCard({ event, onViewDetails }: EventCard
           )}
         </div>
 
-        <Link
-          href={`/events/${event?.id}`}
-          className="block w-full rounded-full border-2 border-[#02152d] bg-white py-2 text-center text-sm font-semibold text-[#02152d] hover:bg-[#02152d] hover:text-white transition-colors"
-        >
-          View Details
-        </Link>
+        {/* @ts-ignore */}
+        {event?.disableViewDetails ? null : event?.externalLink ? (
+          <a
+            /* @ts-ignore */
+            href={event.externalLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-auto block w-full rounded-full border-2 border-[#02152d] bg-white py-2 text-center text-sm font-semibold text-[#02152d] hover:bg-[#02152d] hover:text-white transition-colors"
+          >
+            View Details
+          </a>
+        ) : (
+          <Link
+            href={`/events/${event?.id}`}
+            onClick={(e) => {
+              if (onViewDetails) {
+                e.preventDefault();
+                onViewDetails();
+              }
+            }}
+            className="mt-auto block w-full rounded-full border-2 border-[#02152d] bg-white py-2 text-center text-sm font-semibold text-[#02152d] hover:bg-[#02152d] hover:text-white transition-colors"
+          >
+            View Details
+          </Link>
+        )}
       </div>
     </article>
   );

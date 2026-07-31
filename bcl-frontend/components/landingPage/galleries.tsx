@@ -136,7 +136,7 @@ export default function GalleryCarousel() {
 
       <div className="mt-6 flex justify-center sm:mt-10">
         <Link 
-          href="https://drive.google.com/drive/folders/1P5HCovu72HRVmt0WEKReFMP8mwtGk-O3"
+          href="/gallery"
           className="rounded-full border border-blue-600 bg-transparent px-8 py-2.5 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-600 hover:text-white"
         >
           View All

@@ -45,9 +45,9 @@ const Footer = () => {
         <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-white/10" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-12">
+      <div className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:px-12">
         {/* Logo */}
-        <div className="mb-12 flex justify-center items-center gap-3 lg:justify-start">
+        <div className="mb-6 sm:mb-8 flex justify-center items-center gap-3 lg:justify-start">
           <Image
             src={organization.logos[0] || ""}
             alt="Logo"
@@ -57,13 +57,13 @@ const Footer = () => {
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-5">
           {/* Quick Links */}
           <div className="text-left">
-            <h3 className="mb-4 text-lg font-semibold text-white">
+            <h3 className="mb-2 sm:mb-4 text-lg font-semibold text-white">
               Quick Links
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1 sm:space-y-2">
               {quickLinks.map((quickLink, i) => (
                 <li key={`${quickLink.name}-${i}`}>
                   <Link
@@ -79,8 +79,8 @@ const Footer = () => {
 
           {/* Resources */}
           <div className="text-left">
-            <h3 className="mb-4 text-lg font-semibold text-white">Resources</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-2 sm:mb-4 text-lg font-semibold text-white">Resources</h3>
+            <ul className="space-y-1 sm:space-y-2">
               {resources.map((resource, i) => (
                 <li key={`${resource.name}-${i}`}>
                   <Link
@@ -96,8 +96,8 @@ const Footer = () => {
 
           {/* Community */}
           <div className="text-left">
-            <h3 className="mb-4 text-lg font-semibold text-white">Community</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-2 sm:mb-4 text-lg font-semibold text-white">Community</h3>
+            <ul className="space-y-1 sm:space-y-2">
               {community.map((c, i) => (
                 <li key={`${c.name}-${i}`}>
                   <Link
@@ -113,10 +113,10 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="flex flex-col items-start text-left">
-            <h3 className="mb-4 text-lg font-semibold text-white">
+            <h3 className="mb-2 sm:mb-4 text-lg font-semibold text-white">
               Contact Us
             </h3>
-            <ul className="flex flex-col space-y-4 text-left">
+            <ul className="flex flex-col space-y-2 text-left">
               <li className="flex items-start gap-2 lg:gap-3">
                 <svg
                   className="mt-0.5 h-5 w-5 shrink-0 text-blue-200"
@@ -140,21 +140,16 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 lg:gap-3">
                 <svg
-                  className="mt-0.5 h-5 w-5 shrink-0 text-blue-200"
-                  fill="none"
+                  className="mt-0.5 h-5 w-5 shrink-0 fill-blue-200"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-                  />
+                  <path d="M11.954.004C5.352.004 0 5.356 0 11.958c0 2.115.553 4.183 1.6 6.002L.055 23.46l5.642-1.48A11.892 11.892 0 0011.954 23.91c6.598 0 11.954-5.356 11.954-11.952S18.552.004 11.954.004zm6.474 16.924c-.266.75-1.526 1.451-2.126 1.545-.526.082-1.192.176-3.414-.746-2.665-1.106-4.38-3.83-4.512-4.006-.134-.176-1.077-1.433-1.077-2.736 0-1.303.682-1.944.921-2.203.24-.258.527-.323.7-.323.174 0 .346.006.502.012.164.006.386-.06.586.422.206.504.7 1.706.764 1.834.062.13.104.282.02.434-.082.152-.124.252-.25.375-.124.124-.266.27-.376.364-.124.106-.254.22-.112.464.142.246.634 1.05 1.356 1.693.93.83 1.716 1.085 1.956 1.216.24.13.38.106.522-.058.142-.164.614-.716.776-.963.164-.246.326-.205.546-.123.22.082 1.396.657 1.636.776.24.117.4.176.458.27.062.094.062.55-.204 1.301z" />
                 </svg>
                 <Link
-                  href={`tel:${contact.phones[0]}`}
+                  href={`https://wa.me/${contact.phones[0].replace(/[^0-9]/g, "")}`}
                   className="break-words text-xs text-blue-100 transition-colors hover:text-white lg:text-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {contact.phones[0]}
                 </Link>
@@ -184,12 +179,12 @@ const Footer = () => {
           </div>
 
           {/* Social Media */}
-          <div className="col-span-2 text-left lg:col-span-1">
-            <h3 className="mb-4 text-lg font-semibold text-white">
+          <div className="col-span-2 text-left lg:col-span-1 mt-2 sm:mt-0">
+            <h3 className="mb-2 sm:mb-4 text-lg font-semibold text-white">
               Social Media
             </h3>
             <div className="flex justify-start gap-4">
-              {socialIcons.map((icon) => (
+              {socialIcons.filter(icon => icon.href !== "#").map((icon) => (
                 <Link
                   key={icon.name}
                   href={icon.href}
@@ -212,7 +207,7 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="pt-8 text-center">
+        <div className="pt-4 mt-6 border-t border-blue-800/50 text-center">
           <p className="text-sm text-blue-200">
             © 2026 LAUTECH Blockchain Club. All rights reserved.
           </p>

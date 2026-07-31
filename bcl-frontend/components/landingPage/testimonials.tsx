@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
@@ -32,20 +33,14 @@ function renderRating(rate: number) {
 }
 
 export function Testimonials() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonial.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="pt-16 sm:pt-20">
@@ -71,50 +66,63 @@ export function Testimonials() {
         </p>
       </motion.div>
 
-      <div className="bg-gradient-to-b from-[#7C3AED] to-[#3B82F6]">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="mx-auto grid max-w-7xl grid-cols-1 gap-8 rounded-lg px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:px-8 lg:py-20"
-        >
-          {testimonial.map((testimonial, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-4">
-                    {renderRating(testimonial.rate)}
-                  </div>
-                  <p className="text-gray-600 leading-relaxed mb-6 italic">
-                    "{testimonial.note}"
-                  </p>
-                  <div className="flex items-center">
-                    <Avatar className="h-12 w-12 mr-4">
-                      <AvatarImage
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
-                      />
-                      <AvatarFallback>
-                        {testimonial.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-semibold text-gray-900">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        {testimonial.departement}
+      <div className="bg-gradient-to-b from-[#7C3AED] to-[#3B82F6] py-12 sm:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 relative overflow-hidden">
+          <div 
+            className="flex transition-transform duration-700 ease-in-out items-stretch"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {testimonial.map((testimonial, index) => (
+              <div key={index} className="w-full shrink-0 px-2 sm:px-4">
+                <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 mx-auto max-w-2xl rounded-2xl h-full flex flex-col">
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <div className="flex items-center mb-4">
+                      {renderRating(testimonial.rate)}
+                    </div>
+                    <div className="flex-grow overflow-y-auto mb-6 pr-2 max-h-[150px] sm:max-h-[200px] scrollbar-thin scrollbar-thumb-gray-200">
+                      <p className="text-gray-600 leading-relaxed italic text-base sm:text-lg">
+                        "{testimonial.note}"
+                      </p>
+                    </div>
+                    <div className="flex items-center mt-auto">
+                      <Avatar className="h-12 w-12 mr-4">
+                        <AvatarImage
+                          src={testimonial.avatar}
+                          alt={testimonial.name}
+                        />
+                        <AvatarFallback>
+                          {testimonial.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <div className="font-semibold text-gray-900">
+                          {testimonial.name}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          {testimonial.departement}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-10 gap-3">
+            {testimonial.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-3 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-white' : 'w-3 bg-white/40 hover:bg-white/80'}`}
+                aria-label={`Go to testimonial ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
