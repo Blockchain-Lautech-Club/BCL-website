@@ -2,11 +2,11 @@ const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 const path = require('path');
 
-// Configure Cloudinary
+// Configure Cloudinary using environment variables
 cloudinary.config({
-  cloud_name: 'zz3ptcjd',
-  api_key: '647392191184964',
-  api_secret: '78C8SoKZCtWi0pHDTawc7JXgf44',
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'YOUR_CLOUD_NAME',
+  api_key: process.env.CLOUDINARY_API_KEY || 'YOUR_API_KEY',
+  api_secret: process.env.CLOUDINARY_API_SECRET || 'YOUR_API_SECRET',
 });
 
 const galleryDir = path.join(__dirname, 'public', 'gallery');
