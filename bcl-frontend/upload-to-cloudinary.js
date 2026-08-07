@@ -4,9 +4,9 @@ const path = require('path');
 
 // Configure Cloudinary using environment variables
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'YOUR_CLOUD_NAME',
-  api_key: process.env.CLOUDINARY_API_KEY || 'YOUR_API_KEY',
-  api_secret: process.env.CLOUDINARY_API_SECRET || 'YOUR_API_SECRET',
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'CLOUD_NAME',
+  api_key: process.env.CLOUDINARY_API_KEY || 'API_KEY',
+  api_secret: process.env.CLOUDINARY_API_SECRET || 'API_SECRET',
 });
 
 const galleryDir = path.join(__dirname, 'public', 'gallery');
