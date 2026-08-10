@@ -140,10 +140,17 @@
   },
   "testimonial": [
     {
-      "avatar": "/testimonial/abdulAnchor.png",
-      "name": "Abdul-Anchor",
-      "departement": "Fishery Science and Technology",
-      "note": "BCL is one of the big family in Lautech, safe and welcoming. She makes the saying ‘all work and no play makes Jack a dull boy’. I love it, because opportunities are always shared.",
+      "avatar": "/testimonial/Profile AI - Victor Oluwapelumi.png",
+      "name": "Victor Oluwapelumi",
+      "departement": "Computer Science",
+      "note": "BCL has impacted my web3 journey a lot, through learning in web3 development and how to make it in web3. Thanks 🙏",
+      "rate": 5
+    },
+    {
+      "avatar": "",
+      "name": "Ridwan Adewole",
+      "departement": "Computer Engineering",
+      "note": "BCL is one of the big family in Lautech, safe and welcoming.",
       "rate": 5
     },
     {
@@ -173,13 +180,6 @@
       "name": "Michael Olaoti",
       "departement": "Surveying and Geoinformatics",
       "note": "This community keeps the adrenaline high, sparking curiosity, driving meaningful discussions, and strengthening everyone's passion for crypto.",
-      "rate": 5
-    },
-    {
-      "avatar": "/testimonial/Profile AI - Victor Oluwapelumi.png",
-      "name": "Victor Oluwapelumi",
-      "departement": "Computer Science",
-      "note": "BCL has impacted my web3 journey a lot, through learning in web3 development and how to make it in web3. Thanks 🙏",
       "rate": 5
     },
     {
@@ -619,6 +619,22 @@
       "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
       "speaker_avatar": "/team/johnAdekunjo.jpg"
     },
+     {
+      "id": "Botchain Africa Builder Challenge 2026",
+      "title": "Botchain Africa Builder Challenge",
+      "description": "​Join developers from across Africa in a two-week Builder Challenge featuring online workshops, technical mentorship, community support, and an offline Demo Day in Ogbomoso, Nigeria.",
+      "tagline": "Builders Challenge",
+      "theme": "Celebrating Bitcoin History",
+      "date": "Aug 15",
+      "time": "10:00am",
+      "location": "The Assembly, Ogbomoso",
+      "disableViewDetails": false,
+      "externalLink": "https://luma.com/sd9re1ll?tk=aSPXh1",
+      "image": "/event/Botbuilder.jpg",
+      "agenda": [],
+      "type": "Builder's Demo day",
+      "status": "upcoming"
+    },
     {
       "id": "cohort-1",
       "title": "Educational Cohorts",
@@ -868,6 +884,12 @@
     {
       "name": "Finance School",
       "logo": "/partners/financeSc.jpg",
+      "bgColor": "#2e3135",
+      "textColor": "#FFFFFF"
+    },
+     {
+      "name": "Botchain",
+      "logo": "/partners/Botchain.jpg",
       "bgColor": "#2e3135",
       "textColor": "#FFFFFF"
     }
