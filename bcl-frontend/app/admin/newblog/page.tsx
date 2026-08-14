@@ -17,7 +17,7 @@ import {
   ArrowLeft, Bold, Italic, Underline, List, Link as LinkIcon, RotateCcw,
   Heading2, Heading3, Upload, Trash2, Calendar, Clock, Eye, Edit, Loader2
 } from "lucide-react"
-import { adminApi, blogApi, Blog, formatDate } from "@/lib/api"
+import { adminApi, blogApi, Blog, formatDate, getImageUrl } from "@/lib/api"
 
 export default function AddBlogPage() {
   return (
@@ -524,7 +524,7 @@ function BlogBuilderForm() {
                       </div>
                     ) : formData.image ? (
                       <div className="relative rounded-lg overflow-hidden border border-gray-200 bg-white">
-                        <img src={formData.image} alt="Cover Preview" className="w-full h-40 object-cover" />
+                        <img src={getImageUrl(formData.image)} alt="Cover Preview" className="w-full h-40 object-cover" />
                         <div className="absolute top-2 right-2 flex gap-1">
                           <Button
                             type="button"
@@ -640,7 +640,7 @@ function BlogBuilderForm() {
                 {formData.image && (
                   <div className="mb-8 rounded-lg overflow-hidden shadow-md">
                     <img
-                      src={formData.image}
+                      src={getImageUrl(formData.image)}
                       alt={formData.title || "Preview"}
                       className="w-full h-64 md:h-96 object-cover"
                     />

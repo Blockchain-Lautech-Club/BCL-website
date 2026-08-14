@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, Share2, ExternalLink, ChevronRight } from "lucide-react"
-import { blogApi, Blog, formatDate } from "@/lib/api"
+import { blogApi, Blog, formatDate, getImageUrl } from "@/lib/api"
 
 export default function BlogPostPage() {
   const routeParams = useParams<{ id: string }>()
@@ -365,7 +365,7 @@ export default function BlogPostPage() {
             {blog.image && (
               <div className="mb-12">
                 <img
-                  src={blog.image}
+                  src={getImageUrl(blog.image)}
                   alt={blog.title}
                   className="w-full h-64 md:h-96 object-cover rounded-lg shadow-md"
                   onError={(e) => {
