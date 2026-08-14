@@ -317,13 +317,13 @@ function BlogBuilderForm() {
       </section>
 
       {/* Main Content Area */}
-      <section className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-4 sm:py-8 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         {activeTab === "write" ? (
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Editor & Core Fields */}
-            <div className="lg:col-span-2 space-y-6">
-              <Card>
-                <CardContent className="pt-6 space-y-6">
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+              <Card className="border-0 sm:border shadow-none sm:shadow-sm bg-transparent sm:bg-card">
+                <CardContent className="px-3 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
                   {/* Title field */}
                   <div className="space-y-2">
                     <Label htmlFor="title" className="text-sm font-semibold text-gray-700">Title *</Label>
@@ -445,12 +445,12 @@ function BlogBuilderForm() {
             </div>
 
             {/* Sidebar Meta Info */}
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
+            <div className="space-y-4 sm:space-y-6">
+              <Card className="border-0 sm:border shadow-none sm:shadow-sm bg-transparent sm:bg-card">
+                <CardHeader className="px-3 sm:px-6 py-4 sm:py-4 pb-2 sm:pb-2">
                   <CardTitle className="text-base font-semibold">Publish Settings</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="px-3 sm:px-6 pb-6 space-y-4 sm:space-y-6">
                   {/* Category Selector */}
                   <div className="space-y-2">
                     <Label htmlFor="category" className="text-sm font-medium">Category *</Label>
@@ -562,9 +562,9 @@ function BlogBuilderForm() {
           </form>
         ) : (
           /* Preview Tab (matching actual blog structure exactly) */
-          <div className="max-w-4xl mx-auto">
-            <Card className="bg-white shadow-md border border-gray-100 overflow-hidden">
-              <CardContent className="p-4 sm:p-12">
+          <div className="max-w-4xl mx-auto px-2 sm:px-0">
+            <Card className="bg-white shadow-none sm:shadow-md border-0 sm:border border-gray-100 overflow-hidden">
+              <CardContent className="p-3 sm:p-12">
                 {/* Simulated Back button */}
                 <Button variant="ghost" disabled className="mb-6 pl-0 text-gray-400">
                   <ArrowLeft className="h-4 w-4 mr-2" /> Back to Blog
