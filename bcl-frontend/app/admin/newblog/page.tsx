@@ -384,27 +384,6 @@ function BlogBuilderForm() {
                         >
                           <Underline className="h-4 w-4" />
                         </Button>
-                        <div className="w-px h-6 bg-gray-300 mx-1" />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 w-8 p-0"
-                          onMouseDown={(e) => { e.preventDefault(); executeCommand("insertUnorderedList") }}
-                          title="Bullet List"
-                        >
-                          <List className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 w-8 p-0"
-                          onMouseDown={(e) => { e.preventDefault(); addLink() }}
-                          title="Insert Link"
-                        >
-                          <LinkIcon className="h-4 w-4" />
-                        </Button>
                         <Button
                           type="button"
                           variant="ghost"
