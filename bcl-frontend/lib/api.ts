@@ -94,7 +94,34 @@ async function apiFetch<T>(
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}))
-    throw new Error(errorData.detail || `HTTP error! status: ${response.status}`)
+    let msg = `HTTP error! status: ${response.status}`
+    if (errorData.detail) {
+      if (typeof errorData.detail === 'string') {
+        msg = errorData.detail
+      } else if (Array.isArray(errorData.detail)) {
+        msg = errorData.detail.map((err: any) => `${err.loc ? err.loc.join('.') : 'error'}: ${err.msg}`).join(', ')
+      } else {
+        msg = JSON.stringify(errorData.detail)
+      }
+    } else if (errorData.error) {
+      msg = errorData.error
+    } else if (errorData.message) {
+      msg = errorData.message
+    }
+
+    // Auto logout/redirect on auth issues (exclude login endpoint itself)
+    const isAuthError = (response.status === 401 || response.status === 403 || 
+                        msg.toLowerCase().includes('token') || msg.toLowerCase().includes('user not found')) &&
+                        !endpoint.includes('/auth/login');
+    if (isAuthError) {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('admin_token')
+        alert("Session expired or invalid token: " + msg + ". Redirecting to login.")
+        window.location.href = '/admin'
+      }
+    }
+
+    throw new Error(msg)
   }
 
   return response.json()
@@ -112,7 +139,7 @@ export const eventApi = {
     if (params?.limit) searchParams.append('limit', params.limit.toString())
     
     const query = searchParams.toString()
-    return apiFetch<Event[]>(`/events${query ? `?${query}` : ''}`)
+    return apiFetch<Event[]>(`/events/${query ? `?${query}` : ''}`)
   },
 
   getEvent: async (id: string): Promise<Event> => {
@@ -149,7 +176,7 @@ export const blogApi = {
     if (params?.search) searchParams.append('search', params.search)
     
     const query = searchParams.toString()
-    return apiFetch<Blog[]>(`/blogs${query ? `?${query}` : ''}`)
+    return apiFetch<Blog[]>(`/blogs/${query ? `?${query}` : ''}`)
   },
 
   getBlog: async (id: string): Promise<Blog> => {
@@ -189,7 +216,7 @@ export const adminApi = {
   },
 
   createEvent: async (eventData: Omit<Event, 'id' | 'created_at' | 'updated_at' | 'attendees' | 'status'>): Promise<Event> => {
-    return apiFetch<Event>('/events', {
+    return apiFetch<Event>('/events/', {
       method: 'POST',
       headers: {
         ...adminApi.getAuthHeader(),
@@ -218,7 +245,7 @@ export const adminApi = {
   },
 
   createBlog: async (blogData: Omit<Blog, 'id' | 'created_at' | 'updated_at' | 'likes' | 'read_time'>): Promise<Blog> => {
-    return apiFetch<Blog>('/blogs', {
+    return apiFetch<Blog>('/blogs/', {
       method: 'POST',
       headers: {
         ...adminApi.getAuthHeader(),
@@ -269,7 +296,7 @@ export const adminApi = {
     formData.append('file', file)
 
     const authHeaders = adminApi.getAuthHeader()
-    const response = await fetch(`${API_BASE_URL}/upload/${category}`, {
+    const response = await fetch(`${API_BASE_URL}/uploads/${category}`, {
       method: 'POST',
       headers: authHeaders,
       body: formData,
@@ -277,7 +304,29 @@ export const adminApi = {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
-      throw new Error(errorData.detail || `Upload failed: ${response.status}`)
+      let msg = `Upload failed: ${response.status}`
+      if (errorData.detail) {
+        if (typeof errorData.detail === 'string') {
+          msg = errorData.detail
+        } else if (Array.isArray(errorData.detail)) {
+          msg = errorData.detail.map((err: any) => `${err.loc ? err.loc.join('.') : 'error'}: ${err.msg}`).join(', ')
+        } else {
+          msg = JSON.stringify(errorData.detail)
+        }
+      }
+
+      // Auto logout/redirect on auth issues
+      const isAuthError = response.status === 401 || response.status === 403 || 
+                          msg.toLowerCase().includes('token') || msg.toLowerCase().includes('user not found');
+      if (isAuthError) {
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('admin_token')
+          alert("Session expired or invalid token: " + msg + ". Redirecting to login.")
+          window.location.href = '/admin'
+        }
+      }
+
+      throw new Error(msg)
     }
 
     return response.json()

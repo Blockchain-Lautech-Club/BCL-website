@@ -346,7 +346,7 @@ export default function EventDetailPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
             {relatedEvents.map((event) => (
-              <LandingPageEventCard key={event.id} event={event} />
+              <LandingPageEventCard key={event.id} event={event as any} />
             ))}
           </div>
         </section>

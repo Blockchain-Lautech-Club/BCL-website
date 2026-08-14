@@ -113,6 +113,17 @@ export default function BlogPostPage() {
   }
 
   const formatContent = (content: string) => {
+    // If the content is rich HTML (from our text editor), render it directly
+    const isHtml = /<[a-z][\s\S]*>/i.test(content)
+    if (isHtml) {
+      return (
+        <div 
+          className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      )
+    }
+
     // First clean the content
     const cleaned = cleanContent(content)
     const sections = cleaned.split('\n\n').filter(section => {

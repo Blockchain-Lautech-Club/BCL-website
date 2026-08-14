@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -22,6 +23,7 @@ import { adminApi, eventApi, blogApi, memberApi, Event, Blog, Member, formatDate
 const API_BASE = "https://bcl-website-95bd.onrender.com"
 
 export default function AdminDashboard() {
+  const router = useRouter()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
   const [events, setEvents] = useState<Event[]>([])
@@ -261,31 +263,9 @@ export default function AdminDashboard() {
                         />
                       </DialogContent>
                     </Dialog>
-                    <Dialog open={isBlogDialogOpen} onOpenChange={setIsBlogDialogOpen}>
-                      <DialogTrigger asChild>
-                        <Button onClick={() => setBlog(null)}>
-                          <Plus className="h-4 w-4 mr-2" /> Add Blog
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                        <DialogHeader>
-                          <DialogTitle>{selectedBlog ? 'Edit Blog' : 'Create New Blog'}</DialogTitle>
-                        </DialogHeader>
-                        <BlogForm
-                          blog={selectedBlog}
-                          onSave={(blog) => {
-                            if (selectedBlog) {
-                              setBlogs(blogs.map(b => b.id === blog.id ? blog : b))
-                            } else {
-                              setBlogs([blog, ...blogs])
-                            }
-                            setIsBlogDialogOpen(false)
-                            setBlog(null)
-                          }}
-                          onCancel={() => { setIsBlogDialogOpen(false); setBlog(null) }}
-                        />
-                      </DialogContent>
-                    </Dialog>
+                    <Button onClick={() => router.push('/admin/newblog')} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+                      <Plus className="h-4 w-4 mr-2" /> Add Blog
+                    </Button>
                   </div>
                 </div>
 
@@ -294,7 +274,7 @@ export default function AdminDashboard() {
                     <BlogAdminCard
                       key={blog.id}
                       blog={blog}
-                      onEdit={(blog) => { setBlog(blog); setIsBlogDialogOpen(true) }}
+                      onEdit={(blog) => { router.push(`/admin/newblog?id=${blog.id}`) }}
                       onDelete={async (id) => {
                         if (confirm('Are you sure you want to delete this blog?')) {
                           try { await adminApi.deleteBlog(id); setBlogs(blogs.filter(b => b.id !== id)) }
@@ -854,12 +834,12 @@ function BlogFromUrlForm({
   onSave: (blog: Blog) => void
   onCancel: () => void
 }) {
-  const [formData, setFormData] = useState({ url: '', author: '', author_bio: '', category: '', tags: '', featured: false })
+  const [formData, setFormData] = useState({ url: '', author: '', category: '', tags: '', featured: false })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      const blogData = { ...formData, tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean) }
+      const blogData = { ...formData, author_bio: '', tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean) }
       const savedBlog = await adminApi.createBlogFromUrl(blogData)
       onSave(savedBlog)
     } catch {
@@ -876,10 +856,6 @@ function BlogFromUrlForm({
       <div>
         <Label>Author</Label>
         <Input value={formData.author} onChange={(e) => setFormData({ ...formData, author: e.target.value })} required />
-      </div>
-      <div>
-        <Label>Author Bio</Label>
-        <Textarea value={formData.author_bio} onChange={(e) => setFormData({ ...formData, author_bio: e.target.value })} />
       </div>
       <div>
         <Label>Category</Label>
@@ -1040,7 +1016,7 @@ function MemberForm({
           { id: "featured", label: "Featured Member", key: "featured" },
         ].map(({ id, label, key }) => (
           <div key={id} className="flex items-center space-x-2">
-            <Checkbox id={id} checked={formData[key]} onCheckedChange={(v) => setFormData({ ...formData, [key]: v as boolean })} />
+            <Checkbox id={id} checked={formData[key as keyof typeof formData] as boolean} onCheckedChange={(v) => setFormData({ ...formData, [key]: v as boolean })} />
             <Label htmlFor={id}>{label}</Label>
           </div>
         ))}
