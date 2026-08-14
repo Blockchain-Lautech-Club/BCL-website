@@ -16,9 +16,9 @@ async def upload_file(category: str, file: UploadFile = File(...), admin: str = 
     if category not in ["events", "blogs", "avatars"]:
         raise HTTPException(status_code=400, detail="Invalid upload category")
     
-    allowed_types = ["image/jpeg", "image/png", "image/webp"]
+    allowed_types = ["image/jpeg", "image/jpg", "image/png", "image/webp"]
     if file.content_type not in allowed_types:
-        raise HTTPException(status_code=400, detail="Invalid file type. Only JPEG, PNG, and WebP are allowed.")
+        raise HTTPException(status_code=400, detail="Invalid file type. Only JPEG, JPG, PNG, and WebP are allowed.")
     
     file_extension = file.filename.split('.')[-1]
     unique_filename = f"{uuid.uuid4()}.{file_extension}"
