@@ -1,10 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from app.database import engine, Base
 Base.metadata.create_all(bind=engine)
 from app.routes import auth, events, blogs, uploads, members, cohorts
 from datetime import datetime
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="uploads"), name="static")
 
 app.add_middleware(
     CORSMiddleware,
