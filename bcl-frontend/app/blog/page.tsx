@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
-import { Search, ArrowRight, TrendingUp, BookOpen } from "lucide-react"
+import { Search, ArrowRight, TrendingUp, BookOpen, X, RotateCcw } from "lucide-react"
 import { blogApi, Blog, formatDate } from "@/lib/api"
 
 const categories = ["All", "Education", "News", "Industry", "Workshop", "Security"]
@@ -90,10 +90,20 @@ export default function BlogPage() {
                   placeholder="Search articles..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 pr-10"
                 />
+                {searchTerm && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchTerm("")}
+                    aria-label="Clear search"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer z-10"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
               </div>
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex gap-2 flex-wrap items-center">
                 {categories.map((category) => (
                   <Button
                     key={category}
@@ -105,6 +115,20 @@ export default function BlogPage() {
                     {category}
                   </Button>
                 ))}
+                {(searchTerm || selectedCategory !== "All") && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setSearchTerm("")
+                      setSelectedCategory("All")
+                    }}
+                    className="text-xs text-gray-500 hover:text-gray-900 hover:bg-gray-100 flex items-center gap-1"
+                  >
+                    <RotateCcw className="h-3.5 w-3.5" />
+                    Reset
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -167,7 +191,20 @@ export default function BlogPage() {
                   <div className="max-w-md mx-auto">
                     <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
                     <p className="text-gray-500 text-lg mb-2">No articles found</p>
-                    <p className="text-gray-400 text-sm">Try adjusting your search or filter criteria</p>
+                    <p className="text-gray-400 text-sm mb-6">Try adjusting your search or filter criteria</p>
+                    {(searchTerm || selectedCategory !== "All") && (
+                      <Button
+                        variant="outline"
+                        onClick={() => {
+                          setSearchTerm("")
+                          setSelectedCategory("All")
+                        }}
+                        className="gap-2"
+                      >
+                        <RotateCcw className="h-4 w-4" />
+                        Reset Filters
+                      </Button>
+                    )}
                   </div>
                 </div>
               )}
@@ -183,17 +220,23 @@ export default function BlogPage() {
 function FeaturedBlogCard({ blog }: { blog: Blog }) {
   return (
     <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-      <div className="relative h-64 overflow-hidden">
-        <img
-          src={blog.image || "/placeholder.svg?height=300&width=600"}
-          alt={blog.title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+      <Link href={`/blog/${blog.id}`} className="block relative overflow-hidden">
+        <div className="relative w-full aspect-16/10 sm:aspect-16/9 overflow-hidden">
+          <img
+            src={blog.image || "/placeholder.svg?height=300&width=600"}
+            alt={blog.title}
+            className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
         <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
+      </Link>
       <CardContent className="p-8">
         <h3 className="font-serif text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-primary transition-colors duration-200">
-          {blog.title}
+          <Link href={`/blog/${blog.id}`}>
+            {blog.title}
+          </Link>
         </h3>
         <p className="text-gray-600 leading-relaxed mb-8 line-clamp-3">
           {blog.excerpt}
@@ -213,18 +256,20 @@ function FeaturedBlogCard({ blog }: { blog: Blog }) {
 function BlogCard({ blog }: { blog: Blog }) {
   return (
     <Card className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
-      <div className="relative h-48 overflow-hidden">
+      <Link href={`/blog/${blog.id}`} className="block relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden">
         <img
           src={blog.image || "/placeholder.svg?height=200&width=400"}
           alt={blog.title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
+      </Link>
       <CardContent className="p-6 flex flex-col h-full">
         <div className="flex-1">
           <h3 className="font-serif text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-primary transition-colors duration-200 line-clamp-2">
-            {blog.title}
+            <Link href={`/blog/${blog.id}`}>
+              {blog.title}
+            </Link>
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
             {blog.excerpt}
