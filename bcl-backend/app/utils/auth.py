@@ -40,6 +40,11 @@ async def verify_token(token: str = Depends(oauth2_scheme)):
                 headers={"WWW-Authenticate": "Bearer"},
             )
         
+        # Bypass Supabase lookup for the hardcoded admin username/email
+        from app.config.settings import ADMIN_USERNAME
+        if username == ADMIN_USERNAME:
+            return payload
+            
         # Verify the user exists in Supabase auth.users
         result = supabase.table("users").select("id, email").eq("email", username).execute()
         if not result.data:
@@ -64,6 +69,10 @@ async def get_admin_user(token: str = Depends(oauth2_scheme)):
     payload = await verify_token(token)
     username: str = payload.get("sub")
     
+    from app.config.settings import ADMIN_USERNAME
+    if username == ADMIN_USERNAME:
+        return {"id": "admin", "email": username, "role": "admin"}
+        
     try:
         # Fetch user details from Supabase auth.users
         result = supabase.table("users").select("id, email, role").eq("email", username).execute()
@@ -85,6 +94,8 @@ async def get_admin_user(token: str = Depends(oauth2_scheme)):
         
         return user
     except Exception as e:
+        if isinstance(e, HTTPException):
+            raise e
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not retrieve user",
