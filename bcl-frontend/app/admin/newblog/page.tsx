@@ -283,13 +283,13 @@ function BlogBuilderForm() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-auto">
-                <TabsList className="bg-gray-100 p-1">
-                  <TabsTrigger value="write" className="flex items-center gap-1.5 px-3 py-1.5 text-sm">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full sm:w-auto">
+                <TabsList className="bg-gray-100 p-1 w-full sm:w-auto grid grid-cols-2 sm:flex">
+                  <TabsTrigger value="write" className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-sm">
                     <Edit className="h-4 w-4" /> Write
                   </TabsTrigger>
-                  <TabsTrigger value="preview" className="flex items-center gap-1.5 px-3 py-1.5 text-sm">
+                  <TabsTrigger value="preview" className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-sm">
                     <Eye className="h-4 w-4" /> Preview
                   </TabsTrigger>
                 </TabsList>
@@ -297,11 +297,11 @@ function BlogBuilderForm() {
 
               <Separator orientation="vertical" className="h-8 hidden sm:block" />
 
-              <div className="flex gap-2">
-                <Button variant="outline" onClick={() => router.push("/admin")} disabled={saving}>
+              <div className="flex gap-2 w-full sm:w-auto">
+                <Button variant="outline" onClick={() => router.push("/admin")} disabled={saving} className="flex-1 sm:flex-none">
                   Cancel
                 </Button>
-                <Button onClick={handleSubmit} disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+                <Button onClick={handleSubmit} disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold flex-1 sm:flex-none">
                   {saving ? (
                     <>
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" /> Saving...
@@ -435,7 +435,7 @@ function BlogBuilderForm() {
                         ref={editorRef}
                         contentEditable
                         onInput={handleEditorInput}
-                        className="rich-editor min-h-[350px] p-6 focus:outline-hidden prose prose-blue max-w-none text-gray-800 overflow-y-auto"
+                        className="rich-editor min-h-[350px] p-4 sm:p-6 focus:outline-hidden prose prose-blue max-w-none text-gray-800 overflow-y-auto"
                         style={{ outline: "none" }}
                       />
                     </div>
@@ -564,7 +564,7 @@ function BlogBuilderForm() {
           /* Preview Tab (matching actual blog structure exactly) */
           <div className="max-w-4xl mx-auto">
             <Card className="bg-white shadow-md border border-gray-100 overflow-hidden">
-              <CardContent className="p-6 sm:p-12">
+              <CardContent className="p-4 sm:p-12">
                 {/* Simulated Back button */}
                 <Button variant="ghost" disabled className="mb-6 pl-0 text-gray-400">
                   <ArrowLeft className="h-4 w-4 mr-2" /> Back to Blog
