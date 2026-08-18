@@ -17,7 +17,7 @@ import {
   ArrowLeft, Bold, Italic, Underline, List, Link as LinkIcon, RotateCcw,
   Heading2, Heading3, Upload, Trash2, Calendar, Clock, Eye, Edit, Loader2
 } from "lucide-react"
-import { adminApi, blogApi, Blog, formatDate } from "@/lib/api"
+import { adminApi, blogApi, Blog, formatDate, getImageUrl } from "@/lib/api"
 
 export default function AddBlogPage() {
   return (
@@ -57,6 +57,9 @@ function BlogBuilderForm() {
     image: "",
     featured: false
   })
+
+  const [previewImage, setPreviewImage] = useState<string>("")
+  const contentInitializedRef = useRef<boolean>(false)
 
   const editorRef = useRef<HTMLDivElement>(null)
   const [menuPosition, setMenuPosition] = useState<{ x: number; y: number } | null>(null)
@@ -101,12 +104,11 @@ function BlogBuilderForm() {
     }
   }, [blogId, isAuthenticated, router])
 
-  // Sync editor content on load or reset
+  // Sync editor content only on initial load or edit fetch
   useEffect(() => {
-    if (!loading && editorRef.current) {
-      if (editorRef.current.innerHTML !== formData.content) {
-        editorRef.current.innerHTML = formData.content
-      }
+    if (!loading && editorRef.current && !contentInitializedRef.current) {
+      editorRef.current.innerHTML = formData.content || ""
+      contentInitializedRef.current = true
     }
   }, [loading, formData.content])
 
@@ -181,14 +183,60 @@ function BlogBuilderForm() {
     }
   }
 
+  const compressImage = (file: File): Promise<string> => {
+    return new Promise((resolve) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = (event) => {
+        const img = new Image()
+        img.src = event.target?.result as string
+        img.onload = () => {
+          const canvas = document.createElement("canvas")
+          const MAX_WIDTH = 1200
+          const MAX_HEIGHT = 1200
+          let width = img.width
+          let height = img.height
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height = Math.round((height * MAX_WIDTH) / width)
+              width = MAX_WIDTH
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width = Math.round((width * MAX_HEIGHT) / height)
+              height = MAX_HEIGHT
+            }
+          }
+
+          canvas.width = width
+          canvas.height = height
+
+          const ctx = canvas.getContext("2d")
+          if (!ctx) return resolve(event.target?.result as string)
+          ctx.drawImage(img, 0, 0, width, height)
+          resolve(canvas.toDataURL("image/jpeg", 0.75))
+        }
+        img.onerror = () => resolve(event.target?.result as string)
+      }
+      reader.onerror = () => resolve("")
+    })
+  }
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
 
+    // Immediately create local preview URL for instant display in admin
+    const objectUrl = URL.createObjectURL(file)
+    setPreviewImage(objectUrl)
+
     setUploadingImage(true)
     try {
       const res = await adminApi.uploadFile(file, "blogs")
-      setFormData(prev => ({ ...prev, image: res.url }))
+      if (res && res.url) {
+        setFormData(prev => ({ ...prev, image: res.url }))
+      }
     } catch (err) {
       alert("Image upload failed: " + (err instanceof Error ? err.message : err))
     } finally {
@@ -196,23 +244,31 @@ function BlogBuilderForm() {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!formData.title) return alert("Title is required")
-    if (!formData.content) return alert("Content is required")
-    if (!formData.author) return alert("Author is required")
-    if (!formData.category) return alert("Category is required")
+  const handleSubmit = async (e: React.FormEvent | React.MouseEvent) => {
+    if (e) e.preventDefault()
+
+    // Retrieve latest content directly from editor element if available
+    const editorContent = editorRef.current ? editorRef.current.innerHTML : formData.content
+    const isContentEmpty = !editorContent || 
+      editorContent.trim() === "" || 
+      editorContent.trim() === "<p><br></p>" || 
+      editorContent.trim() === "<div><br></div>"
+
+    if (!formData.title.trim()) return alert("Title is required")
+    if (isContentEmpty) return alert("Content is required")
+    if (!formData.author.trim()) return alert("Author name is required")
+    if (!formData.category.trim()) return alert("Category is required")
 
     setSaving(true)
     try {
       const blogData = {
-        title: formData.title,
-        excerpt: formData.excerpt,
-        content: formData.content,
-        author: formData.author,
-        author_bio: "", // Removed author bio section as requested
+        title: formData.title.trim(),
+        excerpt: formData.excerpt.trim(),
+        content: editorContent,
+        author: formData.author.trim(),
+        author_bio: "",
         category: formData.category,
-        tags: formData.tags.split(",").map(t => t.trim()).filter(Boolean),
+        tags: formData.tags ? formData.tags.split(",").map(t => t.trim()).filter(Boolean) : [],
         image: formData.image,
         featured: formData.featured
       }
@@ -226,7 +282,9 @@ function BlogBuilderForm() {
       }
       router.push("/admin")
     } catch (err) {
-      alert("Failed to save blog: " + (err instanceof Error ? err.message : err))
+      console.error("Error saving blog:", err)
+      const errorMsg = err instanceof Error ? err.message : String(err)
+      alert("Failed to save blog: " + errorMsg)
     } finally {
       setSaving(false)
     }
@@ -283,13 +341,13 @@ function BlogBuilderForm() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-auto">
-                <TabsList className="bg-gray-100 p-1">
-                  <TabsTrigger value="write" className="flex items-center gap-1.5 px-3 py-1.5 text-sm">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full sm:w-auto">
+                <TabsList className="bg-gray-100 p-1 w-full sm:w-auto grid grid-cols-2 sm:flex">
+                  <TabsTrigger value="write" className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-sm">
                     <Edit className="h-4 w-4" /> Write
                   </TabsTrigger>
-                  <TabsTrigger value="preview" className="flex items-center gap-1.5 px-3 py-1.5 text-sm">
+                  <TabsTrigger value="preview" className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-sm">
                     <Eye className="h-4 w-4" /> Preview
                   </TabsTrigger>
                 </TabsList>
@@ -297,11 +355,11 @@ function BlogBuilderForm() {
 
               <Separator orientation="vertical" className="h-8 hidden sm:block" />
 
-              <div className="flex gap-2">
-                <Button variant="outline" onClick={() => router.push("/admin")} disabled={saving}>
+              <div className="flex gap-2 w-full sm:w-auto">
+                <Button variant="outline" onClick={() => router.push("/admin")} disabled={saving} className="flex-1 sm:flex-none">
                   Cancel
                 </Button>
-                <Button onClick={handleSubmit} disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+                <Button onClick={handleSubmit} disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold flex-1 sm:flex-none">
                   {saving ? (
                     <>
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" /> Saving...
@@ -317,13 +375,13 @@ function BlogBuilderForm() {
       </section>
 
       {/* Main Content Area */}
-      <section className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-4 sm:py-8 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         {activeTab === "write" ? (
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Editor & Core Fields */}
-            <div className="lg:col-span-2 space-y-6">
-              <Card>
-                <CardContent className="pt-6 space-y-6">
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+              <Card className="border-0 sm:border shadow-none sm:shadow-sm bg-transparent sm:bg-card">
+                <CardContent className="px-3 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
                   {/* Title field */}
                   <div className="space-y-2">
                     <Label htmlFor="title" className="text-sm font-semibold text-gray-700">Title *</Label>
@@ -384,27 +442,6 @@ function BlogBuilderForm() {
                         >
                           <Underline className="h-4 w-4" />
                         </Button>
-                        <div className="w-px h-6 bg-gray-300 mx-1" />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 w-8 p-0"
-                          onMouseDown={(e) => { e.preventDefault(); executeCommand("insertUnorderedList") }}
-                          title="Bullet List"
-                        >
-                          <List className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 w-8 p-0"
-                          onMouseDown={(e) => { e.preventDefault(); addLink() }}
-                          title="Insert Link"
-                        >
-                          <LinkIcon className="h-4 w-4" />
-                        </Button>
                         <Button
                           type="button"
                           variant="ghost"
@@ -456,7 +493,7 @@ function BlogBuilderForm() {
                         ref={editorRef}
                         contentEditable
                         onInput={handleEditorInput}
-                        className="rich-editor min-h-[350px] p-6 focus:outline-hidden prose prose-blue max-w-none text-gray-800 overflow-y-auto"
+                        className="rich-editor min-h-[350px] p-4 sm:p-6 focus:outline-hidden prose prose-blue max-w-none text-gray-800 overflow-y-auto"
                         style={{ outline: "none" }}
                       />
                     </div>
@@ -466,12 +503,12 @@ function BlogBuilderForm() {
             </div>
 
             {/* Sidebar Meta Info */}
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
+            <div className="space-y-4 sm:space-y-6">
+              <Card className="border-0 sm:border shadow-none sm:shadow-sm bg-transparent sm:bg-card">
+                <CardHeader className="px-3 sm:px-6 py-4 sm:py-4 pb-2 sm:pb-2">
                   <CardTitle className="text-base font-semibold">Publish Settings</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="px-3 sm:px-6 pb-6 space-y-4 sm:space-y-6">
                   {/* Category Selector */}
                   <div className="space-y-2">
                     <Label htmlFor="category" className="text-sm font-medium">Category *</Label>
@@ -522,16 +559,28 @@ function BlogBuilderForm() {
                         <Loader2 className="h-8 w-8 animate-spin text-primary mb-2" />
                         <span className="text-sm text-gray-500">Uploading image to server...</span>
                       </div>
-                    ) : formData.image ? (
+                    ) : (previewImage || formData.image) ? (
                       <div className="relative rounded-lg overflow-hidden border border-gray-200 bg-white">
-                        <img src={formData.image} alt="Cover Preview" className="w-full h-40 object-cover" />
+                        <img 
+                          src={previewImage || getImageUrl(formData.image)} 
+                          alt="Cover Preview" 
+                          className="w-full h-40 object-cover"
+                          onError={(e) => {
+                            if (previewImage) {
+                              e.currentTarget.src = previewImage
+                            }
+                          }}
+                        />
                         <div className="absolute top-2 right-2 flex gap-1">
                           <Button
                             type="button"
                             variant="destructive"
                             size="icon"
                             className="h-8 w-8 rounded-full"
-                            onClick={() => setFormData(prev => ({ ...prev, image: "" }))}
+                            onClick={() => {
+                              setPreviewImage("")
+                              setFormData(prev => ({ ...prev, image: "" }))
+                            }}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
@@ -558,7 +607,10 @@ function BlogBuilderForm() {
                       <p className="text-[11px] text-gray-400 mb-1 text-center">or paste image URL</p>
                       <Input
                         value={formData.image}
-                        onChange={(e) => setFormData(prev => ({ ...prev, image: e.target.value }))}
+                        onChange={(e) => {
+                          setPreviewImage("")
+                          setFormData(prev => ({ ...prev, image: e.target.value }))
+                        }}
                         className="text-xs h-8"
                       />
                     </div>
@@ -583,9 +635,9 @@ function BlogBuilderForm() {
           </form>
         ) : (
           /* Preview Tab (matching actual blog structure exactly) */
-          <div className="max-w-4xl mx-auto">
-            <Card className="bg-white shadow-md border border-gray-100 overflow-hidden">
-              <CardContent className="p-6 sm:p-12">
+          <div className="max-w-4xl mx-auto px-2 sm:px-0">
+            <Card className="bg-white shadow-none sm:shadow-md border-0 sm:border border-gray-100 overflow-hidden">
+              <CardContent className="p-3 sm:p-12">
                 {/* Simulated Back button */}
                 <Button variant="ghost" disabled className="mb-6 pl-0 text-gray-400">
                   <ArrowLeft className="h-4 w-4 mr-2" /> Back to Blog
@@ -637,10 +689,10 @@ function BlogBuilderForm() {
                 </div>
 
                 {/* Cover Image */}
-                {formData.image && (
+                {(previewImage || formData.image) && (
                   <div className="mb-8 rounded-lg overflow-hidden shadow-md">
                     <img
-                      src={formData.image}
+                      src={previewImage || getImageUrl(formData.image)}
                       alt={formData.title || "Preview"}
                       className="w-full h-64 md:h-96 object-cover"
                     />

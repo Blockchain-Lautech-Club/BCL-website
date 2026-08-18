@@ -405,3 +405,12 @@ export const getBlogReadingTime = (content: string): string => {
   const minutes = Math.max(1, Math.ceil(wordCount / wordsPerMinute))
   return `${minutes} min read`
 }
+
+export function getImageUrl(url: string | undefined): string {
+  if (!url) return ""
+  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:") || url.startsWith("blob:")) {
+    return url
+  }
+  const cleanUrl = url.startsWith("/") ? url.slice(1) : url
+  return `${API_BASE_URL}/${cleanUrl}`
+}

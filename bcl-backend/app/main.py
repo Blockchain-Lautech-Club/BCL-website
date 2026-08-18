@@ -1,22 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from app.database import engine, Base
 Base.metadata.create_all(bind=engine)
 from app.routes import auth, events, blogs, uploads, members, cohorts
 from datetime import datetime
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="uploads"), name="static")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-    "https://blockchainlautech.club",
-    "https://www.blockchainlautech.club",  # ← add this
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:3000",
-],
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 # Mount routes
