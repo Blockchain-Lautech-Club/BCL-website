@@ -408,7 +408,7 @@ export const getBlogReadingTime = (content: string): string => {
 
 export function getImageUrl(url: string | undefined): string {
   if (!url) return ""
-  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:")) {
+  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:") || url.startsWith("blob:")) {
     return url
   }
   const cleanUrl = url.startsWith("/") ? url.slice(1) : url

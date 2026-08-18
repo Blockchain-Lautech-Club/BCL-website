@@ -58,6 +58,9 @@ function BlogBuilderForm() {
     featured: false
   })
 
+  const [previewImage, setPreviewImage] = useState<string>("")
+  const contentInitializedRef = useRef<boolean>(false)
+
   const editorRef = useRef<HTMLDivElement>(null)
   const [menuPosition, setMenuPosition] = useState<{ x: number; y: number } | null>(null)
 
@@ -101,12 +104,11 @@ function BlogBuilderForm() {
     }
   }, [blogId, isAuthenticated, router])
 
-  // Sync editor content on load or reset
+  // Sync editor content only on initial load or edit fetch
   useEffect(() => {
-    if (!loading && editorRef.current) {
-      if (editorRef.current.innerHTML !== formData.content) {
-        editorRef.current.innerHTML = formData.content
-      }
+    if (!loading && editorRef.current && !contentInitializedRef.current) {
+      editorRef.current.innerHTML = formData.content || ""
+      contentInitializedRef.current = true
     }
   }, [loading, formData.content])
 
@@ -181,14 +183,60 @@ function BlogBuilderForm() {
     }
   }
 
+  const compressImage = (file: File): Promise<string> => {
+    return new Promise((resolve) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = (event) => {
+        const img = new Image()
+        img.src = event.target?.result as string
+        img.onload = () => {
+          const canvas = document.createElement("canvas")
+          const MAX_WIDTH = 1200
+          const MAX_HEIGHT = 1200
+          let width = img.width
+          let height = img.height
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height = Math.round((height * MAX_WIDTH) / width)
+              width = MAX_WIDTH
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width = Math.round((width * MAX_HEIGHT) / height)
+              height = MAX_HEIGHT
+            }
+          }
+
+          canvas.width = width
+          canvas.height = height
+
+          const ctx = canvas.getContext("2d")
+          if (!ctx) return resolve(event.target?.result as string)
+          ctx.drawImage(img, 0, 0, width, height)
+          resolve(canvas.toDataURL("image/jpeg", 0.75))
+        }
+        img.onerror = () => resolve(event.target?.result as string)
+      }
+      reader.onerror = () => resolve("")
+    })
+  }
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
 
+    // Immediately create local preview URL for instant display in admin
+    const objectUrl = URL.createObjectURL(file)
+    setPreviewImage(objectUrl)
+
     setUploadingImage(true)
     try {
       const res = await adminApi.uploadFile(file, "blogs")
-      setFormData(prev => ({ ...prev, image: res.url }))
+      if (res && res.url) {
+        setFormData(prev => ({ ...prev, image: res.url }))
+      }
     } catch (err) {
       alert("Image upload failed: " + (err instanceof Error ? err.message : err))
     } finally {
@@ -196,23 +244,31 @@ function BlogBuilderForm() {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!formData.title) return alert("Title is required")
-    if (!formData.content) return alert("Content is required")
-    if (!formData.author) return alert("Author is required")
-    if (!formData.category) return alert("Category is required")
+  const handleSubmit = async (e: React.FormEvent | React.MouseEvent) => {
+    if (e) e.preventDefault()
+
+    // Retrieve latest content directly from editor element if available
+    const editorContent = editorRef.current ? editorRef.current.innerHTML : formData.content
+    const isContentEmpty = !editorContent || 
+      editorContent.trim() === "" || 
+      editorContent.trim() === "<p><br></p>" || 
+      editorContent.trim() === "<div><br></div>"
+
+    if (!formData.title.trim()) return alert("Title is required")
+    if (isContentEmpty) return alert("Content is required")
+    if (!formData.author.trim()) return alert("Author name is required")
+    if (!formData.category.trim()) return alert("Category is required")
 
     setSaving(true)
     try {
       const blogData = {
-        title: formData.title,
-        excerpt: formData.excerpt,
-        content: formData.content,
-        author: formData.author,
-        author_bio: "", // Removed author bio section as requested
+        title: formData.title.trim(),
+        excerpt: formData.excerpt.trim(),
+        content: editorContent,
+        author: formData.author.trim(),
+        author_bio: "",
         category: formData.category,
-        tags: formData.tags.split(",").map(t => t.trim()).filter(Boolean),
+        tags: formData.tags ? formData.tags.split(",").map(t => t.trim()).filter(Boolean) : [],
         image: formData.image,
         featured: formData.featured
       }
@@ -226,7 +282,9 @@ function BlogBuilderForm() {
       }
       router.push("/admin")
     } catch (err) {
-      alert("Failed to save blog: " + (err instanceof Error ? err.message : err))
+      console.error("Error saving blog:", err)
+      const errorMsg = err instanceof Error ? err.message : String(err)
+      alert("Failed to save blog: " + errorMsg)
     } finally {
       setSaving(false)
     }
@@ -501,16 +559,28 @@ function BlogBuilderForm() {
                         <Loader2 className="h-8 w-8 animate-spin text-primary mb-2" />
                         <span className="text-sm text-gray-500">Uploading image to server...</span>
                       </div>
-                    ) : formData.image ? (
+                    ) : (previewImage || formData.image) ? (
                       <div className="relative rounded-lg overflow-hidden border border-gray-200 bg-white">
-                        <img src={getImageUrl(formData.image)} alt="Cover Preview" className="w-full h-40 object-cover" />
+                        <img 
+                          src={previewImage || getImageUrl(formData.image)} 
+                          alt="Cover Preview" 
+                          className="w-full h-40 object-cover"
+                          onError={(e) => {
+                            if (previewImage) {
+                              e.currentTarget.src = previewImage
+                            }
+                          }}
+                        />
                         <div className="absolute top-2 right-2 flex gap-1">
                           <Button
                             type="button"
                             variant="destructive"
                             size="icon"
                             className="h-8 w-8 rounded-full"
-                            onClick={() => setFormData(prev => ({ ...prev, image: "" }))}
+                            onClick={() => {
+                              setPreviewImage("")
+                              setFormData(prev => ({ ...prev, image: "" }))
+                            }}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
@@ -537,7 +607,10 @@ function BlogBuilderForm() {
                       <p className="text-[11px] text-gray-400 mb-1 text-center">or paste image URL</p>
                       <Input
                         value={formData.image}
-                        onChange={(e) => setFormData(prev => ({ ...prev, image: e.target.value }))}
+                        onChange={(e) => {
+                          setPreviewImage("")
+                          setFormData(prev => ({ ...prev, image: e.target.value }))
+                        }}
                         className="text-xs h-8"
                       />
                     </div>
@@ -616,10 +689,10 @@ function BlogBuilderForm() {
                 </div>
 
                 {/* Cover Image */}
-                {formData.image && (
+                {(previewImage || formData.image) && (
                   <div className="mb-8 rounded-lg overflow-hidden shadow-md">
                     <img
-                      src={getImageUrl(formData.image)}
+                      src={previewImage || getImageUrl(formData.image)}
                       alt={formData.title || "Preview"}
                       className="w-full h-64 md:h-96 object-cover"
                     />

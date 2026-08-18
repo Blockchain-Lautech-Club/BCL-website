@@ -228,6 +228,11 @@ function FeaturedBlogCard({ blog }: { blog: Blog }) {
             className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
             sizes="(max-width: 768px) 100vw, 50vw"
+            onError={(e) => {
+              if (!e.currentTarget.src.includes('/placeholder.svg')) {
+                e.currentTarget.src = '/placeholder.svg?height=300&width=600'
+              }
+            }}
           />
         </div>
         <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -261,6 +266,11 @@ function BlogCard({ blog }: { blog: Blog }) {
           src={blog.image ? getImageUrl(blog.image) : "/placeholder.svg?height=200&width=400"}
           alt={blog.title}
           className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+          onError={(e) => {
+            if (!e.currentTarget.src.includes('/placeholder.svg')) {
+              e.currentTarget.src = '/placeholder.svg?height=200&width=400'
+            }
+          }}
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </Link>

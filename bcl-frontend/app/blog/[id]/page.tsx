@@ -369,7 +369,11 @@ export default function BlogPostPage() {
                   alt={blog.title}
                   className="w-full h-64 md:h-96 object-cover rounded-lg shadow-md"
                   onError={(e) => {
-                    e.currentTarget.style.display = 'none'
+                    if (!e.currentTarget.src.includes('/placeholder.svg')) {
+                      e.currentTarget.src = '/placeholder.svg?height=400&width=800'
+                    } else {
+                      e.currentTarget.style.display = 'none'
+                    }
                   }}
                 />
               </div>
