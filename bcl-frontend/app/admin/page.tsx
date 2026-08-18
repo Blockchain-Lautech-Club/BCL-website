@@ -37,8 +37,6 @@ export default function AdminDashboard() {
   const [isBlogDialogOpen, setIsBlogDialogOpen] = useState(false)
   const [isBlogUrlDialogOpen, setIsBlogUrlDialogOpen] = useState(false)
   const [isMemberDialogOpen, setIsMemberDialogOpen] = useState(false)
-
-  // Cohort state
   const [applicationsOpen, setApplicationsOpen] = useState<boolean | null>(null)
   const [cohortToggleLoading, setCohortToggleLoading] = useState(false)
   const [cohortStatusUpdatedAt, setCohortStatusUpdatedAt] = useState<string | null>(null)
