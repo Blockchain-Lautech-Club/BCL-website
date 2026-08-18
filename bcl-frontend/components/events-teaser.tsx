@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +9,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { events } from "@/lib/data.json";
+import { events } from "@/lib/events";
 import LandingPageEventCard from "@/components/events/eventCard";
 
 const EventsTeaserContent = () => {
@@ -79,6 +80,25 @@ const EventsTeaserContent = () => {
               <p className="mt-2 text-sm text-gray-500">Stay tuned for more exciting workshops and hackathons coming your way!</p>
             </div>
           </div>
+        </div>
+        
+        {/* View All Events Button */}
+        <div className="mt-8 flex justify-center pb-4">
+          <Link
+            href="/events"
+            className="group flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-blue-600 shadow-md transition-all hover:-translate-y-1 hover:shadow-lg"
+          >
+            View All Events
+            <svg
+              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
       </div>
 

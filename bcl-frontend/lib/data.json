@@ -160,7 +160,6 @@
       "note": "I have learned how to connect with people and growth",
       "rate": 5
     },
-  
     {
       "avatar": "/testimonial/default.png",
       "name": "Ladun",
@@ -537,15 +536,15 @@
       "tagline": "Tech Extravaganza",
       "theme": "Ogbomoso's Digital Transformation: Blockchain as a Catalyst",
       "description": "The flagship tech conference uniting students, developers, and industry leaders at the intersection of blockchain, Web3, and emerging technologies.",
-      "date": "September 24-26",
-      "time": "9:00 AM",
-      "location": "The Assembly, Ogbomoso",
+      "date": "TBA",
+      "time": "TBA",
+      "location": "TBA",
       "externalLink": "https://confluence.blockchainlautech.club",
       "image": "/event/confluence2.jpg",
       "agenda": [
         {
           "title": "Day 1: Developer Track",
-          "date": "November 7, 2025",
+          "date": "TBA",
           "button": "Apply for Dev Track",
           "activities": [
             {
@@ -619,7 +618,7 @@
       "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
       "speaker_avatar": "/team/johnAdekunjo.jpg"
     },
-     {
+    {
       "id": "Botchain Africa Builder Challenge 2026",
       "title": "Botchain Africa Builder Challenge",
       "description": "​Join developers from across Africa in a two-week Builder Challenge featuring online workshops, technical mentorship, community support, and an offline Demo Day in Ogbomoso, Nigeria.",
@@ -633,7 +632,8 @@
       "image": "/event/Botbuilder.JPG",
       "agenda": [],
       "type": "Builder's Demo day",
-      "status": "upcoming"
+      "status": "upcoming",
+      "endTimestamp": "2026-08-15T23:59:59Z"
     },
     {
       "id": "cohort-1",
@@ -751,7 +751,8 @@
       "speaker_name": "Dr. Adebayo",
       "speaker_title": "Keynote Speaker",
       "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
-      "speaker_avatar": "/team/johnAdekunjo.jpg"
+      "speaker_avatar": "/team/johnAdekunjo.jpg",
+      "endTimestamp": "2025-11-07T23:59:59Z"
     }
   ],
   "partners": [
@@ -887,7 +888,7 @@
       "bgColor": "#2e3135",
       "textColor": "#FFFFFF"
     },
-     {
+    {
       "name": "Botchain",
       "logo": "/partners/Botchain.jpg",
       "bgColor": "#2e3135",

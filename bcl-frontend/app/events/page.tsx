@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Search, ArrowRight } from "lucide-react"
-import { events as sampleEvents } from '@/lib/data.json'
+import { events as sampleEvents } from '@/lib/events'
 import EventCard from "@/components/events/eventCard"
 import { useRouter, useParams } from "next/navigation"
 

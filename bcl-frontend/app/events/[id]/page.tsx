@@ -21,7 +21,7 @@ import {
   Clock,
 } from "lucide-react";
 import { Event as Events, formatDate, isEventFull } from "@/lib/api";
-import { events } from "@/lib/data.json";
+import { events } from "@/lib/events";
 import { notFound, useParams } from "next/navigation";
 import Image from "next/image";
 import LandingPageEventCard from "@/components/events/eventCard";

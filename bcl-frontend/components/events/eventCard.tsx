@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { events } from '@/lib/data.json'
+import { events } from '@/lib/events'
 import { Badge } from '@/components/ui/badge';
 
 interface EventCardProps {
@@ -18,11 +18,18 @@ export default function LandingPageEventCard({ event, onViewDetails }: EventCard
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        {event?.type && (
-          <Badge className="absolute left-4 top-4 rounded-full bg-[#02152d] text-white border-0">
-            {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-          </Badge>
-        )}
+        <div className="absolute left-4 top-4 flex gap-2">
+          {event?.type && (
+            <Badge className="rounded-full bg-[#02152d] text-white border-0">
+              {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+            </Badge>
+          )}
+          {event?.status && (
+            <Badge className={`rounded-full border-0 ${event.status === 'past' ? 'bg-red-600 text-white' : 'bg-green-600 text-white'}`}>
+              {event.status === 'past' ? 'Ended' : 'Upcoming'}
+            </Badge>
+          )}
+        </div>
       </div>
 
       <div className="p-6 flex flex-col grow">

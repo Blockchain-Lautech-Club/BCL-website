@@ -26,9 +26,41 @@ export function Header() {
       variants={navVariants}
       initial="hidden"
       animate="visible"
-      className="bg-white/55 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50"
+      className="bg-white/55 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50 flex flex-col"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Announcement Bar */}
+      <div className="w-full bg-[#02152d] text-white overflow-hidden py-2 flex items-center border-b border-white/10 relative">
+        <div className="z-10 flex items-center shrink-0 px-4 bg-[#02152d]">
+          <span className="text-sm font-black tracking-widest text-blue-300">
+            ANNOUNCEMENT
+          </span>
+          {/* <span className="ml-4 text-blue-400">|</span> */}
+        </div>
+        <div className="overflow-hidden flex-1 relative">
+          <motion.div
+            className="flex whitespace-nowrap"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              ease: "linear",
+              duration: 30,
+            }}
+          >
+            {/* Repeating the content to create a seamless infinite scroll effect */}
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="flex items-center mx-4">
+                
+                <span className="text-sm font-medium tracking-wide">
+                  The largest web3 conference in southwestern Nigeria is back! Powered by Blockchain LAUTECH — a Tier-1 university blockchain club in Africa.
+                </span>
+                {/* <span className="mx-8 text-blue-400">|</span> */}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         {/* Desktop navigation */}
         <div className="justify-between items-center h-16 hidden md:flex">
           <div className="flex items-center">
