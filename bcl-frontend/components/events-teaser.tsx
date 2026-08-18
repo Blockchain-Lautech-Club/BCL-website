@@ -27,7 +27,7 @@ const EventsTeaserContent = () => {
 
   return (
     <section className="relative w-full overflow-hidden bg-gray-100 pb-12">
-      {/* Gradient background - curves up behind cards */}
+      {/* Gradient background - curve up behind cards */}
       <div
         className="absolute bottom-0 left-0 right-0 h-[30%] rounded-t-[3rem] sm:rounded-t-[4rem] md:rounded-t-[5rem]"
         style={{
