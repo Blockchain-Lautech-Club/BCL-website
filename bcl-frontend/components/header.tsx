@@ -36,9 +36,9 @@ export function Header() {
           </span>
           {/* <span className="ml-4 text-blue-400">|</span> */}
         </div>
-        <div className="overflow-hidden flex-1 relative">
+        <div className="overflow-hidden flex-1 relative flex">
           <motion.div
-            className="flex whitespace-nowrap"
+            className="flex whitespace-nowrap min-w-max"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
               repeat: Infinity,
@@ -46,14 +46,14 @@ export function Header() {
               duration: 30,
             }}
           >
-            {/* Repeating the content to create a seamless infinite scroll effect */}
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="flex items-center mx-4">
-                
+            {/* Repeating the content 10 times and shifting by 50% guarantees a perfect seamless loop on all screen sizes */}
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="flex items-center px-6">
                 <span className="text-sm font-medium tracking-wide">
                   The largest web3 conference in southwestern Nigeria is back! Powered by Blockchain LAUTECH — a Tier-1 university blockchain club in Africa.
                 </span>
-                {/* <span className="mx-8 text-blue-400">|</span> */}
+                {/* Spacer between announcements */}
+                <span className="mx-6 text-white/20">•</span>
               </div>
             ))}
           </motion.div>
