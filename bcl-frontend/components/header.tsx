@@ -43,15 +43,17 @@ export function Header() {
             transition={{
               repeat: Infinity,
               ease: "linear",
-              duration: 30,
+              duration: 50,
             }}
           >
             {/* Repeating the content 10 times and shifting by 50% guarantees a perfect seamless loop on all screen sizes */}
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="flex items-center px-6">
-                <span className="text-sm font-medium tracking-wide">
-                  The largest web3 conference in southwestern Nigeria is back! Powered by Blockchain LAUTECH — a Tier-1 university blockchain club in Africa.
-                </span>
+              <div key={i} className="flex items-center px-6" >
+                <Link href="/events">
+                  <span className="text-sm font-medium tracking-wide">
+                    The largest web3 conference in Africa is back! Powered by Blockchain LAUTECH — a Tier-1 university blockchain club in Africa.
+                  </span>
+                </Link>
                 {/* Spacer between announcements */}
                 <span className="mx-6 text-white/20">•</span>
               </div>

@@ -133,7 +133,7 @@ const Footer = () => {
                 </svg>
                 <Link
                   href={`mailto:${contact.emails[0]}`}
-                  className="break-words text-xs text-blue-100 transition-colors hover:text-white lg:text-sm"
+                  className="break-all text-xs text-blue-100 transition-colors hover:text-white lg:text-sm"
                 >
                   {contact.emails[0]}
                 </Link>
