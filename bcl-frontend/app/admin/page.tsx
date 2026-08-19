@@ -18,7 +18,7 @@ import {
   Users, BookOpen, Tags, AwardIcon, User, Clock, Lock, LockOpen,
   Loader2, GraduationCap, Download
 } from "lucide-react"
-import { adminApi, eventApi, blogApi, memberApi, Event, Blog, Member, formatDate } from "@/lib/api"
+import { adminApi, eventApi, blogApi, memberApi, Event, Blog, Member, formatDate, getImageUrl } from "@/lib/api"
 
 const API_BASE = "https://bcl-website-95bd.onrender.com"
 
@@ -514,31 +514,51 @@ function BlogAdminCard({
   onEdit: (blog: Blog) => void
   onDelete: (id: string) => void
 }) {
+  const imageUrl = blog.image ? getImageUrl(blog.image) : ""
+
   return (
-    <Card className="hover:shadow-lg transition-shadow">
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between">
-          <div className="flex gap-2">
-            <Badge variant="secondary">{blog.category}</Badge>
-            {blog.featured && <Badge>Featured</Badge>}
+    <Card className="hover:shadow-lg transition-shadow overflow-hidden flex flex-col justify-between">
+      <div>
+        {imageUrl ? (
+          <div className="h-40 w-full overflow-hidden bg-gray-100 relative">
+            <img
+              src={imageUrl}
+              alt={blog.title}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none'
+              }}
+            />
           </div>
-          <div className="flex gap-2">
-            <Button size="sm" variant="outline" onClick={() => onEdit(blog)}><Edit className="h-4 w-4" /></Button>
-            <Button size="sm" variant="outline" onClick={() => onDelete(blog.id)}><Trash2 className="h-4 w-4" /></Button>
+        ) : null}
+        <CardHeader className="pb-3">
+          <div className="flex items-start justify-between">
+            <div className="flex gap-2">
+              <Badge variant="secondary">{blog.category}</Badge>
+              {blog.featured && <Badge className="bg-primary text-white">Featured</Badge>}
+            </div>
+            <div className="flex gap-2">
+              <Button size="sm" variant="outline" onClick={() => onEdit(blog)}><Edit className="h-4 w-4" /></Button>
+              <Button size="sm" variant="outline" onClick={() => onDelete(blog.id)}><Trash2 className="h-4 w-4 text-red-600" /></Button>
+            </div>
           </div>
-        </div>
-        <CardTitle className="text-lg leading-tight">{blog.title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-2 text-sm text-gray-600 mb-4">
-          <div className="flex items-center"><BookOpen className="h-4 w-4 mr-2" />{blog.author} • {blog.read_time}</div>
-          <div className="flex items-center"><Tags className="h-4 w-4 mr-2" />{blog.tags.join(', ')}</div>
-        </div>
-        <p className="text-sm text-gray-700 mb-4 line-clamp-3">{blog.excerpt}</p>
+          <CardTitle className="text-lg leading-tight mt-2">{blog.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2 text-sm text-gray-600 mb-4">
+            <div className="flex items-center"><BookOpen className="h-4 w-4 mr-2" />{blog.author} • {blog.read_time}</div>
+            {blog.tags && blog.tags.length > 0 && (
+              <div className="flex items-center"><Tags className="h-4 w-4 mr-2" />{blog.tags.join(', ')}</div>
+            )}
+          </div>
+          <p className="text-sm text-gray-700 mb-4 line-clamp-3">{blog.excerpt}</p>
+        </CardContent>
+      </div>
+      <div className="p-6 pt-0">
         <Button asChild size="sm" variant="outline" className="w-full">
           <a href={`/blog/${blog.id}`} target="_blank"><Eye className="h-4 w-4 mr-2" />View Live</a>
         </Button>
-      </CardContent>
+      </div>
     </Card>
   )
 }
