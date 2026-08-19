@@ -417,6 +417,94 @@ export default function BlogPostPage() {
         </article>
       </div>
 
+      <style jsx global>{`
+        .rich-content-view h1 {
+          font-family: inherit;
+          font-size: 2.25rem;
+          font-weight: 800;
+          color: #111827;
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          line-height: 1.2;
+        }
+        .rich-content-view h2 {
+          font-family: inherit;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #111827;
+          margin-top: 1.75rem;
+          margin-bottom: 0.75rem;
+          line-height: 1.25;
+        }
+        .rich-content-view h3 {
+          font-family: inherit;
+          font-size: 1.35rem;
+          font-weight: 600;
+          color: #1f2937;
+          margin-top: 1.5rem;
+          margin-bottom: 0.5rem;
+          line-height: 1.3;
+        }
+        .rich-content-view p {
+          font-size: 1.125rem;
+          line-height: 1.75;
+          margin-bottom: 1.25rem;
+          color: #374151;
+        }
+        .rich-content-view ul {
+          list-style-type: disc;
+          padding-left: 1.75rem;
+          margin-bottom: 1.25rem;
+        }
+        .rich-content-view ol {
+          list-style-type: decimal;
+          padding-left: 1.75rem;
+          margin-bottom: 1.25rem;
+        }
+        .rich-content-view li {
+          font-size: 1.125rem;
+          line-height: 1.75;
+          margin-bottom: 0.5rem;
+          color: #374151;
+        }
+        .rich-content-view a {
+          color: #2563eb;
+          text-decoration: underline;
+          font-weight: 500;
+        }
+        .rich-content-view a:hover {
+          color: #1d4ed8;
+        }
+        .rich-content-view img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 0.5rem;
+          margin: 1.25rem auto;
+          display: block;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .rich-content-view figure {
+          margin: 1.5rem 0;
+          text-align: center;
+        }
+        .rich-content-view figcaption {
+          font-size: 0.875rem;
+          color: #6b7280;
+          margin-top: 0.5rem;
+          font-style: italic;
+        }
+        .rich-content-view blockquote {
+          border-left: 4px solid #2563eb;
+          padding-left: 1rem;
+          margin: 1.25rem 0;
+          color: #4b5563;
+          font-style: italic;
+          background-color: #f8fafc;
+          padding-top: 0.75rem;
+          padding-bottom: 0.75rem;
+          border-radius: 0 0.375rem 0.375rem 0;
+        }
+      `}</style>
     </div>
   )
 }
