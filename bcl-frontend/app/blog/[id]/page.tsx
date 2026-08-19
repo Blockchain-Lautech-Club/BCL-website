@@ -116,10 +116,15 @@ export default function BlogPostPage() {
     // If the content is rich HTML (from our text editor), render it directly
     const isHtml = /<[a-z][\s\S]*>/i.test(content)
     if (isHtml) {
+      const sanitizedHtml = content
+        .replace(/<figcaption[^>]*>\s*(Optional image caption\.\.\.|\s*)\s*<\/figcaption>/gi, "")
+        .replace(/\s*contenteditable="(true|false)"/gi, "")
+        .replace(/\s*contenteditable/gi, "")
+
       return (
         <div 
           className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
         />
       )
     }
