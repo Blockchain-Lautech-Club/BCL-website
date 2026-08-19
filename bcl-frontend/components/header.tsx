@@ -51,7 +51,7 @@ export function Header() {
               <div key={i} className="flex items-center px-6" >
                 <Link href="/events">
                   <span className="text-sm font-medium tracking-wide">
-                    The largest web3 conference in Africa is back! Powered by Blockchain LAUTECH — a Tier-1 university blockchain club in Africa.
+                    The largest student-led web3 conference in Africa is back! Powered by Blockchain LAUTECH — a Tier-1 university blockchain club in Africa.
                   </span>
                 </Link>
                 {/* Spacer between announcements */}
