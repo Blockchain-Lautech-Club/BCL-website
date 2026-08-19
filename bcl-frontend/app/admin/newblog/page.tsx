@@ -287,15 +287,19 @@ function BlogBuilderForm() {
       try {
         const res = await adminApi.uploadFile(file, "blogs")
         if (res && res.url) {
-          const fullUrl = getImageUrl(res.url)
+          const fullUrl = res.url.startsWith("http://") || res.url.startsWith("https://") 
+            ? res.url 
+            : getImageUrl(res.url)
+
           setFormData(prev => ({ ...prev, image: fullUrl }))
           setPreviewImage(fullUrl)
         } else {
-          setFormData(prev => ({ ...prev, image: compressedBase64 }))
+          alert("Server image upload returned invalid response. Please try pasting a direct image URL.")
         }
       } catch (uploadError) {
-        console.warn("Server upload failed, using compressed base64 fallback:", uploadError)
-        setFormData(prev => ({ ...prev, image: compressedBase64 }))
+        console.error("Server image upload error:", uploadError)
+        const msg = uploadError instanceof Error ? uploadError.message : String(uploadError)
+        alert("Image upload failed: " + msg + "\n\nYou can also paste a direct image link below.")
       }
     } catch (err) {
       alert("Image processing failed: " + (err instanceof Error ? err.message : err))
@@ -355,11 +359,33 @@ function BlogBuilderForm() {
     try {
       const parser = new DOMParser()
       const doc = parser.parseFromString(html, "text/html")
+      
+      // 1. Remove admin delete buttons
       const removeButtons = doc.querySelectorAll(".remove-inline-img-btn")
       removeButtons.forEach(btn => btn.remove())
+
+      // 2. Remove default/empty image captions and strip contentEditable
+      const captions = doc.querySelectorAll("figcaption")
+      captions.forEach(caption => {
+        const text = caption.textContent?.trim() || ""
+        if (!text || text === "Optional image caption..." || text === "Optional image caption") {
+          caption.remove()
+        } else {
+          caption.removeAttribute("contenteditable")
+          caption.className = "text-xs text-gray-500 mt-1.5 italic font-sans text-center"
+        }
+      })
+
+      // 3. Strip contentEditable from all figures and images
+      const editableElements = doc.querySelectorAll("[contenteditable]")
+      editableElements.forEach(el => el.removeAttribute("contenteditable"))
+
       return doc.body.innerHTML
     } catch {
-      return html.replace(/<button[^>]*class="[^"]*remove-inline-img-btn[^"]*"[^>]*>[\s\S]*?<\/button>/gi, "")
+      return html
+        .replace(/<button[^>]*class="[^"]*remove-inline-img-btn[^"]*"[^>]*>[\s\S]*?<\/button>/gi, "")
+        .replace(/<figcaption[^>]*>\s*(Optional image caption\.\.\.|\s*)\s*<\/figcaption>/gi, "")
+        .replace(/\s*contenteditable="(true|false)"/gi, "")
     }
   }
 
@@ -409,7 +435,6 @@ function BlogBuilderForm() {
         caption.innerText = ""
       }
     }
-
     imageContainer.appendChild(img)
     imageContainer.appendChild(removeBtn)
     figure.appendChild(imageContainer)
