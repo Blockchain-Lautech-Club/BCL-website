@@ -289,6 +289,7 @@ function BlogBuilderForm() {
         if (res && res.url) {
           const fullUrl = getImageUrl(res.url)
           setFormData(prev => ({ ...prev, image: fullUrl }))
+          setPreviewImage(fullUrl)
         } else {
           setFormData(prev => ({ ...prev, image: compressedBase64 }))
         }
@@ -536,6 +537,10 @@ function BlogBuilderForm() {
     if (!formData.author.trim()) return alert("Author name is required")
     if (!formData.category.trim()) return alert("Category is required")
 
+    if (uploadingImage) {
+      return alert("Please wait for the cover image upload to finish...")
+    }
+
     setSaving(true)
     try {
       // Prevent PostgreSQL 22001 (value too long for type character varying(500))
@@ -544,10 +549,14 @@ function BlogBuilderForm() {
         safeExcerpt = safeExcerpt.slice(0, 447) + "..."
       }
 
-      let safeImageUrl = formData.image || previewImage || ""
+      let safeImageUrl = (formData.image || previewImage || "").trim()
       if (safeImageUrl.length > 450) {
-        // If image is a Base64 data URL (>450 chars), fallback to static placeholder to satisfy db VARCHAR(500) limit
-        safeImageUrl = "/placeholder.svg"
+        if (formData.image.startsWith("http://") || formData.image.startsWith("https://") || formData.image.startsWith("/")) {
+          safeImageUrl = formData.image.slice(0, 450)
+        } else {
+          // If image is a Base64 data URL exceeding 450 chars, fallback to default placeholder
+          safeImageUrl = "/placeholder.svg"
+        }
       }
 
       const blogData = {
