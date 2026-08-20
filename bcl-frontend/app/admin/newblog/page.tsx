@@ -311,19 +311,7 @@ function BlogBuilderForm() {
   // Inline Image Insertion Handler (Inside Article Body)
   const triggerInlineImageChoice = () => {
     saveSelection()
-    const choice = prompt("Type '1' to upload an image file from your device, or paste Image URL directly:")
-    if (!choice) return
-
-    const trimmed = choice.trim()
-    if (trimmed === "1") {
-      inlineFileInputRef.current?.click()
-    } else if (trimmed.length > 0) {
-      let imageUrl = trimmed
-      if (!/^https?:\/\//i.test(imageUrl) && !imageUrl.startsWith("data:") && !imageUrl.startsWith("/")) {
-        imageUrl = `https://${imageUrl}`
-      }
-      insertInlineImageHtml(imageUrl)
-    }
+    inlineFileInputRef.current?.click()
   }
 
   const handleInlineFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1295,16 +1283,37 @@ function BlogBuilderForm() {
           margin-top: 0.5rem;
           font-style: italic;
         }
-        .rich-editor blockquote, .rich-content-view blockquote {
-          border-left: 4px solid #2563eb;
-          padding-left: 1rem;
-          margin: 1.25rem 0;
-          color: #4b5563;
-          font-style: italic;
-          background-color: #f8fafc;
-          padding-top: 0.75rem;
-          padding-bottom: 0.75rem;
-          border-radius: 0 0.375rem 0.375rem 0;
+        .rich-editor blockquote,
+        .rich-content-view blockquote,
+        .prose blockquote,
+        blockquote {
+          border-left: 4px solid #2563eb !important;
+          padding: 0.875rem 1.25rem !important;
+          margin: 1.5rem 0 !important;
+          color: #1e293b !important;
+          font-style: italic !important;
+          background-color: #eff6ff !important;
+          border-radius: 0 0.5rem 0.5rem 0 !important;
+          quotes: none !important;
+        }
+        .rich-editor blockquote::before,
+        .rich-editor blockquote::after,
+        .rich-editor blockquote p::before,
+        .rich-editor blockquote p::after,
+        .rich-content-view blockquote::before,
+        .rich-content-view blockquote::after,
+        .rich-content-view blockquote p::before,
+        .rich-content-view blockquote p::after {
+          content: "" !important;
+          content: none !important;
+        }
+        .rich-editor blockquote p,
+        .rich-content-view blockquote p,
+        blockquote p {
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+          color: #1e293b !important;
+          font-style: italic !important;
         }
       `}</style>
     </main>
