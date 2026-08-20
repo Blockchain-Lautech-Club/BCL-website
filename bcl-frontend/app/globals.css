@@ -136,3 +136,39 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Global Rich Article Blockquote Styles */
+.prose blockquote,
+.prose-lg blockquote,
+.rich-content-view blockquote,
+article blockquote,
+blockquote {
+  border-left: 4px solid #2563eb !important;
+  padding: 0.875rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
+  color: #1e293b !important;
+  font-style: italic !important;
+  background-color: #eff6ff !important;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+  quotes: none !important;
+}
+
+.prose blockquote::before,
+.prose blockquote::after,
+.prose blockquote p::before,
+.prose blockquote p::after,
+.rich-content-view blockquote p::before,
+.rich-content-view blockquote p::after {
+  content: "" !important;
+  content: none !important;
+}
+
+.prose blockquote p,
+.rich-content-view blockquote p,
+article blockquote p,
+blockquote p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  color: #1e293b !important;
+  font-style: italic !important;
+}

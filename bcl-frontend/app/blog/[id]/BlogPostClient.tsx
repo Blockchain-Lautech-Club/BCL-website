@@ -1,0 +1,535 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { notFound } from "next/navigation"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Separator } from "@/components/ui/separator"
+import { Skeleton } from "@/components/ui/skeleton"
+import Link from "next/link"
+import { ArrowLeft, Calendar, Clock, Share2, ExternalLink, ChevronRight } from "lucide-react"
+import { blogApi, Blog, formatDate, getImageUrl } from "@/lib/api"
+
+export default function BlogPostClient({ id }: { id: string }) {
+  const [blog, setBlog] = useState<Blog | null>(null)
+  const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [readingProgress, setReadingProgress] = useState(0)
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      if (!id || id === "undefined") {
+        setError("Invalid article link")
+        setLoading(false)
+        return
+      }
+      try {
+        setLoading(true)
+        setError(null)
+
+        const blogData = await blogApi.getBlog(id)
+        setBlog(blogData)
+
+        const related = await blogApi.getBlogsByCategory(blogData.category, 4)
+        setRelatedBlogs(related.filter(b => b.id !== blogData.id).slice(0, 2))
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch blog')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchBlog()
+  }, [id])
+
+  // Reading progress tracking
+  useEffect(() => {
+    const updateReadingProgress = () => {
+      const article = document.querySelector('article')
+      if (!article) return
+
+      const scrollTop = window.scrollY
+      const docHeight = article.offsetHeight
+      const winHeight = window.innerHeight
+      const scrollPercent = scrollTop / (docHeight - winHeight)
+      const scrollPercentRounded = Math.round(scrollPercent * 100)
+      
+      setReadingProgress(Math.min(100, Math.max(0, scrollPercentRounded)))
+    }
+
+    window.addEventListener('scroll', updateReadingProgress)
+    return () => window.removeEventListener('scroll', updateReadingProgress)
+  }, [blog])
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: blog?.title,
+          text: blog?.excerpt,
+          url: window.location.href,
+        })
+      } catch (error) {
+        console.log('Error sharing:', error)
+      }
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(window.location.href)
+      alert('Link copied to clipboard!')
+    }
+  }
+
+  const cleanContent = (content: string) => {
+    // Remove common unwanted patterns from scraped content
+    let cleanedContent = content
+      .replace(/Share on Facebook|Share on Twitter|Share on LinkedIn/gi, '')
+      .replace(/This website uses cookies|We use cookies/gi, '')
+      .replace(/Subscribe to our newsletter|Sign up for updates/gi, '')
+      .replace(/Advertisement|Sponsored Content|ADVERTISEMENT/gi, '')
+      .replace(/Read more:|Continue reading|Click here to read more/gi, '')
+      .replace(/By\s+[A-Za-z\s]+\s*\|\s*/gi, '')
+      .replace(/\d{1,2}\/\d{1,2}\/\d{4}\s*\|\s*/gi, '')
+      .replace(/\d{1,2}:\d{2}\s*(AM|PM)\s*/gi, '')
+      .replace(/\d+\s*(shares?|likes?|comments?)/gi, '')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim()
+
+    return cleanedContent
+  }
+
+  const decodeHtml = (str: string) => {
+    if (!str) return ""
+    if (str.includes("&lt;") || str.includes("&gt;") || str.includes("&amp;")) {
+      return str
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&amp;/g, "&")
+    }
+    return str
+  }
+
+  const formatContent = (rawContent: string) => {
+    const content = decodeHtml(rawContent || "")
+    // If the content is rich HTML (from our text editor), render it directly
+    const isHtml = /<[a-z][\s\S]*>/i.test(content)
+    if (isHtml) {
+      const sanitizedHtml = content
+        .replace(/<figcaption[^>]*>\s*(Optional image caption\.\.\.|\s*)\s*<\/figcaption>/gi, "")
+        .replace(/\s*contenteditable="(true|false)"/gi, "")
+        .replace(/\s*contenteditable/gi, "")
+
+      return (
+        <div 
+          className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6 rich-content-view"
+          dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+        />
+      )
+    }
+
+    // First clean the content
+    const cleaned = cleanContent(content)
+    const sections = cleaned.split('\n\n').filter(section => {
+      const trimmed = section.trim()
+      return trimmed.length > 20 && 
+             !trimmed.match(/^\d+$/) && 
+             !trimmed.match(/^(Tags?|Categories?):?/i) && 
+             !trimmed.match(/^(Source|Via):?/i)
+    })
+    
+    return sections.map((section, index) => {
+      const trimmed = section.trim()
+      
+      // Main headings
+      if (trimmed.startsWith('## ') || (trimmed.length < 100 && trimmed.match(/^[A-Z][^.!?]*$/))) {
+        const headingText = trimmed.startsWith('## ') ? trimmed.replace('## ', '') : trimmed
+        return (
+          <h2 key={index} className="font-serif text-2xl md:text-3xl font-bold text-gray-900 mt-12 mb-6 leading-tight">
+            {headingText}
+          </h2>
+        )
+      }
+      
+      // Sub headings
+      if (trimmed.startsWith('### ')) {
+        return (
+          <h3 key={index} className="font-serif text-xl md:text-2xl font-semibold text-gray-800 mt-8 mb-4 leading-tight">
+            {trimmed.replace('### ', '')}
+          </h3>
+        )
+      }
+      
+      // Bullet lists
+      if (trimmed.includes('\n- ') || trimmed.startsWith('- ')) {
+        const listItems = trimmed.split('\n').filter(item => item.trim().startsWith('- '))
+        return (
+          <ul key={index} className="space-y-3 my-6 ml-4">
+            {listItems.map((item, i) => (
+              <li key={i} className="flex items-start gap-3 text-gray-700 leading-relaxed text-lg">
+                <div className="shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-3"></div>
+                <span>{item.replace('- ', '')}</span>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      // Blockquote in plain text / markdown
+      if (trimmed.startsWith('> ') || trimmed.startsWith('&gt; ')) {
+        const quoteText = trimmed.replace(/^(&gt;|>)\s*/, '')
+        return (
+          <blockquote key={index} className="border-l-4 border-blue-600 pl-4 py-3 my-6 bg-blue-50/50 text-gray-700 italic rounded-r-md">
+            <p className="mb-0">{quoteText}</p>
+          </blockquote>
+        )
+      }
+      
+      // Handle inline formatting
+      const formatInlineContent = (text: string) => {
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+        text = text.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
+          if (linkText.match(/share|subscribe|newsletter|advertisement/i) || 
+              url.match(/facebook\.com|twitter\.com|linkedin\.com|instagram\.com/)) {
+            return linkText
+          }
+          return `<a href="${url}" class="text-blue-600 hover:text-blue-800 underline decoration-2 underline-offset-2 transition-colors" target="_blank" rel="noopener noreferrer">${linkText}</a>`
+        })
+        return text
+      }
+      
+      // Regular paragraphs
+      if (trimmed.length > 30 && !trimmed.match(/^(Photo|Image|Credit|Source):/i)) {
+        return (
+          <p 
+            key={index} 
+            className="text-gray-700 leading-relaxed mb-6 text-lg"
+            dangerouslySetInnerHTML={{ __html: formatInlineContent(trimmed) }}
+          />
+        )
+      }
+      
+      return null
+    }).filter(Boolean)
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col min-h-screen bg-gray-50">
+        <div className="flex-1 flex items-center justify-center">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-8">
+              <h1 className="text-2xl font-bold text-red-900 mb-4">Unable to Load Article</h1>
+              <p className="text-red-700 mb-8">{error}</p>
+              <Button asChild variant="outline">
+                <Link href="/blog" className="text-red-700 border-red-300 hover:bg-red-50">
+                  Back to Blog
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="flex flex-col min-h-screen bg-gray-50">
+        <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+          <div className="h-full bg-blue-500 transition-all duration-300" style={{ width: '0%' }} />
+        </div>
+        
+        <div className="flex-1">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <Skeleton className="h-10 w-32" />
+          </div>
+
+          <article className="bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              <div className="mb-8">
+                <Skeleton className="h-16 w-full mb-4" />
+                <Skeleton className="h-6 w-full mb-2" />
+                <Skeleton className="h-6 w-2/3 mb-8" />
+              </div>
+
+              <div className="flex items-center justify-between mb-8 pb-8 border-b">
+                <div className="flex items-center gap-4">
+                  <Skeleton className="h-12 w-12 rounded-full" />
+                  <div>
+                    <Skeleton className="h-4 w-32 mb-2" />
+                    <Skeleton className="h-4 w-24" />
+                  </div>
+                </div>
+              </div>
+
+              <Skeleton className="h-64 w-full mb-12" />
+
+              <div className="space-y-4">
+                {[...Array(6)].map((_, i) => (
+                  <Skeleton key={i} className="h-4 w-full" />
+                ))}
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    )
+  }
+
+  if (!blog) {
+    notFound()
+  }
+
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-50">
+
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+        <div 
+          className="h-full bg-blue-500 transition-all duration-300" 
+          style={{ width: `${readingProgress}%` }} 
+        />
+      </div>
+
+      <div className="flex-1">
+        {/* Back Button */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <Button variant="ghost" asChild className="mb-4 hover:bg-white hover:shadow-md transition-all duration-200">
+            <Link href="/blog" className="flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Blog
+            </Link>
+          </Button>
+        </div>
+
+        {/* Article */}
+        <article className="bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {/* Header */}
+            <header className="mb-12">            
+              <h1 className="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                {blog.title}
+              </h1>
+              
+              {blog.excerpt && (
+                <p className="text-xl text-gray-600 leading-relaxed mb-8 font-light">
+                  {blog.excerpt}
+                </p>
+              )}
+            </header>
+
+            {/* Author Info */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-6 border-b gap-4">
+              <div className="flex items-center gap-4">
+                <Avatar className="h-12 w-12">
+                  <AvatarImage src={blog.author_avatar || "/placeholder.svg"} alt={blog.author} />
+                  <AvatarFallback className="bg-blue-100 text-blue-800 font-semibold">
+                    {blog.author
+                      .split(" ")
+                      .map((n: string) => n[0])
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-medium text-gray-900">{blog.author}</div>
+                  <div className="flex items-center gap-3 text-sm text-gray-600">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-4 w-4" />
+                      {formatDate(blog.created_at)}
+                    </div>
+                    {blog.read_time && (
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {blog.read_time}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <Button variant="outline" size="sm" onClick={handleShare} className="hover:bg-blue-50 transition-colors">
+                  <Share2 className="h-4 w-4 mr-1" />
+                  Share
+                </Button>
+                {blog.source_url && (
+                  <Button asChild variant="outline" size="sm" className="hover:bg-blue-50 transition-colors">
+                    <a href={blog.source_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
+                      <ExternalLink className="h-4 w-4" />
+                      Source
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {/* Featured Image */}
+            {blog.image && (
+              <div className="mb-12">
+                <img
+                  src={getImageUrl(blog.image)}
+                  alt={blog.title}
+                  className="w-full h-64 md:h-96 object-cover rounded-lg shadow-md"
+                  onError={(e) => {
+                    if (!e.currentTarget.src.includes('/placeholder.svg')) {
+                      e.currentTarget.src = '/placeholder.svg?height=400&width=800'
+                    } else {
+                      e.currentTarget.style.display = 'none'
+                    }
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Clean Article Content */}
+            <div className="max-w-none mb-12 text-justify">
+              {formatContent(blog.content)}
+            </div>
+
+            {/* Related Posts */}
+            {relatedBlogs.length > 0 && (
+              <>
+                <Separator className="mb-8" />
+                <section>
+                  <h3 className="font-serif text-2xl font-bold text-gray-900 mb-6">Related Articles</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {relatedBlogs.map((relatedBlog) => (
+                      <Card key={relatedBlog.id} className="group hover:shadow-lg transition-all duration-300">
+                        <CardContent className="p-6">
+                          <h4 className="font-serif text-lg font-bold text-gray-900 mb-2 leading-tight group-hover:text-blue-700 transition-colors">
+                            {relatedBlog.title}
+                          </h4>
+                          {relatedBlog.excerpt && (
+                            <p className="text-gray-600 mb-4 text-sm leading-relaxed">{relatedBlog.excerpt}</p>
+                          )}
+                          <Button asChild variant="outline" size="sm" className="w-full justify-center group-hover:bg-blue-50 transition-all">
+                            <Link href={`/blog/${relatedBlog.id}`} className="flex items-center gap-2">
+                              Read Article
+                              <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </section>
+              </>
+            )}
+          </div>
+        </article>
+      </div>
+
+      <style jsx global>{`
+        .rich-content-view h1 {
+          font-family: inherit;
+          font-size: 2.25rem;
+          font-weight: 800;
+          color: #111827;
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          line-height: 1.2;
+        }
+        .rich-content-view h2 {
+          font-family: inherit;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #111827;
+          margin-top: 1.75rem;
+          margin-bottom: 0.75rem;
+          line-height: 1.25;
+        }
+        .rich-content-view h3 {
+          font-family: inherit;
+          font-size: 1.35rem;
+          font-weight: 600;
+          color: #1f2937;
+          margin-top: 1.5rem;
+          margin-bottom: 0.5rem;
+          line-height: 1.3;
+        }
+        .rich-content-view p {
+          font-size: 1.125rem;
+          line-height: 1.75;
+          margin-bottom: 1.25rem;
+          color: #374151;
+        }
+        .rich-content-view ul {
+          list-style-type: disc;
+          padding-left: 1.75rem;
+          margin-bottom: 1.25rem;
+        }
+        .rich-content-view ol {
+          list-style-type: decimal;
+          padding-left: 1.75rem;
+          margin-bottom: 1.25rem;
+        }
+        .rich-content-view li {
+          font-size: 1.125rem;
+          line-height: 1.75;
+          margin-bottom: 0.5rem;
+          color: #374151;
+        }
+        .rich-content-view a {
+          color: #2563eb;
+          text-decoration: underline;
+          font-weight: 500;
+        }
+        .rich-content-view a:hover {
+          color: #1d4ed8;
+        }
+        .rich-content-view img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 0.5rem;
+          margin: 1.25rem auto;
+          display: block;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .rich-content-view figure {
+          margin: 1.5rem 0;
+          text-align: center;
+        }
+        .rich-content-view figcaption {
+          font-size: 0.875rem;
+          color: #6b7280;
+          margin-top: 0.5rem;
+          font-style: italic;
+        }
+        .rich-content-view blockquote,
+        .prose blockquote,
+        blockquote {
+          border-left: 4px solid #2563eb !important;
+          padding: 0.875rem 1.25rem !important;
+          margin: 1.5rem 0 !important;
+          color: #1e293b !important;
+          font-style: italic !important;
+          background-color: #eff6ff !important;
+          border-radius: 0 0.5rem 0.5rem 0 !important;
+          quotes: none !important;
+        }
+        .rich-content-view blockquote::before,
+        .rich-content-view blockquote::after,
+        .rich-content-view blockquote p::before,
+        .rich-content-view blockquote p::after,
+        .prose blockquote p::before,
+        .prose blockquote p::after {
+          content: "" !important;
+          content: none !important;
+        }
+        .rich-content-view blockquote p,
+        .prose blockquote p,
+        blockquote p {
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+          color: #1e293b !important;
+          font-style: italic !important;
+        }
+      `}</style>
+    </div>
+  )
+}
