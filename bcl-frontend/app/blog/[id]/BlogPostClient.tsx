@@ -12,46 +12,20 @@ import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, Share2, ExternalLink, ChevronRight, Eye } from "lucide-react"
 import { blogApi, Blog, formatDate, getImageUrl } from "@/lib/api"
 
-export default function BlogPostClient({ id }: { id: string }) {
-  const [blog, setBlog] = useState<Blog | null>(null)
-  const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+export default function BlogPostClient({ id, initialBlog, initialRelatedBlogs }: { id: string, initialBlog: Blog, initialRelatedBlogs: Blog[] }) {
+  const [blog, setBlog] = useState<Blog | null>(initialBlog)
+  const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>(initialRelatedBlogs)
   const [readingProgress, setReadingProgress] = useState(0)
   const viewRecorded = useRef<string | null>(null)
 
   useEffect(() => {
-    const fetchBlog = async () => {
-      if (!id || id === "undefined") {
-        setError("Invalid article link")
-        setLoading(false)
-        return
-      }
-      try {
-        setLoading(true)
-        setError(null)
-
-        const blogData = await blogApi.getBlog(id)
-        setBlog(blogData)
-
-        const related = await blogApi.getBlogsByCategory(blogData.category, 4)
-        setRelatedBlogs(related.filter(b => b.id !== blogData.id).slice(0, 2))
-        
-        // Record view asynchronously and update local state (guard against React StrictMode double-triggers)
-        if (viewRecorded.current !== id) {
-          viewRecorded.current = id
-          blogApi.viewBlog(id).then((res) => {
-            setBlog(prev => prev ? { ...prev, views: res.views } : null)
-          }).catch(console.error)
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch blog')
-      } finally {
-        setLoading(false)
-      }
+    // Record view asynchronously and update local state (guard against React StrictMode double-triggers)
+    if (id && id !== "undefined" && viewRecorded.current !== id) {
+      viewRecorded.current = id
+      blogApi.viewBlog(id).then((res) => {
+        setBlog(prev => prev ? { ...prev, views: res.views } : null)
+      }).catch(console.error)
     }
-
-    fetchBlog()
   }, [id])
 
   // Reading progress tracking
@@ -226,69 +200,6 @@ export default function BlogPostClient({ id }: { id: string }) {
     }).filter(Boolean)
   }
 
-  if (error) {
-    return (
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        <div className="flex-1 flex items-center justify-center">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-8">
-              <h1 className="text-2xl font-bold text-red-900 mb-4">Unable to Load Article</h1>
-              <p className="text-red-700 mb-8">{error}</p>
-              <Button asChild variant="outline">
-                <Link href="/blog" className="text-red-700 border-red-300 hover:bg-red-50">
-                  Back to Blog
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (loading) {
-    return (
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
-          <div className="h-full bg-blue-500 transition-all duration-300" style={{ width: '0%' }} />
-        </div>
-        
-        <div className="flex-1">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <Skeleton className="h-10 w-32" />
-          </div>
-
-          <article className="bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="mb-8">
-                <Skeleton className="h-16 w-full mb-4" />
-                <Skeleton className="h-6 w-full mb-2" />
-                <Skeleton className="h-6 w-2/3 mb-8" />
-              </div>
-
-              <div className="flex items-center justify-between mb-8 pb-8 border-b">
-                <div className="flex items-center gap-4">
-                  <Skeleton className="h-12 w-12 rounded-full" />
-                  <div>
-                    <Skeleton className="h-4 w-32 mb-2" />
-                    <Skeleton className="h-4 w-24" />
-                  </div>
-                </div>
-              </div>
-
-              <Skeleton className="h-64 w-full mb-12" />
-
-              <div className="space-y-4">
-                {[...Array(6)].map((_, i) => (
-                  <Skeleton key={i} className="h-4 w-full" />
-                ))}
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    )
-  }
 
   if (!blog) {
     notFound()

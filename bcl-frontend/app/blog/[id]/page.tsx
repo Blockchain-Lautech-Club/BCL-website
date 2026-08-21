@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { blogApi, getImageUrl } from "@/lib/api"
 import BlogPostClient from "./BlogPostClient"
@@ -69,7 +70,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+export const revalidate = 0
+
 export default async function BlogPostPage({ params }: Props) {
   const resolvedParams = await params
-  return <BlogPostClient id={resolvedParams.id} />
+  const id = resolvedParams.id
+  
+  if (!id || id === "undefined") {
+    notFound()
+  }
+
+  try {
+    const blog = await blogApi.getBlog(id)
+    const related = await blogApi.getBlogsByCategory(blog.category, 4)
+    const relatedBlogs = related.filter(b => b.id !== blog.id).slice(0, 2)
+    
+    return <BlogPostClient id={id} initialBlog={blog} initialRelatedBlogs={relatedBlogs} />
+  } catch (error) {
+    console.error("Error fetching blog for SSR:", error)
+    notFound()
+  }
 }
