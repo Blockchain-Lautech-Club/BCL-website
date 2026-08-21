@@ -37,6 +37,7 @@ export interface Blog {
   image?: string
   featured: boolean
   likes: number
+  views: number
   read_time: string
   source_url?: string
   created_at: string
@@ -193,6 +194,12 @@ export const blogApi = {
 
   likeBlog: async (id: string): Promise<{ likes: number }> => {
     return apiFetch<{ likes: number }>(`/blogs/${id}/like`, {
+      method: 'POST',
+    })
+  },
+
+  viewBlog: async (id: string): Promise<{ views: number }> => {
+    return apiFetch<{ views: number }>(`/blogs/${id}/view`, {
       method: 'POST',
     })
   },

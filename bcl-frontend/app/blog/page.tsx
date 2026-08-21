@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
-import { Search, ArrowRight, TrendingUp, BookOpen, X, RotateCcw } from "lucide-react"
+import { Search, ArrowRight, TrendingUp, BookOpen, X, RotateCcw, Eye, Clock } from "lucide-react"
 import { blogApi, Blog, formatDate, getImageUrl } from "@/lib/api"
 
 const categories = ["All", "Education", "News", "Industry", "Workshop", "Security"]
@@ -243,9 +243,22 @@ function FeaturedBlogCard({ blog }: { blog: Blog }) {
             {blog.title}
           </Link>
         </h3>
-        <p className="text-gray-600 leading-relaxed mb-8 line-clamp-3">
+        <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3">
           {blog.excerpt}
         </p>
+
+        <div className="flex items-center gap-4 text-sm text-gray-500 mb-8">
+          {blog.read_time && (
+            <div className="flex items-center gap-1">
+              <Clock className="h-4 w-4" />
+              {blog.read_time}
+            </div>
+          )}
+          <div className="flex items-center gap-1">
+            <Eye className="h-4 w-4" />
+            {blog.views || 0} views
+          </div>
+        </div>
 
         <Button asChild className="w-full group-hover:bg-primary/90 transition-colors duration-200">
           <Link href={`/blog/${blog.id}`} className="flex items-center justify-center gap-2">
@@ -281,9 +294,22 @@ function BlogCard({ blog }: { blog: Blog }) {
               {blog.title}
             </Link>
           </h3>
-          <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
             {blog.excerpt}
           </p>
+
+          <div className="flex items-center gap-4 text-xs text-gray-500 mb-6">
+            {blog.read_time && (
+              <div className="flex items-center gap-1">
+                <Clock className="h-3.5 w-3.5" />
+                {blog.read_time}
+              </div>
+            )}
+            <div className="flex items-center gap-1">
+              <Eye className="h-3.5 w-3.5" />
+              {blog.views || 0} views
+            </div>
+          </div>
         </div>
 
         <Button 

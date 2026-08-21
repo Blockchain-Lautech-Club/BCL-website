@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
-import { ArrowLeft, Calendar, Clock, Share2, ExternalLink, ChevronRight } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, Share2, ExternalLink, ChevronRight, Eye } from "lucide-react"
 import { blogApi, Blog, formatDate, getImageUrl } from "@/lib/api"
 
 export default function BlogPostClient({ id }: { id: string }) {
@@ -35,6 +35,9 @@ export default function BlogPostClient({ id }: { id: string }) {
 
         const related = await blogApi.getBlogsByCategory(blogData.category, 4)
         setRelatedBlogs(related.filter(b => b.id !== blogData.id).slice(0, 2))
+        
+        // Record view asynchronously in the background
+        blogApi.viewBlog(id).catch(console.error)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch blog')
       } finally {
@@ -348,6 +351,10 @@ export default function BlogPostClient({ id }: { id: string }) {
                         {blog.read_time}
                       </div>
                     )}
+                    <div className="flex items-center gap-1">
+                      <Eye className="h-4 w-4" />
+                      {blog.views || 0} views
+                    </div>
                   </div>
                 </div>
               </div>

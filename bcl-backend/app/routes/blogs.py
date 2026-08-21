@@ -28,6 +28,7 @@ async def create_blog(blog: BlogCreate, admin: str = Depends(get_admin_user)):
         "image": blog.image,
         "featured": blog.featured,
         "likes": 0,
+        "views": 0,
         "read_time": f"{max(1, len(blog.content.split()) // 200)} min read",
         "created_at": datetime.utcnow().isoformat(),
         "updated_at": datetime.utcnow().isoformat()
@@ -56,6 +57,7 @@ async def create_blog_from_url(blog_data: BlogFromUrl, admin: str = Depends(get_
         "image": extracted["image"],
         "featured": blog_data.featured,
         "likes": 0,
+        "views": 0,
         "read_time": f"{max(1, len(extracted['content'].split()) // 200)} min read",
         "source_url": str(blog_data.url),
         "created_at": datetime.utcnow().isoformat(),
@@ -135,11 +137,28 @@ async def like_blog(blog_id: str):
         if not result.data:
             raise HTTPException(status_code=404, detail="Blog not found")
         
-        current_likes = result.data[0]["likes"]
+        current_likes = result.data[0]["likes"] or 0
         new_likes = current_likes + 1
         
         update_result = supabase.table("blogs").update({"likes": new_likes}).eq("id", blog_id).execute()
         return {"likes": new_likes}
+    except Exception as e:
+        if isinstance(e, HTTPException):
+            raise e
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.post("/{blog_id}/view")
+async def view_blog(blog_id: str):
+    try:
+        result = supabase.table("blogs").select("views").eq("id", blog_id).execute()
+        if not result.data:
+            raise HTTPException(status_code=404, detail="Blog not found")
+        
+        current_views = result.data[0].get("views") or 0
+        new_views = current_views + 1
+        
+        update_result = supabase.table("blogs").update({"views": new_views}).eq("id", blog_id).execute()
+        return {"views": new_views}
     except Exception as e:
         if isinstance(e, HTTPException):
             raise e
