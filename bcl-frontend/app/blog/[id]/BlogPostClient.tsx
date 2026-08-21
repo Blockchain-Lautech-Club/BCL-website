@@ -36,8 +36,10 @@ export default function BlogPostClient({ id }: { id: string }) {
         const related = await blogApi.getBlogsByCategory(blogData.category, 4)
         setRelatedBlogs(related.filter(b => b.id !== blogData.id).slice(0, 2))
         
-        // Record view asynchronously in the background
-        blogApi.viewBlog(id).catch(console.error)
+        // Record view asynchronously and update local state
+        blogApi.viewBlog(id).then((res) => {
+          setBlog(prev => prev ? { ...prev, views: res.views } : null)
+        }).catch(console.error)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch blog')
       } finally {
