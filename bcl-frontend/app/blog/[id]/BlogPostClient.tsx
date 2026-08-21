@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -18,6 +18,7 @@ export default function BlogPostClient({ id }: { id: string }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [readingProgress, setReadingProgress] = useState(0)
+  const viewRecorded = useRef<string | null>(null)
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -36,10 +37,13 @@ export default function BlogPostClient({ id }: { id: string }) {
         const related = await blogApi.getBlogsByCategory(blogData.category, 4)
         setRelatedBlogs(related.filter(b => b.id !== blogData.id).slice(0, 2))
         
-        // Record view asynchronously and update local state
-        blogApi.viewBlog(id).then((res) => {
-          setBlog(prev => prev ? { ...prev, views: res.views } : null)
-        }).catch(console.error)
+        // Record view asynchronously and update local state (guard against React StrictMode double-triggers)
+        if (viewRecorded.current !== id) {
+          viewRecorded.current = id
+          blogApi.viewBlog(id).then((res) => {
+            setBlog(prev => prev ? { ...prev, views: res.views } : null)
+          }).catch(console.error)
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch blog')
       } finally {
@@ -305,10 +309,10 @@ export default function BlogPostClient({ id }: { id: string }) {
         {/* Back Button */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Button variant="ghost" asChild className="mb-4 hover:bg-white hover:shadow-md transition-all duration-200">
-            <Link href="/blog" className="flex items-center gap-2">
+            <a href="/blog" className="flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               Back to Blog
-            </Link>
+            </a>
           </Button>
         </div>
 

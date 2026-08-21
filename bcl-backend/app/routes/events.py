@@ -1,3 +1,4 @@
+from __future__ import annotations
 from fastapi import APIRouter, HTTPException, status, Depends
 from app.models.schemas import EventCreate, EventUpdate
 from app.config.settings import supabase_admin

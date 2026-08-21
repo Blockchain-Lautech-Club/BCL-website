@@ -1,3 +1,4 @@
+from __future__ import annotations
 from fastapi import APIRouter, HTTPException, status, Depends
 from app.models.schemas import BlogCreate, BlogFromUrl, BlogUpdate
 from app.config.settings import supabase, supabase_admin
@@ -140,7 +141,7 @@ async def like_blog(blog_id: str):
         current_likes = result.data[0]["likes"] or 0
         new_likes = current_likes + 1
         
-        update_result = supabase.table("blogs").update({"likes": new_likes}).eq("id", blog_id).execute()
+        update_result = supabase_admin.table("blogs").update({"likes": new_likes}).eq("id", blog_id).execute()
         return {"likes": new_likes}
     except Exception as e:
         if isinstance(e, HTTPException):
@@ -157,7 +158,7 @@ async def view_blog(blog_id: str):
         current_views = result.data[0].get("views") or 0
         new_views = current_views + 1
         
-        update_result = supabase.table("blogs").update({"views": new_views}).eq("id", blog_id).execute()
+        update_result = supabase_admin.table("blogs").update({"views": new_views}).eq("id", blog_id).execute()
         return {"views": new_views}
     except Exception as e:
         if isinstance(e, HTTPException):
