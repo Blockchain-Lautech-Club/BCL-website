@@ -33,3 +33,4 @@ env/
 *.swo
 *~
 local.db
+set_views.py

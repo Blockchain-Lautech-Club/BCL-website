@@ -359,9 +359,9 @@
             "link": "https://x.com/FavourAbidoye",
             "icon": "/socialIcons/xlogo.svg"
           },
-          "github": {
-            "link": "https://githubcom/Favour4712",
-            "icon": "/socialIcons/githublogo.png"
+          "linkedin": {
+            "link": "https://www.linkedin.com/in/favourabidoye",
+            "icon": "/socialIcons/linkedInLogo.svg"
           }
         }
       },
@@ -936,6 +936,11 @@
         "name": "tiktok",
         "link": "https://www.tiktok.com/@blockchainlautech",
         "icon": "/socialIcons/tiktok.png"
+      },
+      {
+        "name": "instagram",
+        "link": "https://www.instagram.com/blockchainlautech/",
+        "icon": "/socialIcons/instagram.png"
       }
     ]
   },
