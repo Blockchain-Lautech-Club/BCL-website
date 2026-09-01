@@ -893,6 +893,12 @@
       "logo": "/partners/Botchain.jpg",
       "bgColor": "#2e3135",
       "textColor": "#FFFFFF"
+    },
+    {
+      "name": "candao",
+      "logo": "/partners/candao.svg",
+      "bgColor": "#023026",
+      "textColor": "#FFFFFF"
     }
   ],
   "contact": {

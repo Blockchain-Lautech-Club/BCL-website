@@ -14,3 +14,7 @@ venv/
 __pycache__/
 *.pyc
 bcl-frontend/public/gallery/
+bcl_blogs_backup.json
+bcl_events_backup.json
+bcl_members_backup.json
+
