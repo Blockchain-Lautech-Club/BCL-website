@@ -351,6 +351,17 @@
     ],
     "advisoryBoard": [
       {
+        "name": "Faith Ogunsina",
+        "role": "Staff Adviser",
+        "image": "/team/faithOgunsina.jpg",
+        "social": {
+          "linkedin": {
+            "link": "https://www.linkedin.com/in/faithogunsina",
+            "icon": "/socialIcons/linkedInLogo.svg"
+          }
+        }
+      },
+      {
         "name": "Favour ABIDOYE-OLADEJO",
         "role": "Head of Operations",
         "image": "/team/favourAbidoyeOadejo.jpg",
