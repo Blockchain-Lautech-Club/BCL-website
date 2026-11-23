@@ -1,0 +1,149 @@
+[
+  {
+    "name": "confluence2.0",
+    "path": "gallery/confluence2.0",
+    "coverImage": "/event/confluence2.jpg",
+    "count": 1073,
+    "subfolders": [
+      { "name": "Community Track", "path": "gallery/confluence2.0/Community Track", "count": 217, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Creator Session", "path": "gallery/confluence2.0/Creator Session", "count": 41, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Dev Track", "path": "gallery/confluence2.0/Dev Track", "count": 75, "coverImage": "/event/confluence-1.jpg" },
+      { "name": "Females Guild Picnic", "path": "gallery/confluence2.0/Females Guild Picnic", "count": 52, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Founders Track", "path": "gallery/confluence2.0/Founders Track", "count": 68, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Human Layer", "path": "gallery/confluence2.0/Human Layer", "count": 106, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Merchant Session", "path": "gallery/confluence2.0/Merchant Session", "count": 38, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Novelty Sport", "path": "gallery/confluence2.0/Novelty Sport", "count": 45, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Sip and Paint", "path": "gallery/confluence2.0/Sip and Paint", "count": 54, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Team Dinner", "path": "gallery/confluence2.0/Team Dinner", "count": 42, "coverImage": "/event/confluence2.jpg" },
+      { "name": "Team Sync", "path": "gallery/confluence2.0/Team Sync", "count": 35, "coverImage": "/event/confluence2.jpg" }
+    ]
+  },
+  {
+    "name": "Confluence 1.0 Nov 2025",
+    "path": "gallery/Confluence 1.0 Nov 2025",
+    "coverImage": "/event/confluence-1.jpg",
+    "count": 240,
+    "subfolders": [
+      { "name": "Community Track [November 8,2025]", "path": "gallery/Confluence 1.0 Nov 2025/Community Track [November 8,2025]", "count": 130, "coverImage": "/event/confluence-1.jpg" },
+      { "name": "Dev Track [November 7,2025]", "path": "gallery/Confluence 1.0 Nov 2025/Dev Track [November 7,2025]", "count": 110, "coverImage": "/event/confluence-2.jpg" }
+    ]
+  },
+  {
+    "name": "BlockDAG September 2025",
+    "path": "gallery/BlockDAG September 2025",
+    "coverImage": "/event/blockdag.jpg",
+    "count": 180,
+    "subfolders": [
+      { "name": "BLOCK DAG HACKATHON DAY1", "path": "gallery/BlockDAG September 2025/BLOCK DAG HACKATHON DAY1", "count": 95, "coverImage": "/event/blockdag.jpg" },
+      { "name": "BLOCK DAG HACKATHON DAY2", "path": "gallery/BlockDAG September 2025/BLOCK DAG HACKATHON DAY2", "count": 85, "coverImage": "/event/blockdag.jpg" }
+    ]
+  },
+  {
+    "name": "Avax October 2025",
+    "path": "gallery/Avax October 2025",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Avax%20October%202025/cover.jpg",
+    "count": 165
+  },
+  {
+    "name": "Backpack Campus Tour May 2025",
+    "path": "gallery/Backpack Campus Tour May 2025",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Backpack%20Campus%20Tour%20May%202025/cover.jpg",
+    "count": 205
+  },
+  {
+    "name": "Bitcoin Pizza Day 2026",
+    "path": "gallery/Bitcoin Pizza Day 2026",
+    "coverImage": "/event/pizzaday.jpg",
+    "count": 120
+  },
+  {
+    "name": "Bitcoin Pizza Day 2025",
+    "path": "gallery/Bitcoin Pizza Day 2025",
+    "coverImage": "/event/bitcoinPizzaDay.jpg",
+    "count": 98
+  },
+  {
+    "name": "Bitcoin Pizza Day 2024",
+    "path": "gallery/Bitcoin Pizza Day 2024",
+    "coverImage": "/event/pizzaday.jpg",
+    "count": 85
+  },
+  {
+    "name": "Bitcoin Pizza Day 2023",
+    "path": "gallery/Bitcoin Pizza Day 2023",
+    "coverImage": "/event/pizzaday.jpg",
+    "count": 64
+  },
+  {
+    "name": "BOTChain Aug 2026",
+    "path": "gallery/BOTChain Aug 2026",
+    "coverImage": "/event/Botbuilder.JPG",
+    "count": 115
+  },
+  {
+    "name": "Celo AUG 2025",
+    "path": "gallery/Celo AUG 2025",
+    "coverImage": "/event/celoEvent.jpg",
+    "count": 48
+  },
+  {
+    "name": "CoinEx Campus Tour AUG 2025",
+    "path": "gallery/CoinEx Campus Tour AUG 2025",
+    "coverImage": "/event/coinEx.jpg",
+    "count": 245
+  },
+  {
+    "name": "CrossFi Dec 2024",
+    "path": "gallery/CrossFi Dec 2024",
+    "coverImage": "/event/crossFiEvent-2.jpg",
+    "count": 72
+  },
+  {
+    "name": "CrossFi Developers Workshop Dec 2024",
+    "path": "gallery/CrossFi Developers Workshop Dec 2024",
+    "coverImage": "/event/crossFiEvent.jpg",
+    "count": 55
+  },
+  {
+    "name": "FTX 1.0 May 2021",
+    "path": "gallery/FTX 1.0 May 2021",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/FTX%201.0%20May%202021/cover.jpg",
+    "count": 48
+  },
+  {
+    "name": "FTX 2.0 2021",
+    "path": "gallery/FTX 2.0 2021",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/FTX%202.0%202021/cover.jpg",
+    "count": 68
+  },
+  {
+    "name": "Game Hangout 2023",
+    "path": "gallery/Game Hangout 2023",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Game%20Hangout%202023/cover.jpg",
+    "count": 32
+  },
+  {
+    "name": "GIDA ChainUP Ibadan Jan 2025",
+    "path": "gallery/GIDA ChainUP Ibadan Jan 2025",
+    "coverImage": "/event/gida.jpg",
+    "count": 35
+  },
+  {
+    "name": "Solana Allstars 1 March 2024",
+    "path": "gallery/Solana Allstars 1 March 2024",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Solana%20Allstars%201%20March%202024/cover.jpg",
+    "count": 42
+  },
+  {
+    "name": "Solana Allstars 2.0 July 2025",
+    "path": "gallery/Solana Allstars 2.0 July 2025",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Solana%20Allstars%202.0%20July%202025/cover.jpg",
+    "count": 98
+  },
+  {
+    "name": "Sui Developer Workshop Aug 2025",
+    "path": "gallery/Sui Developer Workshop Aug 2025",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Sui%20Developer%20Workshop%20Aug%202025/cover.jpg",
+    "count": 56
+  }
+]
