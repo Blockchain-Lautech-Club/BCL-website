@@ -11,6 +11,8 @@ cloudinary.config({
 export interface CloudinaryAlbum {
   name: string;
   path: string;
+  coverImage?: string | null;
+  count?: number;
 }
 
 export interface CloudinaryImage {
@@ -77,27 +79,16 @@ export async function getAlbums(): Promise<CloudinaryAlbum[]> {
   const cached = getCached<CloudinaryAlbum[]>(cacheKey);
   if (cached && cached.length > 0) return cached;
 
-  try {
-    const result = await cloudinary.api.sub_folders('gallery');
-    if (result.folders && result.folders.length > 0) {
-      const albums = result.folders.map((folder: { name: string; path: string }) => ({
-        name: folder.name,
-        path: folder.path,
-      }));
-      setCache(cacheKey, albums);
-      return albums;
-    }
-  } catch (error: any) {
-    console.warn('Cloudinary API unavailable or rate-limited, serving catalog fallback:', error?.message || error);
-  }
-
-  // Fallback: Serve all 21 verified albums from local catalog so the gallery NEVER goes blank
-  const fallbackAlbums = galleryCatalog.map((a) => ({
+  // Serve all 21 verified albums from local catalog with instant cover & counts (0 API calls)
+  const catalogAlbums: CloudinaryAlbum[] = galleryCatalog.map((a) => ({
     name: a.name,
     path: a.path,
+    coverImage: a.coverImage,
+    count: a.count,
   }));
-  setCache(cacheKey, fallbackAlbums);
-  return fallbackAlbums;
+
+  setCache(cacheKey, catalogAlbums);
+  return catalogAlbums;
 }
 
 /**
@@ -107,6 +98,19 @@ export async function getSubfolders(folderPath: string): Promise<CloudinaryAlbum
   const cacheKey = `subfolders_${folderPath}`;
   const cached = getCached<CloudinaryAlbum[]>(cacheKey);
   if (cached && cached.length > 0) return cached;
+
+  // Check local catalog for verified subfolders (e.g. Confluence 2.0 11 tracks) with 0 API calls
+  const item = findInCatalog(folderPath);
+  if (item && 'subfolders' in item && Array.isArray((item as any).subfolders)) {
+    const subfolders: CloudinaryAlbum[] = (item as any).subfolders.map((sf: any) => ({
+      name: sf.name,
+      path: sf.path,
+      coverImage: sf.coverImage,
+      count: sf.count,
+    }));
+    setCache(cacheKey, subfolders);
+    return subfolders;
+  }
 
   try {
     const result = await cloudinary.api.sub_folders(folderPath);
@@ -119,18 +123,7 @@ export async function getSubfolders(folderPath: string): Promise<CloudinaryAlbum
       return subfolders;
     }
   } catch (error: any) {
-    console.warn(`Cloudinary API unavailable for ${folderPath}, serving catalog fallback:`, error?.message || error);
-  }
-
-  // Fallback: Check local catalog for subfolders (e.g. Confluence 2.0 11 tracks)
-  const item = findInCatalog(folderPath);
-  if (item && 'subfolders' in item && Array.isArray((item as any).subfolders)) {
-    const fallbackSubfolders = (item as any).subfolders.map((sf: any) => ({
-      name: sf.name,
-      path: sf.path,
-    }));
-    setCache(cacheKey, fallbackSubfolders);
-    return fallbackSubfolders;
+    console.warn(`Cloudinary API unavailable for ${folderPath}:`, error?.message || error);
   }
 
   return [];
@@ -216,7 +209,7 @@ export async function getAlbumImages(folderPath: string): Promise<CloudinaryImag
 
     do {
       const result = await cloudinary.search
-        .expression(`folder:"${folderPath}/*"`)
+        .expression(`folder:"${folderPath}" OR folder:"${folderPath}/*"`)
         .sort_by('public_id', 'asc')
         .max_results(100)
         .next_cursor(nextCursor || '')

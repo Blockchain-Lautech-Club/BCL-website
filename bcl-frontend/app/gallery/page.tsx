@@ -19,13 +19,11 @@ export const revalidate = 600;
 export default async function GalleryPage() {
   const cloudinaryAlbums = await getAlbums();
   
-  // Fetch cover images and counts in parallel
+  // Fetch cover images and counts (using cached catalog values with 0 API calls)
   const albums: Album[] = await Promise.all(
     cloudinaryAlbums.map(async (album) => {
-      const [coverImage, count] = await Promise.all([
-        getAlbumCover(album.path),
-        countAlbumImages(album.path),
-      ]);
+      const coverImage = album.coverImage || (await getAlbumCover(album.path));
+      const count = album.count !== undefined ? album.count : (await countAlbumImages(album.path));
       return {
         name: album.name,
         coverImage,

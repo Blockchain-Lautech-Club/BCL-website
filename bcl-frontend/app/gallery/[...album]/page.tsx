@@ -51,10 +51,8 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
   if (subfolders.length > 0) {
     const subfolderData: SubfolderItem[] = await Promise.all(
       subfolders.map(async (sf) => {
-        const [coverImage, count] = await Promise.all([
-          getAlbumCover(sf.path),
-          countAlbumImages(sf.path),
-        ]);
+        const coverImage = sf.coverImage || (await getAlbumCover(sf.path));
+        const count = sf.count !== undefined ? sf.count : (await countAlbumImages(sf.path));
         const href = `/gallery/${albumSegments.map(encodeURIComponent).join('/')}/${encodeURIComponent(sf.name)}`;
         return {
           name: sf.name,
