@@ -3,13 +3,19 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, X, ChevronLeft, ChevronRight, Download } from "lucide-react";
 
 interface AlbumGalleryProps {
   albumName: string;
   images: string[];
   backHref?: string;
   backLabel?: string;
+}
+
+// Convert web preview URL into a direct full-res original HD download URL (0 API calls)
+function getHdDownloadUrl(url: string): string {
+  if (!url) return '';
+  return url.replace(/\/upload\/(?:w_\d+,q_auto(?::\w+)?,f_auto\/)?/, '/upload/fl_attachment/');
 }
 
 export default function AlbumGallery({ albumName, images, backHref = "/gallery", backLabel = "Back to Albums" }: AlbumGalleryProps) {
@@ -67,7 +73,17 @@ export default function AlbumGallery({ albumName, images, backHref = "/gallery",
                   className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
+                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/25 flex items-end justify-end p-3 opacity-0 group-hover:opacity-100">
+                  <a
+                    href={getHdDownloadUrl(src)}
+                    download
+                    onClick={(e) => e.stopPropagation()}
+                    className="p-2 rounded-full bg-black/70 hover:bg-blue-600 text-white shadow-md transition-all hover:scale-110 active:scale-95"
+                    title="Download HD Photo"
+                  >
+                    <Download className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
             ))}
           </div>
@@ -80,12 +96,29 @@ export default function AlbumGallery({ albumName, images, backHref = "/gallery",
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
           onClick={closeLightbox}
         >
-          <button
-            onClick={closeLightbox}
-            className="absolute right-4 top-4 z-50 p-2 text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full transition-all"
-          >
-            <X className="h-6 w-6" />
-          </button>
+          {/* Top Bar: Download HD & Close Buttons */}
+          <div className="absolute right-4 top-4 z-50 flex items-center gap-3">
+            <a
+              href={getHdDownloadUrl(images[selectedIndex])}
+              download={`${albumName.replace(/[^a-zA-Z0-9_-]/g, '_')}-${selectedIndex + 1}.jpg`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-full shadow-lg transition-all hover:scale-105 active:scale-95"
+              title="Download Original HD Photo"
+            >
+              <Download className="h-4 w-4" />
+              <span>Download HD</span>
+            </a>
+
+            <button
+              onClick={closeLightbox}
+              className="p-2 text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full transition-all"
+              aria-label="Close"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
           
           <button
             onClick={showPrev}

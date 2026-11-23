@@ -40,12 +40,12 @@ function setCache<T>(key: string, data: T) {
 }
 
 /**
- * Inject Cloudinary transformations into a secure_url for web-optimized delivery.
- * e.g. adds w_1200,q_auto,f_auto for auto quality and format (WebP).
+ * Inject Cloudinary transformations into a secure_url for high-definition (HD) web delivery.
+ * e.g. adds w_2000,q_auto:best,f_auto for maximum clarity (2K HD WebP/AVIF).
  */
 function optimizeUrl(url: string, width: number): string {
   if (!url) return '';
-  return url.replace('/upload/', `/upload/w_${width},q_auto,f_auto/`);
+  return url.replace('/upload/', `/upload/w_${width},q_auto:best,f_auto/`);
 }
 
 /**
@@ -110,7 +110,7 @@ export async function getAlbumCover(folderPath: string): Promise<string | null> 
       .execute();
 
     if (result.resources && result.resources.length > 0) {
-      const coverUrl = optimizeUrl(result.resources[0].secure_url, 600);
+      const coverUrl = optimizeUrl(result.resources[0].secure_url, 800);
       setCache(cacheKey, coverUrl);
       return coverUrl;
     }
@@ -146,7 +146,8 @@ export async function getAlbumImages(folderPath: string): Promise<CloudinaryImag
       for (const resource of result.resources || []) {
         images.push({
           public_id: resource.public_id,
-          url: optimizeUrl(resource.secure_url, 1200),
+          // Serve at 2000px wide (Full HD / 2K) with maximum visual clarity
+          url: optimizeUrl(resource.secure_url, 2000),
           width: resource.width,
           height: resource.height,
         });
