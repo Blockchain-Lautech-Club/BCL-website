@@ -32,40 +32,6 @@ export function Header() {
       animate="visible"
       className="bg-white/55 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50 flex flex-col"
     >
-      {/* Announcement Bar */}
-      <div className="w-full bg-[#02152d] text-white overflow-hidden py-2 flex items-center border-b border-white/10 relative">
-        <div className="z-10 flex items-center shrink-0 px-4 bg-[#02152d]">
-          <span className="text-sm font-black tracking-widest text-blue-300">
-            ANNOUNCEMENT
-          </span>
-          {/* <span className="ml-4 text-blue-400">|</span> */}
-        </div>
-        <div className="overflow-hidden flex-1 relative flex">
-          <motion.div
-            className="flex whitespace-nowrap min-w-max"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              repeat: Infinity,
-              ease: "linear",
-              duration: 50,
-            }}
-          >
-            {/* Repeating the content 10 times and shifting by 50% guarantees a perfect seamless loop on all screen sizes */}
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="flex items-center px-6" >
-                <Link href="/events">
-                  <span className="text-sm font-medium tracking-wide">
-                    The largest student-led web3 conference in Africa is back! Powered by Blockchain LAUTECH — a Tier-1 university blockchain club in Africa.
-                  </span>
-                </Link>
-                {/* Spacer between announcements */}
-                <span className="mx-6 text-white/20">•</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         {/* Desktop navigation */}
         <div className="justify-between items-center h-16 hidden md:flex">
