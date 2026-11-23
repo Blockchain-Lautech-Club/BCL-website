@@ -2,74 +2,74 @@
   {
     "name": "confluence2.0",
     "path": "gallery/confluence2.0",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433714/DSC_3034_bnpv8l.jpg",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795433714/DSC_3034_bnpv8l.jpg",
     "count": 1073,
     "subfolders": [
       {
         "name": "Community Track",
         "path": "gallery/confluence2.0/Community Track",
         "count": 217,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795434703/9C2A1598_gerykm.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795434703/9C2A1598_gerykm.jpg"
       },
       {
         "name": "Creator Session",
         "path": "gallery/confluence2.0/Creator Session",
         "count": 41,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433425/DSC_4762_bbxtbc.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795433425/DSC_4762_bbxtbc.jpg"
       },
       {
         "name": "Dev Track",
         "path": "gallery/confluence2.0/Dev Track",
         "count": 75,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433185/DSC_4886_oncrwr.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795433185/DSC_4886_oncrwr.jpg"
       },
       {
         "name": "Females Guild Picnic",
         "path": "gallery/confluence2.0/Females Guild Picnic",
         "count": 57,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795434101/20261110_174048_updjou.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795434101/20261110_174048_updjou.jpg"
       },
       {
         "name": "Founders Track",
         "path": "gallery/confluence2.0/Founders Track",
         "count": 153,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433471/DSC_4083_ej3mno.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795433471/DSC_4083_ej3mno.jpg"
       },
       {
         "name": "Human Layer",
         "path": "gallery/confluence2.0/Human Layer",
         "count": 106,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433714/DSC_3034_bnpv8l.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795433714/DSC_3034_bnpv8l.jpg"
       },
       {
         "name": "Merchant Session",
         "path": "gallery/confluence2.0/Merchant Session",
         "count": 59,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433991/DSC_4581_ywshyd.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795433991/DSC_4581_ywshyd.jpg"
       },
       {
         "name": "Novelty Sport",
         "path": "gallery/confluence2.0/Novelty Sport",
         "count": 117,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795434164/DSC_2099_hos7nh.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795434164/DSC_2099_hos7nh.jpg"
       },
       {
         "name": "Sip and Paint",
         "path": "gallery/confluence2.0/Sip and Paint",
         "count": 136,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433822/DSC_3546_gqyoiz.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795433822/DSC_3546_gqyoiz.jpg"
       },
       {
         "name": "Team Dinner",
         "path": "gallery/confluence2.0/Team Dinner",
         "count": 35,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433071/DSC_1958_rfta4c.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795433071/DSC_1958_rfta4c.jpg"
       },
       {
         "name": "Team Sync",
         "path": "gallery/confluence2.0/Team Sync",
         "count": 77,
-        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795434626/DSC_1764_mnjs8k.jpg"
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/v1795434626/DSC_1764_mnjs8k.jpg"
       }
     ]
   },

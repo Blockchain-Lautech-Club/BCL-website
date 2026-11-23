@@ -148,7 +148,7 @@ export async function getAlbumCover(folderPath: string): Promise<string | null> 
   // 2. Check if we have baked images for this folder
   const images = (galleryImages as Record<string, CloudinaryImage[]>)[folderPath];
   if (images && images.length > 0) {
-    const cover = optimizeUrl(images[0].url.replace(/\/w_2000,[^/]+\//, '/upload/'), 800);
+    const cover = images[0].url.replace(/w_\d+,q_auto:best,f_auto/, 'w_800,q_auto:best,f_auto');
     setCache(cacheKey, cover);
     return cover;
   }
