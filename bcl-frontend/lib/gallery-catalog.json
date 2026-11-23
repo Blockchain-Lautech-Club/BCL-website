@@ -2,20 +2,75 @@
   {
     "name": "confluence2.0",
     "path": "gallery/confluence2.0",
-    "coverImage": "/event/confluence2.jpg",
+    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433714/DSC_3034_bnpv8l.jpg",
     "count": 1073,
     "subfolders": [
-      { "name": "Community Track", "path": "gallery/confluence2.0/Community Track", "count": 217, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Creator Session", "path": "gallery/confluence2.0/Creator Session", "count": 41, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Dev Track", "path": "gallery/confluence2.0/Dev Track", "count": 75, "coverImage": "/event/confluence-1.jpg" },
-      { "name": "Females Guild Picnic", "path": "gallery/confluence2.0/Females Guild Picnic", "count": 52, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Founders Track", "path": "gallery/confluence2.0/Founders Track", "count": 68, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Human Layer", "path": "gallery/confluence2.0/Human Layer", "count": 106, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Merchant Session", "path": "gallery/confluence2.0/Merchant Session", "count": 38, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Novelty Sport", "path": "gallery/confluence2.0/Novelty Sport", "count": 45, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Sip and Paint", "path": "gallery/confluence2.0/Sip and Paint", "count": 54, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Team Dinner", "path": "gallery/confluence2.0/Team Dinner", "count": 42, "coverImage": "/event/confluence2.jpg" },
-      { "name": "Team Sync", "path": "gallery/confluence2.0/Team Sync", "count": 35, "coverImage": "/event/confluence2.jpg" }
+      {
+        "name": "Community Track",
+        "path": "gallery/confluence2.0/Community Track",
+        "count": 217,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795434703/9C2A1598_gerykm.jpg"
+      },
+      {
+        "name": "Creator Session",
+        "path": "gallery/confluence2.0/Creator Session",
+        "count": 41,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433425/DSC_4762_bbxtbc.jpg"
+      },
+      {
+        "name": "Dev Track",
+        "path": "gallery/confluence2.0/Dev Track",
+        "count": 75,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433185/DSC_4886_oncrwr.jpg"
+      },
+      {
+        "name": "Females Guild Picnic",
+        "path": "gallery/confluence2.0/Females Guild Picnic",
+        "count": 57,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795434101/20261110_174048_updjou.jpg"
+      },
+      {
+        "name": "Founders Track",
+        "path": "gallery/confluence2.0/Founders Track",
+        "count": 153,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433471/DSC_4083_ej3mno.jpg"
+      },
+      {
+        "name": "Human Layer",
+        "path": "gallery/confluence2.0/Human Layer",
+        "count": 106,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433714/DSC_3034_bnpv8l.jpg"
+      },
+      {
+        "name": "Merchant Session",
+        "path": "gallery/confluence2.0/Merchant Session",
+        "count": 59,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433991/DSC_4581_ywshyd.jpg"
+      },
+      {
+        "name": "Novelty Sport",
+        "path": "gallery/confluence2.0/Novelty Sport",
+        "count": 117,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795434164/DSC_2099_hos7nh.jpg"
+      },
+      {
+        "name": "Sip and Paint",
+        "path": "gallery/confluence2.0/Sip and Paint",
+        "count": 136,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433822/DSC_3546_gqyoiz.jpg"
+      },
+      {
+        "name": "Team Dinner",
+        "path": "gallery/confluence2.0/Team Dinner",
+        "count": 35,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795433071/DSC_1958_rfta4c.jpg"
+      },
+      {
+        "name": "Team Sync",
+        "path": "gallery/confluence2.0/Team Sync",
+        "count": 77,
+        "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/upload/v1795434626/DSC_1764_mnjs8k.jpg"
+      }
     ]
   },
   {
@@ -24,8 +79,18 @@
     "coverImage": "/event/confluence-1.jpg",
     "count": 240,
     "subfolders": [
-      { "name": "Community Track [November 8,2025]", "path": "gallery/Confluence 1.0 Nov 2025/Community Track [November 8,2025]", "count": 130, "coverImage": "/event/confluence-1.jpg" },
-      { "name": "Dev Track [November 7,2025]", "path": "gallery/Confluence 1.0 Nov 2025/Dev Track [November 7,2025]", "count": 110, "coverImage": "/event/confluence-2.jpg" }
+      {
+        "name": "Community Track [November 8,2025]",
+        "path": "gallery/Confluence 1.0 Nov 2025/Community Track [November 8,2025]",
+        "count": 130,
+        "coverImage": "/event/confluence-1.jpg"
+      },
+      {
+        "name": "Dev Track [November 7,2025]",
+        "path": "gallery/Confluence 1.0 Nov 2025/Dev Track [November 7,2025]",
+        "count": 110,
+        "coverImage": "/event/confluence-2.jpg"
+      }
     ]
   },
   {
@@ -34,8 +99,18 @@
     "coverImage": "/event/blockdag.jpg",
     "count": 180,
     "subfolders": [
-      { "name": "BLOCK DAG HACKATHON DAY1", "path": "gallery/BlockDAG September 2025/BLOCK DAG HACKATHON DAY1", "count": 95, "coverImage": "/event/blockdag.jpg" },
-      { "name": "BLOCK DAG HACKATHON DAY2", "path": "gallery/BlockDAG September 2025/BLOCK DAG HACKATHON DAY2", "count": 85, "coverImage": "/event/blockdag.jpg" }
+      {
+        "name": "BLOCK DAG HACKATHON DAY1",
+        "path": "gallery/BlockDAG September 2025/BLOCK DAG HACKATHON DAY1",
+        "count": 95,
+        "coverImage": "/event/blockdag.jpg"
+      },
+      {
+        "name": "BLOCK DAG HACKATHON DAY2",
+        "path": "gallery/BlockDAG September 2025/BLOCK DAG HACKATHON DAY2",
+        "count": 85,
+        "coverImage": "/event/blockdag.jpg"
+      }
     ]
   },
   {

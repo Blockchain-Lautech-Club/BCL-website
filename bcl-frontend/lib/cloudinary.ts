@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from 'cloudinary';
 import galleryCatalog from './gallery-catalog.json';
+import galleryImages from './gallery-images.json';
 
 // Configure Cloudinary
 cloudinary.config({
@@ -137,9 +138,24 @@ export async function getAlbumCover(folderPath: string): Promise<string | null> 
   const cached = getCached<string | null>(cacheKey);
   if (cached !== null && cached !== undefined) return cached;
 
+  // 1. Check catalog first (0 API calls, loads instantly)
+  const item = findInCatalog(folderPath);
+  if (item && item.coverImage) {
+    setCache(cacheKey, item.coverImage);
+    return item.coverImage;
+  }
+
+  // 2. Check if we have baked images for this folder
+  const images = (galleryImages as Record<string, CloudinaryImage[]>)[folderPath];
+  if (images && images.length > 0) {
+    const cover = optimizeUrl(images[0].url.replace(/\/w_2000,[^/]+\//, '/upload/'), 800);
+    setCache(cacheKey, cover);
+    return cover;
+  }
+
   try {
     const result = await cloudinary.search
-      .expression(`folder:"${folderPath}/*"`)
+      .expression(`folder:"${folderPath}" OR folder:"${folderPath}/*"`)
       .sort_by('public_id', 'asc')
       .max_results(1)
       .execute();
@@ -150,14 +166,7 @@ export async function getAlbumCover(folderPath: string): Promise<string | null> 
       return coverUrl;
     }
   } catch (error: any) {
-    console.warn(`Cloudinary cover search unavailable for ${folderPath}, serving catalog cover`);
-  }
-
-  // Fallback: Use catalog cover image
-  const item = findInCatalog(folderPath);
-  if (item && item.coverImage) {
-    setCache(cacheKey, item.coverImage);
-    return item.coverImage;
+    console.warn(`Cloudinary cover search unavailable for ${folderPath}`);
   }
 
   return null;
@@ -171,9 +180,23 @@ export async function countAlbumImages(folderPath: string): Promise<number> {
   const cached = getCached<number>(cacheKey);
   if (cached !== null && cached !== undefined) return cached;
 
+  // 1. Check catalog first (0 API calls, loads instantly)
+  const item = findInCatalog(folderPath);
+  if (item && typeof item.count === 'number') {
+    setCache(cacheKey, item.count);
+    return item.count;
+  }
+
+  // 2. Check if we have baked images for this folder
+  const images = (galleryImages as Record<string, CloudinaryImage[]>)[folderPath];
+  if (images && images.length > 0) {
+    setCache(cacheKey, images.length);
+    return images.length;
+  }
+
   try {
     const result = await cloudinary.search
-      .expression(`folder:"${folderPath}/*"`)
+      .expression(`folder:"${folderPath}" OR folder:"${folderPath}/*"`)
       .max_results(0)
       .execute();
     const count = result.total_count || 0;
@@ -182,14 +205,7 @@ export async function countAlbumImages(folderPath: string): Promise<number> {
       return count;
     }
   } catch (error: any) {
-    console.warn(`Cloudinary count search unavailable for ${folderPath}, serving catalog count`);
-  }
-
-  // Fallback: Use catalog count
-  const item = findInCatalog(folderPath);
-  if (item && typeof item.count === 'number') {
-    setCache(cacheKey, item.count);
-    return item.count;
+    console.warn(`Cloudinary count search unavailable for ${folderPath}`);
   }
 
   return 0;
@@ -202,6 +218,13 @@ export async function getAlbumImages(folderPath: string): Promise<CloudinaryImag
   const cacheKey = `images_${folderPath}`;
   const cached = getCached<CloudinaryImage[]>(cacheKey);
   if (cached && cached.length > 0) return cached;
+
+  // 1. Check baked static image store first (0 API calls, loads instantly 100% of the time)
+  const storedImages = (galleryImages as Record<string, CloudinaryImage[]>)[folderPath];
+  if (storedImages && storedImages.length > 0) {
+    setCache(cacheKey, storedImages);
+    return storedImages;
+  }
 
   try {
     const images: CloudinaryImage[] = [];
