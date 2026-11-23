@@ -4,7 +4,7 @@ import BlogListClient from "./BlogListClient"
 export const revalidate = 0 // Disable cache for this page since we disabled fetch cache anyway
 
 export default async function BlogPage() {
-  let blogs = []
+  let blogs: any[] = []
   let error = null
 
   try {

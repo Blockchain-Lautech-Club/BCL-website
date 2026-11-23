@@ -8,9 +8,11 @@ import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
 interface AlbumGalleryProps {
   albumName: string;
   images: string[];
+  backHref?: string;
+  backLabel?: string;
 }
 
-export default function AlbumGallery({ albumName, images }: AlbumGalleryProps) {
+export default function AlbumGallery({ albumName, images, backHref = "/gallery", backLabel = "Back to Albums" }: AlbumGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const openLightbox = (index: number) => setSelectedIndex(index);
@@ -36,11 +38,11 @@ export default function AlbumGallery({ albumName, images }: AlbumGalleryProps) {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 flex items-center justify-between">
             <Link 
-              href="/gallery" 
+              href={backHref} 
               className="flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors"
             >
               <ArrowLeft className="h-5 w-5" />
-              <span>Back to Albums</span>
+              <span>{backLabel}</span>
             </Link>
           </div>
           

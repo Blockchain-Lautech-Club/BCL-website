@@ -45,6 +45,21 @@ export async function getAlbums(): Promise<CloudinaryAlbum[]> {
 }
 
 /**
+ * Get subfolders inside any specific folder path (e.g. "gallery/confluence2.0").
+ */
+export async function getSubfolders(folderPath: string): Promise<CloudinaryAlbum[]> {
+  try {
+    const result = await cloudinary.api.sub_folders(folderPath);
+    return (result.folders || []).map((folder: { name: string; path: string }) => ({
+      name: folder.name,
+      path: folder.path,
+    }));
+  } catch (error) {
+    return [];
+  }
+}
+
+/**
  * Get the first image in a folder (for cover image).
  */
 export async function getAlbumCover(folderPath: string): Promise<string | null> {
