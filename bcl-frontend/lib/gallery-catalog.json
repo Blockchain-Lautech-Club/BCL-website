@@ -76,78 +76,78 @@
   {
     "name": "Confluence 1.0 Nov 2025",
     "path": "gallery/Confluence 1.0 Nov 2025",
-    "coverImage": "/event/confluence-1.jpg",
+    "coverImage": "/gallery/Confluence%201.0%20(Nov%207-8%202025)/Community%20Track%20%5BNovember%208%2C2025%5D/img--107.jpg",
     "count": 240,
     "subfolders": [
       {
         "name": "Community Track [November 8,2025]",
         "path": "gallery/Confluence 1.0 Nov 2025/Community Track [November 8,2025]",
-        "count": 130,
-        "coverImage": "/event/confluence-1.jpg"
+        "count": 24,
+        "coverImage": "/gallery/Confluence%201.0%20(Nov%207-8%202025)/Community%20Track%20%5BNovember%208%2C2025%5D/img--107.jpg"
       },
       {
         "name": "Dev Track [November 7,2025]",
         "path": "gallery/Confluence 1.0 Nov 2025/Dev Track [November 7,2025]",
-        "count": 110,
-        "coverImage": "/event/confluence-2.jpg"
+        "count": 48,
+        "coverImage": "/gallery/Confluence%201.0%20(Nov%207-8%202025)/Dev%20Track%20%5BNovember%207%2C2025%5D/IMG_20251107_112019%20(1)(1).jpg"
       }
     ]
   },
   {
     "name": "BlockDAG September 2025",
     "path": "gallery/BlockDAG September 2025",
-    "coverImage": "/event/blockdag.jpg",
+    "coverImage": "/gallery/BlockDAG%20September%202025/BLOCK%20DAG%20HACKATHON%20DAY1/HACKATHONDAY1-1.jpg",
     "count": 180,
     "subfolders": [
       {
         "name": "BLOCK DAG HACKATHON DAY1",
         "path": "gallery/BlockDAG September 2025/BLOCK DAG HACKATHON DAY1",
-        "count": 95,
-        "coverImage": "/event/blockdag.jpg"
+        "count": 215,
+        "coverImage": "/gallery/BlockDAG%20September%202025/BLOCK%20DAG%20HACKATHON%20DAY1/HACKATHONDAY1-1.jpg"
       },
       {
         "name": "BLOCK DAG HACKATHON DAY2",
         "path": "gallery/BlockDAG September 2025/BLOCK DAG HACKATHON DAY2",
-        "count": 85,
-        "coverImage": "/event/blockdag.jpg"
+        "count": 136,
+        "coverImage": "/gallery/BlockDAG%20September%202025/BLOCK%20DAG%20HACKATHON%20DAY2/HACKATHONDAY2-100.jpg"
       }
     ]
   },
   {
     "name": "Avax October 2025",
     "path": "gallery/Avax October 2025",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Avax%20October%202025/cover.jpg",
+    "coverImage": "/gallery/Avax%204th%20October%202025/4Z4A7585.JPG",
     "count": 165
   },
   {
     "name": "Backpack Campus Tour May 2025",
     "path": "gallery/Backpack Campus Tour May 2025",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Backpack%20Campus%20Tour%20May%202025/cover.jpg",
-    "count": 205
+    "coverImage": "/gallery/Backpack%20Campus%20Tour/DSC_0007.jpg",
+    "count": 206
   },
   {
     "name": "Bitcoin Pizza Day 2026",
     "path": "gallery/Bitcoin Pizza Day 2026",
-    "coverImage": "/event/pizzaday.jpg",
-    "count": 120
+    "coverImage": "/gallery/Celebrating%20Laszlo%20Hanyecz%20Legacy/Bitcoin%20Pizza%20Day%202026/IMG-20260519-WA0077(1).jpg",
+    "count": 3
   },
   {
     "name": "Bitcoin Pizza Day 2025",
     "path": "gallery/Bitcoin Pizza Day 2025",
-    "coverImage": "/event/bitcoinPizzaDay.jpg",
-    "count": 98
+    "coverImage": "/gallery/Celebrating%20Laszlo%20Hanyecz%20Legacy/Bitcoin%20Pizza%20Day%202025/BITCOINPIZZARDAY.jpg",
+    "count": 158
   },
   {
     "name": "Bitcoin Pizza Day 2024",
     "path": "gallery/Bitcoin Pizza Day 2024",
-    "coverImage": "/event/pizzaday.jpg",
-    "count": 85
+    "coverImage": "/gallery/Celebrating%20Laszlo%20Hanyecz%20Legacy/Bitcoin%20Pizza%20Day%202024/GONZ25cbIAAbrjx.jpg",
+    "count": 3
   },
   {
     "name": "Bitcoin Pizza Day 2023",
     "path": "gallery/Bitcoin Pizza Day 2023",
-    "coverImage": "/event/pizzaday.jpg",
-    "count": 64
+    "coverImage": "/gallery/Celebrating%20Laszlo%20Hanyecz%20Legacy/Bitcoin%20Pizza%20Day%202023/Blockchain%20Lautech-1.jpg",
+    "count": 106
   },
   {
     "name": "BOTChain Aug 2026",
@@ -158,67 +158,67 @@
   {
     "name": "Celo AUG 2025",
     "path": "gallery/Celo AUG 2025",
-    "coverImage": "/event/celoEvent.jpg",
-    "count": 48
+    "coverImage": "/gallery/Celo/DSC_0143.JPG",
+    "count": 22
   },
   {
     "name": "CoinEx Campus Tour AUG 2025",
     "path": "gallery/CoinEx Campus Tour AUG 2025",
-    "coverImage": "/event/coinEx.jpg",
-    "count": 245
+    "coverImage": "/gallery/CoinEx%20Campus%20Tour/lascotstudios(1).jpg",
+    "count": 248
   },
   {
     "name": "CrossFi Dec 2024",
     "path": "gallery/CrossFi Dec 2024",
-    "coverImage": "/event/crossFiEvent-2.jpg",
-    "count": 72
+    "coverImage": "/gallery/CrossFi/CrossFi-1.jpg",
+    "count": 50
   },
   {
     "name": "CrossFi Developers Workshop Dec 2024",
     "path": "gallery/CrossFi Developers Workshop Dec 2024",
-    "coverImage": "/event/crossFiEvent.jpg",
-    "count": 55
+    "coverImage": "/gallery/CrossFi%20Developers%20Workshop/CRossFi%20Workshop-1.jpg",
+    "count": 49
   },
   {
     "name": "FTX 1.0 May 2021",
     "path": "gallery/FTX 1.0 May 2021",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/FTX%201.0%20May%202021/cover.jpg",
-    "count": 48
+    "coverImage": "/gallery/FTX%201.0/IMG_0048.jpg",
+    "count": 49
   },
   {
     "name": "FTX 2.0 2021",
     "path": "gallery/FTX 2.0 2021",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/FTX%202.0%202021/cover.jpg",
-    "count": 68
+    "coverImage": "/gallery/FTX%202.0/DSC_0196.jpg",
+    "count": 70
   },
   {
     "name": "Game Hangout 2023",
     "path": "gallery/Game Hangout 2023",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Game%20Hangout%202023/cover.jpg",
-    "count": 32
+    "coverImage": "/gallery/Game%20Hangout%202023/F7kitg3WEAAI8KU.jpg",
+    "count": 4
   },
   {
     "name": "GIDA ChainUP Ibadan Jan 2025",
     "path": "gallery/GIDA ChainUP Ibadan Jan 2025",
-    "coverImage": "/event/gida.jpg",
-    "count": 35
+    "coverImage": "/gallery/GIDA%20ChainUP%20Ibadan/GUmy1v5WsAAEFa-.jpg",
+    "count": 17
   },
   {
     "name": "Solana Allstars 1 March 2024",
     "path": "gallery/Solana Allstars 1 March 2024",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Solana%20Allstars%201%20March%202024/cover.jpg",
-    "count": 42
+    "coverImage": "/gallery/Solana%20Allstars%201/GLi_08nX0AEJAJe.jpg",
+    "count": 13
   },
   {
     "name": "Solana Allstars 2.0 July 2025",
     "path": "gallery/Solana Allstars 2.0 July 2025",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Solana%20Allstars%202.0%20July%202025/cover.jpg",
-    "count": 98
+    "coverImage": "/gallery/Solana%20Allstars%202.0/Gui5m2LXYAAmEuc.jpg",
+    "count": 100
   },
   {
     "name": "Sui Developer Workshop Aug 2025",
     "path": "gallery/Sui Developer Workshop Aug 2025",
-    "coverImage": "https://res.cloudinary.com/zz3ptcjd/image/upload/w_800,q_auto:best,f_auto/gallery/Sui%20Developer%20Workshop%20Aug%202025/cover.jpg",
-    "count": 56
+    "coverImage": "/gallery/Sui%20Developer%20Workshop/G5%20PIC%2050-13.jpg",
+    "count": 49
   }
 ]
