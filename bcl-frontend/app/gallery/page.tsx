@@ -13,8 +13,8 @@ export const metadata = {
   description: "Explore photos from our events, workshops, and hackathons.",
 };
 
-// Cache for 5 minutes — fast loads for visitors, but auto-refreshes quicker when new albums are added
-export const revalidate = 300;
+// Cache for 10 minutes — fast loads for visitors, protects Cloudinary API quota
+export const revalidate = 600;
 
 export default async function GalleryPage() {
   const cloudinaryAlbums = await getAlbums();

@@ -21,8 +21,8 @@ interface AlbumPageProps {
   };
 }
 
-// Auto-revalidate every 60 seconds so new uploads appear quickly
-export const revalidate = 60;
+// Cache for 10 minutes — fast loads for visitors, protects Cloudinary API quota
+export const revalidate = 600;
 
 export async function generateMetadata({ params }: AlbumPageProps) {
   const resolvedParams = await params;
@@ -166,14 +166,8 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
     );
   }
 
-  // 2. If it has no subfolders, fetch and render images in this specific folder
+  // 2. If it has no subfolders, fetch images in this specific folder
   const cloudinaryImages = await getAlbumImages(folderPath);
-
-  if (cloudinaryImages.length === 0) {
-    notFound();
-  }
-
-  const imageUrls = cloudinaryImages.map((img) => img.url);
 
   // Back navigation setup
   const parentHref = albumSegments.length > 1
@@ -182,6 +176,43 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
   const parentLabel = albumSegments.length > 1
     ? `Back to ${albumSegments[albumSegments.length - 2]}`
     : 'Back to All Albums';
+
+  if (cloudinaryImages.length === 0) {
+    return (
+      <div className="flex min-h-screen flex-col bg-gray-50">
+        <main className="flex-1 px-4 sm:px-10 py-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-8">
+              <Link 
+                href={parentHref}
+                className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>{parentLabel}</span>
+              </Link>
+            </div>
+            <div className="text-center py-20 bg-white rounded-3xl border border-gray-100 shadow-sm p-8">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 text-2xl">
+                📷
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">{currentTitle}</h2>
+              <p className="text-gray-500 max-w-md mx-auto mb-6">
+                Photos are syncing with Cloudinary. If this album was just uploaded, please refresh in a couple of minutes!
+              </p>
+              <Link
+                href={parentHref}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-all"
+              >
+                Return to Albums
+              </Link>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  const imageUrls = cloudinaryImages.map((img) => img.url);
 
   return (
     <AlbumGallery 

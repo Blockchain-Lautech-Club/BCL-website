@@ -19,50 +19,89 @@ export interface CloudinaryImage {
   height: number;
 }
 
+// 10-Minute in-memory cache to stay well within Cloudinary's 500 API calls/hour limit
+interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
+}
+const memoryCache = new Map<string, CacheEntry<any>>();
+const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
+
+function getCached<T>(key: string): T | null {
+  const entry = memoryCache.get(key);
+  if (entry && Date.now() - entry.timestamp < CACHE_TTL_MS) {
+    return entry.data as T;
+  }
+  return null;
+}
+
+function setCache<T>(key: string, data: T) {
+  memoryCache.set(key, { data, timestamp: Date.now() });
+}
+
 /**
  * Inject Cloudinary transformations into a secure_url for web-optimized delivery.
  * e.g. adds w_1200,q_auto,f_auto for auto quality and format (WebP).
  */
 function optimizeUrl(url: string, width: number): string {
-  // Insert transformation before /upload/
+  if (!url) return '';
   return url.replace('/upload/', `/upload/w_${width},q_auto,f_auto/`);
 }
 
 /**
- * Get all subfolders inside the "gallery" root folder.
+ * Get all subfolders inside the "gallery" root folder with caching.
  */
 export async function getAlbums(): Promise<CloudinaryAlbum[]> {
+  const cacheKey = 'albums_root';
+  const cached = getCached<CloudinaryAlbum[]>(cacheKey);
+  if (cached) return cached;
+
   try {
     const result = await cloudinary.api.sub_folders('gallery');
-    return result.folders.map((folder: { name: string; path: string }) => ({
+    const albums = (result.folders || []).map((folder: { name: string; path: string }) => ({
       name: folder.name,
       path: folder.path,
     }));
-  } catch (error) {
-    console.error('Error fetching Cloudinary albums:', error);
-    return [];
+    setCache(cacheKey, albums);
+    return albums;
+  } catch (error: any) {
+    console.error('Error fetching Cloudinary albums:', error?.message || error);
+    const stale = memoryCache.get(cacheKey);
+    return stale ? stale.data : [];
   }
 }
 
 /**
- * Get subfolders inside any specific folder path (e.g. "gallery/confluence2.0").
+ * Get subfolders inside any specific folder path (e.g. "gallery/confluence2.0") with caching.
  */
 export async function getSubfolders(folderPath: string): Promise<CloudinaryAlbum[]> {
+  const cacheKey = `subfolders_${folderPath}`;
+  const cached = getCached<CloudinaryAlbum[]>(cacheKey);
+  if (cached) return cached;
+
   try {
     const result = await cloudinary.api.sub_folders(folderPath);
-    return (result.folders || []).map((folder: { name: string; path: string }) => ({
+    const subfolders = (result.folders || []).map((folder: { name: string; path: string }) => ({
       name: folder.name,
       path: folder.path,
     }));
-  } catch (error) {
-    return [];
+    setCache(cacheKey, subfolders);
+    return subfolders;
+  } catch (error: any) {
+    console.warn(`Error fetching subfolders for ${folderPath}:`, error?.message || error);
+    const stale = memoryCache.get(cacheKey);
+    return stale ? stale.data : [];
   }
 }
 
 /**
- * Get the first image in a folder (for cover image).
+ * Get the first image in a folder (for cover image) with caching.
  */
 export async function getAlbumCover(folderPath: string): Promise<string | null> {
+  const cacheKey = `cover_${folderPath}`;
+  const cached = getCached<string | null>(cacheKey);
+  if (cached !== null && cached !== undefined) return cached;
+
   try {
     const result = await cloudinary.search
       .expression(`folder:"${folderPath}/*"`)
@@ -70,21 +109,28 @@ export async function getAlbumCover(folderPath: string): Promise<string | null> 
       .max_results(1)
       .execute();
 
-    if (result.resources.length > 0) {
-      // Serve cover at 600px wide for fast album grid loading
-      return optimizeUrl(result.resources[0].secure_url, 600);
+    if (result.resources && result.resources.length > 0) {
+      const coverUrl = optimizeUrl(result.resources[0].secure_url, 600);
+      setCache(cacheKey, coverUrl);
+      return coverUrl;
     }
+    setCache(cacheKey, null);
     return null;
-  } catch (error) {
-    console.error(`Error fetching cover for ${folderPath}:`, error);
-    return null;
+  } catch (error: any) {
+    console.error(`Error fetching cover for ${folderPath}:`, error?.message || error);
+    const stale = memoryCache.get(cacheKey);
+    return stale ? stale.data : null;
   }
 }
 
 /**
- * Get all images in a folder (recursively).
+ * Get all images in a folder (recursively) with caching.
  */
 export async function getAlbumImages(folderPath: string): Promise<CloudinaryImage[]> {
+  const cacheKey = `images_${folderPath}`;
+  const cached = getCached<CloudinaryImage[]>(cacheKey);
+  if (cached) return cached;
+
   try {
     const images: CloudinaryImage[] = [];
     let nextCursor: string | undefined;
@@ -97,10 +143,9 @@ export async function getAlbumImages(folderPath: string): Promise<CloudinaryImag
         .next_cursor(nextCursor || '')
         .execute();
 
-      for (const resource of result.resources) {
+      for (const resource of result.resources || []) {
         images.push({
           public_id: resource.public_id,
-          // Serve at 1200px wide with auto quality/format for fast gallery loading
           url: optimizeUrl(resource.secure_url, 1200),
           width: resource.width,
           height: resource.height,
@@ -110,25 +155,36 @@ export async function getAlbumImages(folderPath: string): Promise<CloudinaryImag
       nextCursor = result.next_cursor;
     } while (nextCursor);
 
+    if (images.length > 0) {
+      setCache(cacheKey, images);
+    }
     return images;
-  } catch (error) {
-    console.error(`Error fetching images for ${folderPath}:`, error);
-    return [];
+  } catch (error: any) {
+    console.error(`Error fetching images for ${folderPath}:`, error?.message || error);
+    const stale = memoryCache.get(cacheKey);
+    return stale ? stale.data : [];
   }
 }
 
 /**
- * Count images in a folder (recursively).
+ * Count images in a folder (recursively) with caching.
  */
 export async function countAlbumImages(folderPath: string): Promise<number> {
+  const cacheKey = `count_${folderPath}`;
+  const cached = getCached<number>(cacheKey);
+  if (cached !== null && cached !== undefined) return cached;
+
   try {
     const result = await cloudinary.search
       .expression(`folder:"${folderPath}/*"`)
       .max_results(0)
       .execute();
-    return result.total_count;
-  } catch (error) {
-    console.error(`Error counting images for ${folderPath}:`, error);
-    return 0;
+    const count = result.total_count || 0;
+    setCache(cacheKey, count);
+    return count;
+  } catch (error: any) {
+    console.error(`Error counting images for ${folderPath}:`, error?.message || error);
+    const stale = memoryCache.get(cacheKey);
+    return stale ? stale.data : 0;
   }
 }
