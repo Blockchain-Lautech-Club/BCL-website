@@ -627,7 +627,8 @@
       "speaker_name": "Dr. Adebayo",
       "speaker_title": "Keynote Speaker",
       "speaker_bio": "A blockchain strategist and educator with a passion for community building.",
-      "speaker_avatar": "/team/johnAdekunjo.jpg"
+      "speaker_avatar": "/team/johnAdekunjo.jpg",
+      "endTimestamp": "2026-11-14T23:59:59Z"
     },
     {
       "id": "Botchain Africa Builder Challenge 2026",
